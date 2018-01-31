@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
   <!-- Bootstrap -->
@@ -14,36 +15,7 @@
  
 <body>
   <div class="page">
-<nav class="navbar hautdepage">
-  <div class="container-fluid">
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
-    <div class="row rowPerso">
-    <div class="col-xs-10 nav navbar-nav liste-hautdepage">
-      
-        <div class="onglet-nav col-xs-12 col-sm-6 col-md-2 classHome"><a href="accueil.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a></div>
-        <div class="onglet-nav col-xs-12 col-sm-6 col-md-2"><a href="presentationcollection.html">Collection</a></div>
-        <div class="onglet-nav col-xs-12 col-sm-6 col-md-2"><a href="#">Nouveautés</a></div>
-        <div class="onglet-nav col-xs-12 col-sm-6 col-md-2"><a href="lescoloris.html">Coloris</a></div>
-        <div class="onglet-nav col-xs-12 col-sm-6 col-md-2"><a href="#">Rose Corail</a></div>
-    </div>
-<div class="col-xs-2">
-    <ul class="flotte-droite-dropdown onglet-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle onglet-nav" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thibaut DEMORY<span class="caret"></span></a>
-          <ul class="dropdown-menu navbar-nav nav navbar-right">
-                      <li class="item-menu-deroulant"><a href="monCompteClient.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Mon compte</a></li>
-                      <li class="item-menu-deroulant"><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  Mon panier</a></li>
-                      <li class="item-menu-deroulant"><a href="devisClient.html"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>  Mes devis</a></li>
-                      <li class="item-menu-deroulant"><a href="deconnexion.html"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>  Me déconnecter</a></li>
-                    </ul>
-        </li>
-      </ul>
-</div>
-</div>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+      <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
 
 <div class="contenu">
 <div id="carousel-collection" class="carousel slide" data-ride="carousel">
@@ -76,37 +48,24 @@
 <div class="container ">
       <div class="col-xs-12 col-sm-4 margin-bottom">
         <figure>
-          <a href="lesPlats.html"><img class="img-responsive" src="images/lesplats.jpg" alt="les plat"></a><figcaption class="text-center col-xs-12 no-padding">Les plats</figcaption>
+          <a href="lesPlats"><img class="img-responsive" src="images/lesplats.jpg" alt="les plat"></a><figcaption class="text-center col-xs-12 no-padding">Les plats</figcaption>
         </figure>
       </div>
       <div class="col-xs-12 col-sm-4 margin-bottom">
         <figure>
-          <a href="Lesportescouteaux.html"><img class="img-responsive" src="images/lesportescouteaux.jpg" alt="les portes couteaux"></a><figcaption class="text-center col-xs-12 no-padding">Les portes couteaux et décorations de table</figcaption>
+          <a href="lesPortesCouteaux"><img class="img-responsive" src="images/lesportescouteaux.jpg" alt="les portes couteaux"></a><figcaption class="text-center col-xs-12 no-padding">Les portes couteaux et décorations de table</figcaption>
         </figure>
       </div>
       <div class="col-xs-12 col-sm-4 margin-bottom">
         <figure>
-          <a href="leverretransparent.html"><img class="img-responsive" src="images/lesverrestransparents.jpg" alt="les verres transparents"></a><figcaption class="text-center col-xs-12 no-padding">Les verres transparents</figcaption>
+          <a href="leVerreTransparent"><img class="img-responsive" src="images/lesverrestransparents.jpg" alt="les verres transparents"></a><figcaption class="text-center col-xs-12 no-padding">Les verres transparents</figcaption>
         </figure>
       </div>
 </div>
 </div>
 <div class="precedentlefooter"></div>
 
-<footer class="navbar basdepage">
-<div class="container-fluid">
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class=" container">
-    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Collection</a></div>
-    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Nouveautés</a></div>
-    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Coloris</a></div>
-    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Rose Corail</a></div>
-    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Nous contacter</a></div>
-    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Mentions légales</a></div>
-      
-</div><!-- /.navbar-collapse -->
-</div><!-- /.container-fluid -->
-</footer>
+<footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
 </div>
 
     </body> 
