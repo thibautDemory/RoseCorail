@@ -13,15 +13,15 @@ public class Actualite {
         this.image_actualite = image_actualite;
     }
 
-    public Integer getId_actualite() {
+    public Integer getIdActualite() {
         return id_actualite;
     }
 
-    public void setId_actualite(Integer id_actualite) {
+    public void setIdActualite(Integer id_actualite) {
         this.id_actualite = id_actualite;
     }
 
-    public String getTitre() {
+    public String getTitreActualite() {
         return titre;
     }
 
@@ -37,11 +37,11 @@ public class Actualite {
         this.contenu = contenu;
     }
 
-    public String getImage_actualite() {
+    public String getImageActualite() {
         return image_actualite;
     }
 
-    public void setImage_actualite(String image_actualite) {
+    public void setImageActualite(String image_actualite) {
         this.image_actualite = image_actualite;
     }
 }
