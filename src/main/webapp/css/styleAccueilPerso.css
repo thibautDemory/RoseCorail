@@ -1,0 +1,31 @@
+.page-header h1{
+	text-align: center;
+	font-size: 4.5em;
+	font-weight: bold;
+}
+
+/* Titre de la page dans le body ("Rose Corail")  */
+.titleHomePage{
+	margin-bottom: 3%;
+}
+
+/* Carousel dimensions */
+
+.imageCarousel{
+	width: 100%;
+	height: 80%;
+}
+
+/* Evenement dimensions */
+.panel-info{
+	margin-right: 10%;
+	margin-left: 10%;
+	margin-bottom: 5%;
+}
+
+/* Les photos des événements */
+.imageEvent img{
+	width: 100%;
+	height: auto;
+}
+

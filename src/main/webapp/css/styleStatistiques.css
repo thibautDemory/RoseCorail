@@ -1,0 +1,74 @@
+.contenu{
+	text-align: center;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+/* Titre ("Statistiques") */
+.contenu h2{
+	margin-top: 3%;
+	margin-right: 35%;
+	margin-left: 35%;
+	font-size: 4em;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+.bandeauMois{
+	width:100%;
+}
+
+/* Cela permet de ne pas afficher les "points" automatiques d'une liste */
+.bandeauMois ul{
+  list-style-type:none;
+  text-align: center;
+}
+/* Style du texte des différentes catégories du menu */
+.bandeauMois li{
+  margin: 4px 20px;
+  display: inline-block;
+  font-size: 1.1em;
+}
+/* Style des différentes catégorie du menu */
+.mois-lien{
+  color:black;
+  text-decoration:none;
+}
+/* Style des catégories du menu quand on les survole */
+.mois-lien:hover{
+  border-bottom:solid 2px black;
+  color: black;
+  font-weight: bold;
+  text-decoration:none;
+}
+
+
+/* ------------------------------------------------------------------------------ */
+
+
+.contenuHaut{
+	margin-top: 5%;
+	margin-bottom: 5%;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+
+.contenuGauche{
+	width: 47%;
+	height: auto;
+	float: left;
+	margin-bottom: 5%;
+}
+
+.contenuDroit{
+	width: 47%;
+	height: auto;
+	float: right;
+	margin-bottom: 5%;
+}
+
+.contenuBas{
+	margin-top: 40%;
+	margin-bottom: 10%;
+	margin-left: 15%;
+	margin-right: 15%;
+}

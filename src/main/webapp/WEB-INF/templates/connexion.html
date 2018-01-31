@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	  <!-- Bootstrap -->
+	  <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+	  <link href="css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+	  <link href="css/styleConnexion.css" type="text/css" rel="stylesheet">
+	  <link rel="stylesheet" type="text/css" href="css/style-perso.css">
+	  <script src="js/jquery-3.2.1.js"></script>
+	  <script src="js/bootstrap.js"></script>
+	  <meta charset="utf-8"/>
+	  <title>Connexion</title>
+	</head>
+	<body>
+		<div class="page">
+		<nav class="navbar hautdepage">
+		    <div class="container-fluid">
+		      <!-- Collect the nav links, forms, and other content for toggling -->
+		      <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
+		        <div class="row rowPerso">
+		          <div class="col-xs-10 nav navbar-nav liste-hautdepage">
+		        
+		              <div class="onglet-nav col-xs-12 col-sm-6 col-md-2 classHome"><a href="accueil.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a></div>
+        <div class="onglet-nav col-xs-12 col-sm-6 col-md-2"><a href="presentationcollection.html">Collection</a></div>
+        <div class="onglet-nav col-xs-12 col-sm-6 col-md-2"><a href="#">Nouveautés</a></div>
+        <div class="onglet-nav col-xs-12 col-sm-6 col-md-2"><a href="lescoloris.html">Coloris</a></div>
+        <div class="onglet-nav col-xs-12 col-sm-6 col-md-2"><a href="#">Rose Corail</a></div>
+		          </div>
+		        <div class="col-xs-2 flotte-droite-dropdown goToCo">
+		            <a href="connexion.html" class="lienConnexion"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Connexion</a>
+		        </div>
+		      </div>
+		      </div><!-- /.navbar-collapse -->
+		    </div><!-- /.container-fluid -->
+		</nav>
+
+		<div class="connexionClass">
+		  <h2>Connexion</h2>
+		  <div class="formulaireCoFieldset">
+		  	<div class="formulaireCo">
+			  <form method="post" class="form-horizontal" action="/action_page.php">
+			    <div class="form-group">
+			      <label for="email" class="col-xs-4">Email :</label>
+			      <input type="email" class="inputText col-xs-4" id="email" placeholder="Entrer email" name="email">
+			    </div>
+			    <div class="form-group">
+			      <label for="pwd" class="col-xs-4">Mot de passe :</label>
+			      <input type="password" class="inputText col-xs-4" id="pwd" placeholder="Entrer mot de passe" name="pwd">
+			    </div>
+			    <div class="checkbox">
+			      <label><input type="checkbox" name="remember"> Se souvenir de moi</label>
+			    </div>
+			    <p class="boutonSub"><button type="submit" class="btn btn-default">Se connecter</button></p>
+			    <p><a href="monCompteRC.html">Se connecter en tant que Rose Corail (administrateur)</a></p>
+			    <p><a href="monCompteClient.html">Se connecter en tant que client</a></p>
+			  </form>
+			  <div class="dropdown-divider links"></div>
+			  <a class="dropdown-item" id="signUp" href="inscription.html">Pas encore de compte? Inscrivez-vous !</a>
+			  <a class="dropdown-item" id="forgotPassword" href="#">Mot de passe oublié ?</a>
+		    </div>
+		   </div>
+		</div>
+
+
+		<div class="precedentlefooter"></div>
+
+<footer class="navbar basdepage">
+<div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class=" container">
+    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Collection</a></div>
+    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Nouveautés</a></div>
+    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Coloris</a></div>
+    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Rose Corail</a></div>
+    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Nous contacter</a></div>
+    <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Mentions légales</a></div>
+      
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</footer>
+</div>
+	</body>
+</html>

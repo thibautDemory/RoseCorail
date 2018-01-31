@@ -1,0 +1,9 @@
+.couleur-rose-corail>li.active>a,.couleur-rose-corail>li.active>a:hover{
+	background-color: #FF0040;
+	color: #fff;
+}
+.presentation-coloris{
+	width: 600px;
+	height: auto;
+	display: block;
+}

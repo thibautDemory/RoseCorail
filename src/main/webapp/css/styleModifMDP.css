@@ -1,0 +1,61 @@
+.modifMDPClass{
+	margin-top: 5%;
+	margin-bottom: 10%;
+	margin-right: 20%;
+	margin-left: 20%;
+}
+
+.modifMDPClass h2{
+	margin-bottom: 5%;
+	text-align: center;
+	font-weight: bold;
+	font-size: 4em;
+}
+
+.formulaireModifMDPFieldset{
+	border-style: solid;
+	background-color: #d9d9d9;
+}
+
+.formulaireModifMDP{
+	margin-top: 5%;
+	margin-bottom: 2%;
+	margin-right: 5%;
+	margin-left: 5%;
+}
+
+.inputText{
+	width: 270px;
+	border-radius: 3px;
+	border-style: ridge;
+}
+
+.boutons{
+	margin-top: 8%;
+	margin-bottom: 5%;
+	text-align: center;
+}
+
+.buttonGreen{
+	background-color: #4CAF50;
+    border: solid;
+    border-color: #2C8F30;
+    border-width: 1px;
+    color: white;
+    padding: 5.5px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14.5px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.buttonGreen:hover{
+	color: white;
+	background-color: #3C9F40; 
+}
+
+.linkDevis{
+	margin-left: 10%;
+}

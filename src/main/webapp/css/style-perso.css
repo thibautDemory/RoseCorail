@@ -1,0 +1,199 @@
+body,html {height: 100%;}
+.page{
+	min-height: 100%;
+	position: relative;
+
+}
+
+.basdepage{
+position: absolute;
+bottom: 0;
+left: 0;
+margin-bottom: 0px;
+width: 100%;
+margin-top: 20px;
+}
+
+.hautdepage, .basdepage{
+height: auto;
+background-color:#FF0040;
+}
+.flotte-droite-dropdown{
+float: right;
+list-style-type: none;
+}
+
+
+.onglet-footer{
+padding: 10px;
+}
+.onglet-footer a{
+color: white;
+}
+
+.onglet-nav a{
+color: white;
+padding-bottom: 2%;
+padding-top: 2%;
+padding-right: 10%;
+padding-left: 10%;
+white-space: nowrap;
+}
+.onglet-nav{
+padding: 10px;
+}
+.item-menu-deroulant a{
+color: black;
+}
+.liste-hautdepage li a{
+color: white;
+}
+
+/* Classe du lien permettant d'accéder à l'accueil */
+.classHome{
+font-weight: bold;
+font-size: 1.15em;
+}
+
+/* Style du menu avec le nom et prénom de l'utilisateur */
+.classPerso{
+margin-top: 2%;
+}
+
+/* Background color */
+body{
+background-color: #fafafa;
+}
+
+.onglet-nav a:hover{
+font-weight: bold;
+
+background-color: #EE0020;
+text-decoration:none;
+}
+.rowPerso{
+margin-top: 0.5%;
+}
+.aere{
+	padding: 20px;
+}
+
+
+
+
+/* Partie que william n'a pas*/
+
+.hauteur-100{
+	height: 100px;
+}
+
+.margin-bottom{
+	margin-bottom: 10px;
+}
+
+/*Pour gérer le glyphicon de modification et supression */
+.modification-suppression{
+	display: inline-block;
+	font-size: 25px;
+}
+
+/* Pour enlever l'opacité sur le coté des carousel */
+.carousel-control.left, .carousel-control.right {
+    background-image: none;
+}
+
+/*Pour avoir le logo rose corail en bas à gauche qui s'affiche bien*/
+.carousel-img-div{  
+	position: relative;
+}
+.carousel{
+	width: 50%;
+	margin-left: 25%;
+	margin-bottom: 5%;
+}
+.carousel-inner>.item>img.logoRoseCorail, .logoRoseCorail{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	height: 20%;
+	width: auto;
+}
+
+
+
+
+/* Evenement dimensions */
+.panel-info{
+margin-right: 10%;
+margin-left: 10%;
+margin-bottom: 5%;
+}
+
+.relative{
+	position: relative;
+}
+
+#liste-des-couleurs-choisies{
+	height: 70px;
+}
+
+.goToCo{
+margin-top: 0.75%;
+}
+
+.goToCo a:hover{
+text-decoration:none;
+color: white;
+background-color: #EE0020;
+}
+
+.lienConnexion{
+color: white;
+padding-bottom: 3%;
+padding-top: 3%;
+padding-right: 10%;
+padding-left: 10%;
+font-weight: bold;
+font-size: 1.2em;
+}
+.no-margin{
+	margin: 0px;
+}
+.no-padding{
+	padding:0px;
+}
+.no-padding-left{
+	padding-left:0px;
+}
+.margin-bottom{
+	margin-bottom: 10px;
+}
+a.white, a.white:hover{
+	color: white;
+}
+
+
+@media (min-width: 768px){
+	.precedentlefooter{
+		padding-bottom: 120px;
+	}
+	.basdepage{
+		height: 120px;
+	}
+}
+@media (min-width: 992px){
+	.precedentlefooter{
+		padding-bottom: 50px;
+	}
+	.basdepage{
+		height: 50px;
+	}
+}
+@media (max-width: 768px){
+	.precedentlefooter{
+		padding-bottom: 240px;
+	}
+	.basdepage{
+		height: 240px;
+	}
+}

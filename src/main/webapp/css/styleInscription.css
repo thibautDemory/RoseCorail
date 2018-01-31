@@ -1,0 +1,47 @@
+.inscriptionClass{
+	margin-top: 5%;
+	margin-bottom: 10%;
+	margin-right: 20%;
+	margin-left: 20%;
+}
+
+.inscriptionClass h2{
+	margin-bottom: 5%;
+	text-align: center;
+	font-weight: bold;
+	font-size: 4em;
+}
+
+.formulaireSignUpFieldset{
+	border-style: solid;
+	background-color: #d9d9d9;
+}
+
+.formulaireSignUp{
+	margin-top: 5%;
+	margin-bottom: 2%;
+	margin-right: 20%;
+	margin-left: 20%;
+}
+
+.inputText{
+	width: 300px;
+	border-radius: 3px;
+	border-style: ridge;
+}
+
+.btn{
+	width: 50%;
+}
+
+.boutonSub{
+	text-align: center;
+}
+
+.links{
+	margin-top: 5%;
+}
+
+.pourCentrerLeLink{
+	text-align: center;
+}

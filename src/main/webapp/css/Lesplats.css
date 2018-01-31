@@ -1,0 +1,17 @@
+.couleur-rose-corail>li.active>a,.couleur-rose-corail>li.active>a:hover{
+	background-color: #FF0040;
+	color: #fff;
+}
+#choix-des-couleurs{
+	margin-left: 10%;
+}
+.product_view .modal-dialog{max-width: 800px; width: 100%;}
+
+.space-ten{padding: 10px;}
+
+
+
+a.titre-haut-vitrine, a.titre-haut-vitrine:hover{
+	color: black;
+
+}
