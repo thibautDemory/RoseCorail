@@ -33,15 +33,35 @@ INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant
 
 INSERT INTO `compterosecorail`(`id_compte_RC`,`email`,`mdp`, `numero_tel`) VALUES (1, 'beatrice.roquette@rosecorail.com', 'MDP21', '06 12 63 07 12');
 
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`) VALUES (1, 'Bleu gris 087');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`) VALUES (2, 'Bleu glacier 097');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`) VALUES (3, 'Noir 018');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`) VALUES (4, 'Eléphant 035');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`) VALUES (5, 'Taupe 036');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`) VALUES (6, 'Mastic 150');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`) VALUES (7, 'Bronze 032');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`) VALUES (8, 'Marron glacé 102');
-
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (1, 'Bleu gris', '087', 'image1', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (2, 'Bleu glacier', '097', 'image1', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (3, 'Bleu vert', '08', 'image1', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (4, 'Sapin bleuté', '091', 'image1', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (5, 'Lichen', '98', 'image1', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (6, 'Forêt', '103', 'image1', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (7, 'Noir', '018', 'image2', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (8, 'Eléphant', '035', 'image2', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (9, 'Taupe', '036', 'image2', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (10, 'Mastic', '150', 'image2', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (11, 'Bronze', '032', 'image2', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (12, 'Argent', '030', 'image2', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (13, 'Marron glacé', '102', 'image3', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (14, 'Camel', '101', 'image3', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (15, 'Mastic', '150', 'image3', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (16, 'Jaune dor', '039', 'image3', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (17, 'Champagne', '092', 'image3', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (18, 'Rose poudré', '090', 'image4', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (19, 'Pivoine', '100', 'image4', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (20, 'Aubergine', '099', 'image4', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (21, 'Rouge', '028', 'image4', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (22, 'Bordeaux', '019', 'image4', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (23, 'Safran', '096', 'image4', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (24, 'Sapin bleuté', '091', 'image5', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (25, 'Bleu vert', '008', 'image5', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (26, 'Celadon', '089', 'image5', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (27, 'Bleu gris', '087', 'image5', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (28, 'Turquoise', '020', 'image5', 'Printemps-Eté 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (29, 'Canard', '009', 'image5', 'Printemps-Eté 2017');
 
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (1, 1);
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (2, 1);

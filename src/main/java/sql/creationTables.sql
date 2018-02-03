@@ -40,6 +40,9 @@ CREATE TABLE `posseder` (
 CREATE TABLE `couleur` (
   `id_couleur` int(11) NOT NULL AUTO_INCREMENT,
   `nom_couleur` varchar(40) NOT NULL,
+  `num_couleur` varchar(40) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `saison` varchar(40) NOT NULL,
   PRIMARY KEY (id_couleur)
 );
 
