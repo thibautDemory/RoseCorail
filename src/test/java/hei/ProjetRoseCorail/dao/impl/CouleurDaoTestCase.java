@@ -32,7 +32,7 @@ public class CouleurDaoTestCase {
     public void shouldAddCouleur() throws Exception {
         // GIVEN
         Couleur newCouleur = new Couleur(null, "my new name of color",
-                666, "my new image", "my new season");
+                "666", "my new image", "my new season");
         // WHEN
         Couleur createdCouleur = couleurDao.addCouleur(newCouleur);
         // THEN
@@ -42,7 +42,7 @@ public class CouleurDaoTestCase {
                 assertThat(rs.next()).isTrue();
                 assertThat(rs.getInt("id_couleur")).isGreaterThan(0);
                 assertThat(rs.getString("nom_couleur")).isEqualTo("my new name of color");
-                assertThat(rs.getInt("num_couleur")).isEqualTo(666);
+                assertThat(rs.getString("num_couleur")).isEqualTo("666");
                 assertThat(rs.getString("image")).isEqualTo("my new image");
                 assertThat(rs.getString("saison")).isEqualTo("my new season");
                 assertThat(rs.next()).isFalse();

@@ -3,11 +3,11 @@ package hei.ProjetRoseCorail.entities;
 public class Couleur {
     private Integer id_couleur;
     private String nom_couleur;
-    private Integer numero_couleur;
+    private String numero_couleur;
     private String image_couleur;
     private String saison;
 
-    public Couleur(Integer id_couleur, String nom_couleur, Integer numero_couleur, String image_couleur, String saison) {
+    public Couleur(Integer id_couleur, String nom_couleur, String numero_couleur, String image_couleur, String saison) {
         this.id_couleur = id_couleur;
         this.nom_couleur = nom_couleur;
         this.numero_couleur = numero_couleur;
@@ -31,11 +31,11 @@ public class Couleur {
         this.nom_couleur = nom_couleur;
     }
 
-    public Integer getNumero_couleur() {
+    public String getNumero_couleur() {
         return numero_couleur;
     }
 
-    public void setNumero_couleur(Integer numero_couleur) {
+    public void setNumero_couleur(String numero_couleur) {
         this.numero_couleur = numero_couleur;
     }
 
