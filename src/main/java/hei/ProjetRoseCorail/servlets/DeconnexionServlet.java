@@ -15,6 +15,7 @@ public class DeconnexionServlet extends GenericServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+        req.getSession().setAttribute("statut","visiteur");
 
         templateEngine.process("deconnexion", webContext, resp.getWriter());
     }
