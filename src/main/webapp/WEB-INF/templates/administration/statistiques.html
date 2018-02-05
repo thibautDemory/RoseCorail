@@ -16,7 +16,17 @@
 </head>
 <body>
 	<div class="page">
-		<nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+		<div th:switch="${statut}">
+			<div th:case="'admin'">
+				<nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+			</div>
+			<div th:case="'client'">
+				<nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+			</div>
+			<div th:case="'visiteur'">
+				<nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+			</div>
+		</div>
 
 		
 		<div class="contenu">
