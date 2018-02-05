@@ -10,5 +10,7 @@ public interface CompteClientDao {
 
     public CompteClient addCompteClient(CompteClient compteClient);
 
+    public CompteClient addCompteClientWithoutPassword(CompteClient compteClient);
+
     public void deleteCompteClient(Integer idCompteClient);
 }

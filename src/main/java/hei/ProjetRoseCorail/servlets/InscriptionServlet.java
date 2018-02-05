@@ -56,7 +56,7 @@ public class InscriptionServlet extends GenericServlet{
         CompteClient newCompteClient = new CompteClient(null, email, nom_boutique, nom_gerant, prenom_gerant,
                 adresse, ville, code_postal, numero_tel, num_tva, site_internet, description_activite);
         try {
-            CompteClient createdCompteClient = CompteClientLibrary.getInstance().addCompteClient(newCompteClient);
+            CompteClient createdCompteClient = CompteClientLibrary.getInstance().addCompteClientWithoutPassword(newCompteClient);
 
             // REDIRECT TO DETAIL Actualité
             resp.sendRedirect(String.format("accueil"));
@@ -67,7 +67,5 @@ public class InscriptionServlet extends GenericServlet{
 
             resp.sendRedirect("inscription");
         }
-
-
     }
 }

@@ -80,7 +80,7 @@ CREATE TABLE `compteclient` (
   `adresse` varchar(130) NOT NULL,
   `ville` varchar(50) NOT NULL,
   `code_postal` char(5) NOT NULL,
-  `mdp` varchar(60) NOT NULL,
+  `mdp` varchar(60),
   `numero_tel` varchar(15) NOT NULL,
   `num_tva` varchar(20) NOT NULL,
   `site_internet` varchar(100) NOT NULL,
