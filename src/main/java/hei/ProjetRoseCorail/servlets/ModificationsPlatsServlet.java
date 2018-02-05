@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/modificationsPlats")
+@WebServlet("/administration/modificationsPlats")
 public class ModificationsPlatsServlet extends GenericServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+        String statut=(String) req.getSession().getAttribute("statut");
 
-        templateEngine.process("Modifications-plats", webContext, resp.getWriter());
+        webContext.setVariable("statut",statut);
+
+        templateEngine.process("administration/Modifications-plats", webContext, resp.getWriter());
     }
 }

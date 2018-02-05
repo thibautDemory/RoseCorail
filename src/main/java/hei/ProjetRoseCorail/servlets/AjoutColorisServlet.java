@@ -19,14 +19,17 @@ import java.io.IOException;
 import static java.lang.Integer.parseInt;
 
 @MultipartConfig
-@WebServlet("/ajoutColoris")
+@WebServlet("/administration/ajoutColoris")
 public class AjoutColorisServlet extends GenericServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+        String statut=(String) req.getSession().getAttribute("statut");
 
-        templateEngine.process("ajoutcoloris", webContext, resp.getWriter());
+        webContext.setVariable("statut",statut);
+
+        templateEngine.process("administration/ajoutcoloris", webContext, resp.getWriter());
     }
 
     @Override

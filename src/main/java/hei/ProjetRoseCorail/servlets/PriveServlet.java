@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@WebServlet("/prive")
+public class PriveServlet extends GenericServlet {
 
-@WebServlet("/administration/modifierphotosaccueil")
-public class ModifierPhotosAccueilServlet extends GenericServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
-        String statut=(String) req.getSession().getAttribute("statut");
+        String identifiantUtilisateurConnecte = (String) req.getSession().getAttribute("utilisateurConnecte");
+        String motdepasse= (String) req.getSession().getAttribute("motdepasse");
+        webContext.setVariable("nom",identifiantUtilisateurConnecte);
+        webContext.setVariable("mdp",motdepasse);
 
-        webContext.setVariable("statut",statut);
 
-        templateEngine.process("administration/modifierphotosaccueil", webContext, resp.getWriter());
+        templateEngine.process("prive", webContext, resp.getWriter());
+
     }
 }

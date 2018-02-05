@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ma page privée</title>
+</head>
+<body>
+<h1>Ceci est une page privée</h1>
+<p>Elle ne doit s'afficher que si l'utilisateur s'est connecté.</p>
+<p th:text="'Votre nom d\'utilisateur est:'+${nom}"> Votre nom d'utilisateur est: </p>
+<p th:text="'Votre mot de passe est:'+${mdp}"></p>
+</body>
+</html>

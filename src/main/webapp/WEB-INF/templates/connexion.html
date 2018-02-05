@@ -14,13 +14,23 @@
 	</head>
 	<body>
 		<div class="page">
-			<nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+			<div th:switch="${statut}">
+				<div th:case="'admin'">
+					<nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+				</div>
+				<div th:case="'client'">
+					<nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+				</div>
+				<div th:case="'visiteur'">
+					<nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+				</div>
+			</div>
 
 		<div class="connexionClass">
 		  <h2>Connexion</h2>
 		  <div class="formulaireCoFieldset">
 		  	<div class="formulaireCo">
-			  <form method="post" class="form-horizontal" action="/action_page.php">
+			  <form method="post" class="form-horizontal">
 			    <div class="form-group">
 			      <label for="email" class="col-xs-4">Email :</label>
 			      <input type="email" class="inputText col-xs-4" id="email" placeholder="Entrer email" name="email">
