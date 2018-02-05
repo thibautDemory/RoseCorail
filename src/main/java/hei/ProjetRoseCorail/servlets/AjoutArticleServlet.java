@@ -15,6 +15,11 @@ public class AjoutArticleServlet extends GenericServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+        String statut=(String) req.getSession().getAttribute("statut");
+        if (statut==null||"".equals(statut)){
+            statut="visiteur";
+        }
+        webContext.setVariable("statut",statut);
 
         templateEngine.process("administration/ajout-article", webContext, resp.getWriter());
     }
