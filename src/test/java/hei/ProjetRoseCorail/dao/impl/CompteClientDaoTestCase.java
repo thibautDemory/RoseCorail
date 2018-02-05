@@ -24,9 +24,9 @@ public class CompteClientDaoTestCase {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              Statement stmt = connection.createStatement()) {
             stmt.executeUpdate("DELETE FROM compteclient");
-            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`) VALUES (1,'william@evrard.fr', 'HEI', 'EVRARD', '26 BD Bigo Danel', 'Lille', '59000', 'monMDP1', '0606060606')");
-            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`) VALUES (2,'thibaut@demory.fr', 'ISA', 'DEMORY', '20 rue Beaucourt', 'Lille', '59000', 'monMDP2', '0606060607')");
-            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`) VALUES (3,'arnold@blyau.fr', 'ISEN', 'BLYAU', '54 rue Paul Bocuse', 'Lille', '59000', 'monMDP3', '0606060608')");
+            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`) VALUES (1,'william@evrard.fr', 'HEI', 'EVRARD', 'William', '26 BD Bigo Danel', 'Lille', '59000', 'monMDP1', '0606060606', 'FR 40 123456824', 'william.evrard.fr', 'description1')");
+            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`) VALUES (2,'thibaut@demory.fr', 'ISA', 'DEMORY', 'Thibaut', '20 rue Beaucourt', 'Lille', '59000', 'monMDP2', '0606060607', 'FR 41 123456824', 'thib.demory.fr', 'description2')");
+            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`) VALUES (3,'arnold@blyau.fr', 'ISEN', 'BLYAU', 'Arnold', '54 rue Paul Bocuse', 'Lille', '59000', 'monMDP3', '0606060608', 'FR 42 123456824', 'arnold.blyau.fr', 'description3')");
         }
     }
 
@@ -36,10 +36,10 @@ public class CompteClientDaoTestCase {
         List<CompteClient> compteClients = compteClientDao.listComptesClient();
         // THEN
         assertThat(compteClients).hasSize(3);
-        assertThat(compteClients).extracting("id_compte_client","email","nom_boutique","nom_gerant","adresse","ville","code_postal","mdp", "numero_tel").containsOnly(
-                tuple(1,"william@evrard.fr", "HEI", "EVRARD", "26 BD Bigo Danel", "Lille", "59000", "monMDP1", "0606060606"),
-                tuple(2,"thibaut@demory.fr", "ISA", "DEMORY", "20 rue Beaucourt", "Lille", "59000", "monMDP2", "0606060607"),
-                tuple(3,"arnold@blyau.fr", "ISEN", "BLYAU", "54 rue Paul Bocuse", "Lille", "59000", "monMDP3", "0606060608")
+        assertThat(compteClients).extracting("id_compte_client","email","nom_boutique","nom_gerant","prenom_gerant","adresse","ville","code_postal","mdp", "numero_tel","num_tva","site_internet","description_activite").containsOnly(
+                tuple(1,"william@evrard.fr", "HEI", "EVRARD", "William", "26 BD Bigo Danel", "Lille", "59000", "monMDP1", "0606060606", "FR 40 123456824", "william.evrard.fr", "description1"),
+                tuple(2,"thibaut@demory.fr", "ISA", "DEMORY", "Thibaut", "20 rue Beaucourt", "Lille", "59000", "monMDP2", "0606060607", "FR 41 123456824", "thib.demory.fr", "description2"),
+                tuple(3,"arnold@blyau.fr", "ISEN", "BLYAU", "Arnold", "54 rue Paul Bocuse", "Lille", "59000", "monMDP3", "0606060608", "FR 42 123456824", "arnold.blyau.fr", "description3")
         );
     }
 
@@ -47,8 +47,9 @@ public class CompteClientDaoTestCase {
     public void shouldAddCompteClient() throws Exception {
         // GIVEN
         CompteClient newCompteClient = new CompteClient(null, "my new email",
-                "my new shop's name", "my new boss's name", "my new adress",
-                "my new city", "02160", "my new password", "0323249007");
+                "my new shop's name", "my new boss's name", "my new boss's firstname",
+                "my new adress", "my new city", "02160", "my new password", "0323249007",
+                "my new TVA", "my new Web site", "my new description");
         // WHEN
         CompteClient createdCompteClient = compteClientDao.addCompteClient(newCompteClient);
         // THEN
@@ -60,11 +61,15 @@ public class CompteClientDaoTestCase {
                 assertThat(rs.getString("email")).isEqualTo("my new email");
                 assertThat(rs.getString("nom_boutique")).isEqualTo("my new shop's name");
                 assertThat(rs.getString("nom_gerant")).isEqualTo("my new boss's name");
+                assertThat(rs.getString("prenom_gerant")).isEqualTo("my new boss's firstname");
                 assertThat(rs.getString("adresse")).isEqualTo("my new adress");
                 assertThat(rs.getString("ville")).isEqualTo("my new city");
                 assertThat(rs.getString("code_postal")).isEqualTo("02160");
                 assertThat(rs.getString("mdp")).isEqualTo("my new password");
                 assertThat(rs.getString("numero_tel")).isEqualTo("0323249007");
+                assertThat(rs.getString("num_tva")).isEqualTo("my new TVA");
+                assertThat(rs.getString("site_internet")).isEqualTo("my new Web site");
+                assertThat(rs.getString("description_activite")).isEqualTo("my new description");
                 assertThat(rs.next()).isFalse();
             }
         }
@@ -77,9 +82,9 @@ public class CompteClientDaoTestCase {
         List<CompteClient> comptesClient = compteClientDao.listComptesClient();
         // THEN
         assertThat(comptesClient).hasSize(2);
-        assertThat(comptesClient).extracting("id_compte_client","email","nom_boutique","nom_gerant","adresse","ville","code_postal","mdp", "numero_tel").containsOnly(
-                tuple(2,"thibaut@demory.fr", "ISA", "DEMORY", "20 rue Beaucourt", "Lille", "59000", "monMDP2", "0606060607"),
-                tuple(3,"arnold@blyau.fr", "ISEN", "BLYAU", "54 rue Paul Bocuse", "Lille", "59000", "monMDP3", "0606060608")
+        assertThat(comptesClient).extracting("id_compte_client","email","nom_boutique","nom_gerant", "prenom_gerant", "adresse","ville","code_postal","mdp", "numero_tel", "num_tva", "site_internet", "description_activite").containsOnly(
+                tuple(2,"thibaut@demory.fr", "ISA", "DEMORY", "Thibaut", "20 rue Beaucourt", "Lille", "59000", "monMDP2", "0606060607", "FR 41 123456824", "thib.demory.fr", "description2"),
+                tuple(3,"arnold@blyau.fr", "ISEN", "BLYAU", "Arnold", "54 rue Paul Bocuse", "Lille", "59000", "monMDP3", "0606060608", "FR 42 123456824", "arnold.blyau.fr", "description3")
         );
     }
 }

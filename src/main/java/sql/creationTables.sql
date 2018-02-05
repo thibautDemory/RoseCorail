@@ -76,11 +76,15 @@ CREATE TABLE `compteclient` (
   `email` varchar(70) NOT NULL,
   `nom_boutique` varchar(50) NOT NULL,
   `nom_gerant` varchar(50) NOT NULL,
+  `prenom_gerant` varchar(50) NOT NULL,
   `adresse` varchar(130) NOT NULL,
   `ville` varchar(50) NOT NULL,
   `code_postal` char(5) NOT NULL,
   `mdp` varchar(60) NOT NULL,
   `numero_tel` varchar(15) NOT NULL,
+  `num_tva` varchar(20) NOT NULL,
+  `site_internet` varchar(100) NOT NULL,
+  `description_activite` text NOT NULL,
   PRIMARY KEY (id_compte_client)
 );
 

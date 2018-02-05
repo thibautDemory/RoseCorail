@@ -24,11 +24,15 @@ public class CompteClientDaoImpl implements CompteClientDao {
                                 resultSet.getString("email"),
                                 resultSet.getString("nom_boutique"),
                                 resultSet.getString("nom_gerant"),
+                                resultSet.getString("prenom_gerant"),
                                 resultSet.getString("adresse"),
                                 resultSet.getString("ville"),
                                 resultSet.getString("code_postal"),
                                 resultSet.getString("mdp"),
-                                resultSet.getString("numero_tel")
+                                resultSet.getString("numero_tel"),
+                                resultSet.getString("num_tva"),
+                                resultSet.getString("site_internet"),
+                                resultSet.getString("description_activite")
                                 )
                 );
             }
@@ -41,17 +45,21 @@ public class CompteClientDaoImpl implements CompteClientDao {
 
     @Override
     public CompteClient addCompteClient(CompteClient compteClient) {
-        String query = "INSERT INTO compteclient(email, nom_boutique, nom_gerant, adresse, ville, code_postal, mdp,  numero_tel) VALUES(?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO compteclient(email, nom_boutique, nom_gerant, prenom_gerant, adresse, ville, code_postal, mdp,  numero_tel, num_tva, site_internet, description_activite) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, compteClient.getEmail());
                 statement.setString(2, compteClient.getNom_boutique());
                 statement.setString(3, compteClient.getNom_gerant());
-                statement.setString(4, compteClient.getAdresse());
-                statement.setString(5, compteClient.getVille());
-                statement.setString(6, compteClient.getCode_postal());
-                statement.setString(7, compteClient.getMdp());
-                statement.setString(8, compteClient.getNumero_tel());
+                statement.setString(4, compteClient.getPrenom_gerant());
+                statement.setString(5, compteClient.getAdresse());
+                statement.setString(6, compteClient.getVille());
+                statement.setString(7, compteClient.getCode_postal());
+                statement.setString(8, compteClient.getMdp());
+                statement.setString(9, compteClient.getNumero_tel());
+                statement.setString(10, compteClient.getNum_tva());
+                statement.setString(11, compteClient.getSite_internet());
+                statement.setString(12, compteClient.getDescription_activite());
                 statement.executeUpdate();
             }
         } catch (SQLException e) {

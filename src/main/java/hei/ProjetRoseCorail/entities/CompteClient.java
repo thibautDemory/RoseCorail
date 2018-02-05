@@ -5,23 +5,47 @@ public class CompteClient {
     private String email;
     private String nom_boutique;
     private String nom_gerant;
+    private String prenom_gerant;
     private String adresse;
     // complément d'adresse?
     private String ville;
     private String code_postal;
     private String mdp;
     private String numero_tel;
+    private String num_tva;
+    private String site_internet;
+    private String description_activite;
 
-    public CompteClient(Integer id_compte_client, String email, String nom_boutique, String nom_gerant, String adresse, String ville, String code_postal, String mdp, String numero_tel) {
+
+    public CompteClient(Integer id_compte_client, String email, String nom_boutique, String nom_gerant, String prenom_gerant, String adresse, String ville, String code_postal, String mdp, String numero_tel, String num_tva, String site_internet, String description_activite) {
         this.id_compte_client = id_compte_client;
         this.email = email;
         this.nom_boutique = nom_boutique;
         this.nom_gerant = nom_gerant;
+        this.prenom_gerant = prenom_gerant;
         this.adresse = adresse;
         this.ville = ville;
         this.code_postal = code_postal;
         this.mdp = mdp;
         this.numero_tel = numero_tel;
+        this.num_tva = num_tva;
+        this.site_internet = site_internet;
+        this.description_activite = description_activite;
+    }
+
+    public CompteClient(Integer id_compte_client, String email, String nom_boutique, String nom_gerant, String prenom_gerant, String adresse, String ville, String code_postal, String numero_tel, String num_tva, String site_internet, String description_activite) {
+        this.id_compte_client = id_compte_client;
+        this.email = email;
+        this.nom_boutique = nom_boutique;
+        this.nom_gerant = nom_gerant;
+        this.prenom_gerant = prenom_gerant;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.numero_tel = numero_tel;
+        this.num_tva = num_tva;
+        this.site_internet = site_internet;
+        this.description_activite = description_activite;
     }
 
     public Integer getId_compte_client() {
@@ -54,6 +78,14 @@ public class CompteClient {
 
     public void setNom_gerant(String nom_gerant) {
         this.nom_gerant = nom_gerant;
+    }
+
+    public String getPrenom_gerant() {
+        return prenom_gerant;
+    }
+
+    public void setPrenom_gerant(String prenom_gerant) {
+        this.prenom_gerant = prenom_gerant;
     }
 
     public String getAdresse() {
@@ -94,5 +126,29 @@ public class CompteClient {
 
     public void setNumero_tel(String numero_tel) {
         this.numero_tel = numero_tel;
+    }
+
+    public String getNum_tva() {
+        return num_tva;
+    }
+
+    public void setNum_tva(String num_tva) {
+        this.num_tva = num_tva;
+    }
+
+    public String getSite_internet() {
+        return site_internet;
+    }
+
+    public void setSite_internet(String site_internet) {
+        this.site_internet = site_internet;
+    }
+
+    public String getDescription_activite() {
+        return description_activite;
+    }
+
+    public void setDescription_activite(String description_activite) {
+        this.description_activite = description_activite;
     }
 }

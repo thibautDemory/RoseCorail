@@ -18,7 +18,7 @@ public class ActualiteLibrary {
 
     public Actualite addActualite(Actualite actualite) {
         if (actualite == null) {
-            throw new IllegalArgumentException("The cocktail should not be null.");
+            throw new IllegalArgumentException("L'actualite ne peut pas être nulle.");
         }
         if (actualite.getTitreActualite() == null || "".equals(actualite.getTitreActualite())) {
             throw new IllegalArgumentException("Le titre de l'actualite ne peut pas être nul.");
