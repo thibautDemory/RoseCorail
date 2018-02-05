@@ -19,4 +19,25 @@ public class ConnexionServlet extends GenericServlet{
 
         templateEngine.process("connexion", webContext, resp.getWriter());
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getSession().setAttribute("utilisateurConnecte", req.getParameter("email"));
+        req.getSession().setAttribute("motdepasse",req.getParameter("pwd"));
+        String admin="admin";
+        String visiteur="visiteur";
+        String client="client";
+        String utilisateur= (String) req.getSession().getAttribute("utilisateurConnecte");
+
+        if (utilisateur.equals("beatrice@hotmail.fr")){
+            req.getSession().setAttribute("statut",admin);
+        }
+        if(utilisateur.equals("thibaut@hotmail.fr")){
+            req.getSession().setAttribute("statut",client);
+        }
+        else{
+            req.getSession().setAttribute("statut",visiteur);
+        }
+        resp.sendRedirect("accueil");
+    }
 }

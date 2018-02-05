@@ -15,11 +15,25 @@
 <body>
   <div class="page">
 
-<nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+    <div th:switch="${statut}">
+      <div th:case="'admin'">
+        <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+      </div>
+      <div th:case="'client'">
+        <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+      </div>
+      <div th:case="'visiteur'">
+        <nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+      </div>
+    </div>
+    <p th:text="${statut}"></p>
+
 
 <div class="page-header titleHomePage">
   <h1>Rose Corail</h1>
 </div>
+
+
 
 <div id="carousel-accueil" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
