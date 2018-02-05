@@ -8,8 +8,10 @@ import org.junit.Test;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.groups.Tuple.tuple;
 
 public class ActualiteDaoTestCase {
 
@@ -24,6 +26,19 @@ public class ActualiteDaoTestCase {
             stmt.executeUpdate("INSERT INTO `actualite`(`id_actualite`,`titre`,`contenu`,`image`) VALUES (2, 'Salon de Reims', 'BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaREIMS', 'imageSalonREIMS')");
             stmt.executeUpdate("INSERT INTO `actualite`(`id_actualite`,`titre`,`contenu`,`image`) VALUES (3, 'Salon de Picardie', 'BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaPICARDIE', 'imageSalonPICARDIE')");
         }
+    }
+
+    @Test
+    public void shouldListActualite() {
+        // WHEN
+        List<Actualite> actualites = actualiteDao.listActualites();
+        // THEN
+        assertThat(actualites).hasSize(3);
+        assertThat(actualites).extracting("id_actualite", "titre", "contenu", "image_actualite").containsOnly(
+                tuple(1, "Salon de Paris", "BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaPARIS", "imageSalonParis"),
+                tuple(2, "Salon de Reims", "BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaREIMS","imageSalonREIMS") ,
+                tuple(3, "Salon de Picardie", "BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaPICARDIE", "imageSalonPICARDIE")
+        );
     }
 
     @Test
@@ -45,6 +60,19 @@ public class ActualiteDaoTestCase {
                 assertThat(rs.next()).isFalse();
             }
         }
+    }
+
+    @Test
+    public void shouldDeleteActualite(){
+        actualiteDao.deleteActualite(1);
+
+        List<Actualite> actualites = actualiteDao.listActualites();
+        // THEN
+        assertThat(actualites).hasSize(2);
+        assertThat(actualites).extracting("id_actualite", "titre", "contenu", "image_actualite").containsOnly(
+                tuple(2, "Salon de Reims", "BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaREIMS","imageSalonREIMS"),
+                tuple(3, "Salon de Picardie", "BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaPICARDIE", "imageSalonPICARDIE")
+        );
     }
 
 }
