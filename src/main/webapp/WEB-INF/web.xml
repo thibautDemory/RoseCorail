@@ -18,5 +18,15 @@
         <url-pattern>/webservices/*</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>AdministrationFiltre</filter-name>
+        <filter-class>hei.ProjetRoseCorail.filtres.AdministrationFiltre</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AdministrationFiltre</filter-name>
+        <url-pattern>/administration/*</url-pattern>
+    </filter-mapping>
+
 
 </web-app>

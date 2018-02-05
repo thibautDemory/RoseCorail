@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 
 @MultipartConfig
-@WebServlet("/ajoutActualite")
+@WebServlet("/administration/ajoutActualite")
 
 public class AjoutActualiteServlet extends GenericServlet{
     @Override
@@ -23,9 +23,7 @@ public class AjoutActualiteServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
-        if (statut==null||"".equals(statut)){
-            statut="visiteur";
-        }
+
         webContext.setVariable("statut",statut);
 
         templateEngine.process("ajoutActualite", webContext, resp.getWriter());

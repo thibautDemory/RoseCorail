@@ -29,20 +29,20 @@ public class ConnexionServlet extends GenericServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().setAttribute("utilisateurConnecte", req.getParameter("email"));
         req.getSession().setAttribute("motdepasse",req.getParameter("pwd"));
-        String admin="admin";
-        String visiteur="visiteur";
-        String client="client";
+
+
+
         String utilisateur= (String) req.getSession().getAttribute("utilisateurConnecte");
+        req.getSession().setAttribute("statut","visiteur");
 
         if (utilisateur.equals("beatrice@hotmail.fr")){
-            req.getSession().setAttribute("statut",admin);
+            System.out.println("beatrice");
+            req.getSession().setAttribute("statut","admin");
         }
         if(utilisateur.equals("thibaut@hotmail.fr")){
-            req.getSession().setAttribute("statut",client);
+            req.getSession().setAttribute("statut","client");
         }
-        else{
-            req.getSession().setAttribute("statut",visiteur);
-        }
+
         resp.sendRedirect("accueil");
     }
 }

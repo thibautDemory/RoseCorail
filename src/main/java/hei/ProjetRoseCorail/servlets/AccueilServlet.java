@@ -21,6 +21,7 @@ public class AccueilServlet extends GenericServlet{
         if (statut==null||"".equals(statut)){
             statut="visiteur";
         }
+        System.out.println(statut);
         webContext.setVariable("statut",statut);
 
         templateEngine.process("accueil", webContext, resp.getWriter());

@@ -10,16 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/ajoutPanelColoris")
+@WebServlet("/administration/ajoutPanelColoris")
 public class AjoutPanelColorisServlet extends GenericServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
-        if (statut==null||"".equals(statut)){
-            statut="visiteur";
-        }
+
         webContext.setVariable("statut",statut);
 
         templateEngine.process("administration/ajout-panel-coloris", webContext, resp.getWriter());
