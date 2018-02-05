@@ -1,6 +1,7 @@
 package hei.ProjetRoseCorail.dao.impl;
 
 import hei.ProjetRoseCorail.dao.CouleurDao;
+import hei.ProjetRoseCorail.entities.Actualite;
 import hei.ProjetRoseCorail.entities.Couleur;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,8 +9,10 @@ import org.junit.Test;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.groups.Tuple.tuple;
 
 public class CouleurDaoTestCase {
 
@@ -27,6 +30,19 @@ public class CouleurDaoTestCase {
         }
     }
 
+    @Test
+    public void shouldListCouleur() {
+        // WHEN
+        List<Couleur> couleurs = couleurDao.listCouleurs();
+        // THEN
+        assertThat(couleurs).hasSize(4);
+        assertThat(couleurs).extracting("id_couleur", "nom_couleur", "numero_couleur", "image_couleur","saison").containsOnly(
+                tuple(1, "Bleu gris", "087", "image1", "Printemps-Eté 2017"),
+                tuple(2, "Bleu glacier", "097", "image1", "Printemps-Eté 2017") ,
+                tuple(3, "Bleu vert", "08", "image1", "Printemps-Eté 2017"),
+                tuple(4, "Sapin bleuté", "091", "image1", "Printemps-Eté 2017")
+        );
+    }
 
     @Test
     public void shouldAddCouleur() throws Exception {
@@ -48,5 +64,19 @@ public class CouleurDaoTestCase {
                 assertThat(rs.next()).isFalse();
             }
         }
+    }
+
+    @Test
+    public void shouldDeleteActualite(){
+        couleurDao.deleteCouleur(1);
+
+        List<Couleur> couleurs = couleurDao.listCouleurs();
+        // THEN
+        assertThat(couleurs).hasSize(3);
+        assertThat(couleurs).extracting("id_couleur", "nom_couleur", "numero_couleur", "image_couleur","saison").containsOnly(
+                tuple(2, "Bleu glacier", "097", "image1", "Printemps-Eté 2017") ,
+                tuple(3, "Bleu vert", "08", "image1", "Printemps-Eté 2017"),
+                tuple(4, "Sapin bleuté", "091", "image1", "Printemps-Eté 2017")
+        );
     }
 }
