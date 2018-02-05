@@ -16,6 +16,6 @@ public class AjoutArticleServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("ajout-article", webContext, resp.getWriter());
+        templateEngine.process("administration/ajout-article", webContext, resp.getWriter());
     }
 }

@@ -16,6 +16,6 @@ public class ModifierCouleurNavFooterServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("modifiercouleurnavfooter", webContext, resp.getWriter());
+        templateEngine.process("administration/modifiercouleurnavfooter", webContext, resp.getWriter());
     }
 }

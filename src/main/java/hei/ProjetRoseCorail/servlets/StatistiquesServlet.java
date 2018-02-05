@@ -16,6 +16,6 @@ public class StatistiquesServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("statistiques", webContext, resp.getWriter());
+        templateEngine.process("administration/statistiques", webContext, resp.getWriter());
     }
 }

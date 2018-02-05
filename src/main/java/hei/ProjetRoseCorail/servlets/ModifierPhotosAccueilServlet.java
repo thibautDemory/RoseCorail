@@ -17,6 +17,6 @@ public class ModifierPhotosAccueilServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("modifierphotosaccueil", webContext, resp.getWriter());
+        templateEngine.process("administration/modifierphotosaccueil", webContext, resp.getWriter());
     }
 }

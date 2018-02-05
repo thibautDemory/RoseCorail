@@ -17,6 +17,6 @@ public class MonCompteRCServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("monCompteRC", webContext, resp.getWriter());
+        templateEngine.process("administration/monCompteRC", webContext, resp.getWriter());
     }
 }

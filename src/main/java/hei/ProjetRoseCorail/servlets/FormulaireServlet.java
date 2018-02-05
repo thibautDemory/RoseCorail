@@ -16,6 +16,6 @@ public class FormulaireServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("formulaire", webContext, resp.getWriter());
+        templateEngine.process("administration/formulaire", webContext, resp.getWriter());
     }
 }

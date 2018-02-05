@@ -16,6 +16,6 @@ public class DevisRCServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("devisRC", webContext, resp.getWriter());
+        templateEngine.process("administration/devisRC", webContext, resp.getWriter());
     }
 }

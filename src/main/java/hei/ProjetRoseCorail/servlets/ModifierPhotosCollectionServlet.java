@@ -17,6 +17,6 @@ public class ModifierPhotosCollectionServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("modifierphotoscollection", webContext, resp.getWriter());
+        templateEngine.process("administration/modifierphotoscollection", webContext, resp.getWriter());
     }
 }

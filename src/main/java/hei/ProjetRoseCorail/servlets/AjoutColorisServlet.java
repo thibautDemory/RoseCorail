@@ -26,7 +26,7 @@ public class AjoutColorisServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("ajoutcoloris", webContext, resp.getWriter());
+        templateEngine.process("administration/ajoutcoloris", webContext, resp.getWriter());
     }
 
     @Override

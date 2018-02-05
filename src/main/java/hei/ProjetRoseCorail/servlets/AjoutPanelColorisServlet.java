@@ -17,6 +17,6 @@ public class AjoutPanelColorisServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        templateEngine.process("ajout-panel-coloris", webContext, resp.getWriter());
+        templateEngine.process("administration/ajout-panel-coloris", webContext, resp.getWriter());
     }
 }
