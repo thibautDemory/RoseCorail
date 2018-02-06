@@ -94,5 +94,3 @@ INSERT INTO `statistiques`(`id_stat`, `nom_boutique_num1`, `nom_boutique_num2`, 
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (1, 1);
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (2, 1);
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (3, 1);
-INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (4, 2);
-INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (5, 3);
