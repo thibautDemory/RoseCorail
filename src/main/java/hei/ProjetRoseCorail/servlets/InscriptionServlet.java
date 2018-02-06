@@ -40,6 +40,7 @@ public class InscriptionServlet extends GenericServlet{
         String adresse = null;
         String ville = null;
         String code_postal = null;
+        String mdp = null;
         String numero_tel = null;
         String num_tva = null;
         String site_internet = null;
@@ -52,6 +53,7 @@ public class InscriptionServlet extends GenericServlet{
         adresse = req.getParameter("adresse");
         ville = req.getParameter("ville");
         code_postal = req.getParameter("code_postal");
+        mdp = req.getParameter("mdp");
         numero_tel = req.getParameter("numero_tel");
         num_tva = req.getParameter("num_tva");
         site_internet = req.getParameter("site_internet");
@@ -59,12 +61,12 @@ public class InscriptionServlet extends GenericServlet{
 
         // CREATE CompteClient
         CompteClient newCompteClient = new CompteClient(null, email, nom_boutique, nom_gerant, prenom_gerant,
-                adresse, ville, code_postal, numero_tel, num_tva, site_internet, description_activite);
+                adresse, ville, code_postal, mdp, numero_tel, num_tva, site_internet, description_activite);
         try {
-            CompteClient createdCompteClient = CompteClientLibrary.getInstance().addCompteClientWithoutPassword(newCompteClient);
+            CompteClient createdCompteClient = CompteClientLibrary.getInstance().addCompteClient(newCompteClient);
 
-            // REDIRECT TO DETAIL Actualité
-            resp.sendRedirect(String.format("accueil"));
+            // REDIRECT TO Compteclient
+            resp.sendRedirect("monCompteClient");
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
 

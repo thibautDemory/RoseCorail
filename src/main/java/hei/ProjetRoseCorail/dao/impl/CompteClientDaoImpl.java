@@ -46,8 +46,8 @@ public class CompteClientDaoImpl implements CompteClientDao {
     @Override
     public CompteClient addCompteClient(CompteClient compteClient) {
         String query = "INSERT INTO compteclient(email, nom_boutique, nom_gerant, prenom_gerant, adresse, ville, code_postal, mdp,  numero_tel, num_tva, site_internet, description_activite) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+            PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, compteClient.getEmail());
                 statement.setString(2, compteClient.getNom_boutique());
                 statement.setString(3, compteClient.getNom_gerant());
@@ -61,31 +61,14 @@ public class CompteClientDaoImpl implements CompteClientDao {
                 statement.setString(11, compteClient.getSite_internet());
                 statement.setString(12, compteClient.getDescription_activite());
                 statement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
-    @Override
-    public CompteClient addCompteClientWithoutPassword(CompteClient compteClient) {
-        String query = "INSERT INTO compteclient(email, nom_boutique, nom_gerant, prenom_gerant, adresse, ville, code_postal,  numero_tel, num_tva, site_internet, description_activite) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, compteClient.getEmail());
-                statement.setString(2, compteClient.getNom_boutique());
-                statement.setString(3, compteClient.getNom_gerant());
-                statement.setString(4, compteClient.getPrenom_gerant());
-                statement.setString(5, compteClient.getAdresse());
-                statement.setString(6, compteClient.getVille());
-                statement.setString(7, compteClient.getCode_postal());
-                statement.setString(8, compteClient.getNumero_tel());
-                statement.setString(9, compteClient.getNum_tva());
-                statement.setString(10, compteClient.getSite_internet());
-                statement.setString(11, compteClient.getDescription_activite());
-                statement.executeUpdate();
-            }
+                try (ResultSet ids = statement.getGeneratedKeys()) {
+                    if (ids.next()) {
+                        int generatedId = ids.getInt(1);
+                        compteClient.setId_compte_client(generatedId);
+                        return compteClient;
+                    }
+                }
         } catch (SQLException e) {
             e.printStackTrace();
         }

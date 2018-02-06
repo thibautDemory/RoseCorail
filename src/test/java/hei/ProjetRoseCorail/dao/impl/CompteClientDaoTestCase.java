@@ -76,37 +76,6 @@ public class CompteClientDaoTestCase {
     }
 
     @Test
-    public void shouldAddCompteClientWithoutPassword() throws Exception {
-        // GIVEN
-        CompteClient newCompteClient = new CompteClient(null, "my new email2",
-                "my new shop's name2", "my new boss's name2", "my new boss's firstname2",
-                "my new adress2", "my new city2", "02162", "0323249009",
-                "my new TVA2", "my new Web site2", "my new description2");
-        // WHEN
-        CompteClient createdCompteClient = compteClientDao.addCompteClientWithoutPassword(newCompteClient);
-        // THEN
-        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
-             Statement stmt = connection.createStatement()) {
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM compteclient WHERE email = 'my new email2'")) {
-                assertThat(rs.next()).isTrue();
-                assertThat(rs.getInt("id_compte_client")).isGreaterThan(0);
-                assertThat(rs.getString("email")).isEqualTo("my new email2");
-                assertThat(rs.getString("nom_boutique")).isEqualTo("my new shop's name2");
-                assertThat(rs.getString("nom_gerant")).isEqualTo("my new boss's name2");
-                assertThat(rs.getString("prenom_gerant")).isEqualTo("my new boss's firstname2");
-                assertThat(rs.getString("adresse")).isEqualTo("my new adress2");
-                assertThat(rs.getString("ville")).isEqualTo("my new city2");
-                assertThat(rs.getString("code_postal")).isEqualTo("02162");
-                assertThat(rs.getString("numero_tel")).isEqualTo("0323249009");
-                assertThat(rs.getString("num_tva")).isEqualTo("my new TVA2");
-                assertThat(rs.getString("site_internet")).isEqualTo("my new Web site2");
-                assertThat(rs.getString("description_activite")).isEqualTo("my new description2");
-                assertThat(rs.next()).isFalse();
-            }
-        }
-    }
-
-    @Test
     public void shouldDeleteCompteClient(){
         compteClientDao.deleteCompteClient(1);
 
