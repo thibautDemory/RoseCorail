@@ -1,3 +1,19 @@
+CREATE TABLE `categorie` (
+  `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_categorie` varchar(30) NOT NULL,
+  PRIMARY KEY (id_categorie)
+);
+
+
+CREATE TABLE `souscategorie` (
+  `id_sous_categorie` int(11) NOT NULL AUTO_INCREMENT,
+  `id_categorie` int(11) NOT NULL,
+  `nom_sous_categorie` varchar(30) NOT NULL,
+  PRIMARY KEY (id_sous_categorie),
+  KEY `id_categorie_fk` (`id_categorie`),
+  CONSTRAINT `id_categorie_fk` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
 CREATE TABLE `article` (
   `id_article` int(11) NOT NULL AUTO_INCREMENT,
   `id_sous_categorie` int(11) NOT NULL,
@@ -12,65 +28,6 @@ CREATE TABLE `article` (
   KEY `id_sous_categorie_fk` (`id_sous_categorie`),
   CONSTRAINT `id_sous_categorie_fk` FOREIGN KEY (`id_sous_categorie`) REFERENCES `souscategorie` (`id_sous_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
-
-CREATE TABLE `souscategorie` (
-  `id_sous_categorie` int(11) NOT NULL AUTO_INCREMENT,
-  `id_categorie` int(11) NOT NULL,
-  `nom_sous_categorie` varchar(30) NOT NULL,
-  PRIMARY KEY (id_sous_categorie),
-  KEY `id_categorie_fk` (`id_categorie`),
-  CONSTRAINT `id_categorie_fk` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
-
-CREATE TABLE `categorie` (
-  `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_categorie` varchar(30) NOT NULL,
-  PRIMARY KEY (id_categorie)
-);
-
-CREATE TABLE `posseder` (
-  `id_couleur` int(11) NOT NULL,
-  `id_article` int(11) NOT NULL,
-  KEY `id_couleur_fk` (`id_couleur`),
-  CONSTRAINT `id_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  KEY `id_article_fk` (`id_article`),
-  CONSTRAINT `id_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
-
-CREATE TABLE `couleur` (
-  `id_couleur` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_couleur` varchar(40) NOT NULL,
-  `num_couleur` varchar(40) NOT NULL,
-  `image` varchar(50) NOT NULL,
-  `saison` varchar(40) NOT NULL,
-  PRIMARY KEY (id_couleur)
-);
-
-CREATE TABLE `lignedevis` (
-  `id_ligne_devis` int(11) NOT NULL AUTO_INCREMENT,
-  `id_couleur` int(11) NOT NULL,
-  `id_devis` int(11) NOT NULL,
-  `id_article` int(11) NOT NULL,
-  PRIMARY KEY (id_ligne_devis),
-  KEY `id_couleur_fk` (`id_couleur`),
-  CONSTRAINT `id_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  KEY `id_devis_fk` (`id_devis`),
-  CONSTRAINT `id_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  KEY `id_article_fk` (`id_article`),
-  CONSTRAINT `id_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
-
-CREATE TABLE `devis` (
-  `id_devis` int(11) NOT NULL AUTO_INCREMENT,
-  `id_compte_client` int(11) NOT NULL,
-  `date` DATE NOT NULL,
-  `etat` varchar(20) NOT NULL,
-  `etatPanier` boolean NOT NULL,
-  KEY `id_compte_client_fk` (`id_compte_client`),
-  CONSTRAINT `id_compte_client_fk` FOREIGN KEY (`id_compte_client`) REFERENCES `compteClient` (`id_compte_client`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  PRIMARY KEY (id_devis)
-);
-
 CREATE TABLE `compteclient` (
   `id_compte_client` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(70) NOT NULL,
@@ -88,6 +45,53 @@ CREATE TABLE `compteclient` (
   PRIMARY KEY (id_compte_client)
 );
 
+CREATE TABLE `couleur` (
+  `id_couleur` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_couleur` varchar(40) NOT NULL,
+  `num_couleur` varchar(40) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `saison` varchar(40) NOT NULL,
+  PRIMARY KEY (id_couleur)
+);
+
+CREATE TABLE `posseder` (
+  `id_couleur` int(11) NOT NULL,
+  `id_article` int(11) NOT NULL,
+  KEY `id_couleur_fk` (`id_couleur`),
+  CONSTRAINT `id_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `id_article_fk` (`id_article`),
+  CONSTRAINT `id_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+CREATE TABLE `devis` (
+  `id_devis` int(11) NOT NULL AUTO_INCREMENT,
+  `id_compte_client` int(11) NOT NULL,
+  `date` DATE NOT NULL,
+  `etat` varchar(20) NOT NULL,
+  `etatPanier` boolean NOT NULL,
+  KEY `id_compte_client_fk` (`id_compte_client`),
+  CONSTRAINT `id_compte_client_fk` FOREIGN KEY (`id_compte_client`) REFERENCES `compteClient` (`id_compte_client`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  PRIMARY KEY (id_devis)
+);
+
+
+CREATE TABLE `lignedevis` (
+  `id_ligne_devis` int(11) NOT NULL AUTO_INCREMENT,
+  `id_couleur` int(11) NOT NULL,
+  `id_devis` int(11) NOT NULL,
+  `id_article` int(11) NOT NULL,
+  KEY `id_couleur_fk` (`id_couleur`),
+  CONSTRAINT `id_lignedevis_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `id_devis_fk` (`id_devis`),
+  CONSTRAINT `id_lignedevis_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `id_article_fk` (`id_article`),
+  CONSTRAINT `id_lignedevis_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  PRIMARY KEY (id_ligne_devis)
+);
+
+
+
+
 CREATE TABLE `compterosecorail` (
   `id_compte_RC` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(70) NOT NULL,
@@ -102,15 +106,6 @@ CREATE TABLE `actualite` (
   `contenu` text NOT NULL,
   `image` varchar(50) NOT NULL,
   PRIMARY KEY (id_actualite)
-);
-
-CREATE TABLE `definir` (
-  `id_devis` int(11) NOT NULL,
-  `id_stat` int(11) NOT NULL,
-  KEY `id_devis_fk` (`id_devis`),
-  CONSTRAINT `id_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  KEY `id_stat_fk` (`id_stat`),
-  CONSTRAINT `id_stat_fk` FOREIGN KEY (`id_stat`) REFERENCES `statistiques` (`id_stat`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE `statistiques` (
@@ -131,3 +126,13 @@ CREATE TABLE `statistiques` (
   `annee` char(4) NOT NULL,
   PRIMARY KEY (id_stat)
 );
+
+CREATE TABLE `definir` (
+  `id_devis` int(11) NOT NULL,
+  `id_stat` int(11) NOT NULL,
+  KEY `id_devis_fk`  (`id_devis`),
+  CONSTRAINT `id_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `id_stat_fk` (`id_stat`),
+  CONSTRAINT `id_stat_fk` FOREIGN KEY (`id_stat`) REFERENCES `statistiques` (`id_stat`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
