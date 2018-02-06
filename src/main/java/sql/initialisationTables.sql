@@ -66,8 +66,6 @@ INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saiso
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (1, 1);
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (2, 1);
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (3, 1);
-INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (4, 2);
-INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (5, 3);
 
 INSERT INTO `devis`(`id_devis`, `id_compte_client`, `date`, `etat`, `etatPanier`) VALUES (1, 1, '2017-04-06', 'Demandé', true);
 INSERT INTO `devis`(`id_devis`, `id_compte_client`, `date`, `etat`, `etatPanier`) VALUES (2, 2, '2017-11-20', 'En préparation', true);
