@@ -11,7 +11,7 @@ CREATE TABLE `souscategorie` (
   `nom_sous_categorie` varchar(30) NOT NULL,
   PRIMARY KEY (id_sous_categorie),
   KEY `id_categorie_fk` (`id_categorie`),
-  CONSTRAINT `id_categorie_fk` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `id_categorie_fk` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `article` (
@@ -26,7 +26,7 @@ CREATE TABLE `article` (
   `lot_vente` int(11) NOT NULL,
   PRIMARY KEY (id_article),
   KEY `id_sous_categorie_fk` (`id_sous_categorie`),
-  CONSTRAINT `id_sous_categorie_fk` FOREIGN KEY (`id_sous_categorie`) REFERENCES `souscategorie` (`id_sous_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `id_sous_categorie_fk` FOREIGN KEY (`id_sous_categorie`) REFERENCES `souscategorie` (`id_sous_categorie`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE `compteclient` (
   `id_compte_client` int(11) NOT NULL AUTO_INCREMENT,
@@ -58,9 +58,9 @@ CREATE TABLE `posseder` (
   `id_couleur` int(11) NOT NULL,
   `id_article` int(11) NOT NULL,
   KEY `id_couleur_fk` (`id_couleur`),
-  CONSTRAINT `id_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE CASCADE ON UPDATE CASCADE,
   KEY `id_article_fk` (`id_article`),
-  CONSTRAINT `id_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `id_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `devis` (
@@ -81,11 +81,11 @@ CREATE TABLE `lignedevis` (
   `id_devis` int(11) NOT NULL,
   `id_article` int(11) NOT NULL,
   KEY `id_couleur_fk` (`id_couleur`),
-  CONSTRAINT `id_lignedevis_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_lignedevis_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE CASCADE ON UPDATE CASCADE,
   KEY `id_devis_fk` (`id_devis`),
-  CONSTRAINT `id_lignedevis_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_lignedevis_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE CASCADE ON UPDATE CASCADE,
   KEY `id_article_fk` (`id_article`),
-  CONSTRAINT `id_lignedevis_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_lignedevis_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (id_ligne_devis)
 );
 
@@ -131,8 +131,8 @@ CREATE TABLE `definir` (
   `id_devis` int(11) NOT NULL,
   `id_stat` int(11) NOT NULL,
   KEY `id_devis_fk`  (`id_devis`),
-  CONSTRAINT `id_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE CASCADE ON UPDATE CASCADE,
   KEY `id_stat_fk` (`id_stat`),
-  CONSTRAINT `id_stat_fk` FOREIGN KEY (`id_stat`) REFERENCES `statistiques` (`id_stat`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `id_stat_fk` FOREIGN KEY (`id_stat`) REFERENCES `statistiques` (`id_stat`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

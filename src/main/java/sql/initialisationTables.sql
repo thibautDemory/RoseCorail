@@ -1,15 +1,14 @@
-SET SQL_SAFE_UPDATES = 0;
-DELETE FROM actualite;
+DELETE FROM posseder;
+DELETE FROM lignedevis;
 DELETE FROM article;
+DELETE FROM souscategorie;
 DELETE FROM categorie;
+DELETE FROM definir;
+DELETE FROM actualite;
+DELETE FROM devis;
 DELETE FROM compteclient;
 DELETE FROM compterosecorail;
 DELETE FROM couleur;
-DELETE FROM definir;
-DELETE FROM devis;
-DELETE FROM lignedevis;
-DELETE FROM posseder;
-DELETE FROM souscategorie;
 DELETE FROM statistiques;
 
 INSERT INTO `categorie`(`id_categorie`,`nom_categorie`) VALUES (1,'Les plats');
