@@ -44,6 +44,68 @@ public class CompteClientDaoImpl implements CompteClientDao {
     }
 
     @Override
+    public CompteClient getCompteClientById(Integer id_compte_client) {
+        String query ="SELECT * FROM compteclient where id_compte_client=?;";
+        try(Connection connection = DataSourceProvider.getDataSource().getConnection();
+            PreparedStatement statement= connection.prepareStatement(query)){
+            statement.setInt(1,id_compte_client);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new CompteClient(
+                            resultSet.getInt("id_compte_client"),
+                            resultSet.getString("email"),
+                            resultSet.getString("nom_boutique"),
+                            resultSet.getString("nom_gerant"),
+                            resultSet.getString("prenom_gerant"),
+                            resultSet.getString("adresse"),
+                            resultSet.getString("ville"),
+                            resultSet.getString("code_postal"),
+                            resultSet.getString("mdp"),
+                            resultSet.getString("numero_tel"),
+                            resultSet.getString("num_tva"),
+                            resultSet.getString("site_internet"),
+                            resultSet.getString("description_activite"));
+                }
+            }
+
+        }catch (SQLException e){
+                e.printStackTrace();
+        }
+        return null;
+    }
+    @Override
+    public CompteClient getCompteClientByMail(String mail) {
+        String query ="SELECT * FROM compteclient where email=?;";
+        try(Connection connection = DataSourceProvider.getDataSource().getConnection();
+            PreparedStatement statement= connection.prepareStatement(query)){
+            statement.setString(1,mail);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new CompteClient(
+                            resultSet.getInt("id_compte_client"),
+                            resultSet.getString("email"),
+                            resultSet.getString("nom_boutique"),
+                            resultSet.getString("nom_gerant"),
+                            resultSet.getString("prenom_gerant"),
+                            resultSet.getString("adresse"),
+                            resultSet.getString("ville"),
+                            resultSet.getString("code_postal"),
+                            resultSet.getString("mdp"),
+                            resultSet.getString("numero_tel"),
+                            resultSet.getString("num_tva"),
+                            resultSet.getString("site_internet"),
+                            resultSet.getString("description_activite"));
+                }
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @Override
     public CompteClient addCompteClient(CompteClient compteClient) {
         String query = "INSERT INTO compteclient(email, nom_boutique, nom_gerant, prenom_gerant, adresse, ville, code_postal, mdp,  numero_tel, num_tva, site_internet, description_activite) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();

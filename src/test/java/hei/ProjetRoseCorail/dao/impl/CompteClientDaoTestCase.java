@@ -44,6 +44,47 @@ public class CompteClientDaoTestCase {
     }
 
     @Test
+    public void shouldGetCompteClientById(){
+        //WHEN
+        CompteClient compteClient=compteClientDao.getCompteClientById(1);
+        //THEN
+        assertThat(compteClient).isNotNull();
+        assertThat(compteClient.getAdresse()).isEqualTo("26 BD Bigo Danel");
+        assertThat(compteClient.getId_compte_client()).isEqualTo(1);
+        assertThat(compteClient.getEmail()).isEqualTo("william@evrard.fr");
+        assertThat(compteClient.getNom_boutique()).isEqualTo("HEI");
+        assertThat(compteClient.getNom_gerant()).isEqualTo("EVRARD");
+        assertThat(compteClient.getPrenom_gerant()).isEqualTo("William");
+        assertThat(compteClient.getVille()).isEqualTo("Lille");
+        assertThat(compteClient.getCode_postal()).isEqualTo("59000");
+        assertThat(compteClient.getMdp()).isEqualTo("monMDP1");
+        assertThat(compteClient.getNumero_tel()).isEqualTo("0606060606");
+        assertThat(compteClient.getNum_tva()).isEqualTo("FR 40 123456824");
+        assertThat(compteClient.getSite_internet()).isEqualTo("william.evrard.fr");
+        assertThat(compteClient.getDescription_activite()).isEqualTo("description1");
+    }
+
+    @Test
+    public void shouldGetCompteClientByMail(){
+        //WHEN
+        CompteClient compteClient=compteClientDao.getCompteClientByMail("william@evrard.fr");
+        //THEN
+        assertThat(compteClient).isNotNull();
+        assertThat(compteClient.getAdresse()).isEqualTo("26 BD Bigo Danel");
+        assertThat(compteClient.getId_compte_client()).isEqualTo(1);
+        assertThat(compteClient.getEmail()).isEqualTo("william@evrard.fr");
+        assertThat(compteClient.getNom_boutique()).isEqualTo("HEI");
+        assertThat(compteClient.getNom_gerant()).isEqualTo("EVRARD");
+        assertThat(compteClient.getPrenom_gerant()).isEqualTo("William");
+        assertThat(compteClient.getVille()).isEqualTo("Lille");
+        assertThat(compteClient.getCode_postal()).isEqualTo("59000");
+        assertThat(compteClient.getMdp()).isEqualTo("monMDP1");
+        assertThat(compteClient.getNumero_tel()).isEqualTo("0606060606");
+        assertThat(compteClient.getNum_tva()).isEqualTo("FR 40 123456824");
+        assertThat(compteClient.getSite_internet()).isEqualTo("william.evrard.fr");
+        assertThat(compteClient.getDescription_activite()).isEqualTo("description1");
+    }
+    @Test
     public void shouldAddCompteClient() throws Exception {
         // GIVEN
         CompteClient newCompteClient = new CompteClient(null, "my new email",

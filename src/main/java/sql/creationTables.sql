@@ -70,7 +70,7 @@ CREATE TABLE `devis` (
   `etat` varchar(20) NOT NULL,
   `etatPanier` boolean NOT NULL,
   KEY `id_compte_client_fk` (`id_compte_client`),
-  CONSTRAINT `id_compte_client_fk` FOREIGN KEY (`id_compte_client`) REFERENCES `compteClient` (`id_compte_client`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_compte_client_fk` FOREIGN KEY (`id_compte_client`) REFERENCES `compteClient` (`id_compte_client`) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY (id_devis)
 );
 
