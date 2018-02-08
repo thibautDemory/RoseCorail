@@ -81,7 +81,7 @@
                 <div class="col-xs-2">
                     <ul class="flotte-droite-dropdown onglet-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle onglet-nav" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thibaut DEMORY<span class="caret"></span></a>
+                            <a th:text="${nom}+''+${prenom}" href="#" class="dropdown-toggle onglet-nav" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thibaut DEMORY<span class="caret"></span></a>
                             <ul class="dropdown-menu navbar-nav nav navbar-right">
                                 <li class="item-menu-deroulant"><a href="/monCompteClient"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Mon compte</a></li>
                                 <li class="item-menu-deroulant"><a href="/panier"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>  Mon panier</a></li>

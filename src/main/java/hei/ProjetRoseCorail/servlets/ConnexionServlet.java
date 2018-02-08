@@ -1,5 +1,8 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.dao.impl.CompteClientDaoImpl;
+import hei.ProjetRoseCorail.entities.CompteClient;
+import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -8,9 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/connexion")
 public class ConnexionServlet extends GenericServlet{
+ CompteClientLibrary compteClientLibrary = CompteClientLibrary.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,22 +32,18 @@ public class ConnexionServlet extends GenericServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().setAttribute("utilisateurConnecte", req.getParameter("email"));
-        req.getSession().setAttribute("motdepasse",req.getParameter("pwd"));
-
-
-
-        String utilisateur= (String) req.getSession().getAttribute("utilisateurConnecte");
-        req.getSession().setAttribute("statut","visiteur");
-
-        if (utilisateur.equals("beatrice@hotmail.fr")){
-            System.out.println("beatrice");
-            req.getSession().setAttribute("statut","admin");
-        }
-        if(utilisateur.equals("thibaut@hotmail.fr")){
+        String adresseEmailRentree=req.getParameter("email");
+        String motDePasseRentree=req.getParameter("pwd");
+        CompteClient client= compteClientLibrary.getCompteClientByMail(adresseEmailRentree);
+        if (client.getMdp().equals(motDePasseRentree)){
+            req.getSession().setAttribute("idClient",client.getId_compte_client());
+            req.getSession().setAttribute("nomClient",client.getNom_gerant());
+            req.getSession().setAttribute("prenomClient",client.getPrenom_gerant());
             req.getSession().setAttribute("statut","client");
+            resp.sendRedirect("accueil");
+        }else{
+                resp.sendRedirect("connexion");
         }
 
-        resp.sendRedirect("accueil");
     }
 }

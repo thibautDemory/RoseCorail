@@ -4,6 +4,8 @@ import hei.ProjetRoseCorail.dao.CompteClientDao;
 import hei.ProjetRoseCorail.dao.impl.CompteClientDaoImpl;
 import hei.ProjetRoseCorail.entities.CompteClient;
 
+import java.util.List;
+
 public class CompteClientLibrary {
     private static class CompteClientLibraryHolder {
         private final static CompteClientLibrary instance = new CompteClientLibrary();
@@ -51,4 +53,9 @@ public class CompteClientLibrary {
         }
         return compteClientDao.addCompteClient(compteClient);
     }
+    public CompteClient getCompteClientById(Integer id){ return compteClientDao.getCompteClientById(id);}
+    public CompteClient getCompteClientByMail(String mail){ return compteClientDao.getCompteClientByMail(mail);}
+    public List<CompteClient> listComptesClients() {return compteClientDao.listComptesClient();}
+
+
 }
