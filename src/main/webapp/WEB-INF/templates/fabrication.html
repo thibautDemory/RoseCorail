@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="css/style-perso.css" type="text/css" rel="stylesheet">
+    <link href="css/Lesplats.css" type="text/css" rel="stylesheet">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <meta charset="UTF-8"/>
+    <title>Fabrication</title>
+</head>
+<body>
+<div class="page">
+    <div th:switch="${statut}">
+        <div th:case="'admin'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+        </div>
+        <div th:case="'client'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+        </div>
+        <div th:case="'visiteur'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="col-xs-2"> <!-- Liste déroulante -->
+            <ul class="nav nav-pills nav-stacked couleur-rose-corail">
+                <li role="presentation"><a href="RoseCorail">Contact</a></li>
+                <li role="presentation"><a href="bellehistoire">Une belle histoire</a></li>
+                <li role="presentation" class="active"><a href="fabrication">Fabrication</a></li>
+                <li role="presentation"><a href="mentionslegales">Mentions légales</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6">
+            <h3>Fabrication</h3>
+            <div class="row">
+                <figure class="col-xs-4"><img class="img-responsive" src="images/fabrication.jpg"></figure>
+                <p>Les produits sont réalisés à partir de la technique du thermoformage qui consiste à placer du verre plat (verre à vitre)  dans un four dont on fait
+                    monter la température à un peu plus de 800°C, afin de le déformer sans revenir à l'état liquide, et de lui permettre d'épouser la forme et la
+                    texture d'un moule.
+                    Chaque objet passé dans ce four acquiert à la fois une grande transparence,  et en même temps un aspect « texturé »,
+                    davantage visible sur les coloris métallisés.
+                    </p>
+                <p>Le verre est d'abord coupé à la main, puis passé dans le four, lavé et séché, puis peint en sous face, offrant ainsi une déclinaison dans une
+                    large palette de couleurs - voir rubrique <a href="/lesColoris"> les coloris</a>.
+
+                    Ce procédé confère à chaque plat une apparence unique.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="precedentlefooter"></div>
+    <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
+</div>
+</body>
+</html>

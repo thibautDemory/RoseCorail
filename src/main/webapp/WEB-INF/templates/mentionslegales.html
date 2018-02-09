@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="css/style-perso.css" type="text/css" rel="stylesheet">
+    <link href="css/Lesplats.css" type="text/css" rel="stylesheet">
+    <link href="css/RoseCorailstyle.css" type="text/css" rel="stylesheet">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <meta charset="UTF-8"/>
+    <title>Mentions légales</title>
+</head>
+<body>
+<div class="page">
+    <div th:switch="${statut}">
+        <div th:case="'admin'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+        </div>
+        <div th:case="'client'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+        </div>
+        <div th:case="'visiteur'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="col-xs-2"> <!-- Liste déroulante -->
+            <ul class="nav nav-pills nav-stacked couleur-rose-corail">
+                <li role="presentation"><a href="RoseCorail">Contact</a></li>
+                <li role="presentation"><a href="bellehistoire">Une belle histoire</a></li>
+                <li role="presentation"><a href="fabrication">Fabrication</a></li>
+                <li role="presentation"class="active"><a href="mentionslegales">Mentions légales</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6">
+            <h3>Informations légales</h3>
+
+            <h4> Siège social</h4>
+            <p>Rose Corail</p>
+            <p>1 bis rue Raymond Gréban</p>
+            <p>Immeuble B</p>
+            <p>78100 St germain en laye</p>
+
+            <h4>Contact</h4>
+            <h5>Représentant légal et fondatrice de la société</h5>
+            <p>Béatrice Roquette</p>
+            <p>Téléphone: +33 612630712</p>
+            <p>Email : beatrice.roquette@rosecorail.com</p>
+
+            <h5>Commercialisation Bretagne et Normandie</h5>
+            <p>Isabelle Voyer</p>
+            <p>Tel 06 61 70 04 52</p>
+            <p>Email: isabellevoyer0@gmail.com</p>
+
+            <p><h5>Le stock et la logistique</h5> sont assurés au sein de la société Markhbein, spécialisé dans l'édition et la diffusion
+            d'objets décoratifs en verre et en cristal, basée dans les Yvelines à Villiers-St-Fréderic.</p>
+
+            <h4>Immatriculation</h4>
+            <p>Immatriculation au registre du commerce et des sociétés sous le numéro:</p>
+            <p>Versailles 798 208 765
+            <p>Numéro d'immatriculation de l'entreprise :</p>
+            <p>Siren 798 208 765 00015</p>
+            <p>Code NAF : 4644Z</p>
+            <p>SASU au capital de 5 000 <span class="glyphicon glyphicon-euro"></span></p>
+
+            <h4>Numéro de TVA intracommunautaire</h4>
+            <p> Numéro d'identification TVA:</p>
+            <p>FR14 208 765</p>
+
+            <h4> Hébergeur du site</h4>
+            <p>1&1 Internet SARL</p>
+            <p>7, place de la Gare</p>
+            <p>BP 70109</p>
+            <p>57201 Sarreguemines Cedex</p>
+
+            <h4> Créateurs du site</h4>
+            <p>William Evrard</p>
+            <p>Thibaut DEMORY</p>
+
+        </div>
+    </div>
+    <div class="precedentlefooter"></div>
+    <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
+</div>
+</body>
+</html>
