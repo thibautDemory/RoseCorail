@@ -9,9 +9,28 @@
 
 .space-ten{padding: 10px;}
 
-
-
 a.titre-haut-vitrine, a.titre-haut-vitrine:hover{
 	color: black;
+}
 
+.gauche{
+	background-color: #DFDFDF;
+	border-radius: 5%;
+	padding-bottom: 3%;
+	padding-top: 1%;
+
+}
+
+.titreBack{
+	background-color: #FF0040;
+	color: white;
+	border-radius: 10px;
+	padding-left: 3%;
+	padding-bottom: 0.5%;
+	padding-top: 0.5%;
+	font-weight: bold;
+}
+
+.imageLien:hover{
+	border-radius: 13%;
 }
