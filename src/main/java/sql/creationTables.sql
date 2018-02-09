@@ -2,7 +2,7 @@ CREATE TABLE `categorie` (
   `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
   `nom_categorie` varchar(30) NOT NULL,
   PRIMARY KEY (id_categorie)
-);
+)engine = innodb;
 
 
 CREATE TABLE `souscategorie` (
@@ -12,7 +12,7 @@ CREATE TABLE `souscategorie` (
   PRIMARY KEY (id_sous_categorie),
   KEY `id_categorie_fk` (`id_categorie`),
   CONSTRAINT `id_categorie_fk` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+)engine = innodb;
 
 CREATE TABLE `article` (
   `id_article` int(11)  AUTO_INCREMENT,
@@ -27,7 +27,7 @@ CREATE TABLE `article` (
   PRIMARY KEY (id_article),
   KEY `id_sous_categorie_fk` (`id_sous_categorie`),
   CONSTRAINT `id_sous_categorie_fk` FOREIGN KEY (`id_sous_categorie`) REFERENCES `souscategorie` (`id_sous_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+)engine = innodb;
 CREATE TABLE `compteclient` (
   `id_compte_client` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(70) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `compteclient` (
   `site_internet` varchar(100) NOT NULL,
   `description_activite` text NOT NULL,
   PRIMARY KEY (id_compte_client)
-);
+)engine = innodb;
 
 CREATE TABLE `couleur` (
   `id_couleur` int(11) NOT NULL AUTO_INCREMENT,
@@ -52,7 +52,7 @@ CREATE TABLE `couleur` (
   `image` varchar(50) NOT NULL,
   `saison` varchar(40) NOT NULL,
   PRIMARY KEY (id_couleur)
-);
+)engine = innodb;
 
 CREATE TABLE `posseder` (
   `id_couleur` int(11) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE `posseder` (
   CONSTRAINT `id_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   KEY `id_article_fk` (`id_article`),
   CONSTRAINT `id_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+)engine = innodb;
 
 CREATE TABLE `devis` (
   `id_devis` int(11) NOT NULL AUTO_INCREMENT,
@@ -72,7 +72,7 @@ CREATE TABLE `devis` (
   KEY `id_compte_client_fk` (`id_compte_client`),
   CONSTRAINT `id_compte_client_fk` FOREIGN KEY (`id_compte_client`) REFERENCES `compteClient` (`id_compte_client`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   PRIMARY KEY (id_devis)
-);
+)engine = innodb;
 
 
 CREATE TABLE `lignedevis` (
@@ -87,7 +87,7 @@ CREATE TABLE `lignedevis` (
   KEY `id_article_fk` (`id_article`),
   CONSTRAINT `id_lignedevis_article_fk` FOREIGN KEY (`id_article`) REFERENCES `article` (`id_article`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   PRIMARY KEY (id_ligne_devis)
-);
+)engine = innodb;
 
 
 
@@ -98,7 +98,7 @@ CREATE TABLE `compterosecorail` (
   `mdp` varchar(60) NOT NULL,
   `numero_tel` varchar(15) NOT NULL,
   PRIMARY KEY (id_compte_RC)
-);
+)engine = innodb;
 
 CREATE TABLE `actualite` (
   `id_actualite` int(11) NOT NULL AUTO_INCREMENT,
@@ -106,7 +106,7 @@ CREATE TABLE `actualite` (
   `contenu` text NOT NULL,
   `image` varchar(50) NOT NULL,
   PRIMARY KEY (id_actualite)
-);
+)engine = innodb;
 
 CREATE TABLE `statistiques` (
   `id_stat` int(11) NOT NULL AUTO_INCREMENT,
@@ -125,7 +125,7 @@ CREATE TABLE `statistiques` (
   `mois` varchar(10) NOT NULL,
   `annee` char(4) NOT NULL,
   PRIMARY KEY (id_stat)
-);
+)engine = innodb;
 
 CREATE TABLE `definir` (
   `id_devis` int(11) NOT NULL,
@@ -134,5 +134,4 @@ CREATE TABLE `definir` (
   CONSTRAINT `id_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   KEY `id_stat_fk` (`id_stat`),
   CONSTRAINT `id_stat_fk` FOREIGN KEY (`id_stat`) REFERENCES `statistiques` (`id_stat`) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
-
+)engine = innodb;
