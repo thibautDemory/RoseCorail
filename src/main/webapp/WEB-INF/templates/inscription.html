@@ -27,89 +27,117 @@
 			</div>
 
 
-
-	<div class="inscriptionClass">
-		  <h2>Inscription</h2>
-		  <div class="formulaireSignUpFieldset">
-		  	<div class="formulaireSignUp">
-			  <form method="post" class="form-horizontal" action="/inscription" accept-charset="utf-8">
-
-				  <!-- Email -->
-				  <div class="form-group row">
-					  <label for="email" class="col-xs-4">Email:</label>
-					  <input class="inputText col-xs-4" id="email" placeholder="Entrer votre email" name="email">
-				  </div>
-				  <!-- Mot de passe -->
-				  <div class="form-group row">
-					  <label for="mdp" class="col-xs-4">Mot de passe:</label>
-					  <input type="password" class="inputText col-xs-4" id="mdp" placeholder="Entrer votre mot de passe" name="mdp">
-				  </div>
-				  <!-- Mot de passe -->
-				  <div class="form-group row">
-					  <label for="confirmeMdp" class="col-xs-4">Confirmer mot de passe:</label>
-					  <input type="password" class="inputText col-xs-4" id="confirmeMdp" placeholder="Entrer votre mot de passe" name="confirmeMdp">
-				  </div>
-			  	<!-- Nom Entreprise -->
-			  	<div class="form-group row">
-			      <label for="nom_boutique" class="col-xs-4">Nom entreprise:</label>
-			      <input class="inputText col-xs-4" id="nom_boutique" placeholder="Entrer le nom de votre entreprise" name="nom_boutique">
-			    </div>
-			    <!-- Nom -->
-			  	<div class="form-group row">
-			      <label for="nom_gerant" class="col-xs-4">Nom:</label>
-			      <input class="inputText col-xs-4" id="nom_gerant" placeholder="Entrer votre nom" name="nom_gerant">
-			    </div>
-			    <!-- Prénom -->
-			  	<div class="form-group row">
-			      <label for="prenom_gerant" class="col-xs-4">Prénom:</label>
-			      <input class="inputText col-xs-4" id="prenom_gerant" placeholder="Entrer votre prénom" name="prenom_gerant">
-			    </div>
-			    <!-- Adresse Entreprise -->
-			  	<div class="form-group row">
-			      <label for="adresse" class="col-xs-4">Adresse entreprise:</label>
-			      <input class="inputText col-xs-4" id="adresse" placeholder="Entrer l'adresse de votre entreprise" name="adresse">
-			    </div>
-			    <!-- Code Postal de l'entreprise -->
-			  	<div class="form-group row">
-			      <label for="code_postal" class="col-xs-4">Code postal:</label>
-			      <input class="inputText col-xs-4" id="code_postal" placeholder="Entrer le code postal de votre entreprise" name="code_postal">
-			    </div>
-			    <!-- Ville de l'entreprise -->
-			  	<div class="form-group row">
-			      <label for="ville" class="col-xs-4">Ville:</label>
-			      <input class="inputText col-xs-4" id="ville" placeholder="Entrer la ville où se situe votre entreprise" name="ville">
-			    </div>
-			    <!-- N° de TVA de l'entreprise -->    
-			    <div class="form-group row">
-			      <label for="num_tva" class="col-xs-4">N° de TVA:</label>
-			      <input class="inputText col-xs-4" id="num_tva" placeholder="Entrer votre numéro de TVA" name="num_tva">
-			    </div>
-			    <!-- Téléphone de l'entreprise -->
-			    <div class="form-group row">
-			      <label for="numero_tel" class="col-xs-4">Téléphone:</label>
-			      <input class="inputText col-xs-4" id="numero_tel" placeholder="Entrer votre numéro de téléphone" name="numero_tel">
-			    </div>
-			    <!-- Site de l'entreprise -->    
-			    <div class="form-group row">
-			      <label for="site_internet" class="col-xs-4">Site internet:</label>
-			      <input class="inputText col-xs-4" id="site_internet" placeholder="Entrer l'adresse de votre site Internet" name="site_internet">
-			    </div>
-
-			    <!-- Description de l'entreprise -->  
-			    <div class="form-group">
-			      <label for="description_activite">Description de l'activité:</label>
-			      <textarea class="form-control" rows="5" id="description_activite" name="description_activite"></textarea>
-			    </div>
-			    <p class="boutonSub"><button type="submit" class="btn btn-default">S'inscrire</button></p>
-			  </form>
-			  <div class="dropdown-divider links"></div>
-			  <p class="pourCentrerLeLink"><a class="dropdown-item" id="signUp" href="connexion">J'ai déjà un compte ! Je me connecte ICI !</a></p>
-		    </div>
-		   </div>
-		</div>
+			<div class="container">
+				<h1 class="text-center aere">Inscription</h1>
+				<form method="post" class="form-horizontal" action="/action_page.php">
+					<div class="row">
+						<div class="col-xs-6 form-horizontal">
 
 
-<div class="precedentlefooter"></div>
+							<!-- Email -->
+							<div class="form-group">
+								<label for="email" class="col-xs-4 control-label">Email:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="email" placeholder="Entrer votre email" name="email">
+								</div>
+							</div>
+							<!-- Mot de passe -->
+							<div class="form-group">
+								<label for="mdp" class="col-xs-4 control-label">Mot de passe:</label>
+								<div class="col-xs-8">
+									<input type="password" class="form-control" id="mdp" placeholder="Entrer votre mot de passe" name="mdp">
+								</div>
+							</div>
+							<!-- Confirme Mot de passe -->
+							<div class="form-group">
+								<label for="confirmeMdp" class="col-xs-4 control-label">Confirmer mot de passe:</label>
+								<div class="col-xs-8">
+									<input type="password" class="form-control" id="confirmeMdp" placeholder="Confirmer votre mot de passe" name="confirmeMdp">
+								</div>
+							</div>
+							<!-- Nom Entreprise -->
+							<div class="form-group">
+								<label for="nom_boutique" class="col-xs-4 control-label">Nom entreprise:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="nom_boutique" placeholder="Entrer le nom de votre entreprise" name="nom_boutique">
+								</div>
+							</div>
+							<!-- Nom -->
+							<div class="form-group">
+								<label for="nom_gerant" class="col-xs-4 control-label">Nom:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="nom_gerant" placeholder="Entrer votre nom" name="nom_gerant">
+								</div>
+							</div>
+							<!-- Prénom -->
+							<div class="form-group">
+								<label for="prenom_gerant" class="col-xs-4 control-label">Prénom:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="prenom_gerant" placeholder="Entrer votre prénom" name="prenom_gerant">
+								</div>
+							</div>
+							<!-- Adresse Entreprise -->
+							<div class="form-group">
+								<label for="adresse" class="col-xs-4 control-label">Adresse entreprise:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="adresse" placeholder="Entrer l'adresse de votre entreprise" name="adresse">
+								</div>
+							</div>
+							<!-- Code Postal de l'entreprise -->
+							<div class="form-group">
+								<label for="code_postal" class="col-xs-4 control-label">Code postal:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="code_postal" placeholder="Entrer le code postal de votre entreprise" name="code_postal">
+								</div>
+							</div>
+							<!-- Ville de l'entreprise -->
+							<div class="form-group">
+								<label for="ville" class="col-xs-4 control-label">Ville:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="ville" placeholder="Entrer la ville où se situe votre entreprise" name="ville">
+								</div>
+							</div>
+							<!-- N° de TVA de l'entreprise -->
+							<div class="form-group">
+								<label for="num_tva" class="col-xs-4 control-label">N° de TVA:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="num_tva" placeholder="Entrer votre numéro de TVA" name="num_tva">
+								</div>
+							</div>
+							<!-- Téléphone de l'entreprise -->
+							<div class="form-group">
+								<label for="numero_tel" class="col-xs-4 control-label">Téléphone:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="numero_tel" placeholder="Entrer votre numéro de téléphone" name="numero_tel">
+								</div>
+							</div>
+							<!-- Site de l'entreprise -->
+							<div class="form-group">
+								<label for="site_internet" class="col-xs-4 control-label">Site internet:</label>
+								<div class="col-xs-8">
+									<input type="texte" class="form-control" id="site_internet" placeholder="Entrer l'adresse de votre site Internet" name="site_internet">
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-1"></div>
+						<div class="col-xs-5">
+							<!-- Description de l'entreprise -->
+							<div class="form-group descriptionClass">
+								<label for="description_activite">Description de l'activité:</label>
+								<textarea class="form-control" rows="7" id="description_activite" name="description_activite"></textarea>
+							</div>
+						</div>
+					</div>
+
+					<div class="bouttonInscription">
+						<button type="submit" class="btn btn-primary">S'inscrire</button>
+						<p class="classLink"><a class="dropdown-item" id="signUp" href="connexion">J'ai déjà un compte ! Je me connecte ICI !</a></p>
+					</div>
+				</form>
+			</div>
+
+
+			<div class="precedentlefooter"></div>
 
 <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
 </div>
