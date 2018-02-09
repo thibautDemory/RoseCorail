@@ -1,7 +1,3 @@
-.couleur-rose-corail>li.active>a,.couleur-rose-corail>li.active>a:hover{
-	background-color: #FF0040;
-	color: #fff;
-}
 #choix-des-couleurs{
 	margin-left: 10%;
 }
@@ -13,5 +9,4 @@
 
 a.titre-haut-vitrine, a.titre-haut-vitrine:hover{
 	color: black;
-
 }

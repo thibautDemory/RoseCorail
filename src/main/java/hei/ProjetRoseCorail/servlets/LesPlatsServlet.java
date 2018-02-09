@@ -16,9 +16,16 @@ public class LesPlatsServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+
         if (statut==null||"".equals(statut)){
             statut="visiteur";
+        }else{
+            String nom=req.getSession().getAttribute("nom").toString();
+            String prenom=req.getSession().getAttribute("prenom").toString();
+            webContext.setVariable("prenom",prenom);
+            webContext.setVariable("nom",nom);
         }
+        System.out.println(statut);
         webContext.setVariable("statut",statut);
 
         templateEngine.process("lesPlats", webContext, resp.getWriter());

@@ -1,8 +1,5 @@
 package hei.ProjetRoseCorail.servlets;
 
-
-import hei.ProjetRoseCorail.entities.CompteClient;
-import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -12,12 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/accueil")
-public class AccueilServlet extends GenericServlet{
-
+@WebServlet("/RoseCorail")
+public class RoseCorailServlet extends GenericServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CompteClientLibrary compteClientLibrary = CompteClientLibrary.getInstance();
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
@@ -33,7 +28,7 @@ public class AccueilServlet extends GenericServlet{
         System.out.println(statut);
         webContext.setVariable("statut",statut);
 
-
-        templateEngine.process("accueil", webContext, resp.getWriter());
+        templateEngine.process("RoseCorail", webContext, resp.getWriter());
     }
 }
+
