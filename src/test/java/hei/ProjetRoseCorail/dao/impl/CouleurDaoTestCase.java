@@ -22,6 +22,7 @@ public class CouleurDaoTestCase {
     public void initDb() throws Exception {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DELETE FROM posseder");
             stmt.executeUpdate("DELETE FROM couleur");
             stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`) VALUES (1, 'Bleu gris', '087', 'image1', 'Printemps-Eté 2017')");
             stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`) VALUES (2, 'Bleu glacier', '097', 'image1', 'Printemps-Eté 2017')");

@@ -15,7 +15,7 @@ CREATE TABLE `souscategorie` (
 );
 
 CREATE TABLE `article` (
-  `id_article` int(11) NOT NULL AUTO_INCREMENT,
+  `id_article` int(11)  AUTO_INCREMENT,
   `id_sous_categorie` int(11) NOT NULL,
   `nom_article` varchar(50) NOT NULL,
   `reference` varchar(40) NOT NULL,
