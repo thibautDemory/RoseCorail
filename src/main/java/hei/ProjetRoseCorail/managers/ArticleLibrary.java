@@ -23,6 +23,6 @@ public class ArticleLibrary {
     public List<Article> listDecos (){return articleDao.listArticlesDeco();}
     public List<Article> listPortesCouteaux (){return articleDao.listArticlesPorteCouteaux();}
 
-    public void deleteArticle(Integer id){ articleDao.deleteArticle(id);}
+    public void deleteArticle(Integer id){articleDao.deleteArticle(id);}
 
 }
