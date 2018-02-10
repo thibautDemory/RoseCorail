@@ -47,4 +47,17 @@ public class CompteRoseCorailDaoTestCase {
         assertThat(compteRoseCorail.getNumero_tel()).isEqualTo("0623136482");
     }
 
+    @Test
+    public void shouldUpdatePassword(){
+        //DO
+        compteRoseCorailDao.updatePassword(1,"NewPassword");
+        //WHEN
+        CompteRoseCorail compteRoseCorail=compteRoseCorailDao.getCompteRoseCorailById(1);
+        //THEN
+        assertThat(compteRoseCorail).isNotNull();
+        assertThat(compteRoseCorail.getId_compte_rose_corail()).isEqualTo(1);
+        assertThat(compteRoseCorail.getEmail()).isEqualTo("beatrice.roquette@rosecorail.com");
+        assertThat(compteRoseCorail.getMdp()).isEqualTo("NewPassword");
+        assertThat(compteRoseCorail.getNumero_tel()).isEqualTo("0623136482");
+    }
 }
