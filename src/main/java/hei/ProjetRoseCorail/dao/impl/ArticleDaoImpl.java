@@ -64,8 +64,143 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
+    public List<Article> listArticlesPlataFromage() {
+        String query = "SELECT * FROM article WHERE id_sous_categorie=2;";
+        List<Article> listofArticles = new ArrayList<>();
+        try (
+                Connection connection = DataSourceProvider.getDataSource().getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                listofArticles.add(new Article(
+                        resultSet.getInt("id_article"),
+                        resultSet.getInt("id_sous_categorie"),
+                        resultSet.getString("nom_article"),
+                        resultSet.getString("reference"),
+                        resultSet.getString("description"),
+                        resultSet.getString("image"),
+                        resultSet.getString("dimension"),
+                        resultSet.getDouble("prix"),
+                        resultSet.getInt("lot_vente")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listofArticles;
+    }
+
+    @Override
+    public List<Article> listArticlesPlataCake() {
+        String query = "SELECT * FROM article WHERE id_sous_categorie=1;";
+        List<Article> listofArticles = new ArrayList<>();
+        try (
+                Connection connection = DataSourceProvider.getDataSource().getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                listofArticles.add(new Article(
+                        resultSet.getInt("id_article"),
+                        resultSet.getInt("id_sous_categorie"),
+                        resultSet.getString("nom_article"),
+                        resultSet.getString("reference"),
+                        resultSet.getString("description"),
+                        resultSet.getString("image"),
+                        resultSet.getString("dimension"),
+                        resultSet.getDouble("prix"),
+                        resultSet.getInt("lot_vente")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listofArticles;
+    }
+
+    @Override
+    public List<Article> listArticlesCoupelles() {
+        String query = "SELECT * FROM article WHERE id_sous_categorie=3;";
+        List<Article> listofArticles = new ArrayList<>();
+        try (
+                Connection connection = DataSourceProvider.getDataSource().getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                listofArticles.add(new Article(
+                        resultSet.getInt("id_article"),
+                        resultSet.getInt("id_sous_categorie"),
+                        resultSet.getString("nom_article"),
+                        resultSet.getString("reference"),
+                        resultSet.getString("description"),
+                        resultSet.getString("image"),
+                        resultSet.getString("dimension"),
+                        resultSet.getDouble("prix"),
+                        resultSet.getInt("lot_vente")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listofArticles;
+    }
+
+    @Override
     public List<Article> listArticlesDeco() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=4 or id_sous_categorie=5 or id_sous_categorie=6;";
+        String query = "SELECT * FROM article WHERE id_sous_categorie=5 or id_sous_categorie=6;";
+        List<Article> listofArticles = new ArrayList<>();
+        try (
+                Connection connection = DataSourceProvider.getDataSource().getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                listofArticles.add(new Article(
+                        resultSet.getInt("id_article"),
+                        resultSet.getInt("id_sous_categorie"),
+                        resultSet.getString("nom_article"),
+                        resultSet.getString("reference"),
+                        resultSet.getString("description"),
+                        resultSet.getString("image"),
+                        resultSet.getString("dimension"),
+                        resultSet.getDouble("prix"),
+                        resultSet.getInt("lot_vente")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listofArticles;
+    }
+
+    @Override
+    public List<Article> listArticlesDecoTable() {
+        String query = "SELECT * FROM article WHERE id_sous_categorie=5;";
+        List<Article> listofArticles = new ArrayList<>();
+        try (
+                Connection connection = DataSourceProvider.getDataSource().getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                listofArticles.add(new Article(
+                        resultSet.getInt("id_article"),
+                        resultSet.getInt("id_sous_categorie"),
+                        resultSet.getString("nom_article"),
+                        resultSet.getString("reference"),
+                        resultSet.getString("description"),
+                        resultSet.getString("image"),
+                        resultSet.getString("dimension"),
+                        resultSet.getDouble("prix"),
+                        resultSet.getInt("lot_vente")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listofArticles;
+    }
+
+    @Override
+    public List<Article> listArticlesMaison() {
+        String query = "SELECT * FROM article WHERE id_sous_categorie=6;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -92,7 +227,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesPorteCouteaux() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=7 or id_sous_categorie=8 or id_sous_categorie=9;";
+        String query = "SELECT * FROM article WHERE id_sous_categorie=4;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
