@@ -25,10 +25,16 @@ public class CompteRoseCorailLibrary {
 
     private CompteRoseCorailDao compteRoseCorailDao = new CompteRoseCorailDaoImpl();
 
-
-
     public CompteRoseCorail getCompteRoseCorailById(Integer id){ return compteRoseCorailDao.getCompteRoseCorailById(id);}
     public CompteRoseCorail getCompteRoseCorailByMail(String mail){ return compteRoseCorailDao.getCompteRoseCorailByMail(mail);}
+
+    public void updatePassword(int id, String password){
+        if (password == null || password.equals("")) {
+            throw new IllegalArgumentException("Le mot de passe ne peut pas être nul.");
+        }else {
+            compteRoseCorailDao.updatePassword(id, password);
+        }
+    }
 
 
 

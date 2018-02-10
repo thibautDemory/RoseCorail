@@ -1,5 +1,9 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.Actualite;
+import hei.ProjetRoseCorail.entities.CompteRoseCorail;
+import hei.ProjetRoseCorail.managers.ActualiteLibrary;
+import hei.ProjetRoseCorail.managers.CompteRoseCorailLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -28,5 +32,31 @@ public class ModifMDPServlet extends GenericServlet{
         System.out.println(statut);
         webContext.setVariable("statut",statut);
         templateEngine.process("modifMDP", webContext, resp.getWriter());
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // GET PARAM
+        String oldPassword = null;
+        String newMDP1 = null;
+        String newMDP2 = null;
+
+        oldPassword = req.getParameter("oldPassword");
+        newMDP1 = req.getParameter("newMDP1");
+        newMDP2 = req.getParameter("newMDP2");
+
+        if(newMDP1.equals(newMDP2)){
+            try {
+                CompteRoseCorailLibrary.getInstance().updatePassword(1,newMDP2);
+                // REDIRECT TO DETAIL Actualité
+                resp.sendRedirect(String.format("accueil"));
+            } catch (IllegalArgumentException e) {
+                String errorMessage = e.getMessage();
+
+                req.getSession().setAttribute("errorMessage", errorMessage);
+
+                resp.sendRedirect("/modifMDP");
+            }
+        }
     }
 }
