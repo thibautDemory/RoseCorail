@@ -40,6 +40,7 @@ public class ConnexionServlet extends GenericServlet{
         if(adresseEmailRentree.equals("beatrice.roquette@rosecorail.com")){
             CompteRoseCorail administrateur = compteRoseCorailLibrary.getCompteRoseCorailByMail(adresseEmailRentree);
             if (administrateur.getMdp().equals(motDePasseRentree)){
+                req.getSession().setAttribute("idAdmin",administrateur.getId_compte_rose_corail());
                 req.getSession().setAttribute("nom","Roquette");
                 req.getSession().setAttribute("prenom","Béatrice");
                 req.getSession().setAttribute("statut","admin");
