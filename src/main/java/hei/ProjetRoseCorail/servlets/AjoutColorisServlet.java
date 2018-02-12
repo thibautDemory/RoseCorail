@@ -51,13 +51,13 @@ public class AjoutColorisServlet extends GenericServlet{
         imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
 
 
-        // CREATE Actualité
+        // CREATE couleur
         Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "img\\"+nom_couleur.trim()+"\\image.jpg", saison);
         try {
             Couleur createdCouleur = CouleurLibrary.getInstance().addCouleur(newCouleur);
 
-            // REDIRECT TO DETAIL Actualité
-            resp.sendRedirect(String.format("accueil"));
+            // REDIRECT TO Accueil
+            resp.sendRedirect(String.format("/accueil"));
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
 
