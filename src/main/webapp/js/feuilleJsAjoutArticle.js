@@ -17,6 +17,7 @@ function affichersouscategorie(){
 		div9.setAttribute("class","col-xs-9");
 
 		select.setAttribute("class","form-control");
+		select.setAttribute("name","sous-categorie-article");
 
 		
 		var option1 =document.createElement("option");
@@ -39,25 +40,25 @@ function affichersouscategorie(){
 	
 	switch (x){
 		case 'plat':
-		document.getElementById("option1souscategorie").setAttribute("value","platacake");
-		document.getElementById("option2souscategorie").setAttribute("value","platafromage");
-		document.getElementById("option3souscategorie").setAttribute("value","coupelle");
+		document.getElementById("option1souscategorie").setAttribute("value","1");
+		document.getElementById("option2souscategorie").setAttribute("value","2");
+		document.getElementById("option3souscategorie").setAttribute("value","3");
 		document.getElementById("option1souscategorie").innerHTML = "Plat à cake";
 		document.getElementById("option2souscategorie").innerHTML = "Plat à fromage";
 		document.getElementById("option3souscategorie").innerHTML = "Coupelle";
 		break;
 		case 'portecouteau':
-		document.getElementById("option1souscategorie").setAttribute("value","portescouteaux");
-		document.getElementById("option2souscategorie").setAttribute("value","dessouscarafe");
-		document.getElementById("option3souscategorie").setAttribute("value","dessousplat");
+		document.getElementById("option1souscategorie").setAttribute("value","4");
+		document.getElementById("option2souscategorie").setAttribute("value","5");
+		document.getElementById("option3souscategorie").setAttribute("value","6");
 		document.getElementById("option1souscategorie").innerHTML = "Portes couteaux";
 		document.getElementById("option2souscategorie").innerHTML = "Dessous de carafe";
 		document.getElementById("option3souscategorie").innerHTML = "Dessous de plat";
 		break;
 		case 'verretransparent':
-		document.getElementById("option1souscategorie").setAttribute("value","platacake");
-		document.getElementById("option2souscategorie").setAttribute("value","dessousdeverre");
-		document.getElementById("option3souscategorie").setAttribute("value","portescouteaux");
+		document.getElementById("option1souscategorie").setAttribute("value","7");
+		document.getElementById("option2souscategorie").setAttribute("value","8");
+		document.getElementById("option3souscategorie").setAttribute("value","9");
 		document.getElementById("option1souscategorie").innerHTML = "Plat à cake";
 		document.getElementById("option2souscategorie").innerHTML = "Dessous de verre";
 		document.getElementById("option3souscategorie").innerHTML = "Portes couteaux";

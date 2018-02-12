@@ -16,7 +16,35 @@ public class ArticleLibrary {
     }
 
     private ArticleDao articleDao = new ArticleDaoImpl();
-    public Article addArticle(Article article){return articleDao.addArticle(article);}
+    public Article addArticle(Article article){
+        if (article == null) {
+            throw new IllegalArgumentException("L'article ne peut pas etre vide");
+        }
+        if (article.getDescription()== null || "".equals(article.getDescription())) {
+            throw new IllegalArgumentException("La description de l'article doit être remplis");
+        }
+        if (article.getDimension()== null || "".equals(article.getDimension())) {
+            throw new IllegalArgumentException("La dimension de l'article doit être remplis");
+        }
+        if (article.getId_sous_categorie()== null || "".equals(article.getId_sous_categorie())) {
+            throw new IllegalArgumentException("La sous catégorie de l'article doit être remplis");
+        }
+        if (article.getImage()== null || "".equals(article.getImage())) {
+            throw new IllegalArgumentException("L'image de l'article doit être rempli");
+        }
+        if (article.getLot_vente()== null || "".equals(article.getLot_vente())) {
+            throw new IllegalArgumentException("Le lot de vente de l'article doit etre renseigné");
+        }
+        if (article.getNom_article()== null || "".equals(article.getNom_article())) {
+            throw new IllegalArgumentException("Le nom de l'article doit être remplis");
+        }
+        if (article.getPrix()==0.0) {
+            throw new IllegalArgumentException("Le prix de l'article doit être remplis");
+        }
+        if (article.getReference()== null || "".equals(article.getReference())) {
+            throw new IllegalArgumentException("La réference de l'article doit être remplis");
+        }
+        return articleDao.addArticle(article);}
 
     public List<Article> listarticles (){return articleDao.listArticles();}
     public List<Article> listPlats (){return articleDao.listArticles();}
