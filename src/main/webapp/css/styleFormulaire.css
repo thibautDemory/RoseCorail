@@ -1,0 +1,39 @@
+.ajout{
+    margin-top: 5%;
+    text-align: center;
+}
+
+.modif{
+    margin-top: 12%;
+    text-align: center;
+}
+
+.greenButton{
+    background-color: #1e7b1e;
+    color: #F5FFFA;
+    font-weight: bold;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    border-radius: 10px;
+}
+
+.greenButton:hover{
+    font-size: 1.05em;
+    color: #F5FFFA;
+    text-decoration:none;
+}
+
+.redButton{
+    background-color: #e67e00;
+    color: #F5FFFA;
+    font-weight: bold;
+    padding-bottom: 1.5%;
+    padding-top: 1.5%;
+    border-radius: 10px;
+}
+
+.redButton:hover{
+    font-size: 1.05em;
+    color: #F5FFFA;
+    text-decoration:none;
+}
