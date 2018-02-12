@@ -57,5 +57,13 @@ public class CompteClientLibrary {
     public CompteClient getCompteClientByMail(String mail){ return compteClientDao.getCompteClientByMail(mail);}
     public List<CompteClient> listComptesClients() {return compteClientDao.listComptesClient();}
 
+    public void updatePassword(int id, String password){
+        if (password == null || password.equals("")) {
+            throw new IllegalArgumentException("Le mot de passe ne peut pas être nul.");
+        }else {
+            compteClientDao.updatePassword(id, password);
+        }
+    }
+
 
 }

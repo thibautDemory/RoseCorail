@@ -46,7 +46,6 @@ public class CompteRoseCorailDaoImpl implements CompteRoseCorailDao {
                             resultSet.getString("numero_tel"));
                 }
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,10 +54,11 @@ public class CompteRoseCorailDaoImpl implements CompteRoseCorailDao {
 
     @Override
     public void updatePassword(Integer id, String pwd) {
-        String query = "UPDATE compterosecorail SET mdp=? WHERE id_compte_RC=1;";
+        String query = "UPDATE compterosecorail SET mdp=? WHERE id_compte_RC=?;";
             try (Connection connection = DataSourceProvider.getDataSource().getConnection();
                  PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, pwd);
+                statement.setInt(2,id);
                 statement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
