@@ -68,7 +68,7 @@ public class CouleurDaoTestCase {
     }
 
     @Test
-    public void shouldDeleteActualite(){
+    public void shouldDeleteCouleur(){
         couleurDao.deleteCouleur(1);
 
         List<Couleur> couleurs = couleurDao.listCouleurs();

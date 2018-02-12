@@ -1,5 +1,7 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.Couleur;
+import hei.ProjetRoseCorail.managers.CouleurLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -8,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/administration/ajoutArticle")
 public class AjoutArticleServlet extends GenericServlet{
@@ -16,9 +19,20 @@ public class AjoutArticleServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        List<Couleur> listedescouleurs= CouleurLibrary.getInstance().listCouleurs();
+        System.out.println(listedescouleurs.get(1).getNom_couleur());
+
 
         webContext.setVariable("statut",statut);
+        webContext.setVariable("listedescouleurs",listedescouleurs);
+
 
         templateEngine.process("administration/ajout-article", webContext, resp.getWriter());
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Get parameters:
+
     }
 }
