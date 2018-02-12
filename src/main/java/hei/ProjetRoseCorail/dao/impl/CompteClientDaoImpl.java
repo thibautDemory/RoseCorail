@@ -151,4 +151,16 @@ public class CompteClientDaoImpl implements CompteClientDao {
         }
     }
 
+    @Override
+    public void updatePassword(Integer id, String pwd) {
+        String query = "UPDATE compteclient SET mdp=? WHERE id_compte_client=?;";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, pwd);
+            statement.setInt(2,id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

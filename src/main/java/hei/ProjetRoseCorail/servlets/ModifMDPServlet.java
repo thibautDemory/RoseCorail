@@ -1,8 +1,10 @@
 package hei.ProjetRoseCorail.servlets;
 
 import hei.ProjetRoseCorail.entities.Actualite;
+import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.CompteRoseCorail;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
+import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import hei.ProjetRoseCorail.managers.CompteRoseCorailLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -12,9 +14,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/modifMDP")
 public class ModifMDPServlet extends GenericServlet{
+    CompteClientLibrary compteClientLibrary = CompteClientLibrary.getInstance();
+    CompteRoseCorailLibrary compteRoseCorailLibrary=CompteRoseCorailLibrary.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
@@ -36,6 +41,8 @@ public class ModifMDPServlet extends GenericServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<CompteClient> listClients = compteClientLibrary.listComptesClients();
+
         // GET PARAM
         String oldPassword = null;
         String newMDP1 = null;
@@ -45,18 +52,51 @@ public class ModifMDPServlet extends GenericServlet{
         newMDP1 = req.getParameter("newMDP1");
         newMDP2 = req.getParameter("newMDP2");
 
-        if(newMDP1.equals(newMDP2)){
-            try {
-                CompteRoseCorailLibrary.getInstance().updatePassword(1,newMDP2);
-                // REDIRECT TO DETAIL Actualité
-                resp.sendRedirect(String.format("accueil"));
-            } catch (IllegalArgumentException e) {
-                String errorMessage = e.getMessage();
+        String statut = (String) req.getSession().getAttribute("statut");
 
-                req.getSession().setAttribute("errorMessage", errorMessage);
+        System.out.println(statut);
 
-                resp.sendRedirect("/modifMDP");
+        if(statut.equals("client")){
+            int idClient = (int) req.getSession().getAttribute("idClient");
+            String mdp = compteClientLibrary.getCompteClientById(idClient).getMdp();
+            if(newMDP1.equals(newMDP2)){
+                if(mdp.equals(oldPassword)){
+                    try {
+                        CompteClientLibrary.getInstance().updatePassword(idClient,newMDP2);
+                        // REDIRECT TO Accueil
+                        resp.sendRedirect(String.format("accueil"));
+                    } catch (IllegalArgumentException e) {
+                        String errorMessage = e.getMessage();
+                        req.getSession().setAttribute("errorMessage", errorMessage);
+                        resp.sendRedirect("modifMDP");
+                    }
+                }else{
+                    System.out.println("L'ancien mot de passe est incorrect");
+                }
+            }else{
+                System.out.println("Il faut rentrer deux fois le même mot de passe (dans \"Nouveau mot de passe\" et \"Confirmation du nouveau mot de passe\")");
+            }
+        }else if(statut.equals("admin")){
+            int idAdmin = (int) req.getSession().getAttribute("idAdmin");
+            String mdp = compteRoseCorailLibrary.getCompteRoseCorailById(idAdmin).getMdp();
+            if(newMDP1.equals(newMDP2)){
+                if(mdp.equals(oldPassword)){
+                    try {
+                        CompteRoseCorailLibrary.getInstance().updatePassword(idAdmin,newMDP2);
+                        // REDIRECT TO Accueil
+                        resp.sendRedirect(String.format("accueil"));
+                    } catch (IllegalArgumentException e) {
+                        String errorMessage = e.getMessage();
+                        req.getSession().setAttribute("errorMessage", errorMessage);
+                        resp.sendRedirect("modifMDP");
+                    }
+                }else{
+                    System.out.println("L'ancien mot de passe est incorrect");
+                }
+            }else{
+                System.out.println("Il faut rentrer deux fois le même mot de passe (dans \"Nouveau mot de passe\" et \"Confirmation du nouveau mot de passe\")");
             }
         }
+
     }
 }

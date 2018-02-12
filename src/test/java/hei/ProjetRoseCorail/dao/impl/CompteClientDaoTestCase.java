@@ -4,6 +4,7 @@ import hei.ProjetRoseCorail.dao.ActualiteDao;
 import hei.ProjetRoseCorail.dao.CompteClientDao;
 import hei.ProjetRoseCorail.entities.Actualite;
 import hei.ProjetRoseCorail.entities.CompteClient;
+import hei.ProjetRoseCorail.entities.CompteRoseCorail;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -130,5 +131,28 @@ public class CompteClientDaoTestCase {
                 tuple(2,"thibaut@demory.fr", "ISA", "DEMORY", "Thibaut", "20 rue Beaucourt", "Lille", "59000", "monMDP2", "0606060607", "FR 41 123456824", "thib.demory.fr", "description2"),
                 tuple(3,"arnold@blyau.fr", "ISEN", "BLYAU", "Arnold", "54 rue Paul Bocuse", "Lille", "59000", "monMDP3", "0606060608", "FR 42 123456824", "arnold.blyau.fr", "description3")
         );
+    }
+
+    @Test
+    public void shouldUpdatePassword(){
+        //DO
+        compteClientDao.updatePassword(2,"NewPassword");
+        //WHEN
+        CompteClient compteClient=compteClientDao.getCompteClientById(2);
+        //THEN
+        assertThat(compteClient).isNotNull();
+        assertThat(compteClient.getId_compte_client()).isEqualTo(2);
+        assertThat(compteClient.getEmail()).isEqualTo("thibaut@demory.fr");
+        assertThat(compteClient.getNom_boutique()).isEqualTo("ISA");
+        assertThat(compteClient.getNom_gerant()).isEqualTo("DEMORY");
+        assertThat(compteClient.getPrenom_gerant()).isEqualTo("Thibaut");
+        assertThat(compteClient.getAdresse()).isEqualTo("20 rue Beaucourt");
+        assertThat(compteClient.getVille()).isEqualTo("Lille");
+        assertThat(compteClient.getCode_postal()).isEqualTo("59000");
+        assertThat(compteClient.getMdp()).isEqualTo("NewPassword");
+        assertThat(compteClient.getNumero_tel()).isEqualTo("0606060607");
+        assertThat(compteClient.getNum_tva()).isEqualTo("FR 41 123456824");
+        assertThat(compteClient.getSite_internet()).isEqualTo("thib.demory.fr");
+        assertThat(compteClient.getDescription_activite()).isEqualTo("description2");
     }
 }
