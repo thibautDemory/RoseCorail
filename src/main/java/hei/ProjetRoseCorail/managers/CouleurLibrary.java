@@ -7,6 +7,8 @@ import hei.ProjetRoseCorail.dao.impl.CouleurDaoImpl;
 import hei.ProjetRoseCorail.entities.Actualite;
 import hei.ProjetRoseCorail.entities.Couleur;
 
+import java.util.List;
+
 public class CouleurLibrary {
     private static class CouleurLibraryHolder {
         private final static CouleurLibrary instance = new CouleurLibrary();
@@ -37,4 +39,5 @@ public class CouleurLibrary {
         return couleurDao.addCouleur(couleur);
 
     }
+    public List<Couleur> listCouleurs(){return couleurDao.listCouleurs();}
 }
