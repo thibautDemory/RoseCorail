@@ -50,6 +50,10 @@ public class AjoutArticleServlet extends GenericServlet{
         Double prix=0.0;
         Integer vendupar=null;
         File filequicontientlimage=null;
+        List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleurs();
+        List<String> couleurschecked=new ArrayList<>();
+        String resultat="bonjour";
+
 
         try{
             nom=req.getParameter("nom-article");
@@ -63,6 +67,18 @@ public class AjoutArticleServlet extends GenericServlet{
             prix=Double.parseDouble(req.getParameter("prix-article"));
             vendupar=Integer.parseInt(req.getParameter("lot-article"));
             sous_categorie=Integer.parseInt(req.getParameter("sous-categorie-article"));
+            /*for (int i=0;i<lescouleurs.size();i++){
+                if (Boolean.parseBoolean(req.getParameter(lescouleurs.get(i).getNom_couleur()))==true){
+                    couleurschecked.add(lescouleurs.get(i).getNom_couleur());
+                }
+            }*/
+            resultat=req.getParameter("testname");
+
+
+
+
+
+
 
 
         }catch (IllegalArgumentException e){
@@ -72,11 +88,18 @@ public class AjoutArticleServlet extends GenericServlet{
 
         }
         //on créer l'article
+        System.out.println(resultat);
         Article newarticle = new Article(null, sous_categorie,nom,reference,description,"images\\article\\"+nom+"\\image.jpg",dimension,prix,vendupar);
         System.out.println("l'article est créer");
         try{
             Article createdArticle= ArticleLibrary.getInstance().addArticle(newarticle);
             System.out.println("larticlelibrary");
+            /*for (int j=0;j<couleurschecked.size();j++){
+                System.out.println(couleurschecked.get(j));
+            }*/
+
+
+
             resp.sendRedirect(String.format("/lesPlats"));
 
         }catch (IllegalArgumentException e){
