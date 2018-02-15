@@ -8,9 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-@WebServlet("/leVerreTransparent")
-public class LeVerreTransparentServlet extends GenericServlet{
+@WebServlet("/lesportecouteaux")
+public class LesportecouteauxServlet extends GenericServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,6 +28,6 @@ public class LeVerreTransparentServlet extends GenericServlet{
         System.out.println(statut);
         webContext.setVariable("statut",statut);
 
-        templateEngine.process("leverretransparent", webContext, resp.getWriter());
+        templateEngine.process("lesportecouteaux", webContext, resp.getWriter());
     }
 }

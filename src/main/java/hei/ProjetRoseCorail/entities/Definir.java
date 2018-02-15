@@ -1,10 +1,12 @@
 package hei.ProjetRoseCorail.entities;
 
 public class Definir {
+    private Integer id_definir;
     private Integer id_devis;
     private Integer id_stat;
 
-    public Definir(Integer id_devis, Integer id_stat) {
+    public Definir(Integer id_definir, Integer id_devis, Integer id_stat) {
+        this.id_definir=id_definir;
         this.id_devis = id_devis;
         this.id_stat = id_stat;
     }
@@ -24,4 +26,13 @@ public class Definir {
     public void setId_stat(Integer id_stat) {
         this.id_stat = id_stat;
     }
+
+    public Integer getId_definir() {
+        return id_definir;
+    }
+
+    public void setId_definir(Integer id_definir) {
+        this.id_definir = id_definir;
+    }
+
 }

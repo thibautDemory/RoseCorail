@@ -1,10 +1,14 @@
 package hei.ProjetRoseCorail.entities;
 
 public class Posseder {
+
+
+    private Integer id_posseder;
     private Integer id_couleur;
     private Integer id_article;
 
-    public Posseder(Integer id_couleur, Integer id_article) {
+    public Posseder(Integer id_posseder, Integer id_couleur, Integer id_article) {
+        this.id_posseder= id_posseder;
         this.id_couleur = id_couleur;
         this.id_article = id_article;
     }
@@ -23,5 +27,13 @@ public class Posseder {
 
     public void setId_article(Integer id_article) {
         this.id_article = id_article;
+    }
+
+    public Integer getId_posseder() {
+        return id_posseder;
+    }
+
+    public void setId_posseder(Integer id_posseder) {
+        this.id_posseder = id_posseder;
     }
 }

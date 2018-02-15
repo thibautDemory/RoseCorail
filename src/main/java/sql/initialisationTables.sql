@@ -13,14 +13,15 @@ DELETE FROM statistiques;
 
 INSERT INTO `categorie`(`id_categorie`,`nom_categorie`) VALUES (1,'Les plats');
 INSERT INTO `categorie`(`id_categorie`,`nom_categorie`) VALUES (2,'Porte-couteaux');
-INSERT INTO `categorie`(`id_categorie`,`nom_categorie`) VALUES (3,'Décorations');
+INSERT INTO `categorie`(`id_categorie`,`nom_categorie`) VALUES (3,'Décoration de table');
+INSERT INTO `categorie`(`id_categorie`,`nom_categorie`) VALUES (4,'La maison');
 
 INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (1, 1, 'Plats à cake');
 INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (2, 1, 'Plats à fromage');
 INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (3, 1, 'Coupelle et apéritif');
 INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (4, 2, 'Porte-couteaux');
-INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (5, 3, 'déco de table');
-INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (6, 3, 'La maison');
+INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (5, 3, 'Décoration de table');
+INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (6, 4, 'La maison');
 
 
 INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`) VALUES (1,1, 'Plats à cake', '6030 407', 'Plat à cake', 'imagePlatàCake', '32 x 15 cm', 10.0, 1);
