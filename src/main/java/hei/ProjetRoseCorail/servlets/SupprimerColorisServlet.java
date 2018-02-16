@@ -13,9 +13,10 @@ import static java.lang.Integer.parseInt;
 @WebServlet("/administration/supprimerColoris")
 public class SupprimerColorisServlet extends GenericServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idColoris = parseInt(req.getParameter("id"));
         CouleurLibrary.getInstance().deleteCouleur(idColoris);
-        resp.sendRedirect("lesColoris");
+        System.out.println("cette couleur a bien été supprimer");
+        resp.sendRedirect("/lesColoris");
     }
 }
