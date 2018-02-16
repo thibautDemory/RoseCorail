@@ -79,7 +79,7 @@ INSERT INTO `lignedevis`(`id_ligne_devis`, `id_couleur`, `id_devis`, `id_article
 INSERT INTO `lignedevis`(`id_ligne_devis`, `id_couleur`, `id_devis`, `id_article`) VALUES (2, 1, 1, 3);
 INSERT INTO `lignedevis`(`id_ligne_devis`, `id_couleur`, `id_devis`, `id_article`) VALUES (3, 1, 1, 1);
 
-INSERT INTO `compterosecorail`(`id_compte_RC`,`email`,`mdp`, `numero_tel`) VALUES (1, 'beatrice.roquette@rosecorail.com', 'MDP21', '06 12 63 07 12');
+INSERT INTO `compterosecorail`(`id_compte_RC`,`email`,`mdp`, `numero_tel`) VALUES (1, 'beatrice.roquette@rosecorail.com', 'monmdp', '06 12 63 07 12');
 
 INSERT INTO `actualite`(`id_actualite`,`titre`,`contenu`,`image`) VALUES (1, 'Salon de Paris', 'BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaPARIS', 'imageSalonParis');
 INSERT INTO `actualite`(`id_actualite`,`titre`,`contenu`,`image`) VALUES (2, 'Salon de Reims', 'BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaREIMS', 'imageSalonREIMS');
