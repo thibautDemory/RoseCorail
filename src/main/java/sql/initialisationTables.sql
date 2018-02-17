@@ -66,10 +66,10 @@ INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saiso
 INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (28, 'Turquoise', '020', 'image5', 'Printemps-Eté 2017');
 INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (29, 'Canard', '009', 'image5', 'Printemps-Eté 2017');
 
-INSERT INTO `posseder`(`id_couleur`, `id_article`) VALUES (1, 1);
-INSERT INTO `posseder`(`id_couleur`, `id_article`) VALUES (2, 2);
-INSERT INTO `posseder`(`id_couleur`, `id_article`) VALUES (3, 3);
-INSERT INTO `posseder`(`id_couleur`, `id_article`) VALUES (4, 4);
+INSERT INTO `posseder`(id_posseder, `id_couleur`, `id_article`) VALUES (1,1, 1);
+INSERT INTO `posseder`(id_posseder, `id_couleur`, `id_article`) VALUES (2,2, 2);
+INSERT INTO `posseder`(id_posseder, `id_couleur`, `id_article`) VALUES (3,3, 3);
+INSERT INTO `posseder`(id_posseder, `id_couleur`, `id_article`) VALUES (4,4, 4);
 
 INSERT INTO `devis`(`id_devis`, `id_compte_client`, `date`, `etat`, `etatPanier`) VALUES (1, 1, '2017-04-06', 'Demandé', true);
 INSERT INTO `devis`(`id_devis`, `id_compte_client`, `date`, `etat`, `etatPanier`) VALUES (2, 2, '2017-11-20', 'En préparation', true);
@@ -89,6 +89,6 @@ INSERT INTO `statistiques`(`id_stat`, `nom_boutique_num1`, `nom_boutique_num2`, 
 INSERT INTO `statistiques`(`id_stat`, `nom_boutique_num1`, `nom_boutique_num2`, `nom_boutique_num3`, `ref_article_vu_num1`, `ref_article_vu_num2`, `ref_article_vu_num3`, `ref_article_commandes_num1`, `ref_article_commandes_num2`, `ref_article_commandes_num3`, `nom_couleur1`, `nom_couleur2`, `nom_couleur3`, `mois`, `annee`) VALUES (2, 'HEI', 'ISA', 'ISEN', '6030 407', '6030 414', '6030 062', '6030 062', '6030 414', '6030 407', 'Bleu gris 087', 'Bleu glacier 097', 'Noir 018', 'mars', '2017');
 INSERT INTO `statistiques`(`id_stat`, `nom_boutique_num1`, `nom_boutique_num2`, `nom_boutique_num3`, `ref_article_vu_num1`, `ref_article_vu_num2`, `ref_article_vu_num3`, `ref_article_commandes_num1`, `ref_article_commandes_num2`, `ref_article_commandes_num3`, `nom_couleur1`, `nom_couleur2`, `nom_couleur3`, `mois`, `annee`) VALUES (3, 'HEI', 'ISA', 'ISEN', '6030 407', '6030 414', '6030 062', '6030 062', '6030 414', '6030 407', 'Bleu gris 087', 'Bleu glacier 097', 'Noir 018', 'janvier', '2018');
 
-INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (1, 1);
-INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (2, 1);
-INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (3, 1);
+INSERT INTO `definir`(id_definir,`id_devis`,`id_stat`) VALUES (1,1, 1);
+INSERT INTO `definir`(id_definir,`id_devis`,`id_stat`) VALUES (2,2, 1);
+INSERT INTO `definir`(id_definir,`id_devis`,`id_stat`) VALUES (3,3, 1);

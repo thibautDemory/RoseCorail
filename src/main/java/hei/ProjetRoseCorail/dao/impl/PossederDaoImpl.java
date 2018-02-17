@@ -5,10 +5,7 @@ import hei.ProjetRoseCorail.entities.Article;
 import hei.ProjetRoseCorail.entities.Couleur;
 import hei.ProjetRoseCorail.entities.Posseder;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +13,7 @@ public class PossederDaoImpl implements PossederDao{
 
     @Override
     public List<Couleur> listCouleursPourUnArticle(Integer id_article) {
-        String query = "SELECT * from couleur join posseder on couleur.id_couleur=couleur.id_couleur WHERE posseder.id_article= ?;";
+        String query = "SELECT * FROM couleur JOIN posseder ON couleur.id_couleur=couleur.id_couleur WHERE posseder.id_article= ?;";
         List<Couleur> listofCouleursPourUnArticle = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -42,7 +39,7 @@ public class PossederDaoImpl implements PossederDao{
 
     @Override
     public List<Article> listArticlesPourUneCouleur(Integer id_couleur) {
-        String query = "SELECT * from article join posseder on article.id_article=posseder.id_article WHERE posseder.id_couleur= ?;";
+        String query = "SELECT * FROM article JOIN posseder ON article.id_article=posseder.id_article WHERE posseder.id_couleur= ?;";
         List<Article> listArticlesPourUneCouleur = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -57,7 +54,7 @@ public class PossederDaoImpl implements PossederDao{
                             resultSet.getString("reference"),
                             resultSet.getString("description"),
                             resultSet.getString("image"),
-                            resultSet.getString("dimension"),
+                            resultSet.getString("dimensions"),
                             resultSet.getDouble("prix"),
                             resultSet.getInt("lot_vente"))
                     );
@@ -72,6 +69,24 @@ public class PossederDaoImpl implements PossederDao{
 
     @Override
     public Posseder addPosseder(Posseder posseder) {
+        String query = "INSERT INTO posseder(id_couleur,id_article) VALUES(?, ?)";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setInt(1,posseder.getId_couleur() );
+            statement.setInt(2,posseder.getId_article() );
+            statement.executeUpdate();
+
+            try (ResultSet ids = statement.getGeneratedKeys()) {
+                if(ids.next()) {
+                    int generatedId = ids.getInt(1);
+                    posseder.setId_posseder(generatedId);
+                    return posseder;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
