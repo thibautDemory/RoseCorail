@@ -22,6 +22,7 @@ public class CouleurDaoTestCase {
     public void initDb() throws Exception {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DELETE FROM lignedevis");
             stmt.executeUpdate("DELETE FROM posseder");
             stmt.executeUpdate("DELETE FROM couleur");
             stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`) VALUES (1, 'Bleu gris', '087', 'image1', 'Printemps-Eté 2017')");
@@ -44,6 +45,20 @@ public class CouleurDaoTestCase {
                 tuple(4, "Sapin bleuté", "091", "image1", "Printemps-Eté 2017")
         );
     }
+
+    @Test
+    public void shouldGetCouleurByID() {
+        // WHEN
+        Couleur couleur = couleurDao.getCouleurByID(1);
+        // THEN
+        assertThat(couleur).isNotNull();
+        assertThat(couleur.getId_couleur()).isEqualTo(1);
+        assertThat(couleur.getNom_couleur()).isEqualTo("Bleu gris");
+        assertThat(couleur.getNumero_couleur()).isEqualTo("087");
+        assertThat(couleur.getImage_couleur()).isEqualTo("image1");
+        assertThat(couleur.getSaison()).isEqualTo("Printemps-Eté 2017");
+    }
+
 
     @Test
     public void shouldAddCouleur() throws Exception {

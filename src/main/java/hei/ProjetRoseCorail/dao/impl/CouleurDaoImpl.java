@@ -2,6 +2,7 @@ package hei.ProjetRoseCorail.dao.impl;
 
 import hei.ProjetRoseCorail.dao.CouleurDao;
 import hei.ProjetRoseCorail.entities.Actualite;
+import hei.ProjetRoseCorail.entities.Article;
 import hei.ProjetRoseCorail.entities.Couleur;
 
 import java.sql.*;
@@ -34,6 +35,28 @@ public class CouleurDaoImpl implements CouleurDao {
         }
         return listOfCouleurs;
 
+    }
+
+    @Override
+    public Couleur getCouleurByID(Integer id){
+        String query="SELECT * FROM couleur WHERE id_couleur=?;";
+        try(Connection connection = DataSourceProvider.getDataSource().getConnection();
+            PreparedStatement statement= connection.prepareStatement(query)){
+            statement.setInt(1,id);
+            try(ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next()){
+                    return new Couleur(
+                            resultSet.getInt("id_couleur"),
+                            resultSet.getString("nom_couleur"),
+                            resultSet.getString("num_couleur"),
+                            resultSet.getString("image"),
+                            resultSet.getString("saison"));
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
