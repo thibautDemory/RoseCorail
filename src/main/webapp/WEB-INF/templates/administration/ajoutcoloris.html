@@ -35,21 +35,21 @@
         <div class="form-group">
           <label class="col-xs-3 control-label" for="nomColoris">Nom : </label>
           <div class="col-xs-9">
-            <input type="text" class="form-control" id="nomColoris" name="nomColoris" placeholder="nom du coloris">
+            <input type="text" class="form-control" id="nomColoris" name="nomColoris" placeholder="nom du coloris" th:value="${nomColoris}">
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-xs-3 control-label" for="numeroColoris">Numero : </label>
           <div class="col-xs-9">
-            <input type="text" class="form-control" id="numeroColoris" name="numeroColoris" placeholder="numéro du coloris">
+            <input type="text" class="form-control" id="numeroColoris" name="numeroColoris" placeholder="numéro du coloris" th:value="${numeroColoris}">
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-xs-3 control-label" for="imageColoris">Image : </label>
           <div class="col-xs-9">
-            <input type="file" class="form-control" id="imageColoris" name="imageColoris">
+            <input type="file" class="form-control" id="imageColoris" name="imageColoris" th:src="${imageColoris}" >
             <span>Pour un meilleur affichage, sélectionner une image de dimension minimale: 500x500</span>
           </div>
         </div>
