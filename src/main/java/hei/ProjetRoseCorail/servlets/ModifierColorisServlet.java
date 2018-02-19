@@ -39,6 +39,6 @@ public class ModifierColorisServlet extends GenericServlet{
 
         webContext.setVariable("statut",statut);
 
-        templateEngine.process("administration/ajoutcoloris", webContext, resp.getWriter());
+        templateEngine.process("administration/modifcoloris", webContext, resp.getWriter());
     }
 }
