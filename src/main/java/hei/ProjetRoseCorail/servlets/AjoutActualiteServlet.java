@@ -26,7 +26,7 @@ public class AjoutActualiteServlet extends GenericServlet{
 
         webContext.setVariable("statut",statut);
 
-        templateEngine.process("ajoutActualite", webContext, resp.getWriter());
+        templateEngine.process("administration/ajoutActualite", webContext, resp.getWriter());
     }
 
     @Override
@@ -52,13 +52,13 @@ public class AjoutActualiteServlet extends GenericServlet{
             Actualite createdActualite = ActualiteLibrary.getInstance().addActualite(newActualite);
 
             // REDIRECT TO DETAIL Actualité
-            resp.sendRedirect(String.format("accueil"));
+            resp.sendRedirect(String.format("/accueil"));
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
 
             req.getSession().setAttribute("errorMessage", errorMessage);
 
-            resp.sendRedirect("ajoutActualite");
+            resp.sendRedirect("administration/ajoutActualite");
         }
     }
 }
