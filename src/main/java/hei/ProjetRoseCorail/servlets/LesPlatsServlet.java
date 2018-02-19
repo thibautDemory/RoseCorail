@@ -1,7 +1,9 @@
 package hei.ProjetRoseCorail.servlets;
 
 import hei.ProjetRoseCorail.entities.Article;
+import hei.ProjetRoseCorail.entities.Couleur;
 import hei.ProjetRoseCorail.managers.ArticleLibrary;
+import hei.ProjetRoseCorail.managers.CouleurLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -23,6 +25,7 @@ public class LesPlatsServlet extends GenericServlet{
         List<Article> platsacake=articleLibrary.listPlatsPlatACake();
         List<Article> platsAfromage=articleLibrary.listPlatsPlatAFromage();
         List<Article> coupelles=articleLibrary.listPlatsCoupelle();
+        List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleurs();
 
         if (statut==null||"".equals(statut)){
             statut="visiteur";
@@ -35,6 +38,7 @@ public class LesPlatsServlet extends GenericServlet{
         webContext.setVariable("platsacake",platsacake);
         webContext.setVariable("platsAfromage",platsAfromage);
         webContext.setVariable("coupelles",coupelles);
+        webContext.setVariable("couleurs",couleurs);
 
         System.out.println(statut);
         webContext.setVariable("statut",statut);

@@ -43,25 +43,36 @@ function affichersouscategorie(){
 		document.getElementById("option1souscategorie").setAttribute("value","1");
 		document.getElementById("option2souscategorie").setAttribute("value","2");
 		document.getElementById("option3souscategorie").setAttribute("value","3");
-		document.getElementById("option1souscategorie").innerHTML = "Plat à cake";
-		document.getElementById("option2souscategorie").innerHTML = "Plat à fromage";
-		document.getElementById("option3souscategorie").innerHTML = "Coupelle";
+		document.getElementById("option1souscategorie").innerHTML = "Plats à cake";
+		document.getElementById("option2souscategorie").innerHTML = "Plats à fromage";
+		document.getElementById("option3souscategorie").innerHTML = "Coupelle et apéritif";
 		break;
+
 		case 'portecouteau':
 		document.getElementById("option1souscategorie").setAttribute("value","4");
-		document.getElementById("option2souscategorie").setAttribute("value","5");
-		document.getElementById("option3souscategorie").setAttribute("value","6");
-		document.getElementById("option1souscategorie").innerHTML = "Portes couteaux";
-		document.getElementById("option2souscategorie").innerHTML = "Dessous de carafe";
-		document.getElementById("option3souscategorie").innerHTML = "Dessous de plat";
+		document.getElementById("option2souscategorie").setAttribute("value","0");
+		document.getElementById("option3souscategorie").setAttribute("value","0");
+		document.getElementById("option1souscategorie").innerHTML = "Porte-couteaux";
+		document.getElementById("option2souscategorie").innerHTML = "";
+		document.getElementById("option3souscategorie").innerHTML = "";
 		break;
-		case 'verretransparent':
+
+		case 'deco':
+		document.getElementById("option1souscategorie").setAttribute("value","5");
+		document.getElementById("option2souscategorie").setAttribute("value","6");
+		document.getElementById("option3souscategorie").setAttribute("value","0");
+		document.getElementById("option1souscategorie").innerHTML = "Dessous de Verre";
+		document.getElementById("option2souscategorie").innerHTML = "Dessous de Plat";
+		document.getElementById("option3souscategorie").innerHTML = "";
+		break;
+
+        case 'lamaison':
 		document.getElementById("option1souscategorie").setAttribute("value","7");
-		document.getElementById("option2souscategorie").setAttribute("value","8");
-		document.getElementById("option3souscategorie").setAttribute("value","9");
-		document.getElementById("option1souscategorie").innerHTML = "Plat à cake";
-		document.getElementById("option2souscategorie").innerHTML = "Dessous de verre";
-		document.getElementById("option3souscategorie").innerHTML = "Portes couteaux";
+		document.getElementById("option2souscategorie").setAttribute("value","0");
+		document.getElementById("option3souscategorie").setAttribute("value","0");
+		document.getElementById("option1souscategorie").innerHTML = "La maison";
+		document.getElementById("option2souscategorie").innerHTML = "";
+		document.getElementById("option3souscategorie").innerHTML = "";
 		break;
 	}
 

@@ -212,3 +212,8 @@ a.white, a.white:hover{
 	background-color: #FF0040;
 	color: #fff;
 }
+
+.tableaucouleurs{
+	overflow: auto;
+	max-height:400px;
+}

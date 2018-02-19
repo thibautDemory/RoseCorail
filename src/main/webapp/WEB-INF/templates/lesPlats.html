@@ -50,13 +50,9 @@
           <h3>Les couleurs</h3>
           <form>
             <div id="choix-des-couleurs">
-              <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 1</label></div>
-              <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 2</label></div>
-              <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 3</label></div>
-              <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 4</label></div>
-              <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 5</label></div>
-              <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 6</label></div>
-              <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 7</label></div>
+              <div th:each="couleur : ${couleurs}">
+                <div class="checkbox"><label><input type="checkbox" th:value="${couleur.id_couleur}" th:name="${couleur.nom_couleur}" th:text="${couleur.nom_couleur}"></label></div>
+              </div>
               <button type="submit" class="btn btn-default">Soumettre</button>
             </div>
           </form>
@@ -69,7 +65,7 @@
             <div th:each="platcake : ${platsacake}">
               <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
                 <figure>
-                  <img class="img-responsive imageLien" th:src="${platcake.image}" alt="un plat"  data-toggle="modal" data-target="#article_view"><figcaption th:text="${platcake.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption><figcaption th:text="${platcake.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
+                  <img class="img-responsive imageLien" th:src="${platcake.image}" alt="un plat"  data-toggle="modal" data-target="#article_view" th:data-nom="${platcake.nom_article}" th:data-description="${platcake.description}"><figcaption th:text="${platcake.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption><figcaption th:text="${platcake.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
                 </figure>
               </div>
             </div>
@@ -119,26 +115,16 @@
                 <img src="images/photo2.jpg" class="img-responsive">
               </div>
               <div class="col-xs-6">
-                        <h4>Nom : <span>Plat rectangulaire</span></h4>
-                        <h4>Description : <span>Plat rectangulaire à fond creusé</span></h4>
+                        <h4>Nom : <span class="nom">Plat rectangulaire</span></h4>
+                        <h4>Description : <span class="description">Plat rectangulaire à fond creusé</span></h4>
                         <h4>Référence : <span>6030-062</span></h4>
                         <h4>Dimensions : <span>30*30cm</span></h4>
                         <h4>Vendu par : <span> à l'unité</span></h4>
                         <h4> Prix: <span> 75.00<span class="glyphicon glyphicon-euro">/u</span></span></h4>
-                        <div id="div-selection-couleur">
-                          <div class="col-xs-10 no-padding-left">
-                            <select class="form-control" id="choix-de-la-couleur">
-                              <option value=""><span id="choix1"></span> choisir une couleur</option>
-                              <option value="blanc_asperge"><span id="choix2"></span>blanc asperge</option>
-                              <option value="taupe_rose"><span id="choix3"></span>taupe rose</option>
-                              <option value="wisteria"><span id="choix3"></span>wisteria</option>
-                            </select>
-                          </div>
-                            <span class="glyphicon glyphicon-plus" onclick="affichercouleur()"></span>
-                        </div>
-                </div>
+
+              </div>
                 <div class="row">
-                  <div class="col-xs-11">
+                  <div class="col-xs-11 tableaucouleurs">
                   <table id="tableau-couleurs" class="table">
                           <thead>
                             <th class="col-xs-3">couleur</th>
@@ -146,6 +132,11 @@
                             <th>quantité</th>
                           </thead>
                           <tbody>
+                          <tr th:each="couleur : ${couleurs}">
+                            <td><img th:src="${couleur.image_couleur}"></td>
+                            <td th:text="${couleur.nom_couleur}"></td>
+                            <td><input type="number"></td>
+                          </tr>
                             
                           </tbody>
                           
@@ -162,6 +153,7 @@
     </div>
   </div>
 </div>
+
 <div class="precedentlefooter"></div>
 
 <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>

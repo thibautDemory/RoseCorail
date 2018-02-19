@@ -63,7 +63,7 @@ public class AjoutArticleServlet extends GenericServlet{
             nom=req.getParameter("nom-article");
             description=req.getParameter("description-article");
             dimension=req.getParameter("dimension-article");
-            filequicontientlimage= new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\image\\"+nom.trim());
+            filequicontientlimage= new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\image\\article\\"+nom.trim());
             filequicontientlimage.mkdirs();
             Part imagePart = req.getPart("image-article");
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg");
@@ -89,7 +89,7 @@ public class AjoutArticleServlet extends GenericServlet{
         }
 
 
-        Article newarticle = new Article(null, sous_categorie,nom,reference,description,"images\\article\\"+nom+"\\image.jpg",dimension,prix,vendupar);
+        Article newarticle = new Article(null, sous_categorie,nom,reference,description,"image\\article\\"+nom+"\\image.jpg",dimension,prix,vendupar);
         System.out.println("l'article est créer");
 
         try{
