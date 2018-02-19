@@ -1,5 +1,7 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.Article;
+import hei.ProjetRoseCorail.managers.ArticleLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -8,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/lesPlats")
 public class LesPlatsServlet extends GenericServlet{
@@ -16,6 +19,10 @@ public class LesPlatsServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
+        List<Article> platsacake=articleLibrary.listPlatsPlatACake();
+        List<Article> platsAfromage=articleLibrary.listPlatsPlatAFromage();
+        List<Article> coupelles=articleLibrary.listPlatsCoupelle();
 
         if (statut==null||"".equals(statut)){
             statut="visiteur";
@@ -25,6 +32,10 @@ public class LesPlatsServlet extends GenericServlet{
             webContext.setVariable("prenom",prenom);
             webContext.setVariable("nom",nom);
         }
+        webContext.setVariable("platsacake",platsacake);
+        webContext.setVariable("platsAfromage",platsAfromage);
+        webContext.setVariable("coupelles",coupelles);
+
         System.out.println(statut);
         webContext.setVariable("statut",statut);
 

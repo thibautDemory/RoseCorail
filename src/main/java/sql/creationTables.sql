@@ -20,7 +20,7 @@ CREATE TABLE `article` (
   `nom_article` varchar(50) NOT NULL,
   `reference` varchar(40) NOT NULL,
   `description` text NOT NULL,
-  `image` varchar(50) NOT NULL,
+  `image` varchar(100) NOT NULL,
   `dimensions` varchar(30) NOT NULL,
   `prix` double NOT NULL,
   `lot_vente` int(11) NOT NULL,

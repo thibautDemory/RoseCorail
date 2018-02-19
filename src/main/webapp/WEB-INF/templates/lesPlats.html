@@ -66,20 +66,24 @@
 
           <h3 class="col-sm-offset-1 col-md-offset-1 titreBack" id="Plat-Platcake">Les plats à cake</h3>
           <div class="row">
-            <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
-              <figure>
-                <img class="img-responsive imageLien" src="images/photo2.jpg" alt="un plat"  data-toggle="modal" data-target="#article_view"><figcaption class="col-xs-8 no-padding">Un plat</figcaption><figcaption class="col-xs-4 text-right no-padding">12 euros</figcaption>
-              </figure>
+            <div th:each="platcake : ${platsacake}">
+              <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
+                <figure>
+                  <img class="img-responsive imageLien" th:src="${platcake.image}" alt="un plat"  data-toggle="modal" data-target="#article_view"><figcaption th:text="${platcake.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption><figcaption th:text="${platcake.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
+                </figure>
+              </div>
             </div>
 
           </div>
 
           <h3 class="col-sm-offset-1 col-md-offset-1 titreBack" id="Plat-Platfromage">Les plats à fromage</h3>
           <div class="row">
-            <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
-              <figure>
-                <img class="img-responsive imageLien" src="images/photo2.jpg" alt="un plat"><figcaption class="col-xs-8 no-padding">Un plat blablabla blabcsfsfsdfsfsfsfslab la</figcaption><figcaption class="col-xs-4 text-right no-padding">12 euros</figcaption>
-              </figure>
+            <div th:each="platafromage : ${platsAfromage}">
+              <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
+                <figure>
+                  <img class="img-responsive imageLien" th:src="${platafromage.image}" alt="un plat"  data-toggle="modal" data-target="#article_view"><figcaption th:text="${platafromage.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption><figcaption th:text="${platafromage.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
+                </figure>
+              </div>
             </div>
 
 
@@ -87,11 +91,13 @@
 
           <h3 class="col-sm-offset-1 col-md-offset-1 titreBack" id="Plat-Coupelle">Les coupelles et apéritifs</h3>
           <div class="row">
-            
-            <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
-              <figure>
-                <img class="img-responsive imageLien" src="images/photo2.jpg" alt="un plat"><figcaption class="col-xs-8 no-padding">Un plat blablabla blabcsfsfsdfsfsfsfslab la</figcaption><figcaption class="col-xs-4 text-right no-padding">12 euros</figcaption>
-              </figure>
+
+            <div th:each="coupelle : ${coupelles}">
+              <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
+                <figure>
+                  <img class="img-responsive imageLien" th:src="${coupelle.image}" alt="un plat"  data-toggle="modal" data-target="#article_view"><figcaption th:text="${coupelle.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption><figcaption th:text="${coupelle.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
+                </figure>
+              </div>
             </div>
 
           </div>

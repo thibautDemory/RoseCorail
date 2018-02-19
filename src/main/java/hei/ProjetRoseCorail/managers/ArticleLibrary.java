@@ -47,9 +47,21 @@ public class ArticleLibrary {
         return articleDao.addArticle(article);}
 
     public List<Article> listarticles (){return articleDao.listArticles();}
+    //liste des plats
     public List<Article> listPlats (){return articleDao.listArticles();}
-    public List<Article> listDecos (){return articleDao.listArticlesDeco();}
+    public List<Article> listPlatsPlatACake (){return articleDao.listArticlesPlataCake();}
+    public List<Article> listPlatsPlatAFromage (){return articleDao.listArticlesPlataFromage();}
+    public List<Article> listPlatsCoupelle (){return articleDao.listArticlesCoupellesAperitif();}
+    //liste des portes couteaux
     public List<Article> listPortesCouteaux (){return articleDao.listArticlesPorteCouteaux();}
+    // liste des élements de déco
+    public List<Article> listDecos (){return articleDao.listArticlesDeco();}
+    public List<Article> listDecosDessousPlat (){return articleDao.listArticlesDecoDessousPlat();}
+    public List<Article> listDecosDessousVerre (){return articleDao.listArticlesDecoDessousVerre();}
+    //liste des articles de la maison
+    public List<Article> listeArticlesMaison (){return articleDao.listArticlesMaison();}
+
+
 
     public void deleteArticle(Integer id){articleDao.deleteArticle(id);}
 
