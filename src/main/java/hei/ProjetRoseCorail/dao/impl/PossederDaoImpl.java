@@ -13,7 +13,7 @@ public class PossederDaoImpl implements PossederDao{
 
     @Override
     public List<Couleur> listCouleursPourUnArticle(Integer id_article) {
-        String query = "SELECT * FROM couleur JOIN posseder ON couleur.id_couleur=couleur.id_couleur WHERE posseder.id_article= ?;";
+        String query = "SELECT * FROM couleur JOIN posseder ON couleur.id_couleur=posseder.id_couleur WHERE posseder.id_article= ?;";
         List<Couleur> listofCouleursPourUnArticle = new ArrayList<>();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {

@@ -2,8 +2,10 @@ package hei.ProjetRoseCorail.servlets;
 
 import hei.ProjetRoseCorail.entities.Article;
 import hei.ProjetRoseCorail.entities.Couleur;
+import hei.ProjetRoseCorail.entities.Posseder;
 import hei.ProjetRoseCorail.managers.ArticleLibrary;
 import hei.ProjetRoseCorail.managers.CouleurLibrary;
+import hei.ProjetRoseCorail.managers.PossederLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -41,6 +43,7 @@ public class AjoutArticleServlet extends GenericServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PossederLibrary possederLibrary=PossederLibrary.getInstance();
 
         //Get parameters:
         String nom="";
@@ -88,12 +91,13 @@ public class AjoutArticleServlet extends GenericServlet{
 
         Article newarticle = new Article(null, sous_categorie,nom,reference,description,"images\\article\\"+nom+"\\image.jpg",dimension,prix,vendupar);
         System.out.println("l'article est créer");
+
         try{
             Article createdArticle= ArticleLibrary.getInstance().addArticle(newarticle);
             System.out.println("larticlelibrary");
 
 
-            resp.sendRedirect(String.format("/lesPlats"));
+
 
         }catch (IllegalArgumentException e){
             String errorMessage =e.getMessage();
@@ -101,9 +105,24 @@ public class AjoutArticleServlet extends GenericServlet{
             req.getSession().setAttribute("errorMessage",errorMessage);
             resp.sendRedirect("/administration/ajoutArticle");
         }
-        /*try{
+        Integer idarticle=newarticle.getId_article();
+        List<Posseder> listedesposseder=new ArrayList<>();
+        for (int i=0;i<numerocouleurschecked.size();i++){
+            Posseder newposseder= new Posseder(null,numerocouleurschecked.get(i),idarticle);
+            listedesposseder.add(newposseder);
+        }
 
-        }*/
+        try{
+            for (int i=0;i<listedesposseder.size();i++){
+                Posseder createdPosseder=possederLibrary.addPosseder(listedesposseder.get(i));
+            }
+            resp.sendRedirect(String.format("/lesPlats"));
+
+        }catch (IllegalArgumentException e){
+            String errorMessage =e.getMessage();
+
+            System.out.println("erreur1"+errorMessage);
+        }
 
 
 

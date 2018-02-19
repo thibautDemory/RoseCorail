@@ -25,6 +25,7 @@ public class PossederDaoTestCase {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              Statement stmt = connection.createStatement()) {
             stmt.executeUpdate("DELETE FROM posseder");
+            stmt.executeUpdate("ALTER TABLE posseder AUTO_INCREMENT=0");
             stmt.executeUpdate("INSERT INTO `posseder`(id_posseder,id_couleur,id_article) VALUES (1,1,1)");
             stmt.executeUpdate("INSERT INTO `posseder`(id_posseder,id_couleur,id_article) VALUES (2,1,2)");
             stmt.executeUpdate("INSERT INTO `posseder`(id_posseder,id_couleur,id_article) VALUES (3,2,2)");
@@ -37,7 +38,7 @@ public class PossederDaoTestCase {
         List<Couleur> lescouleursdunarticle = possederDao.listCouleursPourUnArticle(1);
         //THEN
         assertThat(lescouleursdunarticle).hasSize(1);
-        assertThat(lescouleursdunarticle).extracting("id_couleur","nom_couleur","num_couleur","image","saison").containsOnly(
+        assertThat(lescouleursdunarticle).extracting("id_couleur","nom_couleur","numero_couleur","image_couleur","saison").containsOnly(
                 tuple(1,"Bleu gris","087", "image1","Printemps-Eté 2017")
         );
     }
@@ -67,8 +68,8 @@ public class PossederDaoTestCase {
 
         try (Connection connection=DataSourceProvider.getDataSource().getConnection();
         Statement stmt=connection.createStatement()){
-            try(ResultSet rs=stmt.executeQuery("SELECT posseder.id_posseder, posseder.id_couleur, id_article, couleur.nom_couleur, article.nom_article" +
-                    "FROM posseder join couleur on couleur.id_couleur=posseder.id_couleur JOIN article on article.id_article=posseder.id_article WHERE id_posseder=4;")){
+            try(ResultSet rs=stmt.executeQuery("SELECT posseder.id_posseder, posseder.id_couleur, posseder.id_article, couleur.nom_couleur, article.nom_article " +
+                    "FROM (posseder JOIN couleur ON couleur.id_couleur=posseder.id_couleur) JOIN article ON article.id_article=posseder.id_article WHERE posseder.id_posseder=4;")){
                 assertThat(rs.next()).isTrue();
                 assertThat(rs.getInt("id_posseder")).isEqualTo(createdposseder.getId_posseder());
                 assertThat(rs.getInt("id_couleur")).isEqualTo(createdposseder.getId_couleur());
