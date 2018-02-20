@@ -103,7 +103,7 @@
     </div>
 
 
-<div class="modal fade product_view" id="article_view">
+<div class="modal fade product_view taillemax" id="article_view">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -125,14 +125,14 @@
 
               </div>
                 <div class="row">
-                  <div class="col-xs-11 tableaucouleurs">
-                  <table id="tableau-couleurs" class="table">
+                  <div class=" tableaucouleurs col-xs-11">
+                  <table id="tableau-couleurs" class="table tableaucouleurs">
                           <thead>
                             <th class="col-xs-3">couleur</th>
                             <th>nom de la couleur</th>
                             <th>quantité</th>
                           </thead>
-                          <tbody>
+                          <tbody class="tableaucouleurs">
                           <tr th:each="couleur : ${couleurs}">
                             <td><img th:src="${couleur.image_couleur}"></td>
                             <td th:text="${couleur.nom_couleur}"></td>
@@ -140,7 +140,6 @@
                           </tr>
                             
                           </tbody>
-                          
                     </table>
                   </div>
                 </div>
