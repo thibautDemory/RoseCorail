@@ -2,6 +2,7 @@ package hei.ProjetRoseCorail.dao.impl;
 
 import hei.ProjetRoseCorail.dao.ActualiteDao;
 import hei.ProjetRoseCorail.entities.Actualite;
+import hei.ProjetRoseCorail.entities.Couleur;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -32,6 +33,27 @@ public class ActualiteDaoImpl implements ActualiteDao {
         }
         return listOfActualites;
 
+    }
+
+    @Override
+    public Actualite getActualiteByID(Integer id){
+        String query="SELECT * FROM actualite WHERE id_actualite=?;";
+        try(Connection connection = DataSourceProvider.getDataSource().getConnection();
+            PreparedStatement statement= connection.prepareStatement(query)){
+            statement.setInt(1,id);
+            try(ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next()){
+                    return new Actualite(
+                            resultSet.getInt("id_actualite"),
+                            resultSet.getString("titre"),
+                            resultSet.getString("contenu"),
+                            resultSet.getString("image"));
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

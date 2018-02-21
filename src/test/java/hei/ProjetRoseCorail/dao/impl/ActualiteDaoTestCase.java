@@ -2,6 +2,7 @@ package hei.ProjetRoseCorail.dao.impl;
 
 import hei.ProjetRoseCorail.dao.ActualiteDao;
 import hei.ProjetRoseCorail.entities.Actualite;
+import hei.ProjetRoseCorail.entities.Couleur;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,6 +40,18 @@ public class ActualiteDaoTestCase {
                 tuple(2, "Salon de Reims", "BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaREIMS","imageSalonREIMS") ,
                 tuple(3, "Salon de Picardie", "BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaPICARDIE", "imageSalonPICARDIE")
         );
+    }
+
+    @Test
+    public void shouldGetActualiteByID(){
+        // WHEN
+        Actualite actualite = actualiteDao.getActualiteByID(2);
+        // THEN
+        assertThat(actualite).isNotNull();
+        assertThat(actualite.getIdActualite()).isEqualTo(2);
+        assertThat(actualite.getTitreActualite()).isEqualTo("Salon de Reims");
+        assertThat(actualite.getContenu()).isEqualTo("BLAblaBLAblaBLAblaBLAblaBLAblaBLAblaREIMS");
+        assertThat(actualite.getImageActualite()).isEqualTo("imageSalonREIMS");
     }
 
     @Test
