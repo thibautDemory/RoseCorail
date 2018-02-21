@@ -63,7 +63,7 @@ public class AjoutArticleServlet extends GenericServlet{
             nom=req.getParameter("nom-article");
             description=req.getParameter("description-article");
             dimension=req.getParameter("dimension-article");
-            filequicontientlimage= new File("\\images\\Articles\\"+nom.trim());
+            filequicontientlimage= new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\"+nom.trim());
             filequicontientlimage.mkdirs();
             Part imagePart = req.getPart("image-article");
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg");

@@ -65,7 +65,7 @@ public class ModifierColorisServlet extends GenericServlet{
         String numero_couleur = null;
         String image_couleur = null;
         String saison = null;
-        String idColorisString = "bonjour";
+        String idColorisString="";
         File filequicontientlimage=null;
         int idColorisInt = 0;
         try {
@@ -74,7 +74,7 @@ public class ModifierColorisServlet extends GenericServlet{
             saison = req.getParameter("saisonColoris");
             idColorisString = req.getParameter("idColorisString");
             idColorisInt = Integer.parseInt(idColorisString);
-            filequicontientlimage = new File("D:\\RoseCorail\\Images\\Couleurs\\"+nom_couleur.trim());
+            filequicontientlimage = new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\"+nom_couleur.trim());
             filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
             Part imagePart = req.getPart("imageColoris"); // on récupere  l'image du formulaire
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
@@ -83,14 +83,12 @@ public class ModifierColorisServlet extends GenericServlet{
             String errorMessage = e.getMessage();
             req.getSession().setAttribute("errorMessage", errorMessage);
             System.out.println("error1"+errorMessage);
-            resp.sendRedirect("/administration/ajoutColoris");
+            resp.sendRedirect("/administration/modifierColoris");
         }
 
         System.out.println("coloris string" +idColorisString);
         System.out.println("num " +numero_couleur);
         System.out.println(idColorisInt);
-
-
 
 
         // CREATE couleur
@@ -105,15 +103,13 @@ public class ModifierColorisServlet extends GenericServlet{
             Couleur createdCouleur = CouleurLibrary.getInstance().addCouleur(newCouleur);
             idcouleur=createdCouleur.getId_couleur();
 
-            // REDIRECT TO Accueil
-
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
 
             req.getSession().setAttribute("errorMessage", errorMessage);
             System.out.println("error2"+errorMessage);
 
-            resp.sendRedirect(String.format("/administration/modifColorisEntrerReference"));
+            resp.sendRedirect(String.format("/administration/modifierColoris"));
         }
 
         System.out.println("idcouleur"+idcouleur);
@@ -133,7 +129,7 @@ public class ModifierColorisServlet extends GenericServlet{
 
             req.getSession().setAttribute("errorMessage", errorMessage);
             System.out.println("error3"+errorMessage);
-            resp.sendRedirect(String.format("/administration/modifColorisEntrerReference"));
+            resp.sendRedirect(String.format("/administration/modifierColoris"));
         }
     }
 }

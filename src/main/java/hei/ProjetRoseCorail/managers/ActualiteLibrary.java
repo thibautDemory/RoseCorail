@@ -4,6 +4,8 @@ import hei.ProjetRoseCorail.dao.ActualiteDao;
 import hei.ProjetRoseCorail.dao.impl.ActualiteDaoImpl;
 import hei.ProjetRoseCorail.entities.Actualite;
 
+import java.util.List;
+
 public class ActualiteLibrary {
 
     private static class ActualiteLibraryHolder {
@@ -15,6 +17,14 @@ public class ActualiteLibrary {
     }
 
     private ActualiteDao actualiteDao = new ActualiteDaoImpl();
+
+    public List<Actualite> listActualites(){
+        return actualiteDao.listActualites();
+    }
+
+    public Actualite getActualiteByID(int id){
+        return actualiteDao.getActualiteByID(id);
+    }
 
     public Actualite addActualite(Actualite actualite) {
         if (actualite == null) {
@@ -30,7 +40,11 @@ public class ActualiteLibrary {
             throw new IllegalArgumentException("L'image de l'actualité ne pas être nul.");
         }
         return actualiteDao.addActualite(actualite);
-
     }
+
+    public void deleteActualite(Integer idActualite){
+        actualiteDao.deleteActualite(idActualite);
+    }
+
 
 }
