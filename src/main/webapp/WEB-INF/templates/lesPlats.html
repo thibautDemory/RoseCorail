@@ -8,10 +8,7 @@
   <link href="css/bootstrap-theme.css" type="text/css" rel="stylesheet">
   <link href="css/style-perso.css" type="text/css" rel="stylesheet">
   <link href="css/Lesplats.css" type="text/css" rel="stylesheet">
-  <script src="js/jquery-3.2.1.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/feuille-presentation-plat-js.js"></script>
-  <meta charset="utf-8"/>
+  <meta charset="UTF-8"/>
   <title>Les plats</title>
 </head>
  
@@ -80,6 +77,7 @@
                 <figure>
                   <img class="img-responsive imageLien" th:src="${platafromage.image}" alt="un plat"  data-toggle="modal" data-target="#article_view"><figcaption th:text="${platafromage.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption><figcaption th:text="${platafromage.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
                 </figure>
+                <button data-toggle="modal" th:href="${'modal2?id='+platafromage.id_article}" data-target="#presentationarticle" class="btn btn-primary">voir plus</button>
               </div>
             </div>
 
@@ -94,6 +92,7 @@
                 <figure>
                   <img class="img-responsive imageLien" th:src="${coupelle.image}" alt="un plat"  data-toggle="modal" data-target="#article_view"><figcaption th:text="${coupelle.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption><figcaption th:text="${coupelle.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
                 </figure>
+                <button data-toggle="modal" th:href="${'modal2?id='+coupelle.id_article}" data-target="#presentationarticle" class="btn btn-primary">voir plus</button>
               </div>
             </div>
 
@@ -107,13 +106,15 @@
       </div>
 
     </div>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        $("body").on("hidden.bs.modal", ".modal", function () {
+            $(this).removeData("bs.modal");
+        });
+    </script>
 
 
-<script>
-    $("body").on("hidden.bs.modal", ".modal", function () {
-        $(this).removeData("bs.modal");
-    });
-</script>
 
 <div class="precedentlefooter"></div>
 
