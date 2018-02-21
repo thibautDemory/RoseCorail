@@ -67,7 +67,6 @@
                 <figure>
                   <img class="img-responsive imageLien" th:src="${platcake.image}" alt="un plat"  data-toggle="modal" data-target="#article_view" th:data-nom="${platcake.nom_article}" th:data-description="${platcake.description}"><figcaption th:text="${platcake.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption><figcaption th:text="${platcake.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
                 </figure>
-                <button type="button" class="btn btn-primary" ></button>
               </div>
             </div>
 
@@ -103,7 +102,7 @@
     </div>
 
 
-<div class="modal fade product_view taillemax" id="article_view">
+<div class="modal fade product_view" id="article_view">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -111,7 +110,7 @@
             <h3 class="modal-title">Plat rectangulaire</h3>
         </div>
         <div class="modal-body">
-            
+            <div class="row" style="margin-bottom: 20px;">
               <div class="col-xs-6">
                 <img src="images/photo2.jpg" class="img-responsive">
               </div>
@@ -124,21 +123,21 @@
                         <h4> Prix: <span> 75.00<span class="glyphicon glyphicon-euro">/u</span></span></h4>
 
               </div>
+            </div>
                 <div class="row">
-                  <div class=" tableaucouleurs col-xs-11">
-                  <table id="tableau-couleurs" class="table tableaucouleurs">
+                  <div class="col-xs-11 tableaucouleurs">
+                  <table class="table table-responsive">
                           <thead>
                             <th class="col-xs-3">couleur</th>
                             <th>nom de la couleur</th>
                             <th>quantité</th>
                           </thead>
-                          <tbody class="tableaucouleurs">
+                          <tbody>
                           <tr th:each="couleur : ${couleurs}">
                             <td><img th:src="${couleur.image_couleur}"></td>
                             <td th:text="${couleur.nom_couleur}"></td>
                             <td><input type="number"></td>
                           </tr>
-                            
                           </tbody>
                     </table>
                   </div>

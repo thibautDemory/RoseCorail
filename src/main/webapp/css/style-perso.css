@@ -214,9 +214,7 @@ a.white, a.white:hover{
 }
 
 .tableaucouleurs{
+	height: 200px;
+	max-height: 200px;
 	overflow-y: auto;
-
-}
-.taillemax{
-	height:500px;
 }
