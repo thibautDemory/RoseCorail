@@ -1,7 +1,4 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-
 <div class="modal-header">
     <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
     <h3 class="modal-title">Plat rectangulaire</h3>
@@ -9,15 +6,15 @@
 <div class="modal-body">
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-xs-6">
-            <img src="images/photo2.jpg" class="img-responsive">
+            <img th:src="${cetarticle.image}" class="img-responsive">
         </div>
         <div class="col-xs-6">
-            <h4>Nom : <span class="nom">Plat rectangulaire</span></h4>
-            <h4>Description : <span class="description">Plat rectangulaire à fond creusé</span></h4>
-            <h4>Référence : <span>6030-062</span></h4>
-            <h4>Dimensions : <span>30*30cm</span></h4>
-            <h4>Vendu par : <span> à l'unité</span></h4>
-            <h4> Prix: <span> 75.00<span class="glyphicon glyphicon-euro">/u</span></span></h4>
+            <h4>Nom : <span th:text="${cetarticle.nom_article}">Plat rectangulaire</span></h4>
+            <h4>Description : <span th:text="${cetarticle.description}">Plat rectangulaire à fond creusé</span></h4>
+            <h4>Référence : <span th:text="${cetarticle.reference}">6030-062</span></h4>
+            <h4>Dimensions : <span th:text="${cetarticle.dimension}">30*30cm</span></h4>
+            <h4>Vendu par : <span th:text="${cetarticle.lot_vente}"> à l'unité</span></h4>
+            <h4> Prix: <span th:text="${cetarticle.prix}"> 75.00<span class="glyphicon glyphicon-euro">/u</span></span></h4>
 
         </div>
     </div>
@@ -30,7 +27,7 @@
                 <th>quantité</th>
                 </thead>
                 <tbody>
-                <tr th:each="couleur : ${couleurs}">
+                <tr th:each="couleur : ${sescouleurs}">
                     <td><img th:src="${couleur.image_couleur}"></td>
                     <td th:text="${couleur.nom_couleur}"></td>
                     <td><input type="number"></td>

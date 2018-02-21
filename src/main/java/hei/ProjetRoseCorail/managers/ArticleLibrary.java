@@ -61,6 +61,7 @@ public class ArticleLibrary {
     //liste des articles de la maison
     public List<Article> listeArticlesMaison (){return articleDao.listArticlesMaison();}
 
+    public Article getArticleById(Integer idarticle){return articleDao.getArticleById(idarticle);}
 
 
     public void deleteArticle(Integer id){articleDao.deleteArticle(id);}
