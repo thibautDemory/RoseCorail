@@ -12,8 +12,8 @@
             var deleteLink = document.getElementById("deleteLink");
             var modifyLink = document.getElementById("modifyLink");
 
-            deleteLink.setAttribute('href', 'supprimerColoris?id='+valeur);
-            modifyLink.setAttribute('href', 'modifierColoris?id='+valeur);
+            deleteLink.setAttribute('href', '/administration/supprimerColoris?id='+valeur);
+            modifyLink.setAttribute('href', '/administration/modifierColoris?id='+valeur);
         }
     </script>
 
@@ -61,11 +61,11 @@
         <div class="col-xs-6 form-horizontal">
           <div class="col-xs-6">
             <div class="col-xs-4"></div>
-            <a th:href="${'modifierColoris?id='}" class="btn btn-primary bouton" id="modifyLink">Modifier</a>
+            <a th:href="${'/administration/modifierColoris?id='}" class="btn btn-primary bouton" id="modifyLink">Modifier</a>
           </div>
           <div class="col-xs-6">
             <div class="col-xs-4"></div>
-            <a th:href="${'supprimerColoris?id='}" class="btn btn-danger bouton" id="deleteLink">Supprimer</a>
+            <a th:href="${'/administration/supprimerColoris?id='}" class="btn btn-danger bouton" id="deleteLink">Supprimer</a>
           </div>
         </div>
       </div>

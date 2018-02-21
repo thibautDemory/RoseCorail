@@ -68,6 +68,27 @@ public class PossederDaoImpl implements PossederDao{
     }
 
     @Override
+    public List<Posseder> listLesPosseder() {
+        String query = "SELECT * FROM posseder;";
+        List<Posseder> listofPosseder = new ArrayList<>();
+        try (
+                Connection connection = DataSourceProvider.getDataSource().getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query)
+        ) {
+            while (resultSet.next()) {
+                listofPosseder.add(new Posseder(
+                        resultSet.getInt("id_posseder"),
+                        resultSet.getInt("id_couleur"),
+                        resultSet.getInt("id_article")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listofPosseder;
+    }
+
+    @Override
     public Posseder addPosseder(Posseder posseder) {
         String query = "INSERT INTO posseder(id_couleur,id_article) VALUES(?, ?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -94,4 +115,33 @@ public class PossederDaoImpl implements PossederDao{
     public Posseder modifierPosseder(Posseder posseder) {
         return null;
     }
+
+    @Override
+    public void deletePossederForCouleur(Integer idcouleur) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "delete from posseder where id_couleur=?")) {
+                statement.setInt(1,idcouleur );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deletePosseder(Integer idPosseder) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "delete from posseder where id_posseder=?")) {
+                statement.setInt(1,idPosseder );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+    }
+
 }

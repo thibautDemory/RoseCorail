@@ -62,13 +62,20 @@ public class CouleurDaoImpl implements CouleurDao {
     @Override
     public Couleur addCouleur(Couleur couleur){
         String query = "INSERT INTO couleur(nom_couleur, num_couleur, image, saison) VALUES(?,?,?,?)";
-        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, couleur.getNom_couleur());
                 statement.setString(2, couleur.getNumero_couleur());
                 statement.setString(3, couleur.getImage_couleur());
                 statement.setString(4, couleur.getSaison());
                 statement.executeUpdate();
+                try (ResultSet ids = statement.getGeneratedKeys()) {
+                    if(ids.next()) {
+                        int generatedId = ids.getInt(1);
+                        couleur.setId_couleur(generatedId);
+                        return couleur;
+
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

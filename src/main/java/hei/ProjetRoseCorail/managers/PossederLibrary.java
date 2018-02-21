@@ -2,7 +2,11 @@ package hei.ProjetRoseCorail.managers;
 
 import hei.ProjetRoseCorail.dao.PossederDao;
 import hei.ProjetRoseCorail.dao.impl.PossederDaoImpl;
+import hei.ProjetRoseCorail.entities.Article;
+import hei.ProjetRoseCorail.entities.Couleur;
 import hei.ProjetRoseCorail.entities.Posseder;
+
+import java.util.List;
 
 public class PossederLibrary {
     private static class PossederLibraryHolder {
@@ -23,6 +27,15 @@ public class PossederLibrary {
             throw new IllegalArgumentException("Le Posseder doit avoir une couleur.");
         }
         return possederDao.addPosseder(posseder);
+    }
+    public List<Article> listArticlesPourUneCouleur(Integer idCouleur){
+        return possederDao.listArticlesPourUneCouleur(idCouleur);
+    }
+    public List<Couleur> listCouleursPourUnArticle(Integer idArticle){
+        return possederDao.listCouleursPourUnArticle(idArticle);
+    }
+    public void deletePossederForCouleur(Integer idcoloris){
+        possederDao.deletePossederForCouleur(idcoloris);
     }
 
 }

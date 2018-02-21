@@ -31,6 +31,18 @@ public class PossederDaoTestCase {
             stmt.executeUpdate("INSERT INTO `posseder`(id_posseder,id_couleur,id_article) VALUES (3,2,2)");
         }
     }
+    @Test
+    public void shouldListAllPosseder(){
+        //WHEN
+        List<Posseder> lesPosseder = possederDao.listLesPosseder();
+        //THEN
+        assertThat(lesPosseder).hasSize(3);
+        assertThat(lesPosseder).extracting("id_posseder","id_couleur","id_article").containsOnly(
+                tuple(1,1,1),
+                tuple(2,1,2),
+                tuple(3,2,2)
+        );
+    }
 
     @Test
     public void shouldListCouleurParArticle(){
@@ -50,21 +62,21 @@ public class PossederDaoTestCase {
         //THEN
         assertThat(lesarticlesdunecouleur).hasSize(2);
         assertThat(lesarticlesdunecouleur).extracting("id_article","id_sous_categorie","nom_article","reference","description","image","dimension","prix","lot_vente").containsOnly(
-                tuple(1,1,"Plats à cake","6030 407","Plat à cake","imagePlatàCake","32 x 15 cm",10.0,1),
-                tuple(2,1,"Plat à cake avec bords","6030 414","Plat à cake avec bords","imagePlatàCakeAvecBords","32 x 15 cm",12.0,1)
+                tuple(1,1,"Plats à cake","6030 407","Plat à cake","D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/platacake.jpg","32 x 15 cm",10.0,1),
+                tuple(2,1,"Plat à cake avec bords","6030 414","Plat à cake avec bords","D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/platacake.jpg","32 x 15 cm",12.0,1)
         );
     }
     @Test
     public void shouldaddPosseder()throws Exception{
         //given
-        Posseder posseder = new Posseder(null,2,3);
+        Posseder posseder = new Posseder(null,3,3);
         //WHEN
         Posseder createdposseder=possederDao.addPosseder(posseder);
         //THEN
         assertThat(createdposseder).isNotNull();
         assertThat(createdposseder.getId_posseder()).isNotNull();
         assertThat(createdposseder.getId_article()).isEqualTo(3);
-        assertThat(createdposseder.getId_couleur()).isEqualTo(2);
+        assertThat(createdposseder.getId_couleur()).isEqualTo(3);
 
         try (Connection connection=DataSourceProvider.getDataSource().getConnection();
         Statement stmt=connection.createStatement()){
@@ -74,11 +86,25 @@ public class PossederDaoTestCase {
                 assertThat(rs.getInt("id_posseder")).isEqualTo(createdposseder.getId_posseder());
                 assertThat(rs.getInt("id_couleur")).isEqualTo(createdposseder.getId_couleur());
                 assertThat(rs.getInt("id_article")).isEqualTo(createdposseder.getId_article());
-                assertThat(rs.getString("nom_couleur")).isEqualTo("Bleu glacier");
+                assertThat(rs.getString("nom_couleur")).isEqualTo("Bleu vert");
                 assertThat(rs.getString("nom_article")).isEqualTo("Plats à fromage");
                 assertThat(rs.next()).isFalse();
 
             }
         }
+    }
+
+    @Test
+    public void shouldDeletePossederForCouleur(){
+        possederDao.deletePossederForCouleur(2);
+        List<Posseder> lesPosseder=possederDao.listLesPosseder();
+        //THEN
+        assertThat(lesPosseder).hasSize(2);
+        assertThat(lesPosseder).extracting("id_posseder","id_couleur","id_article").containsOnly(
+                tuple(1,1,1),
+                tuple(2,1,2)
+        );
+
+
     }
 }
