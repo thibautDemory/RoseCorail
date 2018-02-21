@@ -9,7 +9,6 @@
   <link href="../css/style-perso.css" type="text/css" rel="stylesheet">
   <script src="../js/jquery-3.2.1.js"></script>
   <script src="../js/bootstrap.js"></script>
-  <script src="../js/feuilleJsAjoutArticle.js"></script>
   <meta charset="utf-8"/>
   <title>Ajout article</title>
 </head>
@@ -62,18 +61,21 @@
         </div>
 
         <div class="form-group">
-          <label class="col-xs-3 control-label" for="categorie-article">Catégorie : </label>
+          <label class="col-xs-3 control-label" for="categorie-article">Catégorie et Sous-Catégorie : </label>
           <div class="col-xs-9">
-            <select class="form-control" name="categorie-article" id="categorie-article" onchange="affichersouscategorie()">
-              <option>Sélectionnez une catégorie</option>
-              <option value="plat">Plat</option>
-              <option value="portecouteau">Porte-couteaux</option>
-              <option value="deco">La décoration</option>
-              <option value="lamaison">La maison</option>
+            <select class="form-control" name="categorie-article" id="categorie-article">
+              <option>Sélectionnez une sous-catégorie</option>
+              <option value="1">Plats - Plats à cake</option>
+              <option value="2">Plats - Plats à fromage</option>
+              <option value="3">Plats - Coupelles et apéritifs</option>
+              <option value="4">Porte-couteaux - Porte-couteaux</option>
+              <option value="5">Décoration - Dessous de verre</option>
+              <option value="6">Décoration - Dessous de plat</option>
+              <option value="7">La maison - La maison</option>
+
             </select>
           </div>
         </div>
-        <div id="sous-categorie-div"></div>
 
         <div class="form-group">
           <label class="col-xs-3 control-label" for="image-article">Image : </label>

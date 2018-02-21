@@ -16,12 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/modal2")
-public class Modal2Servlet extends GenericServlet {
+@WebServlet("/modalVisiteur")
+public class ModalVisiteur extends GenericServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+
         Integer id=Integer.parseInt(req.getParameter("id"));
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
         CouleurLibrary couleurLibrary= CouleurLibrary.getInstance();
@@ -30,10 +31,11 @@ public class Modal2Servlet extends GenericServlet {
 
         Article cetArticle= articleLibrary.getArticleById(id);
         List<Couleur> lescouleursdecetarticle=possederLibrary.listCouleursPourUnArticle(id);
+
         webContext.setVariable("cetarticle",cetArticle);
         webContext.setVariable("sescouleurs",lescouleursdecetarticle);
 
 
-        templateEngine.process("modal2", webContext, resp.getWriter());
+        templateEngine.process("modalVisiteur", webContext, resp.getWriter());
     }
 }

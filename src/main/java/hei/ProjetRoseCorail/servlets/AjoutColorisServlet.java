@@ -57,7 +57,7 @@ public class AjoutColorisServlet extends GenericServlet{
             Couleur createdCouleur = CouleurLibrary.getInstance().addCouleur(newCouleur);
 
             // REDIRECT TO Accueil
-            resp.sendRedirect(String.format("/accueil"));
+            resp.sendRedirect(String.format("/administration/formulaire"));
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
 

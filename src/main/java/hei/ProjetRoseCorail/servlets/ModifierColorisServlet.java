@@ -127,7 +127,7 @@ public class ModifierColorisServlet extends GenericServlet{
                 LigneDevis createdLigneDevis=ligneDevisLibrary.addLigneDevis(newligneDevis);
             }
 
-            resp.sendRedirect(String.format("/accueil"));
+            resp.sendRedirect(String.format("/administration/formulaire"));
         }catch (IllegalArgumentException e){
             String errorMessage = e.getMessage();
 

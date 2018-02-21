@@ -21,6 +21,7 @@ public class LesPlatsServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
         List<Article> platsacake=articleLibrary.listPlatsPlatACake();
         List<Article> platsAfromage=articleLibrary.listPlatsPlatAFromage();
