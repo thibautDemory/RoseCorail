@@ -83,6 +83,7 @@ CREATE TABLE `lignedevis` (
   `id_couleur` int(11) NOT NULL,
   `id_devis` int(11) NOT NULL,
   `id_article` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
   KEY `id_couleur_fk` (`id_couleur`),
   CONSTRAINT `id_lignedevis_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   KEY `id_devis_fk` (`id_devis`),

@@ -7,9 +7,9 @@ public class Devis {
     private Integer id_compte_client;
     private Date date;
     private String etat;
-    private String etatPanier;
+    private Boolean etatPanier;
 
-    public Devis(Integer id_devis, Integer id_compte_client, Date date, String etat, String etatPanier) {
+    public Devis(Integer id_devis, Integer id_compte_client, Date date, String etat, Boolean etatPanier) {
         this.id_devis = id_devis;
         this.id_compte_client = id_compte_client;
         this.date = date;
@@ -49,11 +49,11 @@ public class Devis {
         this.etat = etat;
     }
 
-    public String getEtatPanier() {
+    public Boolean getEtatPanier() {
         return etatPanier;
     }
 
-    public void setEtatPanier(String etatPanier) {
+    public void setEtatPanier(Boolean etatPanier) {
         this.etatPanier = etatPanier;
     }
 }
