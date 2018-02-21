@@ -25,10 +25,10 @@ INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categ
 INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (7, 4, 'La maison');
 
 
-INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`) VALUES (1,1, 'Plats à cake', '6030 407', 'Plat à cake', 'D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/platacake.jpg', '32 x 15 cm', 10.0, 1);
-INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`) VALUES (2,1, 'Plat à cake avec bords', '6030 414', 'Plat à cake avec bords', 'D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/platacake.jpg', '32 x 15 cm', 12.0, 1);
-INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`) VALUES (3,2, 'Plats à fromage', '6030 062', 'Plat carré', 'D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/platacake.jpg', '30 x 30 cm', 14.0, 1);
-INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`) VALUES (4,3, 'Coupelles', '6030 072', 'Coupelle', 'D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/platacake.jpg', '18 x 18 cm', 10.0, 2);
+INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`) VALUES (1,1, 'Plats à cake', '6030 407', 'Plat à cake', 'image\\article\\aze\\image.jpg', '32 x 15 cm', 10.0, 1);
+INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`) VALUES (2,1, 'Plat à cake avec bords', '6030 414', 'Plat à cake avec bords', 'image\\article\\aze\\image.jpg', '32 x 15 cm', 12.0, 1);
+INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`) VALUES (3,2, 'Plats à fromage', '6030 062', 'Plat carré', 'image\\article\\aze\\image.jpg', '30 x 30 cm', 14.0, 1);
+INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`) VALUES (4,3, 'Coupelles', '6030 072', 'Coupelle', 'image\\article\\aze\\image.jpg', '18 x 18 cm', 10.0, 2);
 
 INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`) VALUES (1,'william@evrard.fr', 'HEI', 'EVRARD', 'William', '26 BD Bigo Danel', 'Lille', '59000', 'monMDP1', '0606060606', 'FR 40 123456824', 'william.evrard.fr', 'description1');
 INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`) VALUES (2,'thibaut@demory.fr', 'ISA', 'DEMORY', 'Thibaut', '20 rue Beaucourt', 'Lille', '59000', 'monMDP2', '0606060607', 'FR 41 123456824', 'thib.demory.fr', 'description2');
@@ -51,21 +51,17 @@ INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saiso
 INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (12, 'Argent', '030', 'image2', 'Printemps-Ete 2017');
 INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (13, 'Marron glacé', '102', 'image3', 'Printemps-Ete 2017');
 INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (14, 'Camel', '101', 'image3', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (15, 'Mastic', '150', 'image3', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (16, 'Jaune dor', '039', 'image3', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (17, 'Champagne', '092', 'image3', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (18, 'Rose poudré', '090', 'image4', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (19, 'Pivoine', '100', 'image4', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (20, 'Aubergine', '099', 'image4', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (21, 'Rouge', '028', 'image4', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (22, 'Bordeaux', '019', 'image4', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (23, 'Safran', '096', 'image4', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (24, 'Sapin bleuté', '091', 'image5', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (25, 'Bleu vert', '008', 'image5', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (26, 'Celadon', '089', 'image5', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (27, 'Bleu gris', '087', 'image5', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (28, 'Turquoise', '020', 'image5', 'Printemps-Ete 2017');
-INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (29, 'Canard', '009', 'image5', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (15, 'Jaune dor', '039', 'image3', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (16, 'Champagne', '092', 'image3', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (17, 'Rose poudré', '090', 'image4', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (18, 'Pivoine', '100', 'image4', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (19, 'Aubergine', '099', 'image4', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (20, 'Rouge', '028', 'image4', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (21, 'Bordeaux', '019', 'image4', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (22, 'Safran', '096', 'image4', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (23, 'Celadon', '089', 'image5', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (24, 'Turquoise', '020', 'image5', 'Printemps-Ete 2017');
+INSERT INTO `couleur`(`id_couleur`,`nom_couleur`, `num_couleur`, `image`, `saison`) VALUES (25, 'Canard', '009', 'image5', 'Printemps-Ete 2017');
 
 INSERT INTO `posseder`(`id_couleur`, `id_article`) VALUES (1, 1);
 INSERT INTO `posseder`(`id_couleur`, `id_article`) VALUES (2, 2);
