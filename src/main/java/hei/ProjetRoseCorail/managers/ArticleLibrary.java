@@ -62,6 +62,7 @@ public class ArticleLibrary {
     public List<Article> listeArticlesMaison (){return articleDao.listArticlesMaison();}
 
     public Article getArticleById(Integer idarticle){return articleDao.getArticleById(idarticle);}
+    public Article getArticleByName(String nom){return articleDao.getArticleByNom(nom);}
 
 
     public void deleteArticle(Integer id){articleDao.deleteArticle(id);}

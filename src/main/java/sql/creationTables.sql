@@ -69,7 +69,7 @@ CREATE TABLE `posseder` (
 CREATE TABLE `devis` (
   `id_devis` int(11) NOT NULL AUTO_INCREMENT,
   `id_compte_client` int(11) NOT NULL,
-  `date` DATE NOT NULL,
+  `date_creation` DATE NOT NULL,
   `etat` varchar(20) NOT NULL,
   `etatPanier` boolean NOT NULL,
   KEY `id_compte_client_fk` (`id_compte_client`),

@@ -4,17 +4,18 @@ import hei.ProjetRoseCorail.dao.DevisDao;
 import hei.ProjetRoseCorail.entities.Devis;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DevisDaoImpl implements DevisDao {
     @Override
     public Devis creerUnDevis(Devis devis) {
-        String query = "INSERT INTO devis(id_compte_client,date,etat,etatPanier) VALUES(?,?,?,?)";
+        String query = "INSERT INTO devis(id_compte_client,date_creation,etat,etatPanier) VALUES(?,?,?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, devis.getId_compte_client());
-            statement.setDate(2, new java.sql.Date(devis.getDate().getTime()));
+            statement.setDate(2, Date.valueOf(devis.getDate()));
             statement.setString(3, devis.getEtat());
             statement.setBoolean(4, devis.getEtatPanier());
             statement.executeUpdate();
@@ -45,7 +46,7 @@ public class DevisDaoImpl implements DevisDao {
                     listofCouleursPourUnArticle.add(new Devis(
                                     resultSet.getInt("id_devis"),
                                     resultSet.getInt("id_compte_client"),
-                                    resultSet.getDate("date"),
+                                    resultSet.getDate("date_creation").toLocalDate(),
                                     resultSet.getString("etat"),
                                     resultSet.getBoolean("etatPanier"))
                     );
@@ -74,7 +75,7 @@ public class DevisDaoImpl implements DevisDao {
                     return new Devis(
                             resultSet.getInt("id_devis"),
                             resultSet.getInt("id_compte_client"),
-                            resultSet.getDate("date"),
+                            resultSet.getDate("date_creation").toLocalDate(),
                             resultSet.getString("etat"),
                             resultSet.getBoolean("etatPanier"));
                 }

@@ -9,6 +9,7 @@ public interface CouleurDao {
     public List<Couleur> listCouleurs();
 
     public Couleur getCouleurByID(Integer id);
+    public Couleur getCouleurByName(String nom);
 
     public Couleur addCouleur(Couleur couleur);
 

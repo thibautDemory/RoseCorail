@@ -43,17 +43,13 @@
 				      </tr>
 				    </thead>
 				    <tbody>
-				      <tr>
-				        <td><img src="photos\RC-img4.jpg" alt="image4"></td>
-				        <td>6030-414 plat à cake</td>
+				      <tr th:each="ligne : ${lesarticlesdupanier}">
+				        <td><img th:src="${ligne.photoArticle()}" ></td>
+				        <td th:text="${ligne.getNumeroArticle()}">6030-414 plat à cake</td>
 				        <td>32x15cm intérieur 11cm</td>
 				        <td>photo couleur</td>
 				        <td>
-				        	<select class=form-control>
-				        		<option value=un>1</option>
-								<option value=deux>2</option>
-								<option value=trois>3</option>
-							</select>
+				        	<input type="number">
 						</td>
 				        <td>134.4</td>
 				        <td><a href="" class="glyphicon glyphicon-trash"></a></td>

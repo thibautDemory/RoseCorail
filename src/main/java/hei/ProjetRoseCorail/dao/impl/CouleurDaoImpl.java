@@ -60,6 +60,28 @@ public class CouleurDaoImpl implements CouleurDao {
     }
 
     @Override
+    public Couleur getCouleurByName(String nom) {
+        String query="SELECT * FROM couleur WHERE nom_couleur=?;";
+        try(Connection connection = DataSourceProvider.getDataSource().getConnection();
+            PreparedStatement statement= connection.prepareStatement(query)){
+            statement.setString(1,nom);
+            try(ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next()){
+                    return new Couleur(
+                            resultSet.getInt("id_couleur"),
+                            resultSet.getString("nom_couleur"),
+                            resultSet.getString("num_couleur"),
+                            resultSet.getString("image"),
+                            resultSet.getString("saison"));
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Couleur addCouleur(Couleur couleur){
         String query = "INSERT INTO couleur(nom_couleur, num_couleur, image, saison) VALUES(?,?,?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
