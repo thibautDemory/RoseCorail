@@ -119,11 +119,15 @@ public class ModifierColorisServlet extends GenericServlet{
                 Posseder createdPosseder=possederLibrary.addPosseder(newposseder);
             }
             for (int i=0;i<leslignesDevisPourcetteCouleur.size();i++){
-                LigneDevis newligneDevis=new LigneDevis(null,idcouleur,leslignesDevisPourcetteCouleur.get(i).getId_devis(),leslignesDevisPourcetteCouleur.get(i).getId_article());
+                LigneDevis newligneDevis=new LigneDevis(null,
+                        idcouleur,
+                        leslignesDevisPourcetteCouleur.get(i).getId_devis(),
+                        leslignesDevisPourcetteCouleur.get(i).getId_article(),
+                        leslignesDevisPourcetteCouleur.get(i).getQuantite());
                 LigneDevis createdLigneDevis=ligneDevisLibrary.addLigneDevis(newligneDevis);
             }
 
-            resp.sendRedirect(String.format("/accueil"));
+            resp.sendRedirect(String.format("/administration/formulaire"));
         }catch (IllegalArgumentException e){
             String errorMessage = e.getMessage();
 

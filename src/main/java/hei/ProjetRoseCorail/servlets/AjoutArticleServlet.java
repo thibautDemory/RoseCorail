@@ -116,7 +116,7 @@ public class AjoutArticleServlet extends GenericServlet{
             for (int i=0;i<listedesposseder.size();i++){
                 Posseder createdPosseder=possederLibrary.addPosseder(listedesposseder.get(i));
             }
-            resp.sendRedirect(String.format("/lesPlats"));
+            resp.sendRedirect(String.format("/administration/formulaire"));
 
         }catch (IllegalArgumentException e){
             String errorMessage =e.getMessage();

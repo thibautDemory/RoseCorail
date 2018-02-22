@@ -8,9 +8,7 @@
     <link href="css/bootstrap-theme.css" type="text/css" rel="stylesheet">
     <link href="css/style-perso.css" type="text/css" rel="stylesheet">
     <link href="css/Lesplats.css" type="text/css" rel="stylesheet">
-    <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/feuille-presentation-plat-js.js"></script>
+
     <meta charset="utf-8"/>
     <title>Les porte-couteaux</title>
 </head>
@@ -48,13 +46,9 @@
                 <h3>Les couleurs</h3>
                 <form>
                     <div id="choix-des-couleurs">
-                        <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 1</label></div>
-                        <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 2</label></div>
-                        <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 3</label></div>
-                        <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 4</label></div>
-                        <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 5</label></div>
-                        <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 6</label></div>
-                        <div class="checkbox"><label><input type="checkbox" value="" name="">couleur 7</label></div>
+                        <div th:each="couleur : ${couleurs}">
+                            <div class="checkbox"><label><input type="checkbox" th:value="${couleur.id_couleur}" th:name="${couleur.nom_couleur}" th:text="${couleur.nom_couleur}"></label></div>
+                        </div>
                         <button type="submit" class="btn btn-default">Soumettre</button>
                     </div>
                 </form>
@@ -64,94 +58,42 @@
 
                 <h3 class="col-sm-offset-1 col-md-offset-1 titreBack" id="lesportecouteaux">Les porte-couteaux</h3>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
-                        <figure>
-                            <img class="img-responsive imageLien" src="images/photo2.jpg" alt="un plat"  data-toggle="modal" data-target="#article_view"><figcaption class="col-xs-8 no-padding">Un plat</figcaption><figcaption class="col-xs-4 text-right no-padding">12 euros</figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
-                        <figure>
-                            <img class="img-responsive imageLien" src="images/photo2.jpg" alt="un plat"><figcaption class="col-xs-8 no-padding">Un plat blablabla blabcsfsfsdfsfsfsfslab la</figcaption><figcaption class="col-xs-4 text-right no-padding">12 euros</figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
-                        <figure>
-                            <img class="img-responsive imageLien" src="images/photo2.jpg" alt="un plat"><figcaption class="col-xs-8 no-padding">Un plat blablabla blabcsfsfsdfsfsfsfslab la</figcaption><figcaption class="col-xs-4 text-right no-padding">12 euros</figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
-                        <figure>
-                            <img class="img-responsive imageLien" src="images/photo2.jpg" alt="un plat"><figcaption class="col-xs-8 no-padding">Un plat blablabla blabcsfsfsdfsfsfsfslab la</figcaption><figcaption class="col-xs-4 text-right no-padding">12 euros</figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
-                        <figure>
-                            <img class="img-responsive imageLien" src="images/photo2.jpg" alt="un plat"><figcaption class="col-xs-8 no-padding">Un plat blablabla blabcsfsfsdfsfsfsfslab la</figcaption><figcaption class="col-xs-4 text-right no-padding">12 euros</figcaption>
-                        </figure>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade product_view" id="article_view">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
-                    <h3 class="modal-title">Plat rectangulaire</h3>
-                </div>
-                <div class="modal-body">
-
-                    <div class="col-xs-6">
-                        <img src="images/photo2.jpg" class="img-responsive">
-                    </div>
-                    <div class="col-xs-6">
-                        <h4>Nom : <span>Plat rectangulaire</span></h4>
-                        <h4>Description : <span>Plat rectangulaire à fond creusé</span></h4>
-                        <h4>Référence : <span>6030-062</span></h4>
-                        <h4>Dimensions : <span>30*30cm</span></h4>
-                        <h4>Vendu par : <span> à l'unité</span></h4>
-                        <h4> Prix: <span> 75.00<span class="glyphicon glyphicon-euro">/u</span></span></h4>
-                        <div id="div-selection-couleur">
-                            <div class="col-xs-10 no-padding-left">
-                                <select class="form-control" id="choix-de-la-couleur">
-                                    <option value=""><span id="choix1"></span> choisir une couleur</option>
-                                    <option value="blanc_asperge"><span id="choix2"></span>blanc asperge</option>
-                                    <option value="taupe_rose"><span id="choix3"></span>taupe rose</option>
-                                    <option value="wisteria"><span id="choix3"></span>wisteria</option>
-                                </select>
+                    <div th:each="article : ${portecouteaux}">
+                        <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
+                            <figure>
+                                <img class="img-responsive imageLien" th:src="${article.image}" alt="un plat">
+                                <figcaption th:text="${article.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption>
+                                <figcaption th:if="${statut!='visiteur'}" th:text="${article.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
+                            </figure>
+                            <div th:switch="${statut}">
+                                <div th:case="'visiteur'">
+                                    <button data-toggle="modal" th:href="${'modalVisiteur?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-primary">voir plus</button>
+                                </div>
+                                <div th:case="*">
+                                    <button data-toggle="modal" th:href="${'modalClient?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-primary">voir plus</button>
+                                </div>
                             </div>
-                            <span class="glyphicon glyphicon-plus" onclick="affichercouleur()"></span>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-11">
-                            <table id="tableau-couleurs" class="table">
-                                <thead>
-                                <th class="col-xs-3">couleur</th>
-                                <th>nom de la couleur</th>
-                                <th>quantité</th>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row space-ten">
-                        <form>
-                            <div class="space-ten "></div>
-                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter à mon panier</button>
-                        </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+    <div class="modal fade" id="presentationarticle">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        $("body").on("hidden.bs.modal", ".modal", function () {
+            $(this).removeData("bs.modal");
+        });
+    </script>
     <div class="precedentlefooter"></div>
 
     <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>

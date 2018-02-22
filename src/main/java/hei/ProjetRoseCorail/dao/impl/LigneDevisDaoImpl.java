@@ -13,12 +13,13 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
 
     @Override
     public LigneDevis addLigneDevis(LigneDevis ligneDevis) {
-        String query = "INSERT INTO lignedevis(id_couleur,id_devis,id_article) VALUES(?, ?, ?)";
+        String query = "INSERT INTO lignedevis(id_couleur,id_devis,id_article,quantite) VALUES(?, ?, ?, ?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1,ligneDevis.getId_couleur() );
             statement.setInt(2,ligneDevis.getId_devis() );
             statement.setInt(3,ligneDevis.getId_article() );
+            statement.setInt(4,ligneDevis.getQuantite() );
             statement.executeUpdate();
 
             try (ResultSet ids = statement.getGeneratedKeys()) {
@@ -48,7 +49,8 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
                             (resultSet.getInt("id_ligne_devis"),
                                     resultSet.getInt("id_couleur"),
                                     resultSet.getInt("id_devis"),
-                                    resultSet.getInt("id_article"))
+                                    resultSet.getInt("id_article"),
+                                    resultSet.getInt("quantite"))
                     );
                 }
             }
@@ -73,7 +75,8 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
                             (resultSet.getInt("id_ligne_devis"),
                                     resultSet.getInt("id_couleur"),
                                     resultSet.getInt("id_devis"),
-                                    resultSet.getInt("id_article"))
+                                    resultSet.getInt("id_article"),
+                                    resultSet.getInt("quantite"))
                     );
                 }
             }

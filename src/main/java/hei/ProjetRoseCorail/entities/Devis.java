@@ -1,18 +1,21 @@
 package hei.ProjetRoseCorail.entities;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Devis {
     private Integer id_devis;
     private Integer id_compte_client;
-    private Date date;
-    private String etat;
-    private String etatPanier;
+    private LocalDate date_creation;
 
-    public Devis(Integer id_devis, Integer id_compte_client, Date date, String etat, String etatPanier) {
+    private String etat;
+    private Boolean etatPanier;
+
+    public Devis(Integer id_devis, Integer id_compte_client, LocalDate date_creation, String etat, Boolean etatPanier) {
         this.id_devis = id_devis;
         this.id_compte_client = id_compte_client;
-        this.date = date;
+        this.date_creation = date_creation;
         this.etat = etat;
         this.etatPanier = etatPanier;
     }
@@ -33,12 +36,12 @@ public class Devis {
         this.id_compte_client = id_compte_client;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDate getDate() {
+        return date_creation;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(LocalDate date) {
+        this.date_creation = date_creation;
     }
 
     public String getEtat() {
@@ -49,11 +52,11 @@ public class Devis {
         this.etat = etat;
     }
 
-    public String getEtatPanier() {
+    public Boolean getEtatPanier() {
         return etatPanier;
     }
 
-    public void setEtatPanier(String etatPanier) {
+    public void setEtatPanier(Boolean etatPanier) {
         this.etatPanier = etatPanier;
     }
 }

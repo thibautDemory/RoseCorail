@@ -69,7 +69,7 @@ CREATE TABLE `posseder` (
 CREATE TABLE `devis` (
   `id_devis` int(11) NOT NULL AUTO_INCREMENT,
   `id_compte_client` int(11) NOT NULL,
-  `date` DATE NOT NULL,
+  `date_creation` DATE NOT NULL,
   `etat` varchar(20) NOT NULL,
   `etatPanier` boolean NOT NULL,
   KEY `id_compte_client_fk` (`id_compte_client`),
@@ -83,6 +83,7 @@ CREATE TABLE `lignedevis` (
   `id_couleur` int(11) NOT NULL,
   `id_devis` int(11) NOT NULL,
   `id_article` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
   KEY `id_couleur_fk` (`id_couleur`),
   CONSTRAINT `id_lignedevis_couleur_fk` FOREIGN KEY (`id_couleur`) REFERENCES `couleur` (`id_couleur`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   KEY `id_devis_fk` (`id_devis`),

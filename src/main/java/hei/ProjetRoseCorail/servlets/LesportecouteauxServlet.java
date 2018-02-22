@@ -1,5 +1,9 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.Article;
+import hei.ProjetRoseCorail.entities.Couleur;
+import hei.ProjetRoseCorail.managers.ArticleLibrary;
+import hei.ProjetRoseCorail.managers.CouleurLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -8,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
 @WebServlet("/lesportecouteaux")
 public class LesportecouteauxServlet extends GenericServlet {
 
@@ -16,6 +22,9 @@ public class LesportecouteauxServlet extends GenericServlet {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
+        List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleurs();
+        List<Article> lesportecouteaux=articleLibrary.listPortesCouteaux();
 
         if (statut==null||"".equals(statut)){
             statut="visiteur";
@@ -26,7 +35,10 @@ public class LesportecouteauxServlet extends GenericServlet {
             webContext.setVariable("nom",nom);
         }
         System.out.println(statut);
+
         webContext.setVariable("statut",statut);
+        webContext.setVariable("couleurs",couleurs);
+        webContext.setVariable("portecouteaux",lesportecouteaux);
 
         templateEngine.process("lesportecouteaux", webContext, resp.getWriter());
     }
