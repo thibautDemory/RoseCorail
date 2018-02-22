@@ -27,6 +27,7 @@ public class ModalClientServlet extends GenericServlet {
         Boolean panierencours = (Boolean) req.getSession().getAttribute("panierencours");
 
         Integer id=Integer.parseInt(req.getParameter("id"));
+        req.getSession().setAttribute("idArticlequejeregarde",id);
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
         CouleurLibrary couleurLibrary= CouleurLibrary.getInstance();
         PossederLibrary possederLibrary= PossederLibrary.getInstance();

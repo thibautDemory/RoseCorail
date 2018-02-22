@@ -17,4 +17,5 @@ public interface CompteClientDao {
     public void deleteCompteClient(Integer idCompteClient);
 
     public void updatePassword(Integer id, String pwd);
+
 }

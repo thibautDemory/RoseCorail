@@ -61,7 +61,7 @@ public class InscriptionServlet extends GenericServlet{
 
         // CREATE CompteClient
         CompteClient newCompteClient = new CompteClient(null, email, nom_boutique, nom_gerant, prenom_gerant,
-                adresse, ville, code_postal, mdp, numero_tel, num_tva, site_internet, description_activite);
+                adresse, ville, code_postal, mdp, numero_tel, num_tva, site_internet, description_activite,null);
         try {
             CompteClient createdCompteClient = CompteClientLibrary.getInstance().addCompteClient(newCompteClient);
 

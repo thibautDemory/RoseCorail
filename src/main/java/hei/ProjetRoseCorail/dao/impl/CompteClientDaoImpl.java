@@ -32,7 +32,8 @@ public class CompteClientDaoImpl implements CompteClientDao {
                                 resultSet.getString("numero_tel"),
                                 resultSet.getString("num_tva"),
                                 resultSet.getString("site_internet"),
-                                resultSet.getString("description_activite")
+                                resultSet.getString("description_activite"),
+                                resultSet.getInt("numero_panier_actif")
                                 )
                 );
             }
@@ -64,7 +65,9 @@ public class CompteClientDaoImpl implements CompteClientDao {
                             resultSet.getString("numero_tel"),
                             resultSet.getString("num_tva"),
                             resultSet.getString("site_internet"),
-                            resultSet.getString("description_activite"));
+                            resultSet.getString("description_activite"),
+                            resultSet.getInt("numero_panier_actif")
+                    );
                 }
             }
 
@@ -94,7 +97,8 @@ public class CompteClientDaoImpl implements CompteClientDao {
                             resultSet.getString("numero_tel"),
                             resultSet.getString("num_tva"),
                             resultSet.getString("site_internet"),
-                            resultSet.getString("description_activite"));
+                            resultSet.getString("description_activite"),
+                            resultSet.getInt("numero_panier_actif"));
                 }
             }
 
@@ -107,7 +111,7 @@ public class CompteClientDaoImpl implements CompteClientDao {
 
     @Override
     public CompteClient addCompteClient(CompteClient compteClient) {
-        String query = "INSERT INTO compteclient(email, nom_boutique, nom_gerant, prenom_gerant, adresse, ville, code_postal, mdp,  numero_tel, num_tva, site_internet, description_activite) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO compteclient(email, nom_boutique, nom_gerant, prenom_gerant, adresse, ville, code_postal, mdp,  numero_tel, num_tva, site_internet, description_activite, numero_panier_actif) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, compteClient.getEmail());
@@ -122,6 +126,7 @@ public class CompteClientDaoImpl implements CompteClientDao {
                 statement.setString(10, compteClient.getNum_tva());
                 statement.setString(11, compteClient.getSite_internet());
                 statement.setString(12, compteClient.getDescription_activite());
+                statement.setInt(13, compteClient.getNumero_panier_actif());
                 statement.executeUpdate();
 
                 try (ResultSet ids = statement.getGeneratedKeys()) {
@@ -163,4 +168,6 @@ public class CompteClientDaoImpl implements CompteClientDao {
             e.printStackTrace();
         }
     }
+
+   
 }

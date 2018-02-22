@@ -33,17 +33,20 @@ public class PanierServlet extends GenericServlet{
         if (statut==null||"".equals(statut)){
             statut="visiteur";
         }else{
-            Integer idClient= Integer.parseInt(req.getParameter("idClient"));
+            Integer idClient= (Integer) req.getSession().getAttribute("idClient");
             idPanier=DevisLibrary.getInstance().getPanierClient(idClient).getId_devis();
             String nom=req.getSession().getAttribute("nom").toString();
             String prenom=req.getSession().getAttribute("prenom").toString();
             webContext.setVariable("prenom",prenom);
             webContext.setVariable("nom",nom);
         }
+        System.out.println(idPanier);
 
         //affichage des produits du panier
         if (idPanier!=0){
             List<LigneDevis> leslignesdevis = LigneDevisLibrary.getInstance().listLignesDevisPourUnDevis(idPanier);
+            System.out.println(leslignesdevis.get(0));
+
             for (int i =0;i<leslignesdevis.size();i++){
                 Article article=articleLibrary.getArticleById(leslignesdevis.get(i).getId_article());
                 Couleur couleur=couleurLibrary.getCouleurByID(leslignesdevis.get(i).getId_couleur());

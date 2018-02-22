@@ -28,9 +28,9 @@ public class CompteClientDaoTestCase {
             stmt.executeUpdate("DELETE FROM definir");
             stmt.executeUpdate("DELETE FROM devis");
             stmt.executeUpdate("DELETE FROM compteclient");
-            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`) VALUES (1,'william@evrard.fr', 'HEI', 'EVRARD', 'William', '26 BD Bigo Danel', 'Lille', '59000', 'monMDP1', '0606060606', 'FR 40 123456824', 'william.evrard.fr', 'description1')");
-            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`) VALUES (2,'thibaut@demory.fr', 'ISA', 'DEMORY', 'Thibaut', '20 rue Beaucourt', 'Lille', '59000', 'monMDP2', '0606060607', 'FR 41 123456824', 'thib.demory.fr', 'description2')");
-            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`) VALUES (3,'arnold@blyau.fr', 'ISEN', 'BLYAU', 'Arnold', '54 rue Paul Bocuse', 'Lille', '59000', 'monMDP3', '0606060608', 'FR 42 123456824', 'arnold.blyau.fr', 'description3')");
+            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`, numero_panier_actif) VALUES (1,'william@evrard.fr', 'HEI', 'EVRARD', 'William', '26 BD Bigo Danel', 'Lille', '59000', 'monMDP1', '0606060606', 'FR 40 123456824', 'william.evrard.fr', 'description1',1)");
+            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`, numero_panier_actif) VALUES (2,'thibaut@demory.fr', 'ISA', 'DEMORY', 'Thibaut', '20 rue Beaucourt', 'Lille', '59000', 'monMDP2', '0606060607', 'FR 41 123456824', 'thib.demory.fr', 'description2',2)");
+            stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`, numero_panier_actif) VALUES (3,'arnold@blyau.fr', 'ISEN', 'BLYAU', 'Arnold', '54 rue Paul Bocuse', 'Lille', '59000', 'monMDP3', '0606060608', 'FR 42 123456824', 'arnold.blyau.fr', 'description3',3)");
         }
     }
 
@@ -40,10 +40,10 @@ public class CompteClientDaoTestCase {
         List<CompteClient> compteClients = compteClientDao.listComptesClient();
         // THEN
         assertThat(compteClients).hasSize(3);
-        assertThat(compteClients).extracting("id_compte_client","email","nom_boutique","nom_gerant","prenom_gerant","adresse","ville","code_postal","mdp", "numero_tel","num_tva","site_internet","description_activite").containsOnly(
-                tuple(1,"william@evrard.fr", "HEI", "EVRARD", "William", "26 BD Bigo Danel", "Lille", "59000", "monMDP1", "0606060606", "FR 40 123456824", "william.evrard.fr", "description1"),
-                tuple(2,"thibaut@demory.fr", "ISA", "DEMORY", "Thibaut", "20 rue Beaucourt", "Lille", "59000", "monMDP2", "0606060607", "FR 41 123456824", "thib.demory.fr", "description2"),
-                tuple(3,"arnold@blyau.fr", "ISEN", "BLYAU", "Arnold", "54 rue Paul Bocuse", "Lille", "59000", "monMDP3", "0606060608", "FR 42 123456824", "arnold.blyau.fr", "description3")
+        assertThat(compteClients).extracting("id_compte_client","email","nom_boutique","nom_gerant","prenom_gerant","adresse","ville","code_postal","mdp", "numero_tel","num_tva","site_internet","description_activite","numero_panier_actif").containsOnly(
+                tuple(1,"william@evrard.fr", "HEI", "EVRARD", "William", "26 BD Bigo Danel", "Lille", "59000", "monMDP1", "0606060606", "FR 40 123456824", "william.evrard.fr", "description1",1),
+                tuple(2,"thibaut@demory.fr", "ISA", "DEMORY", "Thibaut", "20 rue Beaucourt", "Lille", "59000", "monMDP2", "0606060607", "FR 41 123456824", "thib.demory.fr", "description2",2),
+                tuple(3,"arnold@blyau.fr", "ISEN", "BLYAU", "Arnold", "54 rue Paul Bocuse", "Lille", "59000", "monMDP3", "0606060608", "FR 42 123456824", "arnold.blyau.fr", "description3",3)
         );
     }
 
@@ -66,6 +66,7 @@ public class CompteClientDaoTestCase {
         assertThat(compteClient.getNum_tva()).isEqualTo("FR 40 123456824");
         assertThat(compteClient.getSite_internet()).isEqualTo("william.evrard.fr");
         assertThat(compteClient.getDescription_activite()).isEqualTo("description1");
+        assertThat(compteClient.getNumero_panier_actif()).isEqualTo(1);
     }
 
     @Test
@@ -87,6 +88,7 @@ public class CompteClientDaoTestCase {
         assertThat(compteClient.getNum_tva()).isEqualTo("FR 40 123456824");
         assertThat(compteClient.getSite_internet()).isEqualTo("william.evrard.fr");
         assertThat(compteClient.getDescription_activite()).isEqualTo("description1");
+        assertThat(compteClient.getNumero_panier_actif()).isEqualTo(1);
     }
     @Test
     public void shouldAddCompteClient() throws Exception {
@@ -94,7 +96,7 @@ public class CompteClientDaoTestCase {
         CompteClient newCompteClient = new CompteClient(null, "my new email",
                 "my new shop's name", "my new boss's name", "my new boss's firstname",
                 "my new adress", "my new city", "02160", "my new password", "0323249007",
-                "my new TVA", "my new Web site", "my new description");
+                "my new TVA", "my new Web site", "my new description",4);
         // WHEN
         CompteClient createdCompteClient = compteClientDao.addCompteClient(newCompteClient);
         // THEN
@@ -115,6 +117,7 @@ public class CompteClientDaoTestCase {
                 assertThat(rs.getString("num_tva")).isEqualTo("my new TVA");
                 assertThat(rs.getString("site_internet")).isEqualTo("my new Web site");
                 assertThat(rs.getString("description_activite")).isEqualTo("my new description");
+                assertThat(rs.getInt("numero_panier_actif")).isEqualTo(4);
                 assertThat(rs.next()).isFalse();
             }
         }
@@ -127,9 +130,9 @@ public class CompteClientDaoTestCase {
         List<CompteClient> comptesClient = compteClientDao.listComptesClient();
         // THEN
         assertThat(comptesClient).hasSize(2);
-        assertThat(comptesClient).extracting("id_compte_client","email","nom_boutique","nom_gerant", "prenom_gerant", "adresse","ville","code_postal","mdp", "numero_tel", "num_tva", "site_internet", "description_activite").containsOnly(
-                tuple(2,"thibaut@demory.fr", "ISA", "DEMORY", "Thibaut", "20 rue Beaucourt", "Lille", "59000", "monMDP2", "0606060607", "FR 41 123456824", "thib.demory.fr", "description2"),
-                tuple(3,"arnold@blyau.fr", "ISEN", "BLYAU", "Arnold", "54 rue Paul Bocuse", "Lille", "59000", "monMDP3", "0606060608", "FR 42 123456824", "arnold.blyau.fr", "description3")
+        assertThat(comptesClient).extracting("id_compte_client","email","nom_boutique","nom_gerant", "prenom_gerant", "adresse","ville","code_postal","mdp", "numero_tel", "num_tva", "site_internet", "description_activite","numero_panier_actif").containsOnly(
+                tuple(2,"thibaut@demory.fr", "ISA", "DEMORY", "Thibaut", "20 rue Beaucourt", "Lille", "59000", "monMDP2", "0606060607", "FR 41 123456824", "thib.demory.fr", "description2",2),
+                tuple(3,"arnold@blyau.fr", "ISEN", "BLYAU", "Arnold", "54 rue Paul Bocuse", "Lille", "59000", "monMDP3", "0606060608", "FR 42 123456824", "arnold.blyau.fr", "description3",3)
         );
     }
 
@@ -154,5 +157,7 @@ public class CompteClientDaoTestCase {
         assertThat(compteClient.getNum_tva()).isEqualTo("FR 41 123456824");
         assertThat(compteClient.getSite_internet()).isEqualTo("thib.demory.fr");
         assertThat(compteClient.getDescription_activite()).isEqualTo("description2");
+        assertThat(compteClient.getNumero_panier_actif()).isEqualTo(2);
     }
+
 }

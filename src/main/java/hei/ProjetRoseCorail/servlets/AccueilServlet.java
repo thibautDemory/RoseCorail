@@ -21,7 +21,7 @@ public class AccueilServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
-        Boolean panierencours = (Boolean) req.getSession().getAttribute("panierencours");
+
 
         if (statut==null||"".equals(statut)){
             statut="visiteur";
@@ -30,9 +30,6 @@ public class AccueilServlet extends GenericServlet{
             String prenom=req.getSession().getAttribute("prenom").toString();
             webContext.setVariable("prenom",prenom);
             webContext.setVariable("nom",nom);
-            if(panierencours==null){
-                panierencours=false;
-            }
         }
         System.out.println(statut);
         webContext.setVariable("statut",statut);

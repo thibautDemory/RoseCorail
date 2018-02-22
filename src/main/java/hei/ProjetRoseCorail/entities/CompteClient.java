@@ -15,9 +15,10 @@ public class CompteClient {
     private String num_tva;
     private String site_internet;
     private String description_activite;
+    private Integer numero_panier_actif;
 
 
-    public CompteClient(Integer id_compte_client, String email, String nom_boutique, String nom_gerant, String prenom_gerant, String adresse, String ville, String code_postal, String mdp, String numero_tel, String num_tva, String site_internet, String description_activite) {
+    public CompteClient(Integer id_compte_client, String email, String nom_boutique, String nom_gerant, String prenom_gerant, String adresse, String ville, String code_postal, String mdp, String numero_tel, String num_tva, String site_internet, String description_activite, Integer numeroPanier) {
         this.id_compte_client = id_compte_client;
         this.email = email;
         this.nom_boutique = nom_boutique;
@@ -31,6 +32,7 @@ public class CompteClient {
         this.num_tva = num_tva;
         this.site_internet = site_internet;
         this.description_activite = description_activite;
+        this.numero_panier_actif=numeroPanier;
     }
 
     public Integer getId_compte_client() {
@@ -135,5 +137,13 @@ public class CompteClient {
 
     public void setDescription_activite(String description_activite) {
         this.description_activite = description_activite;
+    }
+
+    public Integer getNumero_panier_actif() {
+        return numero_panier_actif;
+    }
+
+    public void setNumero_panier_actif(Integer numero_panier_actif) {
+        this.numero_panier_actif = numero_panier_actif;
     }
 }
