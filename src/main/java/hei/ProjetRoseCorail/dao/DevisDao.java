@@ -9,6 +9,7 @@ public interface DevisDao {
     public List<Devis> listDevisByCompteClient(Integer idCompteClient);
     public Devis getDevisByArticle(Integer idArticle);
     public Devis getPanierClient(Integer idcompteclient);
+    public Devis getDevisById(Integer idDevis);
 
 
 }

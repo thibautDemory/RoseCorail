@@ -94,7 +94,28 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
 
     @Override
     public List<LigneDevis> listLignesDevisPourUnDevis(Integer idDevis) {
-        return null;
+        String query = "SELECT * FROM lignedevis WHERE id_devis= ?;";
+        List<LigneDevis> listlignesdevispourUnDevis = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, idDevis);
+            try(ResultSet resultSet = statement.executeQuery()){
+
+                while (resultSet.next()) {
+                    listlignesdevispourUnDevis.add(new LigneDevis
+                            (resultSet.getInt("id_ligne_devis"),
+                                    resultSet.getInt("id_couleur"),
+                                    resultSet.getInt("id_devis"),
+                                    resultSet.getInt("id_article"),
+                                    resultSet.getInt("quantite"))
+                    );
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listlignesdevispourUnDevis;
     }
 
     @Override

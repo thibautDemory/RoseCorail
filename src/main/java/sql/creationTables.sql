@@ -43,6 +43,7 @@ CREATE TABLE `compteclient` (
   `num_tva` varchar(20) NOT NULL,
   `site_internet` varchar(100) NOT NULL,
   `description_activite` text NOT NULL,
+  numero_panier_actif int(11),
   PRIMARY KEY (id_compte_client)
 )engine = innodb;
 
