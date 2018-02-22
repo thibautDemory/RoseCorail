@@ -1,0 +1,31 @@
+h2.titreNouveautes{
+    font-size: 3em;
+    margin-top: -1%;
+}
+
+.titreBloc{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.boiteNouveaute{
+    margin-bottom: 5%;
+}
+
+img.classImg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 200px;
+}
+
+p.classDesc{
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+.classDesc{
+    text-justify: auto;
+}
