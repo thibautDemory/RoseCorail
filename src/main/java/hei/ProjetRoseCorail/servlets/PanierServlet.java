@@ -57,6 +57,7 @@ public class PanierServlet extends GenericServlet{
                         couleur.getImage_couleur(),
                         leslignesdevis.get(i).getQuantite()));
             }
+
             webContext.setVariable("lesarticlesdupanier",lesArticlesCouleurEtQuantites);
         }
         System.out.println(statut);
