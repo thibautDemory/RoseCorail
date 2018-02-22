@@ -1,13 +1,7 @@
 package hei.ProjetRoseCorail.servlets;
 
-import hei.ProjetRoseCorail.entities.Article;
-import hei.ProjetRoseCorail.entities.Couleur;
-import hei.ProjetRoseCorail.entities.Devis;
-import hei.ProjetRoseCorail.entities.LigneDevis;
-import hei.ProjetRoseCorail.managers.ArticleLibrary;
-import hei.ProjetRoseCorail.managers.CouleurLibrary;
-import hei.ProjetRoseCorail.managers.DevisLibrary;
-import hei.ProjetRoseCorail.managers.LigneDevisLibrary;
+import hei.ProjetRoseCorail.entities.*;
+import hei.ProjetRoseCorail.managers.*;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -64,8 +58,9 @@ public class LesPlatsServlet extends GenericServlet{
         CouleurLibrary couleurLibrary=CouleurLibrary.getInstance();
         DevisLibrary devisLibrary=DevisLibrary.getInstance();
         LigneDevisLibrary ligneDevisLibrary=LigneDevisLibrary.getInstance();
+        CompteClientLibrary compteClientLibrary= CompteClientLibrary.getInstance();
         //création des variables
-        Integer panierencours =  (Integer) req.getSession().getAttribute("panierencours");
+
         Integer idClient= (Integer) req.getSession().getAttribute("idClient");
 
         LocalDate maintenant=LocalDate.now();
@@ -74,7 +69,7 @@ public class LesPlatsServlet extends GenericServlet{
         List<Couleur> lescouleurschoisies=new ArrayList<>();
         List<Integer> lesquantiteschoisies =new ArrayList<>();
         List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleurs();
-        Devis panier;
+        Devis panier=devisLibrary.getDevisByiD(compteClientLibrary.getCompteClientById(idClient).getNumero_panier_actif());
 
         try{
             //récupération des valeurs
@@ -94,7 +89,7 @@ public class LesPlatsServlet extends GenericServlet{
             System.out.println(lescouleurschoisies.get(i));
             System.out.println(lesquantiteschoisies.get(i));
         }
-        if(panierencours==null|| panierencours==0){
+        if(panier.getId_devis()==123456789){
             Devis panieraconstruire=new Devis(null,idClient,maintenant,"panier",true);
             panier=devisLibrary.creerundevis(panieraconstruire);
             req.getSession().setAttribute("panierencours",panier.getId_devis());

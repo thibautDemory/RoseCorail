@@ -169,5 +169,5 @@ public class CompteClientDaoImpl implements CompteClientDao {
         }
     }
 
-   
+
 }

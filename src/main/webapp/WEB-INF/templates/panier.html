@@ -44,7 +44,7 @@
 				    </thead>
 				    <tbody>
 				      <tr th:each="ligne : ${lesarticlesdupanier}">
-				        <td><img th:src="${ligne.photoArticle()}" ></td>
+				        <td><img th:src="${ligne.photoArticle}" ></td>
 				        <td th:text="${ligne.getNumeroArticle()}">6030-414 plat à cake</td>
 				        <td>32x15cm intérieur 11cm</td>
 				        <td>photo couleur</td>

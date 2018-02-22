@@ -85,4 +85,26 @@ public class DevisDaoImpl implements DevisDao {
         }
         return null;
     }
+
+    @Override
+    public Devis getDevisById(Integer idDevis) {
+        String query="SELECT * FROM devis WHERE id_devis=?;";
+        try(Connection connection = DataSourceProvider.getDataSource().getConnection();
+            PreparedStatement statement= connection.prepareStatement(query)){
+            statement.setInt(1,idDevis);
+            try(ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next()){
+                    return new Devis(
+                            resultSet.getInt("id_devis"),
+                            resultSet.getInt("id_compte_client"),
+                            resultSet.getDate("date_creation").toLocalDate(),
+                            resultSet.getString("etat"),
+                            resultSet.getBoolean("etatPanier"));
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
