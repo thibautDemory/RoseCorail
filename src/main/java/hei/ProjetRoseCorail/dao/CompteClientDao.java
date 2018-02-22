@@ -14,6 +14,8 @@ public interface CompteClientDao {
 
     public CompteClient addCompteClient(CompteClient compteClient);
 
+    public CompteClient updateCompteClientWithoutPassword(CompteClient compteClient);
+
     public void deleteCompteClient(Integer idCompteClient);
 
     public void updatePassword(Integer id, String pwd);

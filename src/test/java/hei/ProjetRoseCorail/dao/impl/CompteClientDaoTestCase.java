@@ -121,6 +121,33 @@ public class CompteClientDaoTestCase {
     }
 
     @Test
+    public void shouldUpdateCompteClientWithoutPassword() throws Exception {
+        CompteClient compteClient = new CompteClient(1,"william@evrard.COM", "Hei", "EVRARD", "William", "26 BD Bigo Danel", "Lille", "59010", "0606060606", "FR 40 123456824", "william.evrard.fr", "description1");
+
+        CompteClient updateCompteClient = compteClientDao.updateCompteClientWithoutPassword(compteClient);
+
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             Statement stmt = connection.createStatement()) {
+            try (ResultSet rs = stmt.executeQuery("SELECT * FROM compteclient WHERE email = 'william@evrard.COM'")) {
+                assertThat(rs.next()).isTrue();
+                assertThat(rs.getInt("id_compte_client")).isGreaterThan(0);
+                assertThat(rs.getString("email")).isEqualTo("william@evrard.COM");
+                assertThat(rs.getString("nom_boutique")).isEqualTo("Hei");
+                assertThat(rs.getString("nom_gerant")).isEqualTo("EVRARD");
+                assertThat(rs.getString("prenom_gerant")).isEqualTo("William");
+                assertThat(rs.getString("adresse")).isEqualTo("26 BD Bigo Danel");
+                assertThat(rs.getString("ville")).isEqualTo("Lille");
+                assertThat(rs.getString("code_postal")).isEqualTo("59010");
+                assertThat(rs.getString("numero_tel")).isEqualTo("0606060606");
+                assertThat(rs.getString("num_tva")).isEqualTo("FR 40 123456824");
+                assertThat(rs.getString("site_internet")).isEqualTo("william.evrard.fr");
+                assertThat(rs.getString("description_activite")).isEqualTo("description1");
+                assertThat(rs.next()).isFalse();
+            }
+        }
+    }
+
+    @Test
     public void shouldDeleteCompteClient(){
         compteClientDao.deleteCompteClient(1);
 

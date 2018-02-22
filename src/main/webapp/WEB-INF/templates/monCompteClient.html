@@ -31,68 +31,68 @@
 		  <h2>Mon compte</h2>
 		  <div class="formulaireModifFieldset">
 		  	<div class="formulaireModif">
-			  <form method="post" class="form-horizontal">
+			  <form method="post" class="form-horizontal" action="monCompteClient" accept-charset="utf-8">
 
+				  <!-- ID CompteClient -->
+				  <div class="form-group row">
+					  <label for="idCompteClient" class="col-xs-4">ID compte client:</label>
+					  <input type="text" class="inputText col-xs-4" id="idCompteClient" th:value="${idCompteClient}" placeholder="Entrer le nom de votre entreprise" name="idCompteClient">
+				  </div>
 			  	<!-- Nom Entreprise -->
 			  	<div class="form-group row">
-			      <label for="entreprise" class="col-xs-4">Nom entreprise:</label>
-			      <input type="entreprise" class="inputText col-xs-4" id="entreprise" placeholder="Entrer le nom de votre entreprise" name="entreprise">
+			      <label for="nomBoutique" class="col-xs-4">Nom entreprise:</label>
+			      <input type="text" class="inputText col-xs-4" id="nomBoutique" th:value="${nomBoutique}" placeholder="Entrer le nom de votre entreprise" name="nomBoutique">
 			    </div>
 			    <!-- Nom -->
 			  	<div class="form-group row">
-			      <label for="nom" class="col-xs-4">Nom:</label>
-			      <input type="nom" class="inputText col-xs-4" id="nom" placeholder="Entrer votre nom" name="nom">
+			      <label for="nomGerant" class="col-xs-4">Nom:</label>
+			      <input type="text" class="inputText col-xs-4" id="nomGerant" th:value="${nomGerant}" placeholder="Entrer votre nom" name="nomGerant">
 			    </div>
 			    <!-- Prénom -->
 			  	<div class="form-group row">
-			      <label for="prenom" class="col-xs-4">Prénom:</label>
-			      <input type="prenom" class="inputText col-xs-4" id="prenom" placeholder="Entrer votre prénom" name="prenom">
-			    </div>
-			    <!-- Adresse Entreprise -->
-			  	<div class="form-group row">
-			      <label for="adresse" class="col-xs-4">Nom entreprise:</label>
-			      <input type="adresse" class="inputText col-xs-4" id="adresse" placeholder="Entrer l'adresse de votre entreprise" name="adresse">
+			      <label for="prenomGerant" class="col-xs-4">Prénom:</label>
+			      <input type="text" class="inputText col-xs-4" id="prenomGerant" th:value="${prenomGerant}" placeholder="Entrer votre prénom" name="prenomGerant">
 			    </div>
 			    <!-- Code Postal de l'entreprise -->
 			  	<div class="form-group row">
-			      <label for="cp" class="col-xs-4">Code postal:</label>
-			      <input type="cp" class="inputText col-xs-4" id="cp" placeholder="Entrer le code postal de votre entreprise" name="cp">
+			      <label for="codePostal" class="col-xs-4">Code postal:</label>
+			      <input type="text" class="inputText col-xs-4" id="codePostal" th:value="${codePostal}" placeholder="Entrer le code postal de votre entreprise" name="codePostal">
 			    </div>
 			    <!-- Ville de l'entreprise -->
-			  	<div class="form-group row">
-			      <label for="ville" class="col-xs-4">Ville:</label>
-			      <input type="ville" class="inputText col-xs-4" id="ville" placeholder="Entrer la ville où se situe votre entreprise" name="ville">
-			    </div>
-			    <!-- Pays de l'entreprise -->
-			  	<div class="form-group row">
-			      <label for="pays" class="col-xs-4">Pays:</label>
-			      <input type="pays" class="inputText col-xs-4" id="pays" placeholder="Entrer le pays où se situe votre entreprise" name="pays">
-			    </div>
+				  <div class="form-group row">
+					  <label for="ville" class="col-xs-4">Ville:</label>
+					  <input type="text" class="inputText col-xs-4" id="ville" th:value="${ville}" placeholder="Entrer la ville où se situe votre entreprise" name="ville">
+				  </div>
+				  <!-- Adresse de l'entreprise -->
+				  <div class="form-group row">
+					  <label for="adresse" class="col-xs-4">Adresse:</label>
+					  <input type="text" class="inputText col-xs-4" id="adresse" th:value="${adresse}" placeholder="Entrer l'adresse où se situe votre entreprise" name="adresse">
+				  </div>
 			    <!-- Email -->
 			    <div class="form-group row">
 			      <label for="email" class="col-xs-4">Email:</label>
-			      <input type="email" class="inputText col-xs-4" id="email" placeholder="Entrer votre email" name="email">
+			      <input type="text" class="inputText col-xs-4" id="email" th:value="${email}" placeholder="Entrer votre email" name="email">
 			    </div>
 			    <!-- N° de TVA de l'entreprise -->    
 			    <div class="form-group row">
-			      <label for="tva" class="col-xs-4">N° de TVA:</label>
-			      <input type="tva" class="inputText col-xs-4" id="tva" placeholder="Entrer votre numéro de TVA" name="tva">
+			      <label for="numeroTva" class="col-xs-4">N° de TVA:</label>
+			      <input type="text" class="inputText col-xs-4" id="numeroTva" th:value="${numeroTva}" placeholder="Entrer votre numéro de TVA" name="numeroTva">
 			    </div>
 			    <!-- Téléphone de l'entreprise -->
 			    <div class="form-group row">
-			      <label for="telephone" class="col-xs-4">Téléphone:</label>
-			      <input type="telephone" class="inputText col-xs-4" id="telephone" placeholder="Entrer votre numéro de téléphone" name="telephone">
+			      <label for="numeroTel" class="col-xs-4">Téléphone:</label>
+			      <input type="text" class="inputText col-xs-4" id="numeroTel" th:value="${numeroTel}" placeholder="Entrer votre numéro de téléphone" name="numeroTel">
 			    </div>
 			    <!-- Site de l'entreprise -->    
 			    <div class="form-group row">
 			      <label for="siteInternet" class="col-xs-4">Site internet:</label>
-			      <input type="siteInternet" class="inputText col-xs-4" id="siteInternet" placeholder="Entrer l'adresse de votre site Internet" name="siteInternet">
+			      <input type="text" class="inputText col-xs-4" id="siteInternet" th:value="${siteInternet}" placeholder="Entrer l'adresse de votre site Internet" name="siteInternet">
 			    </div>
 
 			    <!-- Description de l'entreprise -->  
 			    <div class="form-group">
 			      <label for="descriptionActivite">Description de l'activité:</label>
-			      <textarea class="form-control" rows="5" id="descriptionActivite"></textarea>
+			      <textarea class="form-control" rows="5" id="descriptionActivite" th:text="${descriptionActivite}" name="descriptionActivite"></textarea>
 			    </div>
 			    <div class="boutons">
 			    	<button type="submit" class="btn btn-primary boutonModif">Modifier</button>
