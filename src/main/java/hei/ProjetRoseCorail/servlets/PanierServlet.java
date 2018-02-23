@@ -1,9 +1,6 @@
 package hei.ProjetRoseCorail.servlets;
 
-import hei.ProjetRoseCorail.entities.Article;
-import hei.ProjetRoseCorail.entities.Couleur;
-import hei.ProjetRoseCorail.entities.LigneDevis;
-import hei.ProjetRoseCorail.entities.LignePanier;
+import hei.ProjetRoseCorail.entities.*;
 import hei.ProjetRoseCorail.managers.*;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -14,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.ClientInfoStatus;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,5 +72,28 @@ public class PanierServlet extends GenericServlet{
         //le devis change d'état
         //création d'un nouveau panier actif pr le client
         //changement de son numero panier actif.
+
+        DevisLibrary devisLibrary=DevisLibrary.getInstance();
+        CompteClientLibrary compteClientLibrary=CompteClientLibrary.getInstance();
+        LocalDate maintenant=LocalDate.now();
+
+        Integer idClient= (Integer) req.getSession().getAttribute("idClient");
+
+
+        CompteClient client=compteClientLibrary.getCompteClientById(idClient);
+        Integer idPanier=client.getNumero_panier_actif();
+        Integer idnouveaupanier=0;
+        devisLibrary.passerdePanierAPreparation(idPanier);
+        Devis devis= new Devis(null,idClient,maintenant,"panier",true);
+        try{
+            Devis createddevis=devisLibrary.creerundevis(devis);
+            idnouveaupanier=createddevis.getId_devis();
+            compteClientLibrary.changernumeropanieractif(idClient,idnouveaupanier);
+            resp.sendRedirect("/devisenvoyesucces");
+
+        }catch (IllegalArgumentException e){
+
+        }
+
     }
 }

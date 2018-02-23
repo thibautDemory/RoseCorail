@@ -2,8 +2,10 @@ package hei.ProjetRoseCorail.servlets;
 
 import hei.ProjetRoseCorail.entities.Actualite;
 import hei.ProjetRoseCorail.entities.CompteClient;
+import hei.ProjetRoseCorail.entities.Devis;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
 import hei.ProjetRoseCorail.managers.CompteClientLibrary;
+import hei.ProjetRoseCorail.managers.DevisLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -60,8 +62,9 @@ public class InscriptionServlet extends GenericServlet{
         description_activite = req.getParameter("description_activite");
 
         // CREATE CompteClient
+
         CompteClient newCompteClient = new CompteClient(null, email, nom_boutique, nom_gerant, prenom_gerant,
-                adresse, ville, code_postal, mdp, numero_tel, num_tva, site_internet, description_activite,123456789);
+                adresse, ville, code_postal, mdp, numero_tel, num_tva, site_internet, description_activite,null);
         try {
             CompteClient createdCompteClient = CompteClientLibrary.getInstance().addCompteClient(newCompteClient);
 

@@ -70,6 +70,7 @@ public class LesPlatsServlet extends GenericServlet{
         List<Integer> lesquantiteschoisies =new ArrayList<>();
         List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleurs();
         Devis panier=devisLibrary.getDevisByiD(compteClientLibrary.getCompteClientById(idClient).getNumero_panier_actif());
+        CompteClient client=compteClientLibrary.getCompteClientById(idClient);
 
         try{
             //récupération des valeurs
@@ -89,20 +90,15 @@ public class LesPlatsServlet extends GenericServlet{
             System.out.println(lescouleurschoisies.get(i));
             System.out.println(lesquantiteschoisies.get(i));
         }
-        if(panier.getId_devis()==123456789){
+        if(client.getNumero_panier_actif()==null){
             Devis panieraconstruire=new Devis(null,idClient,maintenant,"panier",true);
             panier=devisLibrary.creerundevis(panieraconstruire);
-            req.getSession().setAttribute("panierencours",panier.getId_devis());
+
         }else{
             panier=devisLibrary.getPanierClient(idClient);
         }
         Article article=ArticleLibrary.getInstance().getArticleById(idArticle);
-        for (int i=0;i<lescouleurschoisies.size();i++){
-            System.out.println("idcouleur"+lescouleurschoisies.get(i).getId_couleur());
-            System.out.println("iddevis"+panier.getId_devis());
-            System.out.println("idarticle"+article.getId_article());
-            System.out.println("quantite"+lesquantiteschoisies.get(i));
-        }
+
         for (int i = 0; i < lescouleurschoisies.size(); i++) {
             LigneDevis nouvelleligne = new LigneDevis(null,lescouleurschoisies.get(i).getId_couleur(),panier.getId_devis(),article.getId_article(),lesquantiteschoisies.get(i));
             listelignesdevis.add(nouvelleligne);

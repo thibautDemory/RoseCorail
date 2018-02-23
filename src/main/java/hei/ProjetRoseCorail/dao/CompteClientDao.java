@@ -20,4 +20,6 @@ public interface CompteClientDao {
 
     public void updatePassword(Integer id, String pwd);
 
+    public void changerNumeroPanierActif(Integer idcompteclient,Integer nouveaunumeropanier);
+
 }

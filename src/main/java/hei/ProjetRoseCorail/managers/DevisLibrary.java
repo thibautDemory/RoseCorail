@@ -14,5 +14,6 @@ public class DevisLibrary {
 
     public Devis creerundevis(Devis devis){return devisDao.creerUnDevis(devis); }
     public Devis getPanierClient(Integer idClient){return devisDao.getPanierClient(idClient);}
-    public Devis getDevisByiD(Integer iddevis){return devisDao.getDevisById(iddevis);};
+    public Devis getDevisByiD(Integer iddevis){return devisDao.getDevisById(iddevis);}
+    public void passerdePanierAPreparation(Integer iddevis){devisDao.dePanieraEnPreparation(iddevis);}
 }

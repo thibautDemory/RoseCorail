@@ -194,5 +194,18 @@ public class CompteClientDaoImpl implements CompteClientDao {
         }
     }
 
+    @Override
+    public void changerNumeroPanierActif(Integer idcompteclient, Integer nouveaunumeropanier) {
+        String query = "UPDATE compteclient SET numero_panier_actif=? WHERE id_compte_client=?;";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, nouveaunumeropanier);
+            statement.setInt(2,idcompteclient);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

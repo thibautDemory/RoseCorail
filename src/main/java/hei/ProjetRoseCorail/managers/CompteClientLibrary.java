@@ -102,6 +102,9 @@ public class CompteClientLibrary {
             compteClientDao.updatePassword(id, password);
         }
     }
+    public void changernumeropanieractif(Integer idClient, Integer idDevis){
+        compteClientDao.changerNumeroPanierActif(idClient,idDevis);
+    }
 
 
 }

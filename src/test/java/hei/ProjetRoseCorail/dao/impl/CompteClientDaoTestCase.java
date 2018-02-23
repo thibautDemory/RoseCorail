@@ -187,4 +187,15 @@ public class CompteClientDaoTestCase {
         assertThat(compteClient.getNumero_panier_actif()).isEqualTo(2);
     }
 
+    @Test
+    public void shouldChangerNumeroPanierActif(){
+        //DO
+        compteClientDao.changerNumeroPanierActif(3,5);
+        //WHEN
+        CompteClient compteClient=compteClientDao.getCompteClientById(3);
+        //THEN
+        assertThat(compteClient).isNotNull();
+        assertThat(compteClient.getNumero_panier_actif()).isEqualTo(5);
+    }
+
 }
