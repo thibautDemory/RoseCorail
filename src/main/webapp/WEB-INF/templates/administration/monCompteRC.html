@@ -31,23 +31,18 @@
 		  <h2>Mon compte</h2>
 		  <div class="formulaireModifFieldset">
 		  	<div class="formulaireModif">
-			  <form method="post" class="form-horizontal" action="/action_page.php">
+			  <form method="post" class="form-horizontal" action="/administration/monCompteRC" accept-charset="utf-8">
 
-			    <!-- Nom -->
-			  	<div class="form-group row">
-			      <label for="nom" class="col-xs-4">Nom:</label>
-			      <input type="nom" class="inputText col-xs-4" id="nom" placeholder="Entrer votre nom" name="nom">
-			    </div>
-			    <!-- Prénom -->
-			  	<div class="form-group row">
-			      <label for="prenom" class="col-xs-4">Prénom:</label>
-			      <input type="prenom" class="inputText col-xs-4" id="prenom" placeholder="Entrer votre prénom" name="prenom">
-			    </div>
 			    <!-- Email -->
 			    <div class="form-group row">
 			      <label for="email" class="col-xs-4">Email:</label>
-			      <input type="email" class="inputText col-xs-4" id="email" placeholder="Entrer votre email" name="email">
+			      <input type="text" class="inputText col-xs-4" id="email" placeholder="Entrer votre email" name="email" th:value="${email}">
 			    </div>
+				  <!-- Numero de tel -->
+				  <div class="form-group row">
+					  <label for="telephone" class="col-xs-4">Numéro de téléphone:</label>
+					  <input type="text" class="inputText col-xs-4" id="telephone" placeholder="Entrer votre prénom" name="telephone" th:value="${telephone}">
+				  </div>
 
 			    <div class="boutons">
 			    	<button type="submit" class="btn btn-primary boutonModif">Modifier</button>

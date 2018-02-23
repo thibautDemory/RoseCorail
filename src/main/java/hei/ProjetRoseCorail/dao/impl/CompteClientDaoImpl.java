@@ -143,6 +143,31 @@ public class CompteClientDaoImpl implements CompteClientDao {
     }
 
     @Override
+    public CompteClient updateCompteClientWithoutPassword(CompteClient compteClient) {
+        String query = "UPDATE compteclient SET email=?, nom_boutique=?, nom_gerant=?, prenom_gerant=?, adresse=?, ville=?, code_postal=?, numero_tel=?, num_tva=?, site_internet=?, description_activite=? WHERE id_compte_client=?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, compteClient.getEmail());
+            statement.setString(2, compteClient.getNom_boutique());
+            statement.setString(3, compteClient.getNom_gerant());
+            statement.setString(4, compteClient.getPrenom_gerant());
+            statement.setString(5, compteClient.getAdresse());
+            statement.setString(6, compteClient.getVille());
+            statement.setString(7, compteClient.getCode_postal());
+            statement.setString(8, compteClient.getNumero_tel());
+            statement.setString(9, compteClient.getNum_tva());
+            statement.setString(10, compteClient.getSite_internet());
+            statement.setString(11, compteClient.getDescription_activite());
+            statement.setInt(12, compteClient.getId_compte_client());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public void deleteCompteClient(Integer idCompteClient){
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(

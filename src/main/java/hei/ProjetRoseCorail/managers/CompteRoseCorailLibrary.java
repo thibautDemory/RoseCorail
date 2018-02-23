@@ -36,6 +36,10 @@ public class CompteRoseCorailLibrary {
         }
     }
 
+    public CompteRoseCorail updateCompteRoseCorailWithoutPassword(CompteRoseCorail compteRoseCorail){
+        return compteRoseCorailDao.updateCompteRoseCorailWithoutPassword(compteRoseCorail);
+    }
+
 
 
 }

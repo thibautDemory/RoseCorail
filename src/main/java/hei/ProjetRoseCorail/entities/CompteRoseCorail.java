@@ -13,6 +13,12 @@ public class CompteRoseCorail {
         this.numero_tel = numero_tel;
     }
 
+    public CompteRoseCorail(Integer id_compte_rose_corail, String email, String numero_tel) {
+        this.id_compte_rose_corail = id_compte_rose_corail;
+        this.email = email;
+        this.numero_tel = numero_tel;
+    }
+
     public Integer getId_compte_rose_corail() {
         return id_compte_rose_corail;
     }

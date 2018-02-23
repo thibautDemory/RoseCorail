@@ -64,4 +64,22 @@ public class CompteRoseCorailDaoImpl implements CompteRoseCorailDao {
                 e.printStackTrace();
             }
         }
+
+    @Override
+    public CompteRoseCorail updateCompteRoseCorailWithoutPassword(CompteRoseCorail compteRoseCorail) {
+        String query = "UPDATE compterosecorail SET email=?, numero_tel=? WHERE id_compte_RC=?";
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, compteRoseCorail.getEmail());
+            statement.setString(2, compteRoseCorail.getNumero_tel());
+            statement.setInt(3, compteRoseCorail.getId_compte_rose_corail());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+}
+
+
