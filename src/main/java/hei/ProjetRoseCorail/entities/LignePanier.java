@@ -7,15 +7,17 @@ public class LignePanier {
     private String dimensionArticle;
     private String photoCouleur;
     private Integer quantite;
+    private Integer idLigneDevis;
 
 
-    public LignePanier(String photoArticle, String numeroArticle, String nomArticle, String dimensionArticle, String photoCouleur, Integer quantite) {
+    public LignePanier(String photoArticle, String numeroArticle, String nomArticle, String dimensionArticle, String photoCouleur, Integer quantite,Integer idLigneDevis) {
         this.photoArticle = photoArticle;
         this.numeroArticle = numeroArticle;
         this.nomArticle = nomArticle;
         this.dimensionArticle = dimensionArticle;
         this.photoCouleur = photoCouleur;
         this.quantite = quantite;
+        this.idLigneDevis=idLigneDevis;
     }
 
     public String getPhotoArticle() {
@@ -65,4 +67,12 @@ public class LignePanier {
     public void setQuantite(Integer quantite) {
         this.quantite = quantite;
     }
+    public Integer getIdLigneDevis() {
+        return idLigneDevis;
+    }
+
+    public void setIdLigneDevis(Integer idLigneDevis) {
+        this.idLigneDevis = idLigneDevis;
+    }
+
 }

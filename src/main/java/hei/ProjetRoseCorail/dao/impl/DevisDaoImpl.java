@@ -107,4 +107,19 @@ public class DevisDaoImpl implements DevisDao {
         }
         return null;
     }
+
+    @Override
+    public void dePanieraEnPreparation(Integer idDevis) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE devis SET etat = 'en preparation', etatPanier=FALSE WHERE id_devis =?;")) {
+                statement.setInt(1,idDevis );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+
+    }
 }

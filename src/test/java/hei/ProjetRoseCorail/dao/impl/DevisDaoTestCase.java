@@ -92,4 +92,16 @@ public class DevisDaoTestCase {
 
     }
 
+    @Test
+    public void shouldpasserdepanieraEnPreparation(){
+        devisDao.dePanieraEnPreparation(4);
+        Devis undevis=devisDao.getDevisById(4);
+        assertThat(undevis).isNotNull();
+        assertThat(undevis.getId_compte_client()).isEqualTo(1);
+        assertThat(undevis.getId_devis()).isEqualTo(4);
+        assertThat(undevis.getEtatPanier()).isEqualTo(false);
+        assertThat(undevis.getEtat()).isEqualTo("en preparation");
+        assertThat(undevis.getDate()).isEqualTo("2017-04-06");
+    }
+
 }

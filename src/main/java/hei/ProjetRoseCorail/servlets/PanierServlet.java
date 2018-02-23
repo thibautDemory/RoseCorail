@@ -55,7 +55,8 @@ public class PanierServlet extends GenericServlet{
                         article.getNom_article(),
                         article.getDimension(),
                         couleur.getImage_couleur(),
-                        leslignesdevis.get(i).getQuantite()));
+                        leslignesdevis.get(i).getQuantite(),
+                        leslignesdevis.get(i).getId_ligne_devis()));
             }
 
             webContext.setVariable("lesarticlesdupanier",lesArticlesCouleurEtQuantites);
@@ -64,5 +65,14 @@ public class PanierServlet extends GenericServlet{
         webContext.setVariable("statut",statut);
 
         templateEngine.process("panier", webContext, resp.getWriter());
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //envoi d'un email à rose corail avec le devis
+        //redirection vers une page qui dit que le devis a bien été envoyer
+        //le devis change d'état
+        //création d'un nouveau panier actif pr le client
+        //changement de son numero panier actif.
     }
 }
