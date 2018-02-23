@@ -68,37 +68,19 @@
 
 <div class="page-header">
   <h1><small>Les événements</small></h1>
-</div>
-
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h1 class="panel-title">La salon de Lille</h1>
-  </div>
-  <div class="panel-body">
-    <div class="col-sm-4 imageEvent"><img src="photos\salon1.jpg" alt="salon1"></div>
-    <div class="col-sm-4">Texte Texte Texte Texte Texte Texte Texte Texte Texte Texte</div>
-  </div>
-</div>
-
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h1 class="panel-title">La salon de Picardie</h1>
-  </div>
-  <div class="panel-body">
-    <div class="col-sm-4 imageEvent"><img src="photos\RC-img1.jpg" alt="image1"></div>
-    <div class="col-sm-4">Texte Texte Texte Texte Texte Texte Texte Texte Texte Texte</div>
+  <div th:each="actu: ${listActu}">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h2 class="panel-title titreActu" th:text="${actu.titreActualite}"></h2>
+      </div>
+      <div class="panel-body">
+        <div class="col-sm-4 imageEvent"><img th:src="${actu.imageActualite}" th:alt="${actu.titreActualite}"></div>
+        <div class="col-sm-4" th:text="${actu.contenu}"></div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="panel panel-info">
-  <div class="panel-heading">
-    <h1 class="panel-title">La salon de Reims</h1>
-  </div>
-  <div class="panel-body">
-    <div class="col-sm-4 imageEvent"><img src="photos\reims.jpg" alt="image1"></div>
-    <div class="col-sm-4">Texte Texte Texte Texte Texte Texte Texte Texte Texte Texte</div>
-  </div>
-</div>
 <div class="precedentlefooter"></div>
 
 <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
