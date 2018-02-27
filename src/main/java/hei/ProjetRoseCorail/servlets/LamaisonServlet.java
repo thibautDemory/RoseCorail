@@ -22,6 +22,7 @@ public class LamaisonServlet extends GenericServlet {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        String modification=(String) req.getParameter("Modification");
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
         List<Article> lamaison=articleLibrary.listeArticlesMaison();
         List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleurs();
@@ -38,6 +39,8 @@ public class LamaisonServlet extends GenericServlet {
         webContext.setVariable("couleurs",couleurs);
         webContext.setVariable("lamaison",lamaison);
         webContext.setVariable("statut",statut);
+        webContext.setVariable("modification",modification);
+
 
         templateEngine.process("lamaison", webContext, resp.getWriter());
     }

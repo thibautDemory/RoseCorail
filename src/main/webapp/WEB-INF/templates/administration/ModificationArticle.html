@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="../css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="../css/style-perso.css" type="text/css" rel="stylesheet">
+    <link href="../css/styleAjoutArticle.css" type="text/css" rel="stylesheet">
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <meta charset="utf-8"/>
+    <title>Modification article</title>
+</head>
+
+<body>
+<div class="page">
+    <div th:switch="${statut}">
+        <div th:case="'admin'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+        </div>
+        <div th:case="'client'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+        </div>
+        <div th:case="'visiteur'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <H1 class="text-center aere">Modification d'un article</H1>
+        <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-xs-6 form-horizontal">
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label" for="nom-article">Nom : </label>
+                        <div class="col-xs-9">
+                            <input th:value="${cetarticle.nom_article}" type="text" class="form-control" name="nom-article" id="nom-article" placeholder="nom de l'article">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label" for="reference-article">Reference : </label>
+                        <div class="col-xs-9">
+                            <input th:value="${cetarticle.reference}" type="text" class="form-control" name="reference-article" id="reference-article" placeholder="reference de l'article">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label" for="description-article">Description : </label>
+                        <div class="col-xs-9">
+                            <input th:value="${cetarticle.description}" type="text" class="form-control" name="description-article" id="description-article" placeholder="description de l'article">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label" for="dimension-article">Dimension : </label>
+                        <div class="col-xs-9">
+                            <input th:value="${cetarticle.dimension}" type="text" class="form-control" name="dimension-article" id="dimension-article" placeholder="dimension de l'article">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label" for="categorie-article">Catégorie et Sous-Catégorie : </label>
+                        <div class="col-xs-9">
+                            <select class="form-control" name="categorie-article" id="categorie-article">
+                                <option>Sélectionnez une sous-catégorie</option>
+                                <option th:selected="${cetarticle.id_sous_categorie == 1}" value="1">Plats - Plats à cake</option>
+                                <option th:selected="${cetarticle.id_sous_categorie == 2}" value="2">Plats - Plats à fromage</option>
+                                <option th:selected="${cetarticle.id_sous_categorie == 3}" value="3">Plats - Coupelles et apéritifs</option>
+                                <option th:selected="${cetarticle.id_sous_categorie == 4}" value="4">Porte-couteaux - Porte-couteaux</option>
+                                <option th:selected="${cetarticle.id_sous_categorie == 5}" value="5">Décoration - Dessous de verre</option>
+                                <option th:selected="${cetarticle.id_sous_categorie == 6}" value="6">Décoration - Dessous de plat</option>
+                                <option th:selected="${cetarticle.id_sous_categorie == 7}" value="7">La maison - La maison</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label" for="image-article">Image : </label>
+                        <div class="col-xs-9">
+                            <input type="file" class="form-control" name="image-article" id="image-article">
+                            <span>Pour un meilleur affichage, sélectionner une image de dimension minimale: 500x500</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label" for="prix-article">Prix : </label>
+                        <div class="col-xs-4">
+                            <input th:value="${cetarticle.prix}" type="text" class="form-control" name="prix-article" id="prix-article" placeholder="prix de l'article (unitaire)">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label" for="lot-article">Vendu par lot de: </label>
+                        <div class="col-xs-3">
+                            <select class="form-control" name="lot-article" id="lot-article">
+                                <option th:selected="${cetarticle.lot_vente==chiffre}" th:each="chiffre : ${unadouze}" th:text="${chiffre}" th:value="${chiffre}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-xs-6">
+                    <h3 class="text-center">Couleurs disponibles</h3>
+                    <div th:each="couleur: ${lescouleurs}"  class="col-xs-3 col-xs-offset-1">
+                        <input type="checkbox"  th:checked="${sescouleurs.contains(couleur)}" th:name="${couleur}"><label th:text="${couleur}"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="boutonsEnBas">
+                <div class="boutonAnnuler col-xs-1">
+                    <button type="reset" class="btn btn-primary">Annuler</button>
+                </div>
+                <div class="col-xs-offset-1 col-xs-1">
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </div>
+                <div class="col-xs-offset-1 col-xs-1">
+                    <button type="" class="btn btn-primary">Supprimer</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+
+    <div class="precedentlefooter"></div>
+
+    <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
+</div>
+
+
+
+</body>
+</html>

@@ -21,6 +21,7 @@ public class LesPlatsServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        String modification=(String) req.getParameter("Modification");
 
 
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
@@ -42,6 +43,7 @@ public class LesPlatsServlet extends GenericServlet{
         webContext.setVariable("platsAfromage",platsAfromage);
         webContext.setVariable("coupelles",coupelles);
         webContext.setVariable("couleurs",couleurs);
+        webContext.setVariable("modification",modification);
 
         System.out.println(statut);
         webContext.setVariable("statut",statut);

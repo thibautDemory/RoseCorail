@@ -95,6 +95,13 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<div th:fragment="boutons(statut,modification)">
+    <button th:if="${statut=='visiteur'}" data-toggle="modal" th:href="${'modalVisiteur?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-primary">Voir plus</button>
+    <button th:if="${statut=='admin'}" data-toggle="modal" th:href="${'modalClient?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-primary">Voir plus</button>
+    <button th:if="${statut=='client'}" data-toggle="modal" th:href="${'modalClient?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-primary">Voir plus</button>
+    <a th:if="${modification== 'active'}" th:href="${'/administration/ModificationArticle?id='+article.id_article}" class="btn btn-primary">Modifier</a>
+    <button th:if="${modification== 'active'}" data-toggle="modal" th:href="${'ModalSuppressionArticle?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-primary">Supprimer</button>
+</div>
 
 
 <footer class="navbar basdepage" th:fragment="footer">

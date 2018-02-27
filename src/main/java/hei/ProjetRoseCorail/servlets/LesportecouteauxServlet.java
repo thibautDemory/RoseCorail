@@ -22,6 +22,7 @@ public class LesportecouteauxServlet extends GenericServlet {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        String modification=(String) req.getParameter("Modification");
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
         List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleurs();
         List<Article> lesportecouteaux=articleLibrary.listPortesCouteaux();
@@ -39,6 +40,8 @@ public class LesportecouteauxServlet extends GenericServlet {
         webContext.setVariable("statut",statut);
         webContext.setVariable("couleurs",couleurs);
         webContext.setVariable("portecouteaux",lesportecouteaux);
+        webContext.setVariable("modification",modification);
+
 
         templateEngine.process("lesportecouteaux", webContext, resp.getWriter());
     }

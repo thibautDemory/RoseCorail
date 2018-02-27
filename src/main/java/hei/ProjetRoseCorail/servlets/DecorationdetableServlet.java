@@ -22,6 +22,7 @@ public class DecorationdetableServlet extends GenericServlet {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        String modification=(String) req.getParameter("Modification");
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
         List<Article> dessousdeplats=articleLibrary.listDecosDessousPlat();
         List<Article> dessousdeverre=articleLibrary.listDecosDessousVerre();
@@ -40,6 +41,8 @@ public class DecorationdetableServlet extends GenericServlet {
         webContext.setVariable("dessousdeverre",dessousdeverre);
         webContext.setVariable("dessousdeplat",dessousdeplats);
         webContext.setVariable("statut",statut);
+        webContext.setVariable("modification",modification);
+
 
         templateEngine.process("décorationdetable", webContext, resp.getWriter());
     }
