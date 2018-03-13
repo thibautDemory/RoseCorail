@@ -1,14 +1,20 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.Mail;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import javax.mail.*;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Properties;
 
 import static java.lang.Integer.parseInt;
 
@@ -16,6 +22,7 @@ import static java.lang.Integer.parseInt;
 public class MotDePasseOublieServlet extends GenericServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
@@ -31,5 +38,14 @@ public class MotDePasseOublieServlet extends GenericServlet {
         System.out.println(statut);
         webContext.setVariable("statut",statut);
         templateEngine.process("motDePasseOublie", webContext, resp.getWriter());
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Mail mailMDP = new Mail("thibaut.demory@hei.yncrea.fr");
+        mailMDP.mailing();
+
+        resp.sendRedirect(String.format("accueil"));
     }
 }
