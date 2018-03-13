@@ -1,6 +1,5 @@
 package hei.ProjetRoseCorail.servlets;
 
-import hei.ProjetRoseCorail.entities.ListeDesSaisons;
 import hei.ProjetRoseCorail.entities.Panelcoloris;
 import hei.ProjetRoseCorail.managers.PanelColorisLibrary;
 import org.thymeleaf.TemplateEngine;
@@ -13,28 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
-@WebServlet("/administration/AjoutPanelColoris")
-public class AjoutPanelColorisServlet extends GenericServlet{
+@WebServlet("/administration/ModificationPanelColoris")
+public class ModificationPanelColorisServlet extends GenericServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
-        ListeDesSaisons listeDesSaisons = new ListeDesSaisons();
-        List<String> lessaisonsenString = new ArrayList<>();
-        for (int i =0; i<listeDesSaisons.lessaisons.size();i++){
-            lessaisonsenString.add(listeDesSaisons.lessaisons.get(i));
-            System.out.println(lessaisonsenString.get(i));
-        }
-        webContext.setVariable("lessaisons",lessaisonsenString);
+        Integer id=Integer.parseInt(req.getParameter("id"));
+        PanelColorisLibrary panelColorisLibrary=PanelColorisLibrary.getInstance();
+        Panelcoloris panelcolorisaModifier=panelColorisLibrary.getPanelColorisById(id);
+
+
+        webContext.setVariable("panelColoris",panelcolorisaModifier);
 
         webContext.setVariable("statut",statut);
 
-        templateEngine.process("/administration/AjoutPanelColoris", webContext, resp.getWriter());
+        templateEngine.process("/administration/ModificationPanelColoris", webContext, resp.getWriter());
     }
 
     @Override
@@ -43,15 +39,15 @@ public class AjoutPanelColorisServlet extends GenericServlet{
         String nomsetnumeros="";
         String image="";
         String saison="";
-        File filequicontientlimage=null;
+        File filequicontientlimage;
 
         try{
-            nomsetnumeros=req.getParameter("nomdescoloris");
-            saison=req.getParameter("saisonpanelcoloris");
+            nomsetnumeros=req.getParameter("nom-des-coloris");
+            saison=req.getParameter("saison-panel-coloris");
 
-            filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\image\\"+nomsetnumeros.trim());
-            filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
-            Part imagePart = req.getPart("imagepanelcoloris"); // on récupere  l'image du formulaire
+            filequicontientlimage = new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\"+nomsetnumeros.trim());
+
+            Part imagePart = req.getPart("imageActualite"); // on récupere  l'image du formulaire
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
 
 
@@ -59,12 +55,13 @@ public class AjoutPanelColorisServlet extends GenericServlet{
             String error=e.getMessage();
             System.out.println(error);
         }
-        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"image\\"+nomsetnumeros+"\\image.jpg",saison);
+        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"images\\"+nomsetnumeros+"\\image.jpg",saison);
+
         try{
             Panelcoloris createdpanelColoris= PanelColorisLibrary.getInstance().addPanelColoris(newpanelcoloris);
             resp.sendRedirect(String.format("/lesColoris"));
         }catch (IllegalArgumentException e){
-            String error=e.getMessage();
+            String error = e.getMessage();
         }
 
 

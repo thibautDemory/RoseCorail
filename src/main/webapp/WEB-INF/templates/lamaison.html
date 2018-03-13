@@ -67,7 +67,7 @@
                                 <figcaption th:text="${article.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption>
                                 <figcaption th:if="${statut!='visiteur'}" th:text="${article.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
                             </figure>
-                            <div th:insert="~{fragments::boutons(${statut},${modification})}"></div>
+                            <div th:insert="~{fragments::boutonsArticles(${statut},${modification})}"></div>
                         </div>
                     </div>
                 </div>

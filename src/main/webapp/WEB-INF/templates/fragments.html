@@ -95,12 +95,16 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<div th:fragment="boutons(statut,modification)">
+<div th:fragment="boutonsArticles(statut,modification)">
     <button th:if="${statut=='visiteur'}" data-toggle="modal" th:href="${'modalVisiteur?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-primary">Voir plus</button>
     <button th:if="${statut=='admin'}" data-toggle="modal" th:href="${'modalClient?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-primary">Voir plus</button>
     <button th:if="${statut=='client'}" data-toggle="modal" th:href="${'modalClient?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-primary">Voir plus</button>
     <a th:if="${modification== 'active'}" th:href="${'/administration/ModificationArticle?id='+article.id_article}" class="btn btn-warning">Modifier</a>
     <button th:if="${modification== 'active'}" data-toggle="modal" th:href="${'ModalSuppressionArticle?id='+article.id_article}" data-target="#presentationarticle" class="btn btn-danger">Supprimer</button>
+</div>
+<div th:fragment="boutonsPanelColoris(statut,modification)">
+    <a th:if="${modification== 'active'}" th:href="${'/administration/ModificationPanelColoris?id='+panelcoloris.idPanelColoris}" class="btn btn-warning">Modifier</a>
+    <button th:if="${modification== 'active'}" data-toggle="modal" th:href="${'ModalSuppressionPanelColoris?id='+panelcoloris.idPanelColoris}" data-target="#presentationarticle" class="btn btn-danger">Supprimer</button>
 </div>
 
 
