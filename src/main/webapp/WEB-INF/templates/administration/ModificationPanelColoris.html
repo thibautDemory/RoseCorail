@@ -35,7 +35,7 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="nom-des-coloris">Noms et numéros: </label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="nom-des-coloris" placeholder="Noms des coloris" th:value="${panelColoris.legende}">
+                            <input type="text" class="form-control" name="nomdescoloris" id="nom-des-coloris" placeholder="Noms des coloris" th:value="${panelColoris.legende}">
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="image-panel-coloris">Image des coloris: </label>
                         <div class="col-xs-9">
-                            <input type="file" class="form-control" id="image-panel-coloris">
+                            <input type="file" class="form-control" id="image-panel-coloris" name="imagepanelcoloris">
                             <span>Pour un meilleur affichage, sélectionner une image de dimension minimale: 500x500</span>
                         </div>
                     </div>
@@ -52,11 +52,8 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="saison-panel-coloris">Saison : </label>
                         <div class="col-xs-9">
-                            <select class="form-control" id="saison-panel-coloris">
-                                <option>Printemps-&Eacuteté 2017</option>
-                                <option>Autome-Hiver 2017</option>
-                                <option>Printemps-&Eacuteté 2016</option>
-                                <option>Autome-Hiver 2016</option>
+                            <select class="form-control" id="saison-panel-coloris" name="saisonpanelcoloris">
+                                <option th:each="saison : ${lessaisons}" th:selected="${saison==panelColoris.saison}" th:text="${saison}" th:value="${saison}"></option>
                             </select>
                         </div>
                     </div>
@@ -67,10 +64,13 @@
             <span class="help-block"></span>
             <div class="hauteur-200"></div><!-- Ajoute un peu de hauteur pour éviter que le footer ne remonte trop-->
             <div class="col-xs-offset-4 col-xs-1">
-                <button type="reset" class="btn btn-primary">Annuler</button>
+                <a class="btn btn-primary" href="/lesColoris">Annuler</a>
             </div>
             <div class="col-xs-offset-1 col-xs-1">
-                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+            </div>
+            <div class="col-xs-offset-1 col-xs-1">
+                <a href="ModalSuppressionPanelcouleur" class="btn btn-danger">Supprimer</a>
             </div>
         </form>
     </div>

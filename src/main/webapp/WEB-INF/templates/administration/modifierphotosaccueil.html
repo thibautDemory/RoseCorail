@@ -10,7 +10,7 @@
     <script src="../js/jquery-3.2.1.js"></script>
     <script src="../js/bootstrap.js"></script>
     <meta charset="utf-8"/>
-    <title>ModifierPhotosAccueil</title>
+    <title>Modifier les Photos</title>
 </head>
 
 <body>
@@ -28,41 +28,49 @@
     </div>
 
     <div class="container">
-        <H1 class="text-center aere">Modifier les photos de l'accueil</H1>
-        <h2> les photos actuelles:</h2>
+        <H1 class="text-center aere">Modifier les photos</H1>
         <div class="row">
+            <h2> Les photos du caroussel de la page d'accueil</h2>
             <div class="col-xs-3">
-                <figure><img  class="img-responsive" src="photos\RC-img1.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
+                <figure><img  class="img-responsive" src="/photos/RC-img1.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
             </div>
             <div class="col-xs-3">
-                <figure><img class="img-responsive" src="photos\RC-img2.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
+                <figure><img class="img-responsive" src="/photos/RC-img2.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
             </div>
+            <a href="" class="btn btn-primary">Ajouter une photo</a>
         </div>
 
-        <p align="center"><div class="btn btn-primary"><a href="" class="white">Ajouter une photo</a></div></p>
+        <div class="row">
+            <h2> Les photos du caroussel de la page Collection</h2>
+            <div class="col-xs-3">
+                <figure><img  class="img-responsive" src="/photos/RC-img1.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
+            </div>
+            <div class="col-xs-3">
+                <figure><img class="img-responsive" src="/photos/RC-img2.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
+            </div>
+            <a href="" class="btn btn-primary">Ajouter une photo</a>
+        </div>
 
-
-
-
+        <div class="row">
+            <h2> Les photos associées aux images de chaque catégorie</h2>
+            <div class="col-xs-3">
+                <figure><img  class="img-responsive" src="/photos/RC-img1.jpg"><figcaption><a href="">Modifier cette photo</a></figcaption></figure>
+            </div>
+            <div class="col-xs-3">
+                <figure><img class="img-responsive" src="/photos/RC-img2.jpg"><figcaption><a href="">Modifier cette photo</a></figcaption></figure>
+            </div>
+            <a href="" class="btn btn-primary">Ajouter une photo</a>
+        </div>
+        <div class="row">
+            <h2>La photo de présentation de Coloris</h2>
+            <div class="col-xs-3">
+                <figure><img  class="img-responsive" src="/photos/RC-img1.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
+            </div>
+            <a href="" class="btn btn-primary">Modifier la photo</a>
+        </div>
     </div>
-
-
     <div class="precedentlefooter"></div>
-
-    <footer class="navbar basdepage">
-        <div class="container-fluid">
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class=" container">
-                <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Collection</a></div>
-                <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Nouveautés</a></div>
-                <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Coloris</a></div>
-                <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Rose Corail</a></div>
-                <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Nous contacter</a></div>
-                <div class="col-xs-12 col-sm-6 col-md-2 onglet-footer"><a href="">Mentions légales</a></div>
-
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </footer>
+    <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
 </div>
 
 </body>

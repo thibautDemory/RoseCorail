@@ -2,6 +2,7 @@ package hei.ProjetRoseCorail.servlets;
 
 import hei.ProjetRoseCorail.entities.Actualite;
 import hei.ProjetRoseCorail.entities.Couleur;
+import hei.ProjetRoseCorail.entities.ListeDesSaisons;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
 import hei.ProjetRoseCorail.managers.CouleurLibrary;
 import org.thymeleaf.TemplateEngine;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
@@ -26,9 +29,15 @@ public class AjoutColorisServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        ListeDesSaisons listeDesSaisons = new ListeDesSaisons();
+        List<String> lessaisonsenString = new ArrayList<>();
+        for (int i =0; i<listeDesSaisons.lessaisons.size();i++){
+            lessaisonsenString.add(listeDesSaisons.lessaisons.get(i));
+            System.out.println(lessaisonsenString.get(i));
+        }
+        webContext.setVariable("lessaisons",lessaisonsenString);
 
         webContext.setVariable("statut",statut);
-
         templateEngine.process("administration/ajoutcoloris", webContext, resp.getWriter());
     }
 

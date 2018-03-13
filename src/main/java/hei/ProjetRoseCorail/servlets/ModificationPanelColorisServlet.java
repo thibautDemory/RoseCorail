@@ -1,19 +1,23 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.ListeDesSaisons;
 import hei.ProjetRoseCorail.entities.Panelcoloris;
 import hei.ProjetRoseCorail.managers.PanelColorisLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-
+@MultipartConfig
 @WebServlet("/administration/ModificationPanelColoris")
 public class ModificationPanelColorisServlet extends GenericServlet{
     @Override
@@ -24,6 +28,13 @@ public class ModificationPanelColorisServlet extends GenericServlet{
         Integer id=Integer.parseInt(req.getParameter("id"));
         PanelColorisLibrary panelColorisLibrary=PanelColorisLibrary.getInstance();
         Panelcoloris panelcolorisaModifier=panelColorisLibrary.getPanelColorisById(id);
+        ListeDesSaisons listeDesSaisons= new  ListeDesSaisons();
+        List<String> lessaisonsenString = new ArrayList<>();
+        for (int i =0; i<listeDesSaisons.lessaisons.size();i++){
+            lessaisonsenString.add(listeDesSaisons.lessaisons.get(i));
+            System.out.println(lessaisonsenString.get(i));
+        }
+        webContext.setVariable("lessaisons",listeDesSaisons.lessaisons);
 
 
         webContext.setVariable("panelColoris",panelcolorisaModifier);

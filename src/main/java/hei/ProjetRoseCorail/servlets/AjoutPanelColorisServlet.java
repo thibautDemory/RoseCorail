@@ -7,6 +7,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@MultipartConfig
 @WebServlet("/administration/AjoutPanelColoris")
 public class AjoutPanelColorisServlet extends GenericServlet{
     @Override
@@ -49,6 +50,7 @@ public class AjoutPanelColorisServlet extends GenericServlet{
             nomsetnumeros=req.getParameter("nomdescoloris");
             saison=req.getParameter("saisonpanelcoloris");
 
+
             filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\image\\"+nomsetnumeros.trim());
             filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
             Part imagePart = req.getPart("imagepanelcoloris"); // on récupere  l'image du formulaire
@@ -59,6 +61,7 @@ public class AjoutPanelColorisServlet extends GenericServlet{
             String error=e.getMessage();
             System.out.println(error);
         }
+        System.out.println(nomsetnumeros);
         Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"image\\"+nomsetnumeros+"\\image.jpg",saison);
         try{
             Panelcoloris createdpanelColoris= PanelColorisLibrary.getInstance().addPanelColoris(newpanelcoloris);
