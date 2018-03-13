@@ -1,5 +1,7 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.CompteRoseCorail;
+import hei.ProjetRoseCorail.managers.CompteRoseCorailLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -26,6 +28,9 @@ public class RoseCorailServlet extends GenericServlet{
             webContext.setVariable("nom",nom);
         }
         System.out.println(statut);
+        CompteRoseCorailLibrary compteRoseCorailLibrary=CompteRoseCorailLibrary.getInstance();
+        CompteRoseCorail compteRoseCorail=compteRoseCorailLibrary.getCompteRoseCorailById(1);
+        webContext.setVariable("compteRoseCorail",compteRoseCorail);
         webContext.setVariable("statut",statut);
 
         templateEngine.process("RoseCorail", webContext, resp.getWriter());

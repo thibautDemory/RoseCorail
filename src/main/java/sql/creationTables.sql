@@ -113,6 +113,14 @@ CREATE TABLE `actualite` (
   PRIMARY KEY (id_actualite)
 )engine = innodb;
 
+CREATE TABLE `panelcoloris` (
+  `id_panelcoloris` int(11) NOT NULL AUTO_INCREMENT,
+  `legende` text NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `saison` varchar(50) NOT NULL,
+  PRIMARY KEY (id_panelcoloris)
+)engine = innodb;
+
 CREATE TABLE `statistiques` (
   `id_stat` int(11) NOT NULL AUTO_INCREMENT,
   `nom_boutique_num1` varchar(50) NOT NULL,
