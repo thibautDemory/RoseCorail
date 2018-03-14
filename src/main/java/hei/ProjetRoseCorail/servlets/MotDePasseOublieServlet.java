@@ -1,7 +1,10 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.Mail;
+import hei.ProjetRoseCorail.entities.PasswordGenerator;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
+import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -14,12 +17,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 import static java.lang.Integer.parseInt;
 
 @WebServlet("/motDePasseOublie")
 public class MotDePasseOublieServlet extends GenericServlet {
+    CompteClientLibrary compteClientLibrary = CompteClientLibrary.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -43,9 +48,34 @@ public class MotDePasseOublieServlet extends GenericServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Mail mailMDP = new Mail("thibaut.demory@hei.yncrea.fr");
-        mailMDP.mailing();
+        String adresseEmail=req.getParameter("email");
+        System.out.println(adresseEmail);
+        List<CompteClient> lesclients = compteClientLibrary.listComptesClients();
 
-        resp.sendRedirect(String.format("accueil"));
+        int n = 0;
+        boolean flag = false;
+        int idClient;
+
+        while(flag == false){
+            if(lesclients.get(n).getEmail().equals(adresseEmail)) {
+                flag = true;
+                PasswordGenerator passwordGenerator = new PasswordGenerator();
+                String password = passwordGenerator.generatePassword(10);
+                Mail mailMDP = new Mail(adresseEmail);
+                mailMDP.mailing(adresseEmail,password);
+                CompteClient compteClient = compteClientLibrary.getCompteClientByMail(adresseEmail);
+                idClient = compteClient.getId_compte_client();
+                compteClientLibrary.updatePassword(idClient,password);
+                System.out.println("Mail envoyé !");
+
+                resp.sendRedirect(String.format("accueil"));
+            }else if(n==lesclients.size()-1){
+                flag = true;
+                System.out.println("Pas trouvé");
+                resp.sendRedirect(String.format("accueil"));
+            }else{
+                n++;
+            }
+        }
     }
 }

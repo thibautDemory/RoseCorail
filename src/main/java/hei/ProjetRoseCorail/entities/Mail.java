@@ -7,13 +7,13 @@ import java.util.Properties;
 
 public class Mail {
 
-    private String mailDestinataire;
+    public String mailDestinataire;
 
     public Mail(String mailDestinataire){
         mailDestinataire = this.mailDestinataire;
     }
 
-    public void mailing(){
+    public void mailing(String mailDestinataire, String newPassword){
         final String username = "williamthibaut.evrarddemory@gmail.com";
         final String password = "motdepassedufutur";
 
@@ -35,9 +35,9 @@ public class Mail {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("williamthibaut.evrarddemory@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("thibaut.demory@hei.yncrea.fr"));
+                    InternetAddress.parse(mailDestinataire));
             message.setSubject("Testing Subject");
-            message.setText("Tu me peux dire si ça marche, merci ! cordialement ! tout ça tout ça !");
+            message.setText("Voici votre nouveau mot de passe :\n"+newPassword+"\n \n www.rosecorail.com");
 
             Transport.send(message);
 
