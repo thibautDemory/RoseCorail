@@ -11,7 +11,7 @@ import java.util.List;
 public class ArticleDaoImpl implements ArticleDao {
     @Override
     public List<Article> listArticles() {
-        String query = "SELECT * FROM article;";
+        String query = "SELECT * FROM article where actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -28,7 +28,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,7 +39,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesPlats() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=1 or id_sous_categorie=2 or id_sous_categorie=3;";
+        String query = "SELECT * FROM article WHERE (id_sous_categorie=1 or id_sous_categorie=2 or id_sous_categorie=3) AND actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -55,7 +56,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,7 +67,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesPlataCake() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=1;";
+        String query = "SELECT * FROM article WHERE id_sous_categorie=1 AND actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -82,7 +84,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,7 +96,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesPlataFromage() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=2;";
+        String query = "SELECT * FROM article WHERE id_sous_categorie=2 AND actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -110,7 +113,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -121,7 +125,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesCoupellesAperitif() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=3;";
+        String query = "SELECT * FROM article WHERE id_sous_categorie=3 AND actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -138,7 +142,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -148,7 +153,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesPorteCouteaux() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=4;";
+        String query = "SELECT * FROM article WHERE id_sous_categorie=4 AND actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -165,7 +170,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -176,7 +182,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesDeco() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=5 or id_sous_categorie=6;";
+        String query = "SELECT * FROM article WHERE (id_sous_categorie=5 or id_sous_categorie=6) AND actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -193,7 +199,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -203,7 +210,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesDecoDessousVerre() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=5;";
+        String query = "SELECT * FROM article WHERE id_sous_categorie=5 AND actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -220,7 +227,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -230,7 +238,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesDecoDessousPlat() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=6;";
+        String query = "SELECT * FROM article WHERE id_sous_categorie=6 AND actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -247,7 +255,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -258,7 +267,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> listArticlesMaison() {
-        String query = "SELECT * FROM article WHERE id_sous_categorie=7;";
+        String query = "SELECT * FROM article WHERE id_sous_categorie=7 AND actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (
                 Connection connection = DataSourceProvider.getDataSource().getConnection();
@@ -275,7 +284,8 @@ public class ArticleDaoImpl implements ArticleDao {
                         resultSet.getString("image"),
                         resultSet.getString("dimensions"),
                         resultSet.getDouble("prix"),
-                        resultSet.getInt("lot_vente")));
+                        resultSet.getInt("lot_vente"),
+                        resultSet.getInt("actif")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -287,7 +297,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public Article getArticleByNom(String nom) {
-        String query="SELECT * FROM article WHERE nom_article=?;";
+        String query="SELECT * FROM article WHERE nom_article=? AND actif=1;";
         try(Connection connection = DataSourceProvider.getDataSource().getConnection();
             PreparedStatement statement= connection.prepareStatement(query)){
             statement.setString(1,nom);
@@ -302,7 +312,8 @@ public class ArticleDaoImpl implements ArticleDao {
                             resultSet.getString("image"),
                             resultSet.getString("dimensions"),
                             resultSet.getDouble("prix"),
-                            resultSet.getInt("lot_vente"));
+                            resultSet.getInt("lot_vente"),
+                            resultSet.getInt("actif"));
                 }
             }
         }catch (SQLException e){
@@ -328,7 +339,8 @@ public class ArticleDaoImpl implements ArticleDao {
                             resultSet.getString("image"),
                             resultSet.getString("dimensions"),
                             resultSet.getDouble("prix"),
-                            resultSet.getInt("lot_vente"));
+                            resultSet.getInt("lot_vente"),
+                            resultSet.getInt("actif"));
                 }
             }
         }catch (SQLException e){
@@ -339,7 +351,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public Article addArticle(Article article) {
-        String query="INSERT INTO article(id_sous_categorie,nom_article,reference,description,image,dimensions,prix,lot_vente) VALUES(?,?,?,?,?,?,?,?);";
+        String query="INSERT INTO article(id_sous_categorie,nom_article,reference,description,image,dimensions,prix,lot_vente,actif) VALUES(?,?,?,?,?,?,?,?,?);";
         try(Connection connection = DataSourceProvider.getDataSource().getConnection();
         PreparedStatement statement=connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)){
             statement.setInt(1,article.getId_sous_categorie());
@@ -350,6 +362,7 @@ public class ArticleDaoImpl implements ArticleDao {
             statement.setString(6,article.getDimension());
             statement.setDouble(7,article.getPrix());
             statement.setInt(8,article.getLot_vente());
+            statement.setInt(9,article.getActif());
             statement.executeUpdate();
             try(ResultSet ids=statement.getGeneratedKeys()){
                 if(ids.next()){
@@ -368,7 +381,7 @@ public class ArticleDaoImpl implements ArticleDao {
     public void deleteArticle(Integer articleId) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
-                    "delete from article where id_article=?")) {
+                    "UPDATE article SET actif=0 where id_article=?")) {
                 statement.setInt(1,articleId );
                 statement.executeUpdate();
             }

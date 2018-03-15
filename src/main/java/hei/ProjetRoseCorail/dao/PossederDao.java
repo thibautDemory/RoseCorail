@@ -13,5 +13,6 @@ public interface PossederDao {
     public Posseder addPosseder(Posseder posseder);
     public Posseder modifierPosseder (Posseder posseder);
     public void deletePossederForCouleur(Integer idcouleur);
+    public void deletePossederForArticle(Integer idArticle);
     public void deletePosseder(Integer idPosseder);
 }

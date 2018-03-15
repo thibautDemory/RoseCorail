@@ -24,6 +24,7 @@ CREATE TABLE `article` (
   `dimensions` varchar(30) NOT NULL,
   `prix` double NOT NULL,
   `lot_vente` int(11) NOT NULL,
+  `actif` int(11) NOT NULL,
   PRIMARY KEY (id_article),
   KEY `id_sous_categorie_fk` (`id_sous_categorie`),
   CONSTRAINT `id_sous_categorie_fk` FOREIGN KEY (`id_sous_categorie`) REFERENCES `souscategorie` (`id_sous_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -53,6 +54,7 @@ CREATE TABLE `couleur` (
   `num_couleur` varchar(40) NOT NULL,
   `image` varchar(50) NOT NULL,
   `saison` varchar(40) NOT NULL,
+  `actif` int(11) NOT NULL,
   PRIMARY KEY (id_couleur)
 )engine = innodb;
 

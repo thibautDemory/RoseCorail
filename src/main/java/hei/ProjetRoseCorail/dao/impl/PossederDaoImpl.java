@@ -56,7 +56,8 @@ public class PossederDaoImpl implements PossederDao{
                             resultSet.getString("image"),
                             resultSet.getString("dimensions"),
                             resultSet.getDouble("prix"),
-                            resultSet.getInt("lot_vente"))
+                            resultSet.getInt("lot_vente"),
+                            resultSet.getInt("actif"))
                     );
                 }
             }
@@ -122,6 +123,20 @@ public class PossederDaoImpl implements PossederDao{
             try (PreparedStatement statement = connection.prepareStatement(
                     "delete from posseder where id_couleur=?")) {
                 statement.setInt(1,idcouleur );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deletePossederForArticle(Integer idArticle) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "delete from posseder where id_article=?")) {
+                statement.setInt(1,idArticle );
                 statement.executeUpdate();
             }
         }catch (SQLException e) {

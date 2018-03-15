@@ -10,8 +10,9 @@ public class Article {
     private String dimension;
     private double prix;
     private Integer lot_vente;
+    private Integer actif;
 
-    public Article(Integer id_article, Integer id_sous_categorie, String nom_article, String reference, String description, String image, String dimension, double prix, Integer lot_vente) {
+    public Article(Integer id_article, Integer id_sous_categorie, String nom_article, String reference, String description, String image, String dimension, double prix, Integer lot_vente,Integer actif) {
         this.id_article = id_article;
         this.id_sous_categorie = id_sous_categorie;
         this.nom_article = nom_article;
@@ -21,6 +22,7 @@ public class Article {
         this.dimension = dimension;
         this.prix = prix;
         this.lot_vente = lot_vente;
+        this.actif=actif;
     }
 
     public Integer getId_article() {
@@ -43,9 +45,6 @@ public class Article {
         return nom_article;
     }
 
-    public void setNom_Article(String nom_article) {
-        this.nom_article = nom_article;
-    }
 
     public String getReference() {
         return reference;
@@ -93,5 +92,17 @@ public class Article {
 
     public void setLot_vente(Integer lot_vente) {
         this.lot_vente = lot_vente;
+    }
+
+    public void setNom_article(String nom_article) {
+        this.nom_article = nom_article;
+    }
+
+    public Integer getActif() {
+        return actif;
+    }
+
+    public void setActif(Integer actif) {
+        this.actif = actif;
     }
 }

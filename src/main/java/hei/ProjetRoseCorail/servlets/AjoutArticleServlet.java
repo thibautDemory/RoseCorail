@@ -89,7 +89,7 @@ public class AjoutArticleServlet extends GenericServlet{
         }
 
 
-        Article newarticle = new Article(null, sous_categorie,nom,reference,description,"image\\article\\"+nom+"\\image.jpg",dimension,prix,vendupar);
+        Article newarticle = new Article(null, sous_categorie,nom,reference,description,"image\\article\\"+nom+"\\image.jpg",dimension,prix,vendupar,1);
         System.out.println("l'article est créer");
 
         try{

@@ -37,5 +37,8 @@ public class PossederLibrary {
     public void deletePossederForCouleur(Integer idcoloris){
         possederDao.deletePossederForCouleur(idcoloris);
     }
+    public void deletePossederForArticle(Integer idArticle){
+        possederDao.deletePossederForArticle(idArticle);
+    }
 
 }
