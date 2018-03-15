@@ -38,15 +38,14 @@
     </div>
 
     
-      <div class="col-xs-4 col-sm-2"> <!--Colone de gauche qui contient les différents coloris-->
+      <div class="col-xs-3"> <!--Colone de gauche qui contient les différents coloris-->
         
         <ul class="nav nav-pills nav-stacked couleur-rose-corail">
-          <li role="presentation" class="active"><a href="lescoloris.html">Collection Automne Hiver 2017</a></li>
-          <li role="presentation" ><a href="#">Collection Automne Hiver 2017</a></li>
+          <li th:each="saison : ${lessaisons}" role="presentation"><a th:text="${saison}" th:href="${'lesColoris?saison='+saison}">Collection Automne Hiver 2017</a></li>
         </ul>
       </div>
 
-      <div class="col-xs-8 col-sm-10"><!--à droite, on met les coloris-->
+      <div class="col-xs-9"><!--à droite, on met les coloris-->
         <div th:each="panelcoloris : ${lespanelscoloris}">
           <div class="col-xs-12 margin-bottom">
             <figure>

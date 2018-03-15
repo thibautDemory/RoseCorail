@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface PanelColorisDao {
     public List<Panelcoloris> listPanelColoris();
+    public List<Panelcoloris> listPanelColorisParSaison(String saison);
+
 
     public Panelcoloris getPanelColorisById(Integer id);
 

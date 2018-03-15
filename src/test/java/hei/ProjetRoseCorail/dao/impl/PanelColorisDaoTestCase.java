@@ -37,6 +37,18 @@ public class PanelColorisDaoTestCase {
                 tuple(2, "bleu clair 2", "imagebleuclair","Hiver") ,
                 tuple(3, "bleu fonce 3", "imagebleufonce", "Automne"));
     }
+    @Test
+    public void shouldListPanelColorisParSaison(){
+        //WHEN
+        List<Panelcoloris> lespanelscolorisdunesaison = panelColorisDao.listPanelColorisParSaison("Hiver");
+
+        //THEN
+        assertThat(lespanelscolorisdunesaison).hasSize(1);
+        assertThat(lespanelscolorisdunesaison).extracting("idPanelColoris","legende","image","saison").containsOnly(
+                tuple(2,"bleu clair 2","imagebleuclair","Hiver")
+        );
+
+    }
 
     @Test
     public void shouldGetPanelColorisById(){

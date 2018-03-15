@@ -46,14 +46,16 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="nom-contact">Nom : *</label>
                         <div class="col-xs-6">
-                            <input type="text" class="form-control" id="nom-contact" name="nom-contact" placeholder="Exemple : Jean DUPONT">
+                            <input th:if="${nom}" type="text" class="form-control"  name="nom-contact" th:value="${nom+' '+prenom}" placeholder="Exemple : Jean DUPONT">
+                            <input th:unless="${nom}" type="text" class="form-control" id="nom-contact" name="nom-contact"  placeholder="Exemple : Jean DUPONT">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="email-contact">Adresse e-mail : *</label>
                         <div class="col-xs-6">
-                            <input type="text" class="form-control" id="email-contact" name="email-contact" placeholder="Exemple : jean@dupont.com">
+                            <input th:if="${email}" type="text" class="form-control" id="email-contact" name="email-contact" th:value="${email}" placeholder="Exemple : jean@dupont.com">
+                            <input th:unless="${email}" type="text" class="form-control"  name="email-contact"  placeholder="Exemple : jean@dupont.com">
                         </div>
                     </div>
 

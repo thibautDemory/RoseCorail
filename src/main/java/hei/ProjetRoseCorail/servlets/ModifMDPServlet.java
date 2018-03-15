@@ -26,7 +26,7 @@ public class ModifMDPServlet extends GenericServlet{
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
 
-        if (statut==null||"".equals(statut)){
+        if (statut==null||"".equals(statut)||statut=="visiteur"){
             statut="visiteur";
         }else{
             String nom=req.getSession().getAttribute("nom").toString();

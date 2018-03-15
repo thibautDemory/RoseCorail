@@ -41,6 +41,7 @@ public class PanelColorisLibrary {
         }
         return panelColorisDao.addPanelColoris(panelcoloris);
     }
+    public List<Panelcoloris> listpanelcolorisparsaison(String saison){ return panelColorisDao.listPanelColorisParSaison(saison);}
 
     public void deletePanelColoris(Integer idPanelColoris){
         panelColorisDao.deletePanelColoris(idPanelColoris);

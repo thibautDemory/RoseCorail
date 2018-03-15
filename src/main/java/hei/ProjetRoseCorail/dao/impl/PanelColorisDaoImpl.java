@@ -35,6 +35,28 @@ public class PanelColorisDaoImpl implements PanelColorisDao {
     }
 
     @Override
+    public List<Panelcoloris> listPanelColorisParSaison(String saison) {
+        String query="SELECT * FROM panelcoloris WHERE saison=?;";
+        List<Panelcoloris> listPanelColoris=new ArrayList<>();
+        try(Connection connection = DataSourceProvider.getDataSource().getConnection();
+            PreparedStatement statement= connection.prepareStatement(query)){
+            statement.setString(1,saison);
+            try(ResultSet resultSet = statement.executeQuery()){
+                while(resultSet.next()){
+                    listPanelColoris.add(new Panelcoloris(
+                            resultSet.getInt("id_panelcoloris"),
+                            resultSet.getString("legende"),
+                            resultSet.getString("image"),
+                            resultSet.getString("saison")));
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listPanelColoris;
+    }
+
+    @Override
     public Panelcoloris getPanelColorisById(Integer id) {
         String query="SELECT * FROM panelcoloris WHERE id_panelcoloris=?;";
         try(Connection connection = DataSourceProvider.getDataSource().getConnection();

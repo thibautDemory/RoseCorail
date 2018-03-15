@@ -17,6 +17,11 @@ public class DeconnexionServlet extends GenericServlet{
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         req.getSession().setAttribute("statut","visiteur");
         String statut=(String) req.getSession().getAttribute("statut");
+        req.getSession().removeAttribute("nom");
+        req.getSession().removeAttribute("prenom");
+        req.getSession().removeAttribute("email");
+        req.getSession().removeAttribute("idClient");
+
 
         webContext.setVariable("statut",statut);
 

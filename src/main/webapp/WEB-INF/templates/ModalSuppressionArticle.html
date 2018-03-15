@@ -22,8 +22,8 @@
 
             </div>
             <p>Voulez vous vraiment supprimer cet article?</p>
-            <button class="btn btn-primary">Annuler</button>
-            <button class="btn btn-primary">Supprimer</button>
+            <a class="btn btn-primary">Annuler</a>
+            <a class="btn btn-primary" th:href="${'SupprimerArticle?id='+cetarticle.id_article}">Supprimer</a>
         </div>
 
     </div>

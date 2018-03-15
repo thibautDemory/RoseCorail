@@ -27,7 +27,7 @@ public class LamaisonServlet extends GenericServlet {
         List<Article> lamaison=articleLibrary.listeArticlesMaison();
         List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleurs();
 
-        if (statut==null||"".equals(statut)){
+        if (statut==null||"".equals(statut)||statut=="visiteur"){
             statut="visiteur";
         }else{
             String nom=req.getSession().getAttribute("nom").toString();
