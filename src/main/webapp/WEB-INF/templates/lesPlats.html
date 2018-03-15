@@ -2,11 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <!-- Bootstrap -->
-  <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
-  <link href="css/bootstrap-theme.css" type="text/css" rel="stylesheet">
-  <link href="css/style-perso.css" type="text/css" rel="stylesheet">
-  <link href="css/Lesplats.css" type="text/css" rel="stylesheet">
-  <meta charset="UTF-8"/>
+  <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
+  <link href="/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+  <link href="/css/style-perso.css" type="text/css" rel="stylesheet">
+  <link href="/css/Lesplats.css" type="text/css" rel="stylesheet">
+
+    <link href="/css/styleNouveautes.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8"/>
   <title>Les plats</title>
 </head>
  
@@ -107,8 +109,8 @@
         <div class="modal-content"></div>
       </div>
     </div>
-    <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="/js/bootstrap.js"></script>
     <script>
         $("body").on("hidden.bs.modal", ".modal", function () {
             $(this).removeData("bs.modal");

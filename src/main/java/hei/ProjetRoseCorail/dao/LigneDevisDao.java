@@ -10,6 +10,7 @@ public interface LigneDevisDao {
     public List<LigneDevis> listLignesDevisPourUneCouleur(Integer idCouleur);
     public List<LigneDevis> listLignesDevisPourUnArticle(Integer idArticle);
     public List<LigneDevis> listLignesDevisPourUnDevis(Integer idDevis);
+    public void modifierQuantiteLigneDevis(Integer idLigneDevis,Integer quantite);
     public void deleteLigneDevis(Integer idLigneDevis);
     public void deleteLigneDevisForOneCouleur(Integer idCouleur);
 }

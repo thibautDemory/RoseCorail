@@ -54,6 +54,7 @@ public class PanierServlet extends GenericServlet{
                         article.getDimension(),
                         couleur.getImage_couleur(),
                         leslignesdevis.get(i).getQuantite(),
+                        article.getPrix(),
                         leslignesdevis.get(i).getId_ligne_devis()));
             }
 

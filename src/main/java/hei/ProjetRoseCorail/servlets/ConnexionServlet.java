@@ -1,5 +1,6 @@
 package hei.ProjetRoseCorail.servlets;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import hei.ProjetRoseCorail.dao.impl.CompteClientDaoImpl;
 import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.CompteRoseCorail;
@@ -25,10 +26,13 @@ public class ConnexionServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        Boolean mauvaismotdepasse=(Boolean) req.getSession().getAttribute("mauvaismotdepasse");
+        webContext.setVariable("mauvaismotdepasse",mauvaismotdepasse);
         if (statut==null||"".equals(statut)){
             statut="visiteur";
         }
         webContext.setVariable("statut",statut);
+
 
         templateEngine.process("connexion", webContext, resp.getWriter());
     }
@@ -68,9 +72,12 @@ public class ConnexionServlet extends GenericServlet{
                     req.getSession().setAttribute("prenom", client.getPrenom_gerant());
                     req.getSession().setAttribute("statut", "client");
                     resp.sendRedirect("accueil");
+                }else{
+                    req.getSession().setAttribute("mauvaismotdepasse",true);
+                    resp.sendRedirect("connexion");
                 }
             }else{
-                resp.sendRedirect("connexion");
+                resp.sendRedirect("/connexion");
                 System.out.println("Ce compte n'existe pas");
             }
 

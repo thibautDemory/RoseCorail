@@ -68,6 +68,13 @@ public class LigneDevisDaoTestCase {
     }
 
     @Test
+    public void shouldmodifierLaQuantiteDuneLigneDevis(){
+        ligneDevisDao.modifierQuantiteLigneDevis(1,4);
+        List<LigneDevis> lignesDevis=ligneDevisDao.listAllLigneDevis();
+        assertThat(lignesDevis.get(0).getQuantite()).isEqualTo(4);
+
+    }
+    @Test
     public void shouldDeleteLigneDevisPourUneCouleur(){
         ligneDevisDao.deleteLigneDevisForOneCouleur(2);
         List<LigneDevis> leslignesdevis=ligneDevisDao.listAllLigneDevis();

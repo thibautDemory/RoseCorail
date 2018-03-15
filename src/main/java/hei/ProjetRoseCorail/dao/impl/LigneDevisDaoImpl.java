@@ -119,6 +119,21 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
     }
 
     @Override
+    public void modifierQuantiteLigneDevis(Integer idLigneDevis,Integer quantite) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE lignedevis SET quantite = ? WHERE id_ligne_devis =?;")) {
+                statement.setInt(1,quantite );
+                statement.setInt(2,idLigneDevis );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void deleteLigneDevis(Integer idLigneDevis) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(

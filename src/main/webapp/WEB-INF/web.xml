@@ -15,7 +15,7 @@
 
     <servlet-mapping>
         <servlet-name>javax.ws.rs.core.Application</servlet-name>
-        <url-pattern>/webservices/*</url-pattern>
+        <url-pattern>/webservice/*</url-pattern>
     </servlet-mapping>
 
     <filter>
