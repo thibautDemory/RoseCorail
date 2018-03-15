@@ -37,7 +37,7 @@ public class Mail {
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(mailDestinataire));
             message.setSubject("Testing Subject");
-            message.setText("Voici votre nouveau mot de passe :\n"+newPassword+"\n \n www.rosecorail.com");
+            message.setText("Voici votre nouveau mot de passe :\n"+newPassword+"\n \n Vous pouvez maintenant vous connecter avec ce nouveau mot de passe sur : www.rosecorail.com");
 
             Transport.send(message);
 
