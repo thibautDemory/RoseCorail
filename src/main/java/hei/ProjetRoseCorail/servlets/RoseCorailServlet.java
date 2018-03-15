@@ -1,6 +1,9 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.CompteRoseCorail;
+import hei.ProjetRoseCorail.entities.Mail;
+import hei.ProjetRoseCorail.entities.PasswordGenerator;
 import hei.ProjetRoseCorail.managers.CompteRoseCorailLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -10,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/RoseCorail")
 public class RoseCorailServlet extends GenericServlet{
@@ -34,6 +38,20 @@ public class RoseCorailServlet extends GenericServlet{
         webContext.setVariable("statut",statut);
 
         templateEngine.process("RoseCorail", webContext, resp.getWriter());
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String email=req.getParameter("email-contact");
+        String nom = req.getParameter("nom-contact");
+        String message = req.getParameter("message-contact");
+
+        Mail sendingMail = new Mail(email);
+        sendingMail.sendMailWithMessageAndName(email,nom,message);
+
+        System.out.println(email);
+
+
     }
 }
 
