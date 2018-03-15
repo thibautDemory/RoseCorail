@@ -51,6 +51,8 @@ public class RoseCorailServlet extends GenericServlet{
 
         System.out.println(email);
 
+        resp.sendRedirect(String.format("accueil"));
+
 
     }
 }
