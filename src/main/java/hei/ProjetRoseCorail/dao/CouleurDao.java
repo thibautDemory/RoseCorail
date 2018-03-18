@@ -13,6 +13,7 @@ public interface CouleurDao {
 
     public Couleur addCouleur(Couleur couleur);
 
+    public void rendreCouleurInactive(Integer idCouleur);
     public void deleteCouleur(Integer idCouleur);
 }
 

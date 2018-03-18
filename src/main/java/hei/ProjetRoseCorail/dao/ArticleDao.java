@@ -19,6 +19,7 @@ public interface ArticleDao {
     public Article getArticleByNom (String nom);
     public Article getArticleById (Integer id);
     public Article addArticle(Article article);
+    public void rendreInactifArticle(Integer articleId);
     public void deleteArticle(Integer articleId);
     public Article modifierArticle(Article article);
 

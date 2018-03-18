@@ -66,5 +66,6 @@ public class ArticleLibrary {
 
 
     public void deleteArticle(Integer id){articleDao.deleteArticle(id);}
+    public void rendreinactifArticle(Integer id){articleDao.rendreInactifArticle(id);}
 
 }

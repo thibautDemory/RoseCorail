@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/ModalSuppressionArticle")
+@WebServlet("/administration/ModalSuppressionArticle")
 public class ModalSuppressionArticleServlet extends GenericServlet{
 
     @Override

@@ -44,6 +44,9 @@ public class CouleurLibrary {
     public void deleteCouleur(int idCouleur){
         couleurDao.deleteCouleur(idCouleur);
     }
+    public void rendreinactivecouleur(int idCouleur){
+        couleurDao.rendreCouleurInactive(idCouleur);
+    }
 
     public Couleur getCouleurByID(Integer idCouleur){
         return couleurDao.getCouleurByID(idCouleur);

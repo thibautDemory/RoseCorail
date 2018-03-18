@@ -34,21 +34,23 @@ public class ModifierColorisServlet extends GenericServlet{
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
 
-        int idColoris = parseInt(req.getParameter("id"));
-        String idColorisString = String.valueOf(idColoris);
+        String idColorisString = req.getParameter("id");
+        System.out.println("l'id coloris string est :"+idColorisString);
 
-        Couleur couleur = CouleurLibrary.getInstance().getCouleurByID(idColoris);
+
+        Couleur couleur = CouleurLibrary.getInstance().getCouleurByID(Integer.parseInt(idColorisString));
 
         String nomColoris = couleur.getNom_couleur();
         String numeroColoris = couleur.getNumero_couleur();
         String imageColoris = couleur.getImage_couleur();
         String saisonColoris = couleur.getSaison();
 
+        webContext.setVariable("idColoris", idColorisString);
         webContext.setVariable("nomColoris", nomColoris);
         webContext.setVariable("numeroColoris", numeroColoris);
         webContext.setVariable("imageColoris", imageColoris);
         webContext.setVariable("saisonColoris", saisonColoris);
-        webContext.setVariable("idColorisString", idColorisString);
+
 
 
         System.out.println("cette couleur va être modifié, nom = "+nomColoris+"; numeroColoris = "+numeroColoris+"; imageColoris = "+imageColoris+"; saison = "+saisonColoris);
@@ -65,14 +67,15 @@ public class ModifierColorisServlet extends GenericServlet{
         String numero_couleur = null;
         String image_couleur = null;
         String saison = null;
-        String idColorisString="";
+        String idColorisString= null;
         File filequicontientlimage=null;
-        int idColorisInt = 0;
+        Integer idColorisInt=0;
+
         try {
             nom_couleur = req.getParameter("nomColoris");
             numero_couleur = req.getParameter("numeroColoris");
             saison = req.getParameter("saisonColoris");
-            idColorisString = req.getParameter("idColorisString");
+            idColorisString=req.getParameter("idColoris");
             idColorisInt = Integer.parseInt(idColorisString);
             filequicontientlimage = new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\"+nom_couleur.trim());
             filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
@@ -81,12 +84,12 @@ public class ModifierColorisServlet extends GenericServlet{
 
         }catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
-            req.getSession().setAttribute("errorMessage", errorMessage);
+
             System.out.println("error1"+errorMessage);
-            resp.sendRedirect("/administration/modifierColoris");
+
         }
 
-        System.out.println("coloris string" +idColorisString);
+        System.out.println("coloris string" +idColorisInt);
         System.out.println("num " +numero_couleur);
         System.out.println(idColorisInt);
 
@@ -108,8 +111,6 @@ public class ModifierColorisServlet extends GenericServlet{
 
             req.getSession().setAttribute("errorMessage", errorMessage);
             System.out.println("error2"+errorMessage);
-
-            resp.sendRedirect(String.format("/administration/modifierColoris"));
         }
 
         System.out.println("idcouleur"+idcouleur);
@@ -125,15 +126,15 @@ public class ModifierColorisServlet extends GenericServlet{
                         leslignesDevisPourcetteCouleur.get(i).getId_article(),
                         leslignesDevisPourcetteCouleur.get(i).getQuantite());
                 LigneDevis createdLigneDevis=ligneDevisLibrary.addLigneDevis(newligneDevis);
+
             }
 
             resp.sendRedirect(String.format("/administration/formulaire"));
         }catch (IllegalArgumentException e){
             String errorMessage = e.getMessage();
-
             req.getSession().setAttribute("errorMessage", errorMessage);
             System.out.println("error3"+errorMessage);
-            resp.sendRedirect(String.format("/administration/modifierColoris"));
+
         }
     }
 }

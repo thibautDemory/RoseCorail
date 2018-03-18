@@ -15,8 +15,8 @@ public class SupprimerColorisServlet extends GenericServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idColoris = parseInt(req.getParameter("id"));
-        CouleurLibrary.getInstance().deleteCouleur(idColoris);
+        CouleurLibrary.getInstance().rendreinactivecouleur(idColoris);
         System.out.println("cette couleur a bien été supprimer");
-        resp.sendRedirect("/lesColoris");
+        resp.sendRedirect("/administration/formulaire");
     }
 }

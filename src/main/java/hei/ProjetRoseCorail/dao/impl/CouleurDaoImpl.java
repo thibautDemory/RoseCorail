@@ -110,10 +110,24 @@ public class CouleurDaoImpl implements CouleurDao {
     }
 
     @Override
-    public void deleteCouleur(Integer idCouleur){
+    public void rendreCouleurInactive(Integer idCouleur) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
                     "UPDATE couleur SET actif=0 where id_couleur=?")) {
+                statement.setInt(1,idCouleur );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteCouleur(Integer idCouleur){
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "delete from couleur where id_couleur=?")) {
                 statement.setInt(1,idCouleur );
                 statement.executeUpdate();
             }

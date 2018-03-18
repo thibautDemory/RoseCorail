@@ -124,14 +124,18 @@
                     <button type="submit" class="btn btn-warning">Modifier</button>
                 </div>
                 <div class="col-xs-offset-1 col-xs-1">
-                    <a href="ModalSuppresionArticle" class="btn btn-danger">Supprimer</a>
+                    <bouton data-toggle="modal" th:href="${'/administration/ModalSuppressionArticle?id='+cetarticle.id_article}" data-target="#presentationarticle" class="btn btn-danger">Supprimer</bouton>
                 </div>
             </div>
 
         </form>
     </div>
 
-
+    <div class="modal fade" id="presentationarticle">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
 
     <div class="precedentlefooter"></div>
 

@@ -37,9 +37,10 @@ public class ModifierActualiteServlet extends GenericServlet{
         String imageActualite = actualite.getImageActualite();
 
         webContext.setVariable("titreActualite", titreActualite);
+        webContext.setVariable("idActualite", idActualiteString);
         webContext.setVariable("contenuActualite", contenuActualite);
         webContext.setVariable("imageActualite", imageActualite);
-        webContext.setVariable("idActualiteString", idActualiteString);
+
 
 
         System.out.println("cette actualité va être modifié, titreActualite = "+titreActualite+"; contenuActualite = "
@@ -56,14 +57,14 @@ public class ModifierActualiteServlet extends GenericServlet{
         String titreActualite = null;
         String contenuActualite = null;
         String imageActualite = null;
-        String idActualiteString="";
+        String idActualiteString=req.getParameter("idActualite");
         File filequicontientlimage=null;
         int idActualiteInt = 0;
         try {
             titreActualite = req.getParameter("titreActualite");
             contenuActualite = req.getParameter("contenuActualite");
-            idActualiteString = req.getParameter("idActualiteString");
-            idActualiteInt = Integer.parseInt(idActualiteString);
+
+            idActualiteInt = parseInt(idActualiteString);
             filequicontientlimage = new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\"+titreActualite.trim());
             filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
             Part imagePart = req.getPart("imageActualite"); // on récupere  l'image du formulaire
@@ -87,7 +88,7 @@ public class ModifierActualiteServlet extends GenericServlet{
             ActualiteLibrary.getInstance().addActualite(newActualite);
 
             // REDIRECT TO Accueil
-            resp.sendRedirect(String.format("/accueil"));
+            resp.sendRedirect(String.format("/administration/formulaire"));
 
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();

@@ -85,6 +85,19 @@ public class CouleurDaoTestCase {
     }
 
     @Test
+    public void shouldRentreInactiveCouleur(){
+        couleurDao.rendreCouleurInactive(1);
+
+        List<Couleur> couleurs = couleurDao.listCouleursActives();
+        // THEN
+        assertThat(couleurs).hasSize(3);
+        assertThat(couleurs).extracting("id_couleur", "nom_couleur", "numero_couleur", "image_couleur","saison","actif").containsOnly(
+                tuple(2, "Bleu glacier", "097", "image1", "Printemps-Eté 2017",1) ,
+                tuple(3, "Bleu vert", "08", "image1", "Printemps-Eté 2017",1),
+                tuple(4, "Sapin bleuté", "091", "image1", "Printemps-Eté 2017",1)
+        );
+    }
+    @Test
     public void shouldDeleteCouleur(){
         couleurDao.deleteCouleur(1);
 

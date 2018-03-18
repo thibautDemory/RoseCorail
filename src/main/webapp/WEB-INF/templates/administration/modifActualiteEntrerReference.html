@@ -5,10 +5,12 @@
 
 <head>
     <script type="text/javascript">
+        window.onload=function () {
+            fonction();
+        }
         function fonction(){
             var select = document.getElementById("listeActualite");
             var valeur = select.options[select.selectedIndex].value;
-            alert(valeur);
             var deleteLink = document.getElementById("deleteLink");
             var modifyLink = document.getElementById("modifyLink");
 

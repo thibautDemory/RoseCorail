@@ -378,10 +378,24 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public void deleteArticle(Integer articleId) {
+    public void rendreInactifArticle(Integer articleId) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
                     "UPDATE article SET actif=0 where id_article=?")) {
+                statement.setInt(1,articleId );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteArticle(Integer articleId) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "delete from article where id_article=?")) {
                 statement.setInt(1,articleId );
                 statement.executeUpdate();
             }

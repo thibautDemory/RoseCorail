@@ -54,4 +54,10 @@ public class ModificationArticleServlet extends GenericServlet{
 
         templateEngine.process("/administration/ModificationArticle", webContext, resp.getWriter());
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //on récupère les paramètres:
+
+    }
 }

@@ -46,7 +46,7 @@
 
                 <h3>Les couleurs</h3>
                 <form method="post">
-                    <div>
+                    <div id="choix-des-couleurs">
                         <div th:each="couleur : ${couleurs}">
                             <div class="checkbox"><label><input type="checkbox" th:value="${couleur.id_couleur}" th:name="${couleur.nom_couleur}" th:text="${couleur.nom_couleur}"></label></div>
                         </div>

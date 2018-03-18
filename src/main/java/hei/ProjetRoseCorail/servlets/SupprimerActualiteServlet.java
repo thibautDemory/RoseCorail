@@ -18,6 +18,6 @@ public class SupprimerActualiteServlet extends GenericServlet {
         int idActu = parseInt(req.getParameter("id"));
         ActualiteLibrary.getInstance().deleteActualite(idActu);
         System.out.println("cette actu a bien été supprimer");
-        resp.sendRedirect("/accueil");
+        resp.sendRedirect("/administration/formulaire");
     }
 }
