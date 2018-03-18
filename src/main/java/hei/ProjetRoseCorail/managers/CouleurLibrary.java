@@ -39,7 +39,7 @@ public class CouleurLibrary {
         return couleurDao.addCouleur(couleur);
 
     }
-    public List<Couleur> listCouleurs(){return couleurDao.listCouleurs();}
+    public List<Couleur> listCouleursActives(){return couleurDao.listCouleursActives();}
 
     public void deleteCouleur(int idCouleur){
         couleurDao.deleteCouleur(idCouleur);

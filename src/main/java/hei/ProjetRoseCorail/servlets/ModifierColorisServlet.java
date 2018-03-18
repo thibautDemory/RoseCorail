@@ -92,7 +92,7 @@ public class ModifierColorisServlet extends GenericServlet{
 
 
         // CREATE couleur
-        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "img\\"+nom_couleur.trim()+"\\image.jpg", saison);
+        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "img\\"+nom_couleur.trim()+"\\image.jpg", saison,1);
         List<Article> lesarticlesdecettecouleur=possederLibrary.listArticlesPourUneCouleur(idColorisInt);
         List<LigneDevis> leslignesDevisPourcetteCouleur=ligneDevisLibrary.listLignesDevisPourUneCouleur(idColorisInt);
         Integer idcouleur=0;

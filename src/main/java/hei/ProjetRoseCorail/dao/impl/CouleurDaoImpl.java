@@ -11,8 +11,8 @@ import java.util.List;
 
 public class CouleurDaoImpl implements CouleurDao {
     @Override
-    public List<Couleur> listCouleurs(){
-        String query = "SELECT * FROM couleur ORDER BY id_couleur";
+    public List<Couleur> listCouleursActives(){
+        String query = "SELECT * FROM couleur WHERE actif=1 ORDER BY id_couleur  ;";
         List<Couleur> listOfCouleurs = new ArrayList<>();
 
         try (
@@ -27,7 +27,8 @@ public class CouleurDaoImpl implements CouleurDao {
                                 resultSet.getString("nom_couleur"),
                                 resultSet.getString("num_couleur"),
                                 resultSet.getString("image"),
-                                resultSet.getString("saison"))
+                                resultSet.getString("saison"),
+                                resultSet.getInt("actif"))
                 );
             }
         } catch (SQLException e) {
@@ -50,7 +51,8 @@ public class CouleurDaoImpl implements CouleurDao {
                             resultSet.getString("nom_couleur"),
                             resultSet.getString("num_couleur"),
                             resultSet.getString("image"),
-                            resultSet.getString("saison"));
+                            resultSet.getString("saison"),
+                            resultSet.getInt("actif"));
                 }
             }
         }catch (SQLException e){
@@ -72,7 +74,8 @@ public class CouleurDaoImpl implements CouleurDao {
                             resultSet.getString("nom_couleur"),
                             resultSet.getString("num_couleur"),
                             resultSet.getString("image"),
-                            resultSet.getString("saison"));
+                            resultSet.getString("saison"),
+                            resultSet.getInt("actif"));
                 }
             }
         }catch (SQLException e){
@@ -83,13 +86,14 @@ public class CouleurDaoImpl implements CouleurDao {
 
     @Override
     public Couleur addCouleur(Couleur couleur){
-        String query = "INSERT INTO couleur(nom_couleur, num_couleur, image, saison) VALUES(?,?,?,?)";
+        String query = "INSERT INTO couleur(nom_couleur, num_couleur, image, saison, actif) VALUES(?,?,?,?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, couleur.getNom_couleur());
                 statement.setString(2, couleur.getNumero_couleur());
                 statement.setString(3, couleur.getImage_couleur());
                 statement.setString(4, couleur.getSaison());
+                statement.setInt(5, couleur.getActif());
                 statement.executeUpdate();
                 try (ResultSet ids = statement.getGeneratedKeys()) {
                     if(ids.next()) {
@@ -109,7 +113,7 @@ public class CouleurDaoImpl implements CouleurDao {
     public void deleteCouleur(Integer idCouleur){
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
-                    "delete from couleur where id_couleur=?")) {
+                    "UPDATE couleur SET actif=0 where id_couleur=?")) {
                 statement.setInt(1,idCouleur );
                 statement.executeUpdate();
             }

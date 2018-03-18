@@ -26,7 +26,8 @@ public class PossederDaoImpl implements PossederDao{
                             resultSet.getString("nom_couleur"),
                             resultSet.getString("num_couleur"),
                             resultSet.getString("image"),
-                            resultSet.getString("saison"))
+                            resultSet.getString("saison"),
+                                    resultSet.getInt("actif"))
                     );
                 }
             }

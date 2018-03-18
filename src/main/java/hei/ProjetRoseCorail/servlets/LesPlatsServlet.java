@@ -28,7 +28,7 @@ public class LesPlatsServlet extends GenericServlet{
         List<Article> platsacake=articleLibrary.listPlatsPlatACake();
         List<Article> platsAfromage=articleLibrary.listPlatsPlatAFromage();
         List<Article> coupelles=articleLibrary.listPlatsCoupelle();
-        List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleurs();
+        List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleursActives();
 
         if (statut==null||"".equals(statut)||statut=="visiteur"){
             statut="visiteur";
@@ -70,7 +70,7 @@ public class LesPlatsServlet extends GenericServlet{
         List<LigneDevis> listelignesdevis=new ArrayList<>();
         List<Couleur> lescouleurschoisies=new ArrayList<>();
         List<Integer> lesquantiteschoisies =new ArrayList<>();
-        List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleurs();
+        List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleursActives();
         Devis panier=devisLibrary.getDevisByiD(compteClientLibrary.getCompteClientById(idClient).getNumero_panier_actif());
         CompteClient client=compteClientLibrary.getCompteClientById(idClient);
 

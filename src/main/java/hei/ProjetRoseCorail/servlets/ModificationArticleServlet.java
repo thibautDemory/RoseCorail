@@ -31,7 +31,7 @@ public class ModificationArticleServlet extends GenericServlet{
         Integer id=Integer.parseInt(req.getParameter("id"));
         Article cetArticle= articleLibrary.getArticleById(id);
         List<Couleur> lescouleursdecetarticle=possederLibrary.listCouleursPourUnArticle(id);
-        List<Couleur> lescouleurs=couleurLibrary.listCouleurs();
+        List<Couleur> lescouleurs=couleurLibrary.listCouleursActives();
         List<String> lescouleursdecetarticleenString=new ArrayList<>();
         List<String> lescouleursenString=new ArrayList<>();
         for (int i=0;i<lescouleursdecetarticle.size();i++){

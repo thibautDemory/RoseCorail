@@ -25,24 +25,24 @@ public class CouleurDaoTestCase {
             stmt.executeUpdate("DELETE FROM lignedevis");
             stmt.executeUpdate("DELETE FROM posseder");
             stmt.executeUpdate("DELETE FROM couleur");
-            stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`) VALUES (1, 'Bleu gris', '087', 'image1', 'Printemps-Eté 2017')");
-            stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`) VALUES (2, 'Bleu glacier', '097', 'image1', 'Printemps-Eté 2017')");
-            stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`) VALUES (3, 'Bleu vert', '08', 'image1', 'Printemps-Eté 2017')");
-            stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`) VALUES (4, 'Sapin bleuté', '091', 'image1', 'Printemps-Eté 2017')");
+            stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`, actif) VALUES (1, 'Bleu gris', '087', 'image1', 'Printemps-Eté 2017',1)");
+            stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`, actif) VALUES (2, 'Bleu glacier', '097', 'image1', 'Printemps-Eté 2017',1)");
+            stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`, actif) VALUES (3, 'Bleu vert', '08', 'image1', 'Printemps-Eté 2017',1)");
+            stmt.executeUpdate("INSERT INTO `couleur`(`id_couleur`,`nom_couleur`,`num_couleur`,`image`,`saison`, actif) VALUES (4, 'Sapin bleuté', '091', 'image1', 'Printemps-Eté 2017',1)");
         }
     }
 
     @Test
     public void shouldListCouleur() {
         // WHEN
-        List<Couleur> couleurs = couleurDao.listCouleurs();
+        List<Couleur> couleurs = couleurDao.listCouleursActives();
         // THEN
         assertThat(couleurs).hasSize(4);
-        assertThat(couleurs).extracting("id_couleur", "nom_couleur", "numero_couleur", "image_couleur","saison").containsOnly(
-                tuple(1, "Bleu gris", "087", "image1", "Printemps-Eté 2017"),
-                tuple(2, "Bleu glacier", "097", "image1", "Printemps-Eté 2017") ,
-                tuple(3, "Bleu vert", "08", "image1", "Printemps-Eté 2017"),
-                tuple(4, "Sapin bleuté", "091", "image1", "Printemps-Eté 2017")
+        assertThat(couleurs).extracting("id_couleur", "nom_couleur", "numero_couleur", "image_couleur","saison","actif").containsOnly(
+                tuple(1, "Bleu gris", "087", "image1", "Printemps-Eté 2017",1),
+                tuple(2, "Bleu glacier", "097", "image1", "Printemps-Eté 2017",1) ,
+                tuple(3, "Bleu vert", "08", "image1", "Printemps-Eté 2017",1),
+                tuple(4, "Sapin bleuté", "091", "image1", "Printemps-Eté 2017",1)
         );
     }
 
@@ -57,6 +57,7 @@ public class CouleurDaoTestCase {
         assertThat(couleur.getNumero_couleur()).isEqualTo("087");
         assertThat(couleur.getImage_couleur()).isEqualTo("image1");
         assertThat(couleur.getSaison()).isEqualTo("Printemps-Eté 2017");
+        assertThat(couleur.getActif()).isEqualTo(1);
     }
 
 
@@ -64,7 +65,7 @@ public class CouleurDaoTestCase {
     public void shouldAddCouleur() throws Exception {
         // GIVEN
         Couleur newCouleur = new Couleur(null, "my new name of color",
-                "666", "my new image", "my new season");
+                "666", "my new image", "my new season",1);
         // WHEN
         Couleur createdCouleur = couleurDao.addCouleur(newCouleur);
         // THEN
@@ -77,6 +78,7 @@ public class CouleurDaoTestCase {
                 assertThat(rs.getString("num_couleur")).isEqualTo("666");
                 assertThat(rs.getString("image")).isEqualTo("my new image");
                 assertThat(rs.getString("saison")).isEqualTo("my new season");
+                assertThat(rs.getInt("actif")).isEqualTo(1);
                 assertThat(rs.next()).isFalse();
             }
         }
@@ -86,13 +88,13 @@ public class CouleurDaoTestCase {
     public void shouldDeleteCouleur(){
         couleurDao.deleteCouleur(1);
 
-        List<Couleur> couleurs = couleurDao.listCouleurs();
+        List<Couleur> couleurs = couleurDao.listCouleursActives();
         // THEN
         assertThat(couleurs).hasSize(3);
-        assertThat(couleurs).extracting("id_couleur", "nom_couleur", "numero_couleur", "image_couleur","saison").containsOnly(
-                tuple(2, "Bleu glacier", "097", "image1", "Printemps-Eté 2017") ,
-                tuple(3, "Bleu vert", "08", "image1", "Printemps-Eté 2017"),
-                tuple(4, "Sapin bleuté", "091", "image1", "Printemps-Eté 2017")
+        assertThat(couleurs).extracting("id_couleur", "nom_couleur", "numero_couleur", "image_couleur","saison","actif").containsOnly(
+                tuple(2, "Bleu glacier", "097", "image1", "Printemps-Eté 2017",1) ,
+                tuple(3, "Bleu vert", "08", "image1", "Printemps-Eté 2017",1),
+                tuple(4, "Sapin bleuté", "091", "image1", "Printemps-Eté 2017",1)
         );
     }
 }

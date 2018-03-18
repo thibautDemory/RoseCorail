@@ -6,13 +6,15 @@ public class Couleur {
     private String numero_couleur;
     private String image_couleur;
     private String saison;
+    private Integer actif;
 
-    public Couleur(Integer id_couleur, String nom_couleur, String numero_couleur, String image_couleur, String saison) {
+    public Couleur(Integer id_couleur, String nom_couleur, String numero_couleur, String image_couleur, String saison,Integer actif) {
         this.id_couleur = id_couleur;
         this.nom_couleur = nom_couleur;
         this.numero_couleur = numero_couleur;
         this.image_couleur = image_couleur;
         this.saison = saison;
+        this.actif=actif;
     }
 
     public Integer getId_couleur() {
@@ -53,5 +55,13 @@ public class Couleur {
 
     public void setSaison(String saison) {
         this.saison = saison;
+    }
+
+    public Integer getActif() {
+        return actif;
+    }
+
+    public void setActif(Integer actif) {
+        this.actif = actif;
     }
 }

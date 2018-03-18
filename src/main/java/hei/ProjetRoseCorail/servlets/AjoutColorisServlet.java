@@ -61,7 +61,7 @@ public class AjoutColorisServlet extends GenericServlet{
 
 
         // CREATE couleur
-        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "image\\couleur\\"+nom_couleur.trim()+"\\image.jpg", saison);
+        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "image\\couleur\\"+nom_couleur.trim()+"\\image.jpg", saison,1);
         try {
             Couleur createdCouleur = CouleurLibrary.getInstance().addCouleur(newCouleur);
 

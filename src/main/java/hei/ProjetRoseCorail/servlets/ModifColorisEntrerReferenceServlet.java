@@ -18,7 +18,7 @@ public class ModifColorisEntrerReferenceServlet extends GenericServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
-        List<Couleur> listeColoris= CouleurLibrary.getInstance().listCouleurs();
+        List<Couleur> listeColoris= CouleurLibrary.getInstance().listCouleursActives();
         String statut=(String) req.getSession().getAttribute("statut");
 
         webContext.setVariable("statut",statut);

@@ -27,7 +27,7 @@ public class AjoutArticleServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
-        List<Couleur> listedescouleurs= CouleurLibrary.getInstance().listCouleurs();
+        List<Couleur> listedescouleurs= CouleurLibrary.getInstance().listCouleursActives();
         List<Integer> unadouze= new ArrayList<Integer>();
         for (int i=1;i<13;i++){
             unadouze.add(i);
@@ -54,7 +54,7 @@ public class AjoutArticleServlet extends GenericServlet{
         Double prix=0.0;
         Integer vendupar=null;
         File filequicontientlimage=null;
-        List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleurs();
+        List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleursActives();
         List<Integer> numerocouleurschecked=new ArrayList<>();
         String resultat="bonjour";
 

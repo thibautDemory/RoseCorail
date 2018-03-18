@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ArticleDaoImpl implements ArticleDao {
     @Override
-    public List<Article> listArticles() {
+    public List<Article> listArticlesActifs() {
         String query = "SELECT * FROM article where actif=1;";
         List<Article> listofArticles = new ArrayList<>();
         try (

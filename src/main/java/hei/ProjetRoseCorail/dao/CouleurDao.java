@@ -6,7 +6,7 @@ import hei.ProjetRoseCorail.entities.Couleur;
 import java.util.List;
 
 public interface CouleurDao {
-    public List<Couleur> listCouleurs();
+    public List<Couleur> listCouleursActives();
 
     public Couleur getCouleurByID(Integer id);
     public Couleur getCouleurByName(String nom);

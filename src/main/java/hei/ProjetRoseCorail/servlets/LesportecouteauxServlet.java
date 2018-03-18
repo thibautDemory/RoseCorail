@@ -24,7 +24,7 @@ public class LesportecouteauxServlet extends GenericServlet {
         String statut=(String) req.getSession().getAttribute("statut");
         String modification=(String) req.getParameter("Modification");
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
-        List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleurs();
+        List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleursActives();
         List<Article> lesportecouteaux=articleLibrary.listPortesCouteaux();
 
         if (statut==null||"".equals(statut)||statut=="visiteur"){

@@ -46,9 +46,9 @@ public class ArticleLibrary {
         }
         return articleDao.addArticle(article);}
 
-    public List<Article> listarticles (){return articleDao.listArticles();}
+    public List<Article> listarticles (){return articleDao.listArticlesActifs();}
     //liste des plats
-    public List<Article> listPlats (){return articleDao.listArticles();}
+    public List<Article> listPlats (){return articleDao.listArticlesActifs();}
     public List<Article> listPlatsPlatACake (){return articleDao.listArticlesPlataCake();}
     public List<Article> listPlatsPlatAFromage (){return articleDao.listArticlesPlataFromage();}
     public List<Article> listPlatsCoupelle (){return articleDao.listArticlesCoupellesAperitif();}

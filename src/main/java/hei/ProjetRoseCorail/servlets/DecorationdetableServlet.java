@@ -26,7 +26,7 @@ public class DecorationdetableServlet extends GenericServlet {
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
         List<Article> dessousdeplats=articleLibrary.listDecosDessousPlat();
         List<Article> dessousdeverre=articleLibrary.listDecosDessousVerre();
-        List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleurs();
+        List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleursActives();
 
         if (statut==null||"".equals(statut)||statut=="visiteur"){
             statut="visiteur";

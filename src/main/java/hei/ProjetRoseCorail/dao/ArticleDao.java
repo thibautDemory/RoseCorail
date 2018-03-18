@@ -5,7 +5,7 @@ import hei.ProjetRoseCorail.entities.Article;
 import java.util.List;
 
 public interface ArticleDao {
-    public List<Article> listArticles();
+    public List<Article> listArticlesActifs();
     public List<Article> listArticlesPlats();
     public List<Article> listArticlesPlataFromage();
     public List<Article> listArticlesPlataCake();
