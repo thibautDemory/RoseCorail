@@ -12,7 +12,7 @@
     <meta charset="utf-8"/>
     <title>Mot de passe oublié</title>
 </head>
-<body>
+<body th:onload="'if('+ ${emailEntre} +' == false){alert(\'Oupps... Votre email est incorrect || EMAIL : '+ ${emailEntre} +' \');}'">
 <div class="page">
 
     <div th:switch="${statut}">
@@ -34,7 +34,7 @@
             <div class="col-xs-offset-1 classeChamps">
                 <label for="email" class="col-xs-3 control-label">Email :</label>
                 <div class="col-xs-6">
-                    <input type="text" class="form-control" id="email" placeholder="Entrer votre email" name="email">
+                    <input type="email" class="form-control" id="email" placeholder="Entrer votre email" name="email">
                 </div>
             </div>
             <div class="col-xs-offset-1 classeChamps">

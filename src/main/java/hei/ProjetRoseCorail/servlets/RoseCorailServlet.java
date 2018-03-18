@@ -4,7 +4,6 @@ import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.CompteRoseCorail;
 import hei.ProjetRoseCorail.entities.Mail;
 import hei.ProjetRoseCorail.entities.PasswordGenerator;
-import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import hei.ProjetRoseCorail.managers.CompteRoseCorailLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -24,16 +23,13 @@ public class RoseCorailServlet extends GenericServlet{
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
 
-        if (statut==null||"".equals(statut)||statut=="visiteur"){
+        if (statut==null||"".equals(statut)){
             statut="visiteur";
         }else{
             String nom=req.getSession().getAttribute("nom").toString();
             String prenom=req.getSession().getAttribute("prenom").toString();
             webContext.setVariable("prenom",prenom);
             webContext.setVariable("nom",nom);
-            Integer iddeCeClient=(Integer) req.getSession().getAttribute("idClient");
-            String email=CompteClientLibrary.getInstance().getCompteClientById(iddeCeClient).getEmail();
-            webContext.setVariable("email",email);
         }
         System.out.println(statut);
         CompteRoseCorailLibrary compteRoseCorailLibrary=CompteRoseCorailLibrary.getInstance();
