@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/connexion")
@@ -28,6 +29,9 @@ public class ConnexionServlet extends GenericServlet{
         String statut=(String) req.getSession().getAttribute("statut");
         Boolean mauvaismotdepasse=(Boolean) req.getSession().getAttribute("mauvaismotdepasse");
         webContext.setVariable("mauvaismotdepasse",mauvaismotdepasse);
+        Boolean emailexiste=(Boolean) req.getSession().getAttribute("emailexiste");
+        webContext.setVariable("emailexiste",emailexiste);
+
         if (statut==null||"".equals(statut)){
             statut="visiteur";
         }
@@ -56,11 +60,13 @@ public class ConnexionServlet extends GenericServlet{
         }else{
             List<CompteClient> lesclients=compteClientLibrary.listComptesClients();
             boolean emailexiste=false;
+            req.getSession().setAttribute("emailexiste",false);
             int i=0;
 
             while (i<lesclients.size() && emailexiste==false){
                 if(lesclients.get(i).getEmail().equals(adresseEmailRentree)){
                     emailexiste=true;
+                    req.getSession().setAttribute("emailexiste",true);
                 }
                 i++;
             }
@@ -71,6 +77,7 @@ public class ConnexionServlet extends GenericServlet{
                     req.getSession().setAttribute("nom", client.getNom_gerant());
                     req.getSession().setAttribute("prenom", client.getPrenom_gerant());
                     req.getSession().setAttribute("statut", "client");
+                    req.getSession().setAttribute("mauvaismotdepasse",false);
                     resp.sendRedirect("accueil");
                 }else{
                     req.getSession().setAttribute("mauvaismotdepasse",true);

@@ -12,7 +12,8 @@
 	  <meta charset="utf-8"/>
 	  <title>Connexion</title>
 	</head>
-	<body>
+	<body th:onload="'if('+ ${mauvaismotdepasse} +' || '+ ${emailexiste} +' == false){alert(\'Oupps... Votre mot de passe ou email est incorrect || PSW : '+ ${mauvaismotdepasse} +' || EMAIL : '+ ${emailexiste} +' \');}'">
+
 		<div class="page">
 			<div th:switch="${statut}">
 				<div th:case="'admin'">
@@ -34,7 +35,7 @@
 							<div class="form-group">
 								<label for="email" class="col-xs-3 control-label">Email :</label>
 								<div class="col-xs-9">
-									<input type="text" class="form-control" id="email" placeholder="Entrer email" name="email" autofocus>
+									<input type="email" class="form-control" id="email" placeholder="Entrer email" name="email" autofocus>
 								</div>
 							</div>
 							<div class="form-group">
@@ -43,7 +44,6 @@
 									<input type="password" class="form-control" id="pwd" placeholder="Entrer mot de passe" name="pwd">
 								</div>
 							</div>
-							<div th:if="${mauvaismotdepasse}">Oups il semblerait que vous ayez rentré un mauvais mot de passe</div>
 						</div>
 						<div class="formBottom col-xs-8 col-xs-offset-1">
 							<div class="col-xs-2"></div>

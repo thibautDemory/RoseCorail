@@ -31,6 +31,8 @@ public class MotDePasseOublieServlet extends GenericServlet {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
+        Boolean emailEntre = (Boolean) req.getSession().getAttribute("emailEntre");
+        webContext.setVariable("emailEntre",emailEntre);
 
         if (statut==null||"".equals(statut)||statut=="visiteur"){
             statut="visiteur";
@@ -67,12 +69,14 @@ public class MotDePasseOublieServlet extends GenericServlet {
                 idClient = compteClient.getId_compte_client();
                 compteClientLibrary.updatePassword(idClient,password);
                 System.out.println("Mail envoyé !");
+                req.getSession().setAttribute("emailEntre",true);
 
                 resp.sendRedirect(String.format("accueil"));
             }else if(n==lesclients.size()-1){
                 flag = true;
                 System.out.println("Pas trouvé");
-                resp.sendRedirect(String.format("accueil"));
+                req.getSession().setAttribute("emailEntre",false);
+                resp.sendRedirect(String.format("motDePasseOublie"));
             }else{
                 n++;
             }
