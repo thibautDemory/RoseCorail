@@ -34,11 +34,9 @@
 			  <form method="post" class="form-horizontal" action="monCompteClient" accept-charset="utf-8">
 
 				  <!-- ID CompteClient -->
-				  <div class="form-group row">
-					  <label for="idCompteClient" class="col-xs-4">ID compte client:</label>
-					  <input type="text" class="inputText col-xs-4" id="idCompteClient" th:value="${idCompteClient}" placeholder="Entrer le nom de votre entreprise" name="idCompteClient">
-				  </div>
-			  	<!-- Nom Entreprise -->
+				  <input type="hidden" class="inputText col-xs-4" id="idCompteClient" th:value="${idCompteClient}" placeholder="Entrer le nom de votre entreprise" name="idCompteClient">
+
+				  <!-- Nom Entreprise -->
 			  	<div class="form-group row">
 			      <label for="nomBoutique" class="col-xs-4">Nom entreprise:</label>
 			      <input type="text" class="inputText col-xs-4" id="nomBoutique" th:value="${nomBoutique}" placeholder="Entrer le nom de votre entreprise" name="nomBoutique">

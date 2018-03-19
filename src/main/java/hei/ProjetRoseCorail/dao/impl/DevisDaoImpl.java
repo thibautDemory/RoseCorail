@@ -134,6 +134,23 @@ public class DevisDaoImpl implements DevisDao {
     }
 
     @Override
+    public void changerDateDevis(Integer idDevis) {
+        LocalDate maintenant=LocalDate.now();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE devis SET date = ?, etatPanier=FALSE WHERE id_devis =?;")) {
+                statement.setDate(1,Date.valueOf(maintenant) );
+                statement.setInt(2,idDevis );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
     public void dePanieraEnPreparation(Integer idDevis) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(

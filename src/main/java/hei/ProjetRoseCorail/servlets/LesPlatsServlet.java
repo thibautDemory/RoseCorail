@@ -71,7 +71,7 @@ public class LesPlatsServlet extends GenericServlet{
         List<Couleur> lescouleurschoisies=new ArrayList<>();
         List<Integer> lesquantiteschoisies =new ArrayList<>();
         List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleursActives();
-        Devis panier=devisLibrary.getDevisByiD(compteClientLibrary.getCompteClientById(idClient).getNumero_panier_actif());
+        Devis panier;
         CompteClient client=compteClientLibrary.getCompteClientById(idClient);
 
         try{
@@ -92,11 +92,14 @@ public class LesPlatsServlet extends GenericServlet{
             System.out.println(lescouleurschoisies.get(i));
             System.out.println(lesquantiteschoisies.get(i));
         }
-        if(client.getNumero_panier_actif()==null){
+        if(client.getNumero_panier_actif()==0){
+            System.out.println("panier actif est nul");
             Devis panieraconstruire=new Devis(null,idClient,maintenant,"panier",true);
             panier=devisLibrary.creerundevis(panieraconstruire);
-
+            compteClientLibrary.changernumeropanieractif(idClient,panier.getId_devis());
         }else{
+            System.out.println(client.getNumero_panier_actif());
+            System.out.println("panier actif est pas nul");
             panier=devisLibrary.getPanierClient(idClient);
         }
         Article article=ArticleLibrary.getInstance().getArticleById(idArticle);

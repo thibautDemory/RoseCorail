@@ -88,6 +88,7 @@ public class PanierServlet extends GenericServlet{
 
         CompteClient client=compteClientLibrary.getCompteClientById(idClient);
         Integer idPanier=client.getNumero_panier_actif();
+        devisLibrary.changerDateDevis(idPanier);
         Integer idnouveaupanier=0;
         devisLibrary.passerdePanierAPreparation(idPanier);
         Devis devis= new Devis(null,idClient,maintenant,"panier",true);

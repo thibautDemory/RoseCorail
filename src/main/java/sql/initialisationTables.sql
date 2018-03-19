@@ -74,7 +74,7 @@ INSERT INTO `posseder`(`id_couleur`, `id_article`) VALUES (4, 4);
 INSERT INTO `devis`(`id_devis`, `id_compte_client`, `date_creation`, `etat`, `etatPanier`) VALUES (1, 1, '2017-04-06', 'panier', true);
 INSERT INTO `devis`(`id_devis`, `id_compte_client`, `date_creation`, `etat`, `etatPanier`) VALUES (2, 2, '2017-11-20', 'panier', true);
 INSERT INTO `devis`(`id_devis`, `id_compte_client`, `date_creation`, `etat`, `etatPanier`) VALUES (3, 3, '2017-10-10', 'panier', true);
-INSERT INTO `devis`(`id_devis`, `id_compte_client`, `date_creation`, `etat`, `etatPanier`) VALUES (123456789, 3, '2017-10-10', 'panier', true);
+INSERT INTO `devis`(`id_devis`, `id_compte_client`, `date_creation`, `etat`, `etatPanier`) VALUES (4, 3, '2017-10-10', 'panier', true);
 
 INSERT INTO `lignedevis`(`id_ligne_devis`, `id_couleur`, `id_devis`, `id_article`, quantite) VALUES (1, 1, 1, 1, 3);
 INSERT INTO `lignedevis`(`id_ligne_devis`, `id_couleur`, `id_devis`, `id_article`, quantite) VALUES (2, 1, 1, 3, 3);

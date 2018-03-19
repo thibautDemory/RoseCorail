@@ -11,6 +11,7 @@ public interface DevisDao {
     public Devis getDevisByArticle(Integer idArticle);
     public Devis getPanierClient(Integer idcompteclient);
     public Devis getDevisById(Integer idDevis);
+    public void changerDateDevis(Integer idDevis);
     public void dePanieraEnPreparation(Integer idDevis);
 
 

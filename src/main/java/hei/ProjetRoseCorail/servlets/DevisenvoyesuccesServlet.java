@@ -16,8 +16,15 @@ public class DevisenvoyesuccesServlet extends GenericServlet {
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
 
+        if (statut==null||"".equals(statut)||statut=="visiteur"){
+            statut="visiteur";
+        }else{
+            String nom=req.getSession().getAttribute("nom").toString();
+            String prenom=req.getSession().getAttribute("prenom").toString();
+            webContext.setVariable("prenom",prenom);
+            webContext.setVariable("nom",nom);
+        }
         webContext.setVariable("statut",statut);
-
         templateEngine.process("devisenvoyesucces", webContext, resp.getWriter());
     }
 }
