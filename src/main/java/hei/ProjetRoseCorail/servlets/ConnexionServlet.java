@@ -45,7 +45,10 @@ public class ConnexionServlet extends GenericServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String adresseEmailRentree=req.getParameter("email");
         String motDePasseRentree=req.getParameter("pwd");
-        if(adresseEmailRentree.equals("beatrice.roquette@rosecorail.com")){
+
+        String emailAdmin = compteRoseCorailLibrary.getCompteRoseCorailById(1).getEmail();
+
+        if(adresseEmailRentree.equals(emailAdmin)){
             CompteRoseCorail administrateur = compteRoseCorailLibrary.getCompteRoseCorailByMail(adresseEmailRentree);
             if (administrateur.getMdp().equals(motDePasseRentree)){
                 req.getSession().setAttribute("idAdmin",administrateur.getId_compte_rose_corail());
