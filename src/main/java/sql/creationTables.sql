@@ -39,7 +39,7 @@ CREATE TABLE `compteclient` (
   `adresse` varchar(130) NOT NULL,
   `ville` varchar(50) NOT NULL,
   `code_postal` char(5) NOT NULL,
-  `mdp` varchar(60) NOT NULL,
+  `mdp` varchar(120) NOT NULL,
   `numero_tel` varchar(15) NOT NULL,
   `num_tva` varchar(20) NOT NULL,
   `site_internet` varchar(100) NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE `lignedevis` (
 CREATE TABLE `compterosecorail` (
   `id_compte_RC` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(70) NOT NULL,
-  `mdp` varchar(60) NOT NULL,
+  `mdp` varchar(120) NOT NULL,
   `numero_tel` varchar(15) NOT NULL,
   PRIMARY KEY (id_compte_RC)
 )engine = innodb;

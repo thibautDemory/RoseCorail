@@ -4,6 +4,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import hei.ProjetRoseCorail.dao.impl.CompteClientDaoImpl;
 import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.CompteRoseCorail;
+import hei.ProjetRoseCorail.entities.EncodingPassword;
 import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import hei.ProjetRoseCorail.managers.CompteRoseCorailLibrary;
 import org.thymeleaf.TemplateEngine;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @WebServlet("/connexion")
@@ -45,9 +48,15 @@ public class ConnexionServlet extends GenericServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String adresseEmailRentree=req.getParameter("email");
         String motDePasseRentree=req.getParameter("pwd");
-        if(adresseEmailRentree.equals("beatrice.roquette@rosecorail.com")){
+
+        EncodingPassword encodingObject = new EncodingPassword();
+        String mdpEncoder = encodingObject.encodePassword(motDePasseRentree);
+
+        String emailAdmin = compteRoseCorailLibrary.getCompteRoseCorailById(1).getEmail();
+
+        if(adresseEmailRentree.equals(emailAdmin)){
             CompteRoseCorail administrateur = compteRoseCorailLibrary.getCompteRoseCorailByMail(adresseEmailRentree);
-            if (administrateur.getMdp().equals(motDePasseRentree)){
+            if (administrateur.getMdp().equals(mdpEncoder)){
                 req.getSession().setAttribute("idAdmin",administrateur.getId_compte_rose_corail());
                 req.getSession().setAttribute("nom","Roquette");
                 req.getSession().setAttribute("prenom","Béatrice");
@@ -72,7 +81,7 @@ public class ConnexionServlet extends GenericServlet{
             }
             if(emailexiste){
                 CompteClient client= compteClientLibrary.getCompteClientByMail(adresseEmailRentree);
-                if (client.getMdp().equals(motDePasseRentree)) {
+                if (client.getMdp().equals(mdpEncoder)) {
                     req.getSession().setAttribute("idClient", client.getId_compte_client());
                     req.getSession().setAttribute("nom", client.getNom_gerant());
                     req.getSession().setAttribute("prenom", client.getPrenom_gerant());

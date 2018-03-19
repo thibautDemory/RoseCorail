@@ -92,6 +92,7 @@ public class CompteClientLibrary {
     }
 
     public CompteClient getCompteClientById(Integer id){ return compteClientDao.getCompteClientById(id);}
+    public CompteClient getCompteClientByIdWithoutIdPanier(Integer id){ return compteClientDao.getCompteClientByIdWithoutIdPanier(id);}
     public CompteClient getCompteClientByMail(String mail){ return compteClientDao.getCompteClientByMail(mail);}
     public List<CompteClient> listComptesClients() {return compteClientDao.listComptesClient();}
 

@@ -3,6 +3,7 @@ package hei.ProjetRoseCorail.servlets;
 import hei.ProjetRoseCorail.entities.Actualite;
 import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.CompteRoseCorail;
+import hei.ProjetRoseCorail.entities.EncodingPassword;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
 import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import hei.ProjetRoseCorail.managers.CompteRoseCorailLibrary;
@@ -14,6 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @WebServlet("/modifMDP")
@@ -52,6 +55,10 @@ public class ModifMDPServlet extends GenericServlet{
         newMDP1 = req.getParameter("newMDP1");
         newMDP2 = req.getParameter("newMDP2");
 
+        EncodingPassword encodingObject = new EncodingPassword();
+        String oldPasswordEncoder = encodingObject.encodePassword(oldPassword);
+        String newMDP2Encoder = encodingObject.encodePassword(newMDP2);
+
         String statut = (String) req.getSession().getAttribute("statut");
 
         System.out.println(statut);
@@ -60,9 +67,9 @@ public class ModifMDPServlet extends GenericServlet{
             int idClient = (int) req.getSession().getAttribute("idClient");
             String mdp = compteClientLibrary.getCompteClientById(idClient).getMdp();
             if(newMDP1.equals(newMDP2)){
-                if(mdp.equals(oldPassword)){
+                if(mdp.equals(oldPasswordEncoder)){
                     try {
-                        CompteClientLibrary.getInstance().updatePassword(idClient,newMDP2);
+                        CompteClientLibrary.getInstance().updatePassword(idClient,newMDP2Encoder);
                         // REDIRECT TO Accueil
                         resp.sendRedirect(String.format("accueil"));
                     } catch (IllegalArgumentException e) {
@@ -80,9 +87,9 @@ public class ModifMDPServlet extends GenericServlet{
             int idAdmin = (int) req.getSession().getAttribute("idAdmin");
             String mdp = compteRoseCorailLibrary.getCompteRoseCorailById(idAdmin).getMdp();
             if(newMDP1.equals(newMDP2)){
-                if(mdp.equals(oldPassword)){
+                if(mdp.equals(oldPasswordEncoder)){
                     try {
-                        CompteRoseCorailLibrary.getInstance().updatePassword(idAdmin,newMDP2);
+                        CompteRoseCorailLibrary.getInstance().updatePassword(idAdmin,newMDP2Encoder);
                         // REDIRECT TO Accueil
                         resp.sendRedirect(String.format("accueil"));
                     } catch (IllegalArgumentException e) {
@@ -92,9 +99,11 @@ public class ModifMDPServlet extends GenericServlet{
                     }
                 }else{
                     System.out.println("L'ancien mot de passe est incorrect");
+                    resp.sendRedirect("modifMDP");
                 }
             }else{
                 System.out.println("Il faut rentrer deux fois le même mot de passe (dans \"Nouveau mot de passe\" et \"Confirmation du nouveau mot de passe\")");
+                resp.sendRedirect("modifMDP");
             }
         }
 

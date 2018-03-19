@@ -96,7 +96,7 @@ public class CompteClientDaoTestCase {
         CompteClient newCompteClient = new CompteClient(null, "my new email",
                 "my new shop's name", "my new boss's name", "my new boss's firstname",
                 "my new adress", "my new city", "02160", "my new password", "0323249007",
-                "my new TVA", "my new Web site", "my new description",4);
+                "my new TVA", "my new Web site", "my new description");
         // WHEN
         CompteClient createdCompteClient = compteClientDao.addCompteClient(newCompteClient);
         // THEN
@@ -117,7 +117,6 @@ public class CompteClientDaoTestCase {
                 assertThat(rs.getString("num_tva")).isEqualTo("my new TVA");
                 assertThat(rs.getString("site_internet")).isEqualTo("my new Web site");
                 assertThat(rs.getString("description_activite")).isEqualTo("my new description");
-                assertThat(rs.getInt("numero_panier_actif")).isEqualTo(4);
                 assertThat(rs.next()).isFalse();
             }
         }
