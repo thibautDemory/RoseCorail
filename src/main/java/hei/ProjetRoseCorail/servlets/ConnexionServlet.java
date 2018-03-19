@@ -4,6 +4,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import hei.ProjetRoseCorail.dao.impl.CompteClientDaoImpl;
 import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.CompteRoseCorail;
+import hei.ProjetRoseCorail.entities.EncodingPassword;
 import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import hei.ProjetRoseCorail.managers.CompteRoseCorailLibrary;
 import org.thymeleaf.TemplateEngine;
@@ -48,22 +49,8 @@ public class ConnexionServlet extends GenericServlet{
         String adresseEmailRentree=req.getParameter("email");
         String motDePasseRentree=req.getParameter("pwd");
 
-        //Encoding password
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        md.update(motDePasseRentree.getBytes());
-        byte byteData[] = md.digest();
-        //convert the byte to hex format method 1
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < byteData.length; i++) {
-            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-        }
-        String mdpEncoder = sb.toString();
-
+        EncodingPassword encodingObject = new EncodingPassword();
+        String mdpEncoder = encodingObject.encodePassword(motDePasseRentree);
 
         String emailAdmin = compteRoseCorailLibrary.getCompteRoseCorailById(1).getEmail();
 

@@ -1,6 +1,7 @@
 package hei.ProjetRoseCorail.servlets;
 
 import hei.ProjetRoseCorail.entities.CompteClient;
+import hei.ProjetRoseCorail.entities.EncodingPassword;
 import hei.ProjetRoseCorail.entities.Mail;
 import hei.ProjetRoseCorail.entities.PasswordGenerator;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
@@ -63,11 +64,14 @@ public class MotDePasseOublieServlet extends GenericServlet {
                 flag = true;
                 PasswordGenerator passwordGenerator = new PasswordGenerator();
                 String password = passwordGenerator.generatePassword(10);
+                EncodingPassword endocingObject = new EncodingPassword();
+                String passwordEncoded = endocingObject.encodePassword(password);
+
                 Mail mailMDP = new Mail(adresseEmail);
                 mailMDP.mailing(adresseEmail,password);
                 CompteClient compteClient = compteClientLibrary.getCompteClientByMail(adresseEmail);
                 idClient = compteClient.getId_compte_client();
-                compteClientLibrary.updatePassword(idClient,password);
+                compteClientLibrary.updatePassword(idClient,passwordEncoded);
                 System.out.println("Mail envoyé !");
                 req.getSession().setAttribute("emailEntre",true);
 

@@ -3,6 +3,7 @@ package hei.ProjetRoseCorail.servlets;
 import hei.ProjetRoseCorail.entities.Actualite;
 import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.CompteRoseCorail;
+import hei.ProjetRoseCorail.entities.EncodingPassword;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
 import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import hei.ProjetRoseCorail.managers.CompteRoseCorailLibrary;
@@ -54,38 +55,9 @@ public class ModifMDPServlet extends GenericServlet{
         newMDP1 = req.getParameter("newMDP1");
         newMDP2 = req.getParameter("newMDP2");
 
-        //Encoding oldPassword
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        md.update(oldPassword.getBytes());
-        byte byteData[] = md.digest();
-        //convert the byte to hex format method 1
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < byteData.length; i++) {
-            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-        }
-        String oldPasswordEncoder = sb.toString();
-
-        //Encoding oldPassword
-        MessageDigest md2 = null;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        md.update(newMDP2.getBytes());
-        byte byteData1[] = md.digest();
-        //convert the byte to hex format method 1
-        StringBuffer sb2 = new StringBuffer();
-        for (int i = 0; i < byteData.length; i++) {
-            sb2.append(Integer.toString((byteData1[i] & 0xff) + 0x100, 16).substring(1));
-        }
-        String newMDP2Encoder = sb2.toString();
-
+        EncodingPassword encodingObject = new EncodingPassword();
+        String oldPasswordEncoder = encodingObject.encodePassword(oldPassword);
+        String newMDP2Encoder = encodingObject.encodePassword(newMDP2);
 
         String statut = (String) req.getSession().getAttribute("statut");
 

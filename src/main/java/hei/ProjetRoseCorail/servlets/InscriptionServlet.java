@@ -3,6 +3,7 @@ package hei.ProjetRoseCorail.servlets;
 import hei.ProjetRoseCorail.entities.Actualite;
 import hei.ProjetRoseCorail.entities.CompteClient;
 import hei.ProjetRoseCorail.entities.Devis;
+import hei.ProjetRoseCorail.entities.EncodingPassword;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
 import hei.ProjetRoseCorail.managers.CompteClientLibrary;
 import hei.ProjetRoseCorail.managers.DevisLibrary;
@@ -63,21 +64,8 @@ public class InscriptionServlet extends GenericServlet{
         site_internet = req.getParameter("site_internet");
         description_activite = req.getParameter("description_activite");
 
-        //Encoding password
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        md.update(mdp.getBytes());
-        byte byteData[] = md.digest();
-        //convert the byte to hex format method 1
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < byteData.length; i++) {
-            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-        }
-        String mdpEncoder = sb.toString();
+        EncodingPassword encodingObject = new EncodingPassword();
+        String mdpEncoder = encodingObject.encodePassword(mdp);
 
         // CREATE CompteClient
         CompteClient newCompteClient = new CompteClient(null, email, nom_boutique, nom_gerant, prenom_gerant,
