@@ -8,8 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-@WebServlet("/uneerreur")
-public class ErreurServlet extends GenericServlet {
+@WebServlet("/AffichageDevis")
+public class AffichageDevisServlet extends GenericServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
@@ -26,6 +26,6 @@ public class ErreurServlet extends GenericServlet {
         System.out.println(statut);
         webContext.setVariable("statut",statut);
 
-        templateEngine.process("uneerreur", webContext, resp.getWriter());
+        templateEngine.process("AffichageDevis", webContext, resp.getWriter());
     }
 }

@@ -88,6 +88,7 @@ public class ConnexionServlet extends GenericServlet{
                     req.getSession().setAttribute("prenom", client.getPrenom_gerant());
                     req.getSession().setAttribute("statut", "client");
                     req.getSession().setAttribute("mauvaismotdepasse",false);
+
                     resp.sendRedirect("accueil");
                 }else{
                     req.getSession().setAttribute("mauvaismotdepasse",true);

@@ -1,10 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="/css/style-perso.css" type="text/css" rel="stylesheet">
+    <link href="/css/Lesplats.css" type="text/css" rel="stylesheet">
+    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <meta charset="UTF-8"/>
     <title>Affichage Devis</title>
 </head>
 <body>
+<div class="page col-xs-10 col-xs-offset-1">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6"><!--Logo et adresse entreprise -->
+                <img class="img-responsive" src="/images/rosecoraillogo.jpg">
+                <div class="panel-default panel col-xs-8">
+
+                    <p> Rose Corail<br>
+                        1 bis rue Raymond Gréban<br>Immeuble B - 78100 St Germain en Laye<br>
+                        Tel: 0612630712<br>
+                           Mail: beatrice.roquette@rosecorail.com</p>
+
+                </div>
+            </div>
+            <div class="col-xs-6"><!--Infos devis et client -->
+                <div class="panel panel-default col-xs-8">
+                    <div class="panel-heading">Devis n°1234</div>
+                    <p>
+                        Date: 04/05/2017<br>
+                        Code client: 0112<br>
+                        Devis valable 2 mois
+                    </p>
+                </div>
+                <div class="panel panel-default col-xs-8">
+                    <div class="panel-heading">Adresse du client:</div>
+                    <p>
+                        M et Mdme Dupont<br>
+                        15 rue du travail<br>
+                        75012 Paris
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Photo</th>
+                    <th>Description</th>
+                    <th>dimensions</th>
+                    <th>Couleur</th>
+                    <th>Vendu par</th>
+                    <th>Prix par lot</th>
+                    <th>nombre de lots</th>
+                    <th>Prix total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Nom</td>
+                    <td>Photo</td>
+                    <td>description</td>
+                    <td>dimensions</td>
+                    <td>Couleur</td>
+                    <td>Vendu par</td>
+                    <td>Prix par lot</td>
+                    <td>nombre de lots</td>
+                    <td>Prix total</td>
+                </tr>
+                <tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>total</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <table class="table table-hover table-bordered tableau">
+                <tbody>
+                <tr>
+                    <td>Prix de la marchandise Hors Taxes</td>
+
+                    <td class="prixmarchandiseHorsTaxe"></td>
+                </tr>
+                <tr>
+                    <td>Frais de port: 10% du montant, mini 15, max 40 euros</td>
+
+                    <td class="fraisdeport"></td>
+                </tr>
+                <tr>
+                    <td>Prix total Hors Taxe</td>
+
+                    <td class="prixtotalHT">78.56</td>
+                </tr>
+                <tr>
+                    <td>TVA: 20% du prix total Hors Taxes</td>
+
+                    <td class="TVA">78.56</td>
+                </tr>
+                <tr>
+                    <td>Total TTC</td>
+
+                    <td class="PrixTotalTTC">626.46</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
