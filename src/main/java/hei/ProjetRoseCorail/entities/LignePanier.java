@@ -9,15 +9,17 @@ public class LignePanier {
     private Integer quantite;
     private Double prixunitaire;
     private Integer idLigneDevis;
+    private Integer vendupar;
 
 
-    public LignePanier(String photoArticle, String numeroArticle, String nomArticle, String dimensionArticle, String photoCouleur, Integer quantite,Double prixunitaire, Integer idLigneDevis) {
+    public LignePanier(String photoArticle, String numeroArticle, String nomArticle, String dimensionArticle, String photoCouleur, Integer quantite,Integer vendupar,Double prixunitaire, Integer idLigneDevis) {
         this.photoArticle = photoArticle;
         this.numeroArticle = numeroArticle;
         this.nomArticle = nomArticle;
         this.dimensionArticle = dimensionArticle;
         this.photoCouleur = photoCouleur;
         this.quantite = quantite;
+        this.vendupar=vendupar;
         this.prixunitaire=prixunitaire;
         this.idLigneDevis=idLigneDevis;
     }
@@ -83,5 +85,13 @@ public class LignePanier {
 
     public void setPrixunitaire(Double prixunitaire) {
         this.prixunitaire = prixunitaire;
+    }
+
+    public Integer getVendupar() {
+        return vendupar;
+    }
+
+    public void setVendupar(Integer vendupar) {
+        this.vendupar = vendupar;
     }
 }

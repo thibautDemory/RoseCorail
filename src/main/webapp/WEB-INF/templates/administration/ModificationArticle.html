@@ -46,6 +46,7 @@
                             <input th:value="${cetarticle.reference}" type="text" class="form-control" name="reference-article" id="reference-article" placeholder="reference de l'article">
                         </div>
                     </div>
+                    <input type="hidden" name="idArticle" th:value="${cetarticle.id_article}">
 
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="description-article">Description : </label>
@@ -64,7 +65,7 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="categorie-article">Catégorie et Sous-Catégorie : </label>
                         <div class="col-xs-9">
-                            <select class="form-control" name="categorie-article" id="categorie-article">
+                            <select class="form-control" name="sous-categorie-article" id="categorie-article">
                                 <option>Sélectionnez une sous-catégorie</option>
                                 <option th:selected="${cetarticle.id_sous_categorie == 1}" value="1">Plats - Plats à cake</option>
                                 <option th:selected="${cetarticle.id_sous_categorie == 2}" value="2">Plats - Plats à fromage</option>
@@ -87,21 +88,23 @@
                     </div>
 
 
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label" for="prix-article">Prix : </label>
-                        <div class="col-xs-4">
-                            <input th:value="${cetarticle.prix}" type="text" class="form-control" name="prix-article" id="prix-article" placeholder="prix de l'article (unitaire)">
-                        </div>
 
-                    </div>
 
                     <div class="form-group">
                         <label class="col-xs-3 control-label" for="lot-article">Vendu par lot de: </label>
                         <div class="col-xs-3">
-                            <select class="form-control" name="lot-article" id="lot-article">
-                                <option th:selected="${cetarticle.lot_vente==chiffre}" th:each="chiffre : ${unadouze}" th:text="${chiffre}" th:value="${chiffre}"></option>
-                            </select>
+                            <input type="number" class="form-control" name="lot-article" id="lot-article" min="1">
+
+
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label" for="prix-article">Prix du lot: </label>
+                        <div class="col-xs-4">
+                            <input th:value="${cetarticle.prix}" type="text" class="form-control" name="prix-article" id="prix-article" placeholder="prix de l'article (unitaire)">
+                        </div>
+
                     </div>
 
 

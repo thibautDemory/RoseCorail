@@ -49,7 +49,7 @@ public class AjoutArticleServlet extends GenericServlet{
         String nom="";
         String description="";
         String dimension="";
-        Integer sous_categorie=2;
+        Integer sous_categorie=0;
         String reference="";
         Double prix=0.0;
         Integer vendupar=null;
@@ -95,10 +95,6 @@ public class AjoutArticleServlet extends GenericServlet{
         try{
             Article createdArticle= ArticleLibrary.getInstance().addArticle(newarticle);
             System.out.println("larticlelibrary");
-
-
-
-
         }catch (IllegalArgumentException e){
             String errorMessage =e.getMessage();
             System.out.println("error2"+errorMessage);

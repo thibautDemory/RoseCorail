@@ -18,10 +18,12 @@
             <h4>Référence : <span th:text="${cetarticle.reference}">6030-062</span></h4>
             <h4>Dimensions : <span th:text="${cetarticle.dimension}">30*30cm</span></h4>
             <h4>Vendu par : <span th:text="${cetarticle.lot_vente}"> à l'unité</span></h4>
-            <h4> Prix: <span th:text="${cetarticle.prix}"> 75.00</span><span class="glyphicon glyphicon-euro">/u</span></h4>
+            <h4>Prix du lot: <span th:text="${cetarticle.prix}"> 75.00</span><span class="glyphicon glyphicon-euro"></span></h4>
 
         </div>
+
     </div>
+    <h4>Laissez à 0 les couleurs que vous ne souhaitez pas</h4>
     <div class="row">
 
             <div class="col-xs-11 tableaucouleurs">
@@ -29,13 +31,13 @@
                     <thead>
                     <th class="col-xs-3">couleur</th>
                     <th>nom de la couleur</th>
-                    <th>quantité</th>
+                    <th>quantité (nombre de lots)</th>
                     </thead>
                     <tbody>
                     <tr th:each="couleur : ${sescouleurs}">
                         <td><img th:src="${couleur.image_couleur}" class="img img-responsive"></td>
                         <td th:text="${couleur.nom_couleur}"></td>
-                        <td><input type="number" th:name="${couleur.nom_couleur}"></td>
+                        <td><input  min="0" value="0" type="number" th:name="${couleur.nom_couleur}"></td>
                     </tr>
                     </tbody>
                 </table>

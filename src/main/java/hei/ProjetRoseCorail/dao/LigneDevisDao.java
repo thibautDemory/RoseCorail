@@ -13,4 +13,5 @@ public interface LigneDevisDao {
     public void modifierQuantiteLigneDevis(Integer idLigneDevis,Integer quantite);
     public void deleteLigneDevis(Integer idLigneDevis);
     public void deleteLigneDevisForOneCouleur(Integer idCouleur);
+    public void deleteLigneDevisForArticle(Integer idArticle);
 }

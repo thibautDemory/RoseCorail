@@ -38,9 +38,10 @@
 				        <th>article</th>
 				        <th>dimensions</th>
 				        <th>couleur</th>
-				        <th>quantité</th>
-				        <th>prix unitaire</th>
-				        <th>prix du lot</th>
+				        <th>vendu par</th>
+						  <th>prix par lot</th>
+				        <th>nombre de lots</th>
+				        <th>prix total</th>
 				        <th>supprimer</th>
 				      </tr>
 				    </thead>
@@ -50,9 +51,11 @@
 				        <td th:text="${ligne.numeroArticle}+'  '+${ligne.nomArticle}">6030-414 plat à cake</td>
 				        <td th:text="${ligne.dimensionArticle}">32x15cm intérieur 11cm</td>
 				        <td><img th:src="${ligne.photoCouleur}">photo couleur</td>
-				        <td><input min="1" max="100" type="number" th:value="${ligne.quantite}" th:class="'prixunitaire'+${ligne.idLigneDevis}" th:onchange="'changerlePrixdelaligne('+${ligne.prixunitaire}+','+${ligne.idLigneDevis}+')'"></td>
+						  <td th:text="${ligne.vendupar}"></td>
 						  <td th:text="${ligne.prixunitaire}"></td>
-						  <td th:class="'prixfinaldelaligne'+${ligne.idLigneDevis}+' prixdelot'" th:text="${ligne.quantite}*${ligne.prixunitaire}"><!-- Il faudrait ici faire un JS qui récupère la valeur de la ligne d'au dessus et la multiplie par le prix de l'article-->à changer (regarde html)</td>
+						  <td><input min="1" max="100" type="number" th:value="${ligne.quantite}" th:class="'prixunitaire'+${ligne.idLigneDevis}" th:onchange="'changerlePrixdelaligne('+${ligne.prixunitaire}+','+${ligne.idLigneDevis}+')'"></td>
+
+						  <td th:class="'prixfinaldelaligne'+${ligne.idLigneDevis}+' prixdelot'" th:text="${ligne.quantite}*${ligne.prixunitaire}"></td>
 				        <td><a th:href="${'supprimerLignePanier?id='+ligne.idLigneDevis}" class="glyphicon glyphicon-trash"></a></td>
 				      </tr>
 

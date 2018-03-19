@@ -89,7 +89,28 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
 
     @Override
     public List<LigneDevis> listLignesDevisPourUnArticle(Integer idArticle) {
-        return null;
+        String query = "SELECT * FROM lignedevis JOIN article ON article.id_article=lignedevis.id_article WHERE article.id_article= ?;";
+        List<LigneDevis> listlignesdevispourunarticle = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, idArticle);
+            try(ResultSet resultSet = statement.executeQuery()){
+
+                while (resultSet.next()) {
+                    listlignesdevispourunarticle.add(new LigneDevis
+                            (resultSet.getInt("id_ligne_devis"),
+                                    resultSet.getInt("id_couleur"),
+                                    resultSet.getInt("id_devis"),
+                                    resultSet.getInt("id_article"),
+                                    resultSet.getInt("quantite"))
+                    );
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listlignesdevispourunarticle;
     }
 
     @Override
@@ -153,6 +174,20 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
             try (PreparedStatement statement = connection.prepareStatement(
                     "delete from lignedevis where id_couleur=?")) {
                 statement.setInt(1,idCouleur );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteLigneDevisForArticle(Integer idArticle) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "delete from lignedevis where id_article=?")) {
+                statement.setInt(1,idArticle );
                 statement.executeUpdate();
             }
         }catch (SQLException e) {

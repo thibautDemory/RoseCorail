@@ -78,7 +78,7 @@ public class LesPlatsServlet extends GenericServlet{
             //récupération des valeurs
 
             for (int i=0;i<lescouleurs.size();i++) {
-                if (req.getParameter(lescouleurs.get(i).getNom_couleur()) != null && !req.getParameter(lescouleurs.get(i).getNom_couleur()).equals("")) {
+                if (req.getParameter(lescouleurs.get(i).getNom_couleur()) != null && !req.getParameter(lescouleurs.get(i).getNom_couleur()).equals("") && Integer.parseInt(req.getParameter(lescouleurs.get(i).getNom_couleur()))!=0) {
                     lescouleurschoisies.add(couleurLibrary.getCouleurByName(lescouleurs.get(i).getNom_couleur()));
                     lesquantiteschoisies.add(Integer.parseInt(req.getParameter(lescouleurs.get(i).getNom_couleur())));
                 }

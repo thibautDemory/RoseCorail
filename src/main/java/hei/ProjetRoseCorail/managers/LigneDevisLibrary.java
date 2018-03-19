@@ -25,4 +25,5 @@ public class LigneDevisLibrary {
     }
     public void deleteLigneDevis(Integer idLigneDevis){ligneDevisDao.deleteLigneDevis(idLigneDevis);};
     public void deleteLigneDevisForOneCouleur(Integer idCouleur){ligneDevisDao.deleteLigneDevisForOneCouleur(idCouleur);};
+    public void deleteLigneDevisForOneArticle(Integer idArticle){ligneDevisDao.deleteLigneDevisForArticle(idArticle);};
 }
