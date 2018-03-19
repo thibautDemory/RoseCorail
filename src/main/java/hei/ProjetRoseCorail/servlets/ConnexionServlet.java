@@ -65,6 +65,7 @@ public class ConnexionServlet extends GenericServlet{
             }
             else{
                 System.out.println("Mot de passe de l'administrateur incorrect !");
+
             }
         }else{
             List<CompteClient> lesclients=compteClientLibrary.listComptesClients();

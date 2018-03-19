@@ -58,9 +58,13 @@ public class PanierServlet extends GenericServlet{
                         article.getPrix(),
                         leslignesdevis.get(i).getId_ligne_devis()));
             }
+            if(leslignesdevis.size()==0){
+                webContext.setVariable("paniervide",true);
+            }
 
             webContext.setVariable("lesarticlesdupanier",lesArticlesCouleurEtQuantites);
         }
+
         System.out.println(statut);
         webContext.setVariable("statut",statut);
 
