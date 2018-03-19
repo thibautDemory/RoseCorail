@@ -27,48 +27,31 @@
 				</div>
 			</div>
 		<div class="contenu">
-			<h2>Les devis</h2>
+			<h2 class="col-xs-4 col-xs-offset-5">Les devis</h2>
 			<div class="container">
 				<table class="table table-hover tableau">
 				    <thead>
 				      <tr>
-				      	<th>boutique</th>
-				        <th>date</th>
-				        <th>nombre d'articles commandés</th>
-				        <th>prix total de la commande</th>
+				      	<th>Boutique</th>
+				        <th>Date</th>
+				        <th>Nombre d'articles commandés</th>
+				        <th>Prix total de la commande</th>
 				        <th>état</th>
-				        <th>voir</th>
-				        <th>supprimer</th>				        
+				        <th>Voir</th>
+				        <th>Supprimer</th>
 				      </tr>
 				    </thead>
 				    <tbody>
-				      <tr>
-				      	<td>Decathlon</td>
-				        <td>21/02/2017</td>
-				        <td>36</td>
-				        <td>804</td>
-				        <td class="etat demande">Demandé</td>
+				      <tr th:each="devis : ${lesdevisRC}">
+				      	<td th:text="${devis.boutique}">Decathlon</td>
+				        <td th:text="${devis.date}">21/02/2017</td>
+				        <td th:text="${devis.nbreArticles}">36</td>
+				        <td th:text="${devis.prixTotal}">804</td>
+				        <td th:text="${devis.etat}" class="etat demande">Demandé</td>
 				        <td><a href="#" class="glyphicon glyphicon-file"></a></td>
 				        <td><a href="#" class="glyphicon glyphicon-trash"></a></td>
 				      </tr>
-				      <tr>
-				      	<td>Decathlon</td>
-				        <td>21/02/2017</td>
-				        <td>36</td>
-				        <td>804</td>
-				        <td class="etat enPrepa">En préparation</td>
-				        <td><a href="#" class="glyphicon glyphicon-file"></a></td>
-				        <td><a href="#" class="glyphicon glyphicon-trash"></a></td>
-				      </tr>
-				      <tr>
-				      	<td>Decathlon</td>
-				        <td>21/02/2017</td>
-				        <td>36</td>
-				        <td>804</td>
-				        <td class="etat expedie">Expédié</td>
-				        <td><a href="#" class="glyphicon glyphicon-file"></a></td>
-				        <td><a href="#" class="glyphicon glyphicon-trash"></a></td>
-				      </tr>
+
 				    </tbody>
 				</table>
 			</div>

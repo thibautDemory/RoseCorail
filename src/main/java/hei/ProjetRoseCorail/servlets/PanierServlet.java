@@ -60,6 +60,8 @@ public class PanierServlet extends GenericServlet{
             }
 
             webContext.setVariable("lesarticlesdupanier",lesArticlesCouleurEtQuantites);
+        }else{
+            webContext.setVariable("paniervide",true);
         }
         System.out.println(statut);
         webContext.setVariable("statut",statut);

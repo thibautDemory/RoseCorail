@@ -60,6 +60,31 @@ public class DevisDaoImpl implements DevisDao {
     }
 
     @Override
+    public List<Devis> listDevis() {
+        String query = "SELECT * FROM devis WHERE etatPanier=FALSE;";
+        List<Devis> listofCouleursPourUnArticle = new ArrayList<>();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            try(ResultSet resultSet = statement.executeQuery()){
+
+                while (resultSet.next()) {
+                    listofCouleursPourUnArticle.add(new Devis(
+                            resultSet.getInt("id_devis"),
+                            resultSet.getInt("id_compte_client"),
+                            resultSet.getDate("date_creation").toLocalDate(),
+                            resultSet.getString("etat"),
+                            resultSet.getBoolean("etatPanier"))
+                    );
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listofCouleursPourUnArticle;
+    }
+
+    @Override
     public Devis getDevisByArticle(Integer idArticle) {
         return null;
     }

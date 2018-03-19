@@ -4,6 +4,8 @@ import hei.ProjetRoseCorail.dao.DevisDao;
 import hei.ProjetRoseCorail.dao.impl.DevisDaoImpl;
 import hei.ProjetRoseCorail.entities.Devis;
 
+import java.util.List;
+
 public class DevisLibrary {
     private static class DevisLibraryHolder {
         private final static DevisLibrary instance= new DevisLibrary();
@@ -11,6 +13,9 @@ public class DevisLibrary {
     public static DevisLibrary getInstance() {return DevisLibrary.DevisLibraryHolder.instance;}
 
     private DevisDao devisDao=new DevisDaoImpl();
+
+    public List<Devis> listlesdevis(){return devisDao.listDevis();}
+    public List<Devis> listdevispouruncompteclient(Integer idClient){return devisDao.listDevisByCompteClient(idClient);}
 
     public Devis creerundevis(Devis devis){return devisDao.creerUnDevis(devis); }
     public Devis getPanierClient(Integer idClient){return devisDao.getPanierClient(idClient);}
