@@ -38,7 +38,7 @@ public class MonCompteClientServlet extends GenericServlet{
         webContext.setVariable("statut",statut);
 
         Integer idClient= (Integer) req.getSession().getAttribute("idClient");
-        CompteClient compteClient = CompteClientLibrary.getInstance().getCompteClientById(idClient);
+        CompteClient compteClient = CompteClientLibrary.getInstance().getCompteClientByIdWithoutIdPanier(idClient);
 
         int idCompteClient = compteClient.getId_compte_client();
         String email = compteClient.getEmail();

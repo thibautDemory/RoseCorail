@@ -34,6 +34,22 @@ public class CompteClient {
         this.numero_panier_actif=numeroPanier;
     }
 
+    public CompteClient(Integer id_compte_client, String email, String nom_boutique, String nom_gerant, String prenom_gerant, String adresse, String ville, String code_postal, String mdp, String numero_tel, String num_tva, String site_internet, String description_activite) {
+        this.id_compte_client = id_compte_client;
+        this.email = email;
+        this.nom_boutique = nom_boutique;
+        this.nom_gerant = nom_gerant;
+        this.prenom_gerant = prenom_gerant;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.mdp = mdp;
+        this.numero_tel = numero_tel;
+        this.num_tva = num_tva;
+        this.site_internet = site_internet;
+        this.description_activite = description_activite;
+    }
+
     public CompteClient(Integer id_compte_client, String email, String nom_boutique, String nom_gerant, String prenom_gerant, String adresse, String ville, String code_postal, String numero_tel, String num_tva, String site_internet, String description_activite) {
         this.id_compte_client = id_compte_client;
         this.email = email;

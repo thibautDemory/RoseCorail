@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @WebServlet("/inscription")
 public class InscriptionServlet extends GenericServlet{
@@ -61,15 +63,30 @@ public class InscriptionServlet extends GenericServlet{
         site_internet = req.getParameter("site_internet");
         description_activite = req.getParameter("description_activite");
 
-        // CREATE CompteClient
+        //Encoding password
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        md.update(mdp.getBytes());
+        byte byteData[] = md.digest();
+        //convert the byte to hex format method 1
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        String mdpEncoder = sb.toString();
 
+        // CREATE CompteClient
         CompteClient newCompteClient = new CompteClient(null, email, nom_boutique, nom_gerant, prenom_gerant,
-                adresse, ville, code_postal, mdp, numero_tel, num_tva, site_internet, description_activite,null);
+                adresse, ville, code_postal, mdpEncoder, numero_tel, num_tva, site_internet, description_activite);
         try {
             CompteClient createdCompteClient = CompteClientLibrary.getInstance().addCompteClient(newCompteClient);
 
             // REDIRECT TO Compteclient
-            resp.sendRedirect("monCompteClient");
+            resp.sendRedirect("accueil");
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
 
