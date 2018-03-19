@@ -35,11 +35,6 @@
     <section class="jumbotron text-center titreBloc">
         <div class="container">
             <h2 class="titreNouveautes">Les nouveautés</h2>
-            <!--<p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-            <p>
-                <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-            </p>-->
         </div>
     </section>
 
@@ -47,77 +42,11 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-4 boiteNouveaute">
+                <div class="col-md-4 boiteNouveaute" th:each="articlesRecents: ${listOf9LastArticles}">
                     <div class="card mb-4 box-shadow">
-                        <img class="classImg" src="image\platacake.jpg" alt="Card image cap">
+                        <img class="classImg" th:src="${articlesRecents.image}" th:alt="${articlesRecents.nom_article}">
                         <div>
-                            <p class="classDesc">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 boiteNouveaute">
-                    <div class="card mb-4 box-shadow">
-                        <img class="classImg" src="photos\RC-img4.jpg" alt="Card image cap">
-                        <div>
-                            <p class="classDesc">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 boiteNouveaute">
-                    <div class="card mb-4 box-shadow">
-                        <img class="classImg" src="photos\RC-img3.jpg" alt="Card image cap">
-                        <div>
-                            <p class="classDesc">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 boiteNouveaute">
-                    <div class="card mb-4 box-shadow">
-                        <img class="classImg" src="photos\RC-img2.jpg" alt="Card image cap">
-                        <div>
-                            <p class="classDesc">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 boiteNouveaute">
-                    <div class="card mb-4 box-shadow">
-                        <img class="classImg" src="photos\RC-img1.jpg" alt="Card image cap">
-                        <div>
-                            <p class="classDesc">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 boiteNouveaute">
-                    <div class="card mb-4 box-shadow">
-                        <img class="classImg" src="image\platacake.jpg" alt="Card image cap">
-                        <div>
-                            <p class="classDesc">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 boiteNouveaute">
-                    <div class="card mb-4 box-shadow">
-                        <img class="classImg" src="image\platacake.jpg" alt="Card image cap">
-                        <div>
-                            <p class="classDesc">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 boiteNouveaute">
-                    <div class="card mb-4 box-shadow">
-                        <img class="classImg" src="image\platacake.jpg" alt="Card image cap">
-                        <div>
-                            <p class="classDesc">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 boiteNouveaute">
-                    <div class="card mb-4 box-shadow">
-                        <img class="classImg" src="image\platacake.jpg" alt="Card image cap">
-                        <div>
-                            <p class="classDesc">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="classDesc" th:text="${articlesRecents.description}"></p>
                         </div>
                     </div>
                 </div>
