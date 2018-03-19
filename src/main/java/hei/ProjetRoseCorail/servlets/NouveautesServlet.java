@@ -39,8 +39,6 @@ public class NouveautesServlet extends GenericServlet {
                 listOf9LastArticles.add(listOfArticles.get(i));
             }
         }
-        System.out.println("Size : "+listSize);
-        System.out.println("Real size : "+listOf9LastArticles.size());
         webContext.setVariable("listOf9LastArticles",listOf9LastArticles);
 
 
