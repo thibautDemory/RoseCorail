@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+    <div class="modal-header">
+        <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+    </div>
+
+    <div class="modal-body">
+        <div class="row" style="margin-bottom: 20px;">
+            <p>photo actuelle</p>
+            <div class="col-xs-6">
+                <img th:src="${'/images/'+onchange+'/image.jpg'}" class="img-responsive">
+            </div>
+            <input type="file" name="nouvellephoto">
+            <input type="hidden" name="photo" th:value="${onchange}">
+
+            <button data-dismiss="modal" class="btn btn-primary">Annuler</button>
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </div>
+
+    </div>
+</form>
+
+</html>

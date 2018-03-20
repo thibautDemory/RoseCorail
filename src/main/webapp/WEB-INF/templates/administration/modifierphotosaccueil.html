@@ -31,46 +31,90 @@
         <H1 class="text-center aere">Modifier les photos</H1>
         <div class="row">
             <h2> Les photos du caroussel de la page d'accueil</h2>
-            <div class="col-xs-3">
-                <figure><img  class="img-responsive" src="/photos/RC-img1.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
+            <div class="card col-xs-3">
+                <img class=" img-responsive card-img-top" src="/photos/RC-img1.jpg">
+                <div class="card-body">
+                    <a href="modifiercettephoto" class="btn btn-danger">Supprimer cette photo</a>
+                </div>
             </div>
-            <div class="col-xs-3">
-                <figure><img class="img-responsive" src="/photos/RC-img2.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
+            <div class="card col-xs-3">
+                <img class=" img-responsive card-img-top" src="/photos/RC-img1.jpg">
+                <div class="card-body">
+                    <a href="modifiercettephoto" class="btn btn-danger">Supprimer cette photo</a>
+                </div>
             </div>
+
             <a href="" class="btn btn-primary">Ajouter une photo</a>
         </div>
 
         <div class="row">
             <h2> Les photos du caroussel de la page Collection</h2>
-            <div class="col-xs-3">
-                <figure><img  class="img-responsive" src="/photos/RC-img1.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
+            <div class="card col-xs-3">
+                <img class=" img-responsive card-img-top" src="/photos/RC-img1.jpg">
+                <div class="card-body">
+                    <a href="modifiercettephoto" class="btn btn-danger">Supprimer cette photo</a>
+                </div>
             </div>
-            <div class="col-xs-3">
-                <figure><img class="img-responsive" src="/photos/RC-img2.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
-            </div>
+            <div class="card col-xs-3">
+                <img class=" img-responsive card-img-top" src="/photos/RC-img1.jpg">
+                <div class="card-body">
+                    <a href="modifiercettephoto" class="btn btn-danger">Supprimer cette photo</a>
+                </div>
+        </div>
             <a href="" class="btn btn-primary">Ajouter une photo</a>
         </div>
 
         <div class="row">
             <h2> Les photos associées aux images de chaque catégorie</h2>
-            <div class="col-xs-3">
-                <figure><img  class="img-responsive" src="/photos/RC-img1.jpg"><figcaption><a href="">Modifier cette photo</a></figcaption></figure>
+            <div class="card-columns">
+                <div class="card col-xs-3">
+                    <h2 class="card-header">Les plats</h2>
+                    <img class=" img-responsive card-img-top" src="/images/lesplats/image.jpg">
+                    <div class="card-body">
+                        <button data-toggle="modal" data-target="#changerphoto" href="/ModalChangerPhoto?photo=lesplats" class="btn btn-primary">choisir une nouvelle photo</button>
+                    </div>
+                </div>
+                <div class="card col-xs-3">
+                    <h2 class="card-header">Les porte-couteaux</h2>
+                    <img class=" img-responsive card-img-top" src="/images/lesportecouteaux/image.jpg">
+                    <div class="card-body">
+                        <button data-toggle="modal" data-target="#changerphoto" href="/ModalChangerPhoto?photo=lesportecouteaux" class="btn btn-primary">choisir une nouvelle photo</button>
+                    </div>
+                </div>
+                <div class="card col-xs-3" >
+                    <h2 class="card-header">La maison</h2>
+                    <img class=" img-responsive card-img-top" src="/images/lamaison/image.jpg">
+                    <div class="card-body">
+                        <button data-toggle="modal" data-target="#changerphoto" href="/ModalChangerPhoto?photo=lamaison" class="btn btn-primary">choisir une nouvelle photo</button>
+                    </div>
+                </div>
+                <div class="card col-xs-3">
+                    <h2 class="card-header">Les décorations</h2>
+                    <img class=" img-responsive card-img-top" src="/images/décoration/image.jpg">
+                    <div class="card-body">
+                        <button data-toggle="modal" data-target="#changerphoto" href="/ModalChangerPhoto?photo=décoration" class="btn btn-primary">choisir une nouvelle photo</button>
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-3">
-                <figure><img class="img-responsive" src="/photos/RC-img2.jpg"><figcaption><a href="">Modifier cette photo</a></figcaption></figure>
-            </div>
-            <a href="" class="btn btn-primary">Ajouter une photo</a>
         </div>
         <div class="row">
             <h2>La photo de présentation de Coloris</h2>
-            <div class="col-xs-3">
-                <figure><img  class="img-responsive" src="/photos/RC-img1.jpg"><figcaption><a href="">Supprimer cette photo</a></figcaption></figure>
+            <div class="card col-xs-3">
+                <h2 class="card-header">Coloris</h2>
+                <img class=" img-responsive card-img-top" src="/images/Coloris/image.jpg">
+                <div class="card-body">
+                    <button data-toggle="modal" data-target="#changerphoto" href="/ModalChangerPhoto?photo=Coloris" class="btn btn-primary">choisir une nouvelle photo</button>
+                </div>
             </div>
-            <a href="" class="btn btn-primary">Modifier la photo</a>
         </div>
     </div>
     <div class="precedentlefooter"></div>
     <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
+    <div class="modal fade" id="changerphoto">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
 </div>
 
 </body>

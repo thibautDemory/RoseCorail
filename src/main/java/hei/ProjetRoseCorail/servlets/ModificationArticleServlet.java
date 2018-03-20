@@ -83,7 +83,7 @@ public class ModificationArticleServlet extends GenericServlet{
             nom=req.getParameter("nom-article");
             description=req.getParameter("description-article");
             dimension=req.getParameter("dimension-article");
-            filequicontientlimage= new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\"+nom.trim());
+            filequicontientlimage= new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\image\\article\\"+nom.trim());
             filequicontientlimage.mkdirs();
             Part imagePart = req.getPart("image-article");
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg");
