@@ -83,7 +83,7 @@ public class ModificationArticleServlet extends GenericServlet{
             nom=req.getParameter("nom-article");
             description=req.getParameter("description-article");
             dimension=req.getParameter("dimension-article");
-            filequicontientlimage= new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\image\\article\\"+nom.trim());
+            filequicontientlimage= new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\article\\"+nom.trim());
             filequicontientlimage.mkdirs();
             Part imagePart = req.getPart("image-article");
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg");
@@ -104,7 +104,7 @@ public class ModificationArticleServlet extends GenericServlet{
             System.out.println("erreur1"+error);
 
         }
-        Article articlemodif= new Article(null, sous_categorie,nom,reference,description,"image\\article\\"+nom+"\\image.jpg",dimension,prix,vendupar,1);
+        Article articlemodif= new Article(null, sous_categorie,nom,reference,description,"images\\article\\"+nom+"\\image.jpg",dimension,prix,vendupar,1);
         List<LigneDevis> leslignesDevisPourcetArticle=ligneDevisLibrary.listLignesDevisPourUnArticle(Integer.parseInt(idArticleAModifier));
         Integer idnouvelarticle=0;
         try{

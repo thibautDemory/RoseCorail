@@ -13,6 +13,7 @@ public interface DevisDao {
     public Devis getDevisById(Integer idDevis);
     public void changerDateDevis(Integer idDevis);
     public void dePanieraEnPreparation(Integer idDevis);
+    public void annulerDevis(Integer idDevis);
 
 
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="RoseCorail:war7">
+    <output-path>$PROJECT_DIR$/../BDD</output-path>
+    <root id="archive" name="RoseCorail_war.war">
+      <element id="artifact" artifact-name="RoseCorail:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -22,4 +22,5 @@ public class DevisLibrary {
     public Devis getDevisByiD(Integer iddevis){return devisDao.getDevisById(iddevis);}
     public void passerdePanierAPreparation(Integer iddevis){devisDao.dePanieraEnPreparation(iddevis);}
     public void changerDateDevis(Integer idDevis){devisDao.changerDateDevis(idDevis);}
+    public void annulerdevis(Integer idDevis){devisDao.annulerDevis(idDevis);}
 }

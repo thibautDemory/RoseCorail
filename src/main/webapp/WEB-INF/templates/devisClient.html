@@ -48,16 +48,21 @@
 				        <td th:text="${devis.prixTotal}">804</td>
 				        <td th:text="${devis.etat}" class="etat">Demandé</td>
 				        <td><a href="#" class="glyphicon glyphicon-file"></a></td>
-				        <td><a href="#" class="glyphicon glyphicon-remove"></a></td>
+				        <td><a data-toggle="modal" data-target="#annulationdevis" th:href="${'/annulationdevis?id='+devis.idDevis}" class="glyphicon glyphicon-remove"></a></td>
 				      </tr>
 				    </tbody>
 				</table>
 			</div>
 			
 			<div class="boutons">
-				<a href="lesPlats" class="btn btn-primary" role="button">Retourner aux articles</a>
+				<a href="/lesPlats" class="btn btn-primary" role="button">Retourner aux articles</a>
 			</div>
 		</div>
+			<div class="modal fade" id="annulationdevis">
+				<div class="modal-dialog">
+					<div class="modal-content"></div>
+				</div>
+			</div>
 		
 <div class="precedentlefooter"></div>
 <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
