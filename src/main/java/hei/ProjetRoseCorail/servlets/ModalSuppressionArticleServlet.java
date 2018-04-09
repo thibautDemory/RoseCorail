@@ -24,6 +24,6 @@ public class ModalSuppressionArticleServlet extends GenericServlet{
         Article cetArticle= articleLibrary.getArticleById(id);
         webContext.setVariable("cetarticle",cetArticle);
 
-        templateEngine.process("ModalSuppressionArticle", webContext, resp.getWriter());
+        templateEngine.process("/administration/ModalSuppressionArticle", webContext, resp.getWriter());
     }
 }

@@ -152,3 +152,10 @@ CREATE TABLE `definir` (
   CONSTRAINT `id_stat_fk` FOREIGN KEY (`id_stat`) REFERENCES `statistiques` (`id_stat`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   PRIMARY KEY (id_definir)
 )engine = innodb;
+
+CREATE TABLE `photopresentation` (
+  `id_photo` int(11) NOT NULL AUTO_INCREMENT,
+  `page` VARCHAR (20) NOT NULL,
+  `adresse` varchar(50) NOT NULL,
+  PRIMARY KEY (id_photo)
+)engine = innodb;

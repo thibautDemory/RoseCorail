@@ -60,11 +60,18 @@ public class ActualiteDaoImpl implements ActualiteDao {
     public Actualite addActualite(Actualite actualite) {
         String query = "INSERT INTO actualite(titre, contenu, image) VALUES(?,?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+            try (PreparedStatement statement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, actualite.getTitreActualite());
                 statement.setString(2, actualite.getContenu());
                 statement.setString(3, actualite.getImageActualite());
                 statement.executeUpdate();
+                try(ResultSet ids=statement.getGeneratedKeys()){
+                    if(ids.next()){
+                        int generatedId = ids.getInt(1);
+                        actualite.setIdActualite(generatedId);
+                        return actualite;
+                    }
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

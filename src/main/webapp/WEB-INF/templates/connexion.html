@@ -12,7 +12,7 @@
 	  <meta charset="utf-8"/>
 	  <title>Connexion</title>
 	</head>
-	<body th:onload="'if('+ ${mauvaismotdepasse} +' || '+ ${emailexiste} +' == false){alert(\'Oupps... Votre mot de passe ou email est incorrect || PSW : '+ ${mauvaismotdepasse} +' || EMAIL : '+ ${emailexiste} +' \');}'">
+	<body th:onload="'if('+ ${mauvaismotdepasse} +' || '+ ${emailexiste} +' == false){alert(\'Oupps... Votre mot de passe ou email est incorrect \');}'">
 
 		<div class="page">
 			<div th:switch="${statut}">

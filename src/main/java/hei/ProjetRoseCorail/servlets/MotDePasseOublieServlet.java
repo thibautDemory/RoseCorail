@@ -75,12 +75,12 @@ public class MotDePasseOublieServlet extends GenericServlet {
                 System.out.println("Mail envoyé !");
                 req.getSession().setAttribute("emailEntre",true);
 
-                resp.sendRedirect(String.format("accueil"));
+                resp.sendRedirect(String.format("/RoseCorail/accueil"));
             }else if(n==lesclients.size()-1){
                 flag = true;
                 System.out.println("Pas trouvé");
                 req.getSession().setAttribute("emailEntre",false);
-                resp.sendRedirect(String.format("motDePasseOublie"));
+                resp.sendRedirect(String.format("/RoseCorail/motDePasseOublie"));
             }else{
                 n++;
             }

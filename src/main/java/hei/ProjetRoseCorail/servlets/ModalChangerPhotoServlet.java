@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 @MultipartConfig
-@WebServlet("/ModalChangerPhoto")
+@WebServlet("/administration/ModalChangerPhoto")
 public class ModalChangerPhotoServlet extends GenericServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,6 +24,6 @@ public class ModalChangerPhotoServlet extends GenericServlet {
         webContext.setVariable("onchange",onchange);
 
 
-        templateEngine.process("ModalChangerPhoto", webContext, resp.getWriter());
+        templateEngine.process("/administration/ModalChangerPhoto", webContext, resp.getWriter());
     }
 }

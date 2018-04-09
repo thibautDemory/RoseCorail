@@ -1,5 +1,7 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.PhotosPresentation;
+import hei.ProjetRoseCorail.managers.PhotoPresentationLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @MultipartConfig
 @WebServlet("/administration/modifierphotosaccueil")
@@ -20,8 +23,12 @@ public class ModifierPhotosAccueilServlet extends GenericServlet{
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
-
         webContext.setVariable("statut",statut);
+        PhotoPresentationLibrary photoPresentationLibrary=PhotoPresentationLibrary.getInstance();
+        List<PhotosPresentation> listPhotosAccueil =photoPresentationLibrary.listphotoAccueil();
+        List<PhotosPresentation> listPhotosCollection =photoPresentationLibrary.listphotoCollection();
+        webContext.setVariable("lesphotosaccueil",listPhotosAccueil);
+        webContext.setVariable("lesphotoscollection",listPhotosCollection);
 
         templateEngine.process("/administration/modifierphotosaccueil", webContext, resp.getWriter());
     }

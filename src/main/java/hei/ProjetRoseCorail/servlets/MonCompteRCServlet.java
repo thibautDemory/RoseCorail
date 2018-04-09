@@ -34,7 +34,7 @@ public class MonCompteRCServlet extends GenericServlet{
         webContext.setVariable("email", email);
         webContext.setVariable("telephone", telephone);
 
-        templateEngine.process("administration/monCompteRC", webContext, resp.getWriter());
+        templateEngine.process("/administration/monCompteRC", webContext, resp.getWriter());
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,7 +50,7 @@ public class MonCompteRCServlet extends GenericServlet{
         }catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
             req.getSession().setAttribute("errorMessage", errorMessage);
-            resp.sendRedirect("/administration/monCompteRC");
+            resp.sendRedirect("/RoseCorail/administration/monCompteRC");
         }
 
 
@@ -62,13 +62,13 @@ public class MonCompteRCServlet extends GenericServlet{
             CompteRoseCorail updateCompteRoseCorail = CompteRoseCorailLibrary.getInstance().updateCompteRoseCorailWithoutPassword(compteRoseCorail);
 
             // REDIRECT TO ACCUEIL
-            resp.sendRedirect(String.format("/accueil"));
+            resp.sendRedirect(String.format("/RoseCorail/accueil"));
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
 
             req.getSession().setAttribute("errorMessage", errorMessage);
 
-            resp.sendRedirect("/administration/monCompteRC");
+            resp.sendRedirect("/RoseCorail/administration/monCompteRC");
         }
     }
 }

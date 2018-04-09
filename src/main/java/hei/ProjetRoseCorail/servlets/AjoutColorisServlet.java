@@ -46,7 +46,7 @@ public class AjoutColorisServlet extends GenericServlet{
         // GET PARAMETERS
         String nom_couleur = null;
         String numero_couleur;
-        String image_couleur = null;
+
         String saison = null;
 
         nom_couleur = req.getParameter("nomColoris");
@@ -61,7 +61,7 @@ public class AjoutColorisServlet extends GenericServlet{
 
 
         // CREATE couleur
-        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "image\\couleur\\"+nom_couleur.trim()+"\\image.jpg", saison,1);
+        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "/RoseCorail/image/couleur/"+nom_couleur.trim()+"/image.jpg", saison,1);
         try {
             Couleur createdCouleur = CouleurLibrary.getInstance().addCouleur(newCouleur);
 
@@ -72,7 +72,7 @@ public class AjoutColorisServlet extends GenericServlet{
 
             req.getSession().setAttribute("errorMessage", errorMessage);
 
-            resp.sendRedirect("ajoutColoris");
+            resp.sendRedirect("/RoseCorail/ajoutColoris");
         }
     }
 }

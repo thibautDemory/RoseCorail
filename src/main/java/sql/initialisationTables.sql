@@ -11,6 +11,7 @@ DELETE FROM compterosecorail;
 DELETE FROM couleur;
 DELETE FROM statistiques;
 DELETE FROM panelcoloris;
+DELETE FROM photopresentation;
 
 
 INSERT INTO `categorie`(`id_categorie`,`nom_categorie`) VALUES (1,'Les plats');
@@ -100,3 +101,6 @@ INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES 
 INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (4, 'Rose poudré 090, pivoine 100, aubergine 099, rouge 028, bordeaux 019, safran 096','/RoseCorail/images/coloris-4.jpg','Printemps-Été 2016');
 INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (5, 'Sapin bleuté 091, bleu vert 008, celadon 089, bleu gris 087, turquoise 020, canard 009','/RoseCorail/images/coloris-5.jpg','Printemps-Été 2016');
 INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (6, 'Elephant 035, bronze 032, argent 030','/RoseCorail/images/coloris-6.jpg','Printemps-Été 2016');
+
+INSERT INTO photopresentation (id_photo,page,adresse) VALUES (1,'accueil','/RoseCorail/images/accueil/image1.jpg');
+INSERT INTO photopresentation (id_photo,page,adresse) VALUES (2,'collection','/RoseCorail/images/collection/image2.jpg');

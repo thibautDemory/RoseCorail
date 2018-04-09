@@ -74,13 +74,13 @@ public class InscriptionServlet extends GenericServlet{
             CompteClient createdCompteClient = CompteClientLibrary.getInstance().addCompteClient(newCompteClient);
 
             // REDIRECT TO Compteclient
-            resp.sendRedirect("accueil");
+            resp.sendRedirect("/RoseCorail/accueil");
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
 
             req.getSession().setAttribute("errorMessage", errorMessage);
 
-            resp.sendRedirect("inscription");
+            resp.sendRedirect("/RoseCorail/inscription");
         }
     }
 }

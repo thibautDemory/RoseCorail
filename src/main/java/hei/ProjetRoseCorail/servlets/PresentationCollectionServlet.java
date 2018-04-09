@@ -1,5 +1,7 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.entities.PhotosPresentation;
+import hei.ProjetRoseCorail.managers.PhotoPresentationLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -8,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 @WebServlet("/presentationCollection")
@@ -28,6 +31,8 @@ public class PresentationCollectionServlet extends GenericServlet{
         }
         System.out.println(statut);
         webContext.setVariable("statut",statut);
+        List<PhotosPresentation> lesphotoscollection= PhotoPresentationLibrary.getInstance().listphotoCollection();
+        webContext.setVariable("lesphotoscollection",lesphotoscollection);
 
         templateEngine.process("presentationcollection", webContext, resp.getWriter());
     }

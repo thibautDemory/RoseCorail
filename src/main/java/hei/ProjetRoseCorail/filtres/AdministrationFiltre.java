@@ -18,7 +18,7 @@ public class AdministrationFiltre implements Filter{
         if(!"admin".equals(statut)) {
             System.out.println("Vous n'avez pas le droit d'accéder à ces pages !");
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.sendRedirect("../accueil");
+            httpResponse.sendRedirect("/RoseCorail/accueil");
             return;
         }
         chain.doFilter(request,response);

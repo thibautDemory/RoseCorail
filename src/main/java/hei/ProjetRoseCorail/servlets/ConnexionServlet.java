@@ -61,10 +61,13 @@ public class ConnexionServlet extends GenericServlet{
                 req.getSession().setAttribute("nom","Roquette");
                 req.getSession().setAttribute("prenom","Béatrice");
                 req.getSession().setAttribute("statut","admin");
-                resp.sendRedirect("accueil");
+                req.getSession().setAttribute("mauvaismotdepasse",false);
+                resp.sendRedirect("/RoseCorail/accueil");
             }
             else{
+                req.getSession().setAttribute("mauvaismotdepasse",true);
                 System.out.println("Mot de passe de l'administrateur incorrect !");
+                resp.sendRedirect("/RoseCorail/connexion");
 
             }
         }else{
@@ -89,13 +92,13 @@ public class ConnexionServlet extends GenericServlet{
                     req.getSession().setAttribute("statut", "client");
                     req.getSession().setAttribute("mauvaismotdepasse",false);
 
-                    resp.sendRedirect("accueil");
+                    resp.sendRedirect("/RoseCorail/accueil");
                 }else{
                     req.getSession().setAttribute("mauvaismotdepasse",true);
-                    resp.sendRedirect("connexion");
+                    resp.sendRedirect("/RoseCorail/connexion");
                 }
             }else{
-                resp.sendRedirect("/connexion");
+                resp.sendRedirect("/RoseCorail/connexion");
                 System.out.println("Ce compte n'existe pas");
             }
 

@@ -10,13 +10,13 @@ import java.io.IOException;
 
 import static java.lang.Integer.parseInt;
 
-@WebServlet("/administration/supprimerColoris")
+@WebServlet("/administration/SupprimerColoris")
 public class SupprimerColorisServlet extends GenericServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idColoris = parseInt(req.getParameter("id"));
         CouleurLibrary.getInstance().rendreinactivecouleur(idColoris);
         System.out.println("cette couleur a bien été supprimer");
-        resp.sendRedirect("/administration/formulaire");
+        resp.sendRedirect("/RoseCorail/administration/voirlescoloris");
     }
 }

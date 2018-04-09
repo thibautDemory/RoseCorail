@@ -3,8 +3,10 @@ package hei.ProjetRoseCorail.servlets;
 
 import hei.ProjetRoseCorail.entities.Actualite;
 import hei.ProjetRoseCorail.entities.CompteClient;
+import hei.ProjetRoseCorail.entities.PhotosPresentation;
 import hei.ProjetRoseCorail.managers.ActualiteLibrary;
 import hei.ProjetRoseCorail.managers.CompteClientLibrary;
+import hei.ProjetRoseCorail.managers.PhotoPresentationLibrary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -36,8 +38,10 @@ public class AccueilServlet extends GenericServlet{
         }
         System.out.println(statut);
         webContext.setVariable("statut",statut);
-
+        List<PhotosPresentation> lesphotosaccueil= PhotoPresentationLibrary.getInstance().listphotoAccueil();
         List<Actualite> listActu = ActualiteLibrary.getInstance().listActualites();
+
+        webContext.setVariable("lesphotosaccueil",lesphotosaccueil);
         webContext.setVariable("listActu",listActu);
 
         //System.out.println("titre1 = "+listActu.get(0).getTitreActualite());

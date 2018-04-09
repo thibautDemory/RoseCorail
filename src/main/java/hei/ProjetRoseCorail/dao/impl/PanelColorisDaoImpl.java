@@ -81,11 +81,18 @@ public class PanelColorisDaoImpl implements PanelColorisDao {
     public Panelcoloris addPanelColoris(Panelcoloris panelcoloris) {
         String query = "INSERT INTO panelcoloris(legende, image, saison) VALUES(?,?,?)";
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
+            try (PreparedStatement statement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS)) {
                 statement.setString(1, panelcoloris.getLegende());
                 statement.setString(2, panelcoloris.getImage());
                 statement.setString(3, panelcoloris.getSaison());
                 statement.executeUpdate();
+                try(ResultSet ids=statement.getGeneratedKeys()){
+                    if(ids.next()){
+                        int generatedId = ids.getInt(1);
+                        panelcoloris.setIdPanelColoris(generatedId);
+                        return panelcoloris;
+                    }
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

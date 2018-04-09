@@ -74,7 +74,7 @@ public class ModifierActualiteServlet extends GenericServlet{
             String errorMessage = e.getMessage();
             req.getSession().setAttribute("errorMessage", errorMessage);
             System.out.println("error1"+errorMessage);
-            resp.sendRedirect("/administration/modifierActualite");
+            resp.sendRedirect("/RoseCorail//administration/modifierActualite");
         }
 
         System.out.println("actu id string " +idActualiteString);
@@ -88,12 +88,12 @@ public class ModifierActualiteServlet extends GenericServlet{
             ActualiteLibrary.getInstance().addActualite(newActualite);
 
             // REDIRECT TO Accueil
-            resp.sendRedirect(String.format("/administration/formulaire"));
+            resp.sendRedirect(String.format("/RoseCorail/administration/formulaire"));
 
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
             req.getSession().setAttribute("errorMessage", errorMessage);
-            resp.sendRedirect(String.format("/administration/modifierActualite"));
+            resp.sendRedirect(String.format("/RoseCorail/administration/modifierActualite"));
         }
     }
 

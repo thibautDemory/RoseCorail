@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Bootstrap -->
+    <link href="/RoseCorail/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/style-perso.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/Lesplats.css" type="text/css" rel="stylesheet">
+    <script src="/RoseCorail/js/jquery-3.2.1.js"></script>
+    <script src="/RoseCorail/js/bootstrap.js"></script>
+    <meta charset="utf-8"/>
+    <title>Rose Corail</title>
+</head>
+<body>
+<div class="page">
+    <div th:switch="${statut}">
+        <div th:case="'admin'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+        </div>
+        <div th:case="'client'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+        </div>
+        <div th:case="'visiteur'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-hover tableau table-bordered">
+            <thead>
+            <tr>
+                <th>nom couleur</th>
+                <th>num couleur</th>
+                <th>photo</th>
+                <th>saison</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="couleur : ${lescouleurs}">
+                <td th:text="${couleur.nom_couleur}"></td>
+                <td th:text="${couleur.numero_couleur}"></td>
+                <td><img class="img-responsive" style="max-height: 100px;" th:src="${couleur.image_couleur}"></td>
+                <td th:text="${couleur.saison}"></td>
+                <td><a th:href="${'/RoseCorail/administration/modifierColoris?id='+couleur.id_couleur}" class="glyphicon glyphicon-pencil"></a></td>
+                <td><a data-toggle="modal" th:href="${'/RoseCorail/administration/ModalSuppressionColoris?id='+couleur.id_couleur}" data-target="#suppressioncoloris" class="glyphicon glyphicon-trash"></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-xs-offset-5">
+        <a href="/RoseCorail/administration/formulaire" class="btn btn-primary"> Retourner au formulaire</a>
+    </div>
+
+    <div class="modal fade" id="suppressioncoloris">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <div class="precedentlefooter"></div>
+    <script>
+        $("body").on("hidden.bs.modal", ".modal", function () {
+            $(this).removeData("bs.modal");
+        });
+
+    </script>
+
+    <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
+</div>
+</body>
+</html>

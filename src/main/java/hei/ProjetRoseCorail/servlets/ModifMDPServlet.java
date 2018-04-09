@@ -71,11 +71,11 @@ public class ModifMDPServlet extends GenericServlet{
                     try {
                         CompteClientLibrary.getInstance().updatePassword(idClient,newMDP2Encoder);
                         // REDIRECT TO Accueil
-                        resp.sendRedirect(String.format("accueil"));
+                        resp.sendRedirect(String.format("/RoseCorail/accueil"));
                     } catch (IllegalArgumentException e) {
                         String errorMessage = e.getMessage();
                         req.getSession().setAttribute("errorMessage", errorMessage);
-                        resp.sendRedirect("modifMDP");
+                        resp.sendRedirect("/RoseCorail/modifMDP");
                     }
                 }else{
                     System.out.println("L'ancien mot de passe est incorrect");
@@ -91,19 +91,19 @@ public class ModifMDPServlet extends GenericServlet{
                     try {
                         CompteRoseCorailLibrary.getInstance().updatePassword(idAdmin,newMDP2Encoder);
                         // REDIRECT TO Accueil
-                        resp.sendRedirect(String.format("accueil"));
+                        resp.sendRedirect(String.format("/RoseCorail/accueil"));
                     } catch (IllegalArgumentException e) {
                         String errorMessage = e.getMessage();
                         req.getSession().setAttribute("errorMessage", errorMessage);
-                        resp.sendRedirect("modifMDP");
+                        resp.sendRedirect("/RoseCorail/modifMDP");
                     }
                 }else{
                     System.out.println("L'ancien mot de passe est incorrect");
-                    resp.sendRedirect("modifMDP");
+                    resp.sendRedirect("/RoseCorail/modifMDP");
                 }
             }else{
                 System.out.println("Il faut rentrer deux fois le même mot de passe (dans \"Nouveau mot de passe\" et \"Confirmation du nouveau mot de passe\")");
-                resp.sendRedirect("modifMDP");
+                resp.sendRedirect("/RoseCorail/modifMDP");
             }
         }
 

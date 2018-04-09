@@ -31,37 +31,33 @@
         <H1 class="text-center aere">Modifier les photos</H1>
         <div class="row">
             <h2> Les photos du caroussel de la page d'accueil</h2>
-            <div class="card col-xs-3">
-                <img class=" img-responsive card-img-top" src="/RoseCorail/photos/RC-img1.jpg">
-                <div class="card-body">
-                    <a href="modifiercettephoto" class="btn btn-danger">Supprimer cette photo</a>
-                </div>
-            </div>
-            <div class="card col-xs-3">
-                <img class=" img-responsive card-img-top" src="/RoseCorail/photos/RC-img1.jpg">
-                <div class="card-body">
-                    <a href="modifiercettephoto" class="btn btn-danger">Supprimer cette photo</a>
+            <div class="col-xs-9">
+                <div th:each="photo : ${lesphotosaccueil}" class="col-xs-4">
+                    <img class="img-responsive card-img-top" th:src="${photo.adresse}">
+                    <div class="card-body">
+                        <a th:href="${'/RoseCorail/administration/SupprimerPhoto?id='+photo.id_photo}" class="btn btn-danger">Supprimer cette photo</a>
+                    </div>
                 </div>
             </div>
 
-            <a href="" class="btn btn-primary">Ajouter une photo</a>
+            <div class="col-xs-3">
+            <a href="/RoseCorail/administration/AjouterPhoto?page=accueil" class="btn btn-primary">Ajouter une photo</a>
+            </div>
         </div>
 
         <div class="row">
             <h2> Les photos du caroussel de la page Collection</h2>
-            <div class="card col-xs-3">
-                <img class=" img-responsive card-img-top" src="/RoseCorail/photos/RC-img1.jpg">
-                <div class="card-body">
-                    <a href="modifiercettephoto" class="btn btn-danger">Supprimer cette photo</a>
+            <div class="col-xs-9">
+                <div th:each="photo : ${lesphotoscollection}" class="card col-xs-4">
+                    <img class="img-responsive card-img-top" th:src="${photo.adresse}">
+                    <div class="card-body">
+                        <a th:href="${'/RoseCorail/administration/SupprimerPhoto?id='+photo.id_photo}" class="btn btn-danger">Supprimer cette photo</a>
+                    </div>
                 </div>
             </div>
-            <div class="card col-xs-3">
-                <img class=" img-responsive card-img-top" src="/RoseCorail//photos/RC-img1.jpg">
-                <div class="card-body">
-                    <a href="modifiercettephoto" class="btn btn-danger">Supprimer cette photo</a>
-                </div>
-        </div>
-            <a href="" class="btn btn-primary">Ajouter une photo</a>
+            <div class="col-xs-3">
+            <a href="/RoseCorail/administration/AjouterPhoto?page=collection" class="btn btn-primary">Ajouter une photo</a>
+            </div>
         </div>
 
         <div class="row">
@@ -71,28 +67,28 @@
                     <h2 class="card-header">Les plats</h2>
                     <img class=" img-responsive card-img-top" src="/RoseCorail//images/lesplats/image.jpg">
                     <div class="card-body">
-                        <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/ModalChangerPhoto?photo=lesplats" class="btn btn-primary">choisir une nouvelle photo</button>
+                        <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/administration/ModalChangerPhoto?photo=lesplats" class="btn btn-primary">choisir une nouvelle photo</button>
                     </div>
                 </div>
                 <div class="card col-xs-3">
                     <h2 class="card-header">Les porte-couteaux</h2>
                     <img class=" img-responsive card-img-top" src="/RoseCorail/images/lesportecouteaux/image.jpg">
                     <div class="card-body">
-                        <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/ModalChangerPhoto?photo=lesportecouteaux" class="btn btn-primary">choisir une nouvelle photo</button>
+                        <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/administration/ModalChangerPhoto?photo=lesportecouteaux" class="btn btn-primary">choisir une nouvelle photo</button>
                     </div>
                 </div>
                 <div class="card col-xs-3" >
                     <h2 class="card-header">La maison</h2>
                     <img class=" img-responsive card-img-top" src="/RoseCorail/images/lamaison/image.jpg">
                     <div class="card-body">
-                        <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/ModalChangerPhoto?photo=lamaison" class="btn btn-primary">choisir une nouvelle photo</button>
+                        <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/administration/ModalChangerPhoto?photo=lamaison" class="btn btn-primary">choisir une nouvelle photo</button>
                     </div>
                 </div>
                 <div class="card col-xs-3">
                     <h2 class="card-header">Les décorations</h2>
                     <img class=" img-responsive card-img-top" src="/RoseCorail/images/décoration/image.jpg">
                     <div class="card-body">
-                        <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/ModalChangerPhoto?photo=décoration" class="btn btn-primary">choisir une nouvelle photo</button>
+                        <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/administration/ModalChangerPhoto?photo=décoration" class="btn btn-primary">choisir une nouvelle photo</button>
                     </div>
                 </div>
             </div>
@@ -103,7 +99,7 @@
                 <h2 class="card-header">Coloris</h2>
                 <img class=" img-responsive card-img-top" src="/RoseCorail/images/Coloris/image.jpg">
                 <div class="card-body">
-                    <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/ModalChangerPhoto?photo=Coloris" class="btn btn-primary">choisir une nouvelle photo</button>
+                    <button data-toggle="modal" data-target="#changerphoto" href="/RoseCorail/administration/ModalChangerPhoto?photo=Coloris" class="btn btn-primary">choisir une nouvelle photo</button>
                 </div>
             </div>
         </div>
@@ -116,6 +112,12 @@
         </div>
     </div>
 </div>
+<script>
+    $("body").on("hidden.bs.modal", ".modal", function () {
+        $(this).removeData("bs.modal");
+    });
+
+</script>
 
 </body>
 </html>
