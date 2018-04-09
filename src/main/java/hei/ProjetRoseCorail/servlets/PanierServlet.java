@@ -74,7 +74,7 @@ public class PanierServlet extends GenericServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //envoi d'un email à rose corail avec le devis
-        //redirection vers une page qui dit que le devis a bien été envoyer
+        //redirection vers une page qui dit que le devis a bien été envoyé
         //le devis change d'état
         //création d'un nouveau panier actif pr le client
         //changement de son numero panier actif.
