@@ -96,7 +96,7 @@ public class PanierServlet extends GenericServlet{
             Devis createddevis=devisLibrary.creerundevis(devis);
             idnouveaupanier=createddevis.getId_devis();
             compteClientLibrary.changernumeropanieractif(idClient,idnouveaupanier);
-            resp.sendRedirect("/devisenvoyesucces");
+            resp.sendRedirect("/RoseCorail/devisenvoyesucces");
 
         }catch (IllegalArgumentException e){
 

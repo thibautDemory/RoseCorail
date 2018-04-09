@@ -102,7 +102,7 @@ public class MonCompteClientServlet extends GenericServlet{
         }catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
             req.getSession().setAttribute("errorMessage", errorMessage);
-            resp.sendRedirect("/monCompteClient");
+            resp.sendRedirect("/RoseCorail/monCompteClient");
         }
 
 
@@ -116,13 +116,13 @@ public class MonCompteClientServlet extends GenericServlet{
             CompteClient updateCompteClient = CompteClientLibrary.getInstance().updateCompteClientWithoutPassword(compteClient);
 
             // REDIRECT TO ACCUEIL
-            resp.sendRedirect(String.format("/accueil"));
+            resp.sendRedirect(String.format("/RoseCorail/accueil"));
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();
 
             req.getSession().setAttribute("errorMessage", errorMessage);
 
-            resp.sendRedirect("/monCompteClient");
+            resp.sendRedirect("/RoseCorail/monCompteClient");
         }
     }
 }

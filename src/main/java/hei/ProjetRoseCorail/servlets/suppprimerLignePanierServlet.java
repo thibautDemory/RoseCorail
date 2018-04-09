@@ -19,6 +19,6 @@ public class suppprimerLignePanierServlet extends GenericServlet {
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String idasupprimer= req.getParameter("id");
         LigneDevisLibrary.getInstance().deleteLigneDevis(Integer.parseInt(idasupprimer));
-        resp.sendRedirect("/panier");
+        resp.sendRedirect("/RoseCorail/panier");
     }
 }

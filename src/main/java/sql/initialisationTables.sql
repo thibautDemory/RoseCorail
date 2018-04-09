@@ -94,9 +94,9 @@ INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (1, 1);
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (2, 1);
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (3, 1);
 
-INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (1, 'Bleu gris 087, Bleu glacier 097, bleu vert 08, sapin bleuté 091, lichen 98, forêt 103','/images/coloris-1.jpg','Printemps-Été 2016');
-INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (2, 'Noir 018, éléphant 035, taupe 036, mastic 150, bronze 032, argent 030','/images/coloris-2.jpg','Printemps-Été 2016');
-INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (3, 'Marron glacé 102, camel 101 , mastic 150, jaune d''or 039, champagne 092','/images/coloris-3.jpg','Printemps-Été 2016');
-INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (4, 'Rose poudré 090, pivoine 100, aubergine 099, rouge 028, bordeaux 019, safran 096','/images/coloris-4.jpg','Printemps-Été 2016');
-INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (5, 'Sapin bleuté 091, bleu vert 008, celadon 089, bleu gris 087, turquoise 020, canard 009','/images/coloris-5.jpg','Printemps-Été 2016');
-INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (6, 'Elephant 035, bronze 032, argent 030','/images/coloris-6.jpg','Printemps-Été 2016');
+INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (1, 'Bleu gris 087, Bleu glacier 097, bleu vert 08, sapin bleuté 091, lichen 98, forêt 103','/RoseCorail/images/coloris-1.jpg','Printemps-Été 2016');
+INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (2, 'Noir 018, éléphant 035, taupe 036, mastic 150, bronze 032, argent 030','/RoseCorail/images/coloris-2.jpg','Printemps-Été 2016');
+INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (3, 'Marron glacé 102, camel 101 , mastic 150, jaune d''or 039, champagne 092','/RoseCorail/images/coloris-3.jpg','Printemps-Été 2016');
+INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (4, 'Rose poudré 090, pivoine 100, aubergine 099, rouge 028, bordeaux 019, safran 096','/RoseCorail/images/coloris-4.jpg','Printemps-Été 2016');
+INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (5, 'Sapin bleuté 091, bleu vert 008, celadon 089, bleu gris 087, turquoise 020, canard 009','/RoseCorail/images/coloris-5.jpg','Printemps-Été 2016');
+INSERT INTO `panelcoloris`(`id_panelcoloris`,`legende`,`image`,`saison`) VALUES (6, 'Elephant 035, bronze 032, argent 030','/RoseCorail/images/coloris-6.jpg','Printemps-Été 2016');

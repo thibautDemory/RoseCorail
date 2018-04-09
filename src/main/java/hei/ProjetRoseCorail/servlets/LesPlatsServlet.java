@@ -62,9 +62,7 @@ public class LesPlatsServlet extends GenericServlet{
         LigneDevisLibrary ligneDevisLibrary=LigneDevisLibrary.getInstance();
         CompteClientLibrary compteClientLibrary= CompteClientLibrary.getInstance();
         //création des variables
-
         Integer idClient= (Integer) req.getSession().getAttribute("idClient");
-
         LocalDate maintenant=LocalDate.now();
 
         List<LigneDevis> listelignesdevis=new ArrayList<>();
@@ -113,16 +111,12 @@ public class LesPlatsServlet extends GenericServlet{
             for (int i = 0; i < lescouleurschoisies.size(); i++) {
                 LigneDevis createdLigne = ligneDevisLibrary.addLigneDevis(listelignesdevis.get(i));
             }
-
-
-            resp.sendRedirect("/lesPlats");
-
-
+            resp.sendRedirect("/RoseCorail/lesPlats");
         }catch (IllegalArgumentException e){
             String erreur= e.getMessage();
             System.out.println("2"+erreur);
 
         }
-        System.out.println(listelignesdevis.get(0).getId_ligne_devis());
+
     }
 }

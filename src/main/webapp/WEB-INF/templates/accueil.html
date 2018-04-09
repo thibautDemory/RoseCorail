@@ -3,12 +3,12 @@
 
 <head>
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
-    <link href="/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
-    <link href="/css/styleAccueilPerso.css" type="text/css" rel="stylesheet">
-    <link href="/css/style-perso.css" type="text/css" rel="stylesheet">
-    <script src="/js/jquery-3.2.1.js"></script>
-    <script src="/js/bootstrap.js"></script>
+    <link href="/RoseCorail/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/styleAccueilPerso.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/style-perso.css" type="text/css" rel="stylesheet">
+    <script src="/RoseCorail/js/jquery-3.2.1.js"></script>
+    <script src="/RoseCorail/js/bootstrap.js"></script>
     <meta charset="utf-8"/>
     <title>Home</title>
 </head>
@@ -44,16 +44,16 @@
         <div class="carousel-inner" role="listbox">
 
             <div class="item carousel-img-div active">
-                <img class="img-responsive" src="/photos/RC-img1.jpg" alt="image1">
-                <img class="logoRoseCorail" src="/images/rosecoraillogo.jpg" alt="logoRoseCorail">
+                <img class="img-responsive" src="/RoseCorail/photos/RC-img1.jpg" alt="image1">
+                <img class="logoRoseCorail" src="/RoseCorail/images/rosecoraillogo.jpg" alt="logoRoseCorail">
             </div>
             <div class="item carousel-img-div">
-                <img class="img-responsive" src="/src/main/webapp/photos/RC-img2.jpg" alt="image2">
-                <img class="logoRoseCorail" src="/src/main/webapp/images/rosecoraillogo.jpg" alt="logoRoseCorail">
+                <img class="img-responsive" src="/RoseCorail/photos/RC-img2.jpg" alt="image2">
+                <img class="logoRoseCorail" src="/RoseCorail/images/rosecoraillogo.jpg" alt="logoRoseCorail">
             </div>
             <div class="item carousel-img-div">
-                <img class="img-responsive" src="/src/main/webapp/photos/RC-img3.jpg" alt="image3">
-                <img class="logoRoseCorail" src="/src/main/webapp/images/rosecoraillogo.jpg" alt="logoRoseCorail">
+                <img class="img-responsive" src="/RoseCorail/photos/RC-img3.jpg" alt="image3">
+                <img class="logoRoseCorail" src="/RoseCorail/images/rosecoraillogo.jpg" alt="logoRoseCorail">
             </div>
         </div>
         <a class="left carousel-control" href="#carousel-accueil" role="button" data-slide="prev">
@@ -69,6 +69,7 @@
 
     <div class="page-header">
         <h1><small>Les événements</small></h1>
+        <img src="/httpdocs/image/article/testprout/image.png" alt="ontest">
         <div th:each="actu: ${listActu}">
             <div class="panel panel-info">
                 <div class="panel-heading">

@@ -35,7 +35,6 @@ public class ModifierPhotosAccueilServlet extends GenericServlet{
         try{
             nomphoto=req.getParameter("photo");
             filequicontientlimage= new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\"+nomphoto);
-            filequicontientlimage.mkdirs();
             Part imagePart = req.getPart("nouvellephoto");
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg");
         }
@@ -43,6 +42,6 @@ public class ModifierPhotosAccueilServlet extends GenericServlet{
             String error=e.getMessage();
             System.out.println(error);
         }
-        resp.sendRedirect("/administration/modifierphotosaccueil");
+        resp.sendRedirect("/RoseCorail/administration/modifierphotosaccueil");
     }
 }

@@ -43,16 +43,6 @@
                     <li role="presentation"><a href="décorationdetable">Décoration de table</a></li>
                     <li role="presentation"  class="active"><a href="lamaison">La maison</a></li>
                 </ul>
-
-                <h3>Les couleurs</h3>
-                <form method="post">
-                    <div id="choix-des-couleurs">
-                        <div th:each="couleur : ${couleurs}">
-                            <div class="checkbox"><label><input type="checkbox" th:value="${couleur.id_couleur}" th:name="${couleur.nom_couleur}" th:text="${couleur.nom_couleur}"></label></div>
-                        </div>
-                        <button type="submit" class="btn btn-default">Soumettre</button>
-                    </div>
-                </form>
             </div>
 
             <div class="col-xs-8 col-sm-10"><!--à droite, on met les articles avec les noms et prix-->

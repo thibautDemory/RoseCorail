@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <!-- Bootstrap -->
-  <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
-  <link href="/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
-  <link href="/css/style-perso.css" type="text/css" rel="stylesheet">
-  <link href="/css/Lescoloris.css" type="text/css" rel="stylesheet">
-  <script src="/js/jquery-3.2.1.js"></script>
-  <script src="/js/bootstrap.js"></script>
+  <link href="/RoseCorail/css/bootstrap.css" type="text/css" rel="stylesheet">
+  <link href="/RoseCorail/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+  <link href="/RoseCorail/css/style-perso.css" type="text/css" rel="stylesheet">
+  <link href="/RoseCorail/css/Lescoloris.css" type="text/css" rel="stylesheet">
+  <script src="/RoseCorail/js/jquery-3.2.1.js"></script>
+  <script src="/RoseCorail/js/bootstrap.js"></script>
 
   <meta charset="utf-8"/>
   <title>Les coloris</title>
@@ -27,29 +27,38 @@
       </div>
     </div>
 
-<div class="container-fluid">
-  <div class="col-xs-8 col-xs-offset-2">
-    <a th:if="${statut == 'admin'}" class="btn btn-primary" href="/lesColoris?Modification=active">Activer la modification</a>
-    <a th:if="${statut == 'admin'}" class="btn btn-primary" href="/lesColoris?Modification=desactive">Désactiver la modification</a>
-    
+<div class="container">
+  <div class="col-sm-9 col-sm-offset-1 col-xs-12">
+    <a th:if="${statut == 'admin'}" class="btn btn-primary" th:href="${'/RoseCorail/lesColoris?Modification=active&amp;saison='+saisonencours}">Activer la modification</a>
+    <a th:if="${statut == 'admin'}" class="btn btn-primary" th:href="${'/RoseCorail/lesColoris?Modification=desactive&amp;saison='+saisonencours}">Désactiver la modification</a>
+
     <div class="margin-bottom relative">
-      <img class="img-responsive" src="/images/Coloris/image.jpg">
-      <img class="logoRoseCorail" src="/images/rosecoraillogo.jpg" alt="logoRoseCorail">
+      <img class="img-responsive" src="/RoseCorail/images/Coloris/image.jpg">
+      <img class="logoRoseCorail" src="/RoseCorail/images/rosecoraillogo.jpg" alt="logoRoseCorail">
     </div>
 
     
-      <div class="col-xs-3"> <!--Colone de gauche qui contient les différents coloris-->
-        
-        <ul class="nav nav-pills nav-stacked couleur-rose-corail">
-          <li th:each="saison : ${lessaisons}" role="presentation"><a th:text="${saison}" th:href="${'lesColoris?saison='+saison}">Collection Automne Hiver 2017</a></li>
-        </ul>
+      <div class="col-xs-12 couleur-rose-corail"> <!--contient les différents coloris et le titre-->
+        <div class="col-sm-3 col-xs-12">
+          <button style="margin: 20px;" class="btn btn-lg btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            les saisons
+            <span class="caret"></span>
+          </button>
+          <ul  class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li th:each="saison : ${lessaisons}"  role="presentation"><a th:text="${saison}" th:href="${'lesColoris?saison='+saison}">Collection Automne Hiver 2017</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9">
+          <h1 th:text="${saisonencours}"></h1>
+        </div>
       </div>
 
-      <div class="col-xs-9"><!--à droite, on met les coloris-->
+      <div class="col-xs-12"><!--à droite, on met les coloris-->
+
         <div th:each="panelcoloris : ${lespanelscoloris}">
-          <div class="col-xs-12 margin-bottom">
+          <div class="col-xs-offset-2 col-xs-10 margin-bottom">
             <figure>
-              <img class="presentation-coloris" th:src="${panelcoloris.image}">
+              <img class="img-responsive" th:src="${panelcoloris.image}">
               <figcaption th:text="${panelcoloris.legende}">Bleu gris 087, Bleu glacier 097,  bleu vert 08, sapin bleuté 091, lichen 98, forêt 103</figcaption>
             </figure>
             <div th:insert="~{fragments::boutonsPanelColoris(${statut},${modification})}"></div>
@@ -59,7 +68,12 @@
   </div>
 
 </div>
-    <div class="precedentlefooter"></div>
+<div class="modal fade" id="suppressionpanelcoloris">
+  <div class="modal-dialog">
+    <div class="modal-content"></div>
+  </div>
+</div>
+<div class="precedentlefooter"></div>
 <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
 </div>
 

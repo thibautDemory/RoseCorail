@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <!-- Bootstrap -->
-  <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
-  <link href="/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
-  <link href="/css/style-perso.css" type="text/css" rel="stylesheet">
-  <link href="/css/Lesplats.css" type="text/css" rel="stylesheet">
+  <link href="/RoseCorail/css/bootstrap.css" type="text/css" rel="stylesheet">
+  <link href="/RoseCorail/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+  <link href="/RoseCorail/css/style-perso.css" type="text/css" rel="stylesheet">
+  <link href="/RoseCorail/css/Lesplats.css" type="text/css" rel="stylesheet">
 
-    <link href="/css/styleNouveautes.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/styleNouveautes.css" type="text/css" rel="stylesheet">
     <meta charset="UTF-8"/>
   <title>Les plats</title>
 </head>
@@ -36,23 +36,12 @@
       </div>
       <div class="row">
         <div class="col-xs-4 col-sm-2 gauche"> <!--Colonne de gauche qui contient le menu, et les filtres-->
-
           <ul class="nav nav-pills nav-stacked couleur-rose-corail">
             <li role="presentation" class="active"><a href="lesPlats">Les plats</a></li>
             <li role="presentation"><a href="lesportecouteaux">Les porte-couteaux</a></li>
             <li role="presentation"><a href="décorationdetable">Décoration de table</a></li>
             <li role="presentation"><a href="lamaison">La maison</a></li>
           </ul>
-
-          <h3>Les couleurs</h3>
-          <form>
-            <div id="choix-des-couleurs">
-              <div th:each="couleur : ${couleurs}">
-                <div class="checkbox"><label><input type="checkbox" th:value="${couleur.id_couleur}" th:name="${couleur.nom_couleur}" th:text="${couleur.nom_couleur}"></label></div>
-              </div>
-              <button type="submit" class="btn btn-default">Soumettre</button>
-            </div>
-          </form>
         </div>
 
         <div class="col-xs-8 col-sm-10"><!--à droite, on met les articles avec les noms et prix-->
@@ -109,8 +98,8 @@
         <div class="modal-content"></div>
       </div>
     </div>
-    <script src="/js/jquery-3.2.1.js"></script>
-    <script src="/js/bootstrap.js"></script>
+    <script src="/RoseCorail/js/jquery-3.2.1.js"></script>
+    <script src="/RoseCorail/js/bootstrap.js"></script>
     <script>
         $("body").on("hidden.bs.modal", ".modal", function () {
             $(this).removeData("bs.modal");

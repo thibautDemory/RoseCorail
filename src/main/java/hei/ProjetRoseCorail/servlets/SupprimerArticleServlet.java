@@ -22,28 +22,28 @@ public class SupprimerArticleServlet extends GenericServlet {
         ArticleLibrary.getInstance().rendreinactifArticle(idArticle);
         switch(souscategorie ){
             case 1:
-                resp.sendRedirect("/lesPlats?Modification=active");
+                resp.sendRedirect("/RoseCorail/lesPlats?Modification=active");
                 break;
             case 2:
-                resp.sendRedirect("/lesPlats?Modification=active");
+                resp.sendRedirect("/RoseCorail/lesPlats?Modification=active");
                 break;
             case 3:
-                resp.sendRedirect("/lesPlats?Modification=active");
+                resp.sendRedirect("/RoseCorail/lesPlats?Modification=active");
                 break;
             case 4:
-                resp.sendRedirect("/lesportecouteaux?Modification=active");
+                resp.sendRedirect("/RoseCorail/lesportecouteaux?Modification=active");
                 break;
             case 5:
-                resp.sendRedirect("/décorationdetable?Modification=active");
+                resp.sendRedirect("/RoseCorail/décorationdetable?Modification=active");
                 break;
             case 6:
-                resp.sendRedirect("/décorationdetable?Modification=active");
+                resp.sendRedirect("/RoseCorail/décorationdetable?Modification=active");
                 break;
             case 7:
-                resp.sendRedirect("/lamaison?Modification=active");
+                resp.sendRedirect("/RoseCorail/lamaison?Modification=active");
                 break;
             default:
-                resp.sendRedirect("/uneerreur");
+                resp.sendRedirect("/RoseCorail/uneerreur");
 
         }
 

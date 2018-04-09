@@ -1,9 +1,7 @@
 package hei.ProjetRoseCorail.servlets;
 
-import hei.ProjetRoseCorail.entities.Article;
-import hei.ProjetRoseCorail.entities.Couleur;
-import hei.ProjetRoseCorail.managers.ArticleLibrary;
-import hei.ProjetRoseCorail.managers.CouleurLibrary;
+import hei.ProjetRoseCorail.entities.*;
+import hei.ProjetRoseCorail.managers.*;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -12,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/lesportecouteaux")
@@ -44,5 +44,71 @@ public class LesportecouteauxServlet extends GenericServlet {
 
 
         templateEngine.process("lesportecouteaux", webContext, resp.getWriter());
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Integer idArticle=(Integer) req.getSession().getAttribute("idArticlequejeregarde");
+
+
+        CouleurLibrary couleurLibrary=CouleurLibrary.getInstance();
+        DevisLibrary devisLibrary=DevisLibrary.getInstance();
+        LigneDevisLibrary ligneDevisLibrary=LigneDevisLibrary.getInstance();
+        CompteClientLibrary compteClientLibrary= CompteClientLibrary.getInstance();
+        //création des variables
+        Integer idClient= (Integer) req.getSession().getAttribute("idClient");
+        LocalDate maintenant=LocalDate.now();
+
+        List<LigneDevis> listelignesdevis=new ArrayList<>();
+        List<Couleur> lescouleurschoisies=new ArrayList<>();
+        List<Integer> lesquantiteschoisies =new ArrayList<>();
+        List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleursActives();
+        Devis panier;
+        CompteClient client=compteClientLibrary.getCompteClientById(idClient);
+
+        try{
+            //récupération des valeurs
+
+            for (int i=0;i<lescouleurs.size();i++) {
+                if (req.getParameter(lescouleurs.get(i).getNom_couleur()) != null && !req.getParameter(lescouleurs.get(i).getNom_couleur()).equals("") && Integer.parseInt(req.getParameter(lescouleurs.get(i).getNom_couleur()))!=0) {
+                    lescouleurschoisies.add(couleurLibrary.getCouleurByName(lescouleurs.get(i).getNom_couleur()));
+                    lesquantiteschoisies.add(Integer.parseInt(req.getParameter(lescouleurs.get(i).getNom_couleur())));
+                }
+            }
+        }catch (IllegalArgumentException e){
+            String erreur= e.getMessage();
+            System.out.println("1"+erreur);
+        }
+        System.out.println("nomarticle"+idArticle);
+        for (int i=0;i<lescouleurschoisies.size();i++){
+            System.out.println(lescouleurschoisies.get(i));
+            System.out.println(lesquantiteschoisies.get(i));
+        }
+        if(client.getNumero_panier_actif()==0){
+            System.out.println("panier actif est nul");
+            Devis panieraconstruire=new Devis(null,idClient,maintenant,"panier",true);
+            panier=devisLibrary.creerundevis(panieraconstruire);
+            compteClientLibrary.changernumeropanieractif(idClient,panier.getId_devis());
+        }else{
+            System.out.println(client.getNumero_panier_actif());
+            System.out.println("panier actif est pas nul");
+            panier=devisLibrary.getPanierClient(idClient);
+        }
+        Article article=ArticleLibrary.getInstance().getArticleById(idArticle);
+
+        for (int i = 0; i < lescouleurschoisies.size(); i++) {
+            LigneDevis nouvelleligne = new LigneDevis(null,lescouleurschoisies.get(i).getId_couleur(),panier.getId_devis(),article.getId_article(),lesquantiteschoisies.get(i));
+            listelignesdevis.add(nouvelleligne);
+        }
+
+        try {
+            for (int i = 0; i < lescouleurschoisies.size(); i++) {
+                LigneDevis createdLigne = ligneDevisLibrary.addLigneDevis(listelignesdevis.get(i));
+            }
+            resp.sendRedirect("/RoseCorail/lesportecouteaux");
+        }catch (IllegalArgumentException e){
+            String erreur= e.getMessage();
+            System.out.println("2"+erreur);
+
+        }
     }
 }

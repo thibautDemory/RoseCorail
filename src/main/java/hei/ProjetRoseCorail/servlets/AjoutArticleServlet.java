@@ -17,11 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 @MultipartConfig
 @WebServlet("/administration/ajoutArticle")
 public class AjoutArticleServlet extends GenericServlet{
+    private static final String UPLOAD_DIR = "uploads";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
@@ -57,16 +59,39 @@ public class AjoutArticleServlet extends GenericServlet{
         List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleursActives();
         List<Integer> numerocouleurschecked=new ArrayList<>();
         String resultat="bonjour";
+        String pathaafficher="";
+
+        // gets absolute path of the web application
+        String applicationPath = req.getServletContext().getRealPath("");
+        // constructs path of the directory to save uploaded file
+        String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
+
+        // creates the save directory if it does not exists
+        File fileSaveDir = null;
+
+
+
+
 
 
         try{
             nom=req.getParameter("nom-article");
             description=req.getParameter("description-article");
             dimension=req.getParameter("dimension-article");
-            filequicontientlimage= new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\article\\"+nom.trim());
-            filequicontientlimage.mkdirs();
+
+
+
+            //pathaafficher=filequicontientlimage.getAbsolutePath();
+            fileSaveDir=new File(uploadFilePath+"/article/"+nom.trim());
+            if (!fileSaveDir.exists()) {
+                fileSaveDir.mkdirs();
+            }
+            System.out.println("Upload File Directory="+fileSaveDir.getAbsolutePath());
+
+
             Part imagePart = req.getPart("image-article");
-            imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg");
+            imagePart.write(uploadFilePath+"/article/"+nom.trim()+"/image.jpg");
+            System.out.println(uploadFilePath+"/article/"+nom.trim()+"/image.jpg");
             reference=req.getParameter("reference-article");
             prix=Double.parseDouble(req.getParameter("prix-article"));
             vendupar=Integer.parseInt(req.getParameter("lot-article"));
@@ -89,7 +114,7 @@ public class AjoutArticleServlet extends GenericServlet{
         }
 
 
-        Article newarticle = new Article(null, sous_categorie,nom,reference,description,"images\\article\\"+nom+"\\image.jpg",dimension,prix,vendupar,1);
+        Article newarticle = new Article(null, sous_categorie,nom,reference,description,"/image/article/"+nom+"/image.jpg",dimension,prix,vendupar,1);
         System.out.println("l'article est créer");
 
         try{
@@ -99,7 +124,7 @@ public class AjoutArticleServlet extends GenericServlet{
             String errorMessage =e.getMessage();
             System.out.println("error2"+errorMessage);
             req.getSession().setAttribute("errorMessage",errorMessage);
-            resp.sendRedirect("/administration/ajoutArticle");
+            resp.sendRedirect("/RoseCorail/administration/ajoutArticle");
         }
         Integer idarticle=newarticle.getId_article();
         List<Posseder> listedesposseder=new ArrayList<>();
@@ -112,7 +137,8 @@ public class AjoutArticleServlet extends GenericServlet{
             for (int i=0;i<listedesposseder.size();i++){
                 Posseder createdPosseder=possederLibrary.addPosseder(listedesposseder.get(i));
             }
-            resp.sendRedirect(String.format("/administration/formulaire"));
+
+            resp.sendRedirect(String.format("/RoseCorail/administration/formulaire"));
 
         }catch (IllegalArgumentException e){
             String errorMessage =e.getMessage();

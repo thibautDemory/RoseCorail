@@ -56,9 +56,9 @@ public class ModificationPanelColorisServlet extends GenericServlet{
             nomsetnumeros=req.getParameter("nom-des-coloris");
             saison=req.getParameter("saison-panel-coloris");
 
-            filequicontientlimage = new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\"+nomsetnumeros.trim());
-
-            Part imagePart = req.getPart("imageActualite"); // on récupere  l'image du formulaire
+            filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\panelcoloris\\"+nomsetnumeros.trim());
+            filequicontientlimage.mkdirs();
+            Part imagePart = req.getPart("image-panel-coloris"); // on récupere  l'image du formulaire
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
 
 
@@ -66,11 +66,11 @@ public class ModificationPanelColorisServlet extends GenericServlet{
             String error=e.getMessage();
             System.out.println(error);
         }
-        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"images\\"+nomsetnumeros+"\\image.jpg",saison);
+        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"images\\panelcoloris\\"+nomsetnumeros+"\\image.jpg",saison);
 
         try{
             Panelcoloris createdpanelColoris= PanelColorisLibrary.getInstance().addPanelColoris(newpanelcoloris);
-            resp.sendRedirect(String.format("/lesColoris"));
+            resp.sendRedirect(String.format("/RoseCorail/lesColoris?"+saison));
         }catch (IllegalArgumentException e){
             String error = e.getMessage();
         }

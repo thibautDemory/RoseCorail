@@ -140,7 +140,7 @@ public class ModificationArticleServlet extends GenericServlet{
                 LigneDevis createdLigneDevis=ligneDevisLibrary.addLigneDevis(newligneDevis);
 
             }
-            resp.sendRedirect(String.format("/administration/formulaire"));
+            resp.sendRedirect(String.format("/RoseCorail/administration/formulaire"));
 
         }catch (IllegalArgumentException e){
             String errorMessage =e.getMessage();

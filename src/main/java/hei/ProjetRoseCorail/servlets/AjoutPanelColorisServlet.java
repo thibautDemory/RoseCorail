@@ -47,13 +47,13 @@ public class AjoutPanelColorisServlet extends GenericServlet{
         File filequicontientlimage=null;
 
         try{
-            nomsetnumeros=req.getParameter("nomdescoloris");
-            saison=req.getParameter("saisonpanelcoloris");
+            nomsetnumeros=req.getParameter("nom-des-coloris");
+            saison=req.getParameter("saison-panel-coloris");
 
 
-            filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\image\\"+nomsetnumeros.trim());
+            filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\panelcoloris\\"+nomsetnumeros.trim());
             filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
-            Part imagePart = req.getPart("imagepanelcoloris"); // on récupere  l'image du formulaire
+            Part imagePart = req.getPart("image-panel-coloris"); // on récupere  l'image du formulaire
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
 
 
@@ -62,10 +62,11 @@ public class AjoutPanelColorisServlet extends GenericServlet{
             System.out.println(error);
         }
         System.out.println(nomsetnumeros);
-        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"image\\"+nomsetnumeros+"\\image.jpg",saison);
+        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"images\\panelcoloris\\"+nomsetnumeros+"\\image.jpg",saison);
         try{
             Panelcoloris createdpanelColoris= PanelColorisLibrary.getInstance().addPanelColoris(newpanelcoloris);
-            resp.sendRedirect(String.format("/lesColoris"));
+            System.out.println("Un nouveau panel coloris a été créer");
+            resp.sendRedirect(String.format("/RoseCorail/lesColoris"));
         }catch (IllegalArgumentException e){
             String error=e.getMessage();
         }

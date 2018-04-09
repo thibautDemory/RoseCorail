@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<form method="post">
+    <div class="modal-header">
+        <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+        <h3 text="Suppression d'un panel coloris"  class="modal-title">Panel coloris</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="row" style="margin-bottom: 20px;">
+
+            <div class="col-xs-6">
+                <img th:src="${cepanelcoloris.image}" class="img-responsive">
+            </div>
+            <div class="col-xs-6">
+                <h4>Légende : <span th:text="${cepanelcoloris.legende}">Plat rectangulaire</span></h4>
+                <h4>Saison : <span th:text="${cepanelcoloris.saison}">Plat rectangulaire</span></h4>
+            </div>
+            <p>Voulez vous vraiment supprimer ce panel coloris?</p>
+            <button data-dismiss="modal" class="btn btn-primary">Annuler</button>
+            <a class="btn btn-primary" th:href="${'/RoseCorail/administration/SupprimerPanelColoris?id='+cepanelcoloris.idPanelColoris}">Supprimer</a>
+        </div>
+
+    </div>
+</form>
+
+</html>

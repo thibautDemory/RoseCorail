@@ -40,7 +40,7 @@ public class AccueilServlet extends GenericServlet{
         List<Actualite> listActu = ActualiteLibrary.getInstance().listActualites();
         webContext.setVariable("listActu",listActu);
 
-        System.out.println("titre1 = "+listActu.get(0).getTitreActualite());
+        //System.out.println("titre1 = "+listActu.get(0).getTitreActualite());
 
 
         templateEngine.process("accueil", webContext, resp.getWriter());

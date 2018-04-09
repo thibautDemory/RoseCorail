@@ -25,7 +25,7 @@ public class LesColorisServlet extends GenericServlet{
         PanelColorisLibrary panelColorisLibrary=PanelColorisLibrary.getInstance();
 
 
-        if (statut==null||"".equals(statut)||statut=="visiteur"){
+        if (statut==null||"".equals(statut)||"visiteur".equals(statut)){
             statut="visiteur";
         }else{
             String nom=req.getSession().getAttribute("nom").toString();

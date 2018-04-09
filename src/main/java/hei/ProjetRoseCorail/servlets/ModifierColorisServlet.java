@@ -77,7 +77,7 @@ public class ModifierColorisServlet extends GenericServlet{
             saison = req.getParameter("saisonColoris");
             idColorisString=req.getParameter("idColoris");
             idColorisInt = Integer.parseInt(idColorisString);
-            filequicontientlimage = new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\"+nom_couleur.trim());
+            filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\image\\couleur\\"+nom_couleur.trim());
             filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
             Part imagePart = req.getPart("imageColoris"); // on récupere  l'image du formulaire
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
@@ -95,7 +95,7 @@ public class ModifierColorisServlet extends GenericServlet{
 
 
         // CREATE couleur
-        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "img\\"+nom_couleur.trim()+"\\image.jpg", saison,1);
+        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "image\\couleur\\"+nom_couleur.trim()+"\\image.jpg", saison,1);
         List<Article> lesarticlesdecettecouleur=possederLibrary.listArticlesPourUneCouleur(idColorisInt);
         List<LigneDevis> leslignesDevisPourcetteCouleur=ligneDevisLibrary.listLignesDevisPourUneCouleur(idColorisInt);
         Integer idcouleur=0;
@@ -129,7 +129,7 @@ public class ModifierColorisServlet extends GenericServlet{
 
             }
 
-            resp.sendRedirect(String.format("/administration/formulaire"));
+            resp.sendRedirect(String.format("/RoseCorail/administration/formulaire"));
         }catch (IllegalArgumentException e){
             String errorMessage = e.getMessage();
             req.getSession().setAttribute("errorMessage", errorMessage);
