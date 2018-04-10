@@ -83,12 +83,89 @@ public class StatistiquesServlet extends GenericServlet{
             }
         }
 
+        // Affichage TEST des 2 tableaux
         for(int w=0; w<listArticle.size(); w++){
             System.out.print("idArticle n°"+w+" : "+tabStatArticles[0][w]+" : ");
             System.out.println("quantityArticle : "+tabStatArticles[1][w]);
             System.out.print("idColor n°"+w+" : "+tabStatCouleurs[0][w]+" : ");
             System.out.println("quantityColor : "+tabStatCouleurs[1][w]);
         }
+
+        // On trie et on garde les 5 articles les plus vendus
+        int tabStatTop5Articles[][] = new int[2][5];
+        for(int d=0; d<listArticle.size()-1; d++){
+            int aux = d;
+            int auxQteArticle = tabStatArticles[1][aux];
+            int auxIdArticle = tabStatArticles[0][aux];
+            for(int c=d+1; c<listArticle.size(); c++){
+                if(tabStatArticles[1][aux]<tabStatArticles[1][c]){
+                    aux = c;
+                    auxQteArticle = tabStatArticles[1][aux];
+                    auxIdArticle = tabStatArticles[0][aux];
+                }
+            }
+            tabStatArticles[0][aux] = tabStatArticles[0][d];
+            tabStatArticles[1][aux] = tabStatArticles[1][d];
+            tabStatArticles[0][d] = auxIdArticle;
+            tabStatArticles[1][d] = auxQteArticle;
+        }
+
+        if(listArticle.size()<5){
+            for(int e=0; e<listArticle.size(); e++){
+                tabStatTop5Articles[0][e] = tabStatArticles[0][e];
+                tabStatTop5Articles[1][e] = tabStatArticles[1][e];
+            }
+        }else{
+            for(int e=0; e<5; e++){
+                tabStatTop5Articles[0][e] = tabStatArticles[0][e];
+                tabStatTop5Articles[1][e] = tabStatArticles[1][e];
+            }
+        }
+
+        // On trie et on garde les 5 couleurs les plus vendues
+        int tabStatTop5Couleurs[][] = new int[2][5];
+        for(int d=0; d<listCouleurs.size()-1; d++){
+            int aux = d;
+            int auxQteCouleur = tabStatCouleurs[1][aux];
+            int auxIdCouleur = tabStatCouleurs[0][aux];
+            for(int c=d+1; c<listCouleurs.size(); c++){
+                if(tabStatCouleurs[1][aux]<tabStatCouleurs[1][c]){
+                    aux = c;
+                    auxQteCouleur = tabStatCouleurs[1][aux];
+                    auxIdCouleur = tabStatCouleurs[0][aux];
+                }
+            }
+            tabStatCouleurs[0][aux] = tabStatCouleurs[0][d];
+            tabStatCouleurs[1][aux] = tabStatCouleurs[1][d];
+            tabStatCouleurs[0][d] = auxIdCouleur;
+            tabStatCouleurs[1][d] = auxQteCouleur;
+        }
+
+        if(listCouleurs.size()<5){
+            for(int e=0; e<listCouleurs.size(); e++){
+                tabStatTop5Couleurs[0][e] = tabStatCouleurs[0][e];
+                tabStatTop5Couleurs[1][e] = tabStatCouleurs[1][e];
+            }
+        }else{
+            for(int e=0; e<5; e++){
+                tabStatTop5Couleurs[0][e] = tabStatCouleurs[0][e];
+                tabStatTop5Couleurs[1][e] = tabStatCouleurs[1][e];
+            }
+        }
+
+
+        // Affichage TEST des 2 tableaux
+        System.out.println();
+        System.out.println("TRIE");
+        for(int w=0; w<listArticle.size(); w++){
+            System.out.print("idArticle n°"+w+" : "+tabStatTop5Articles[0][w]+" : ");
+            System.out.println("quantityArticle : "+tabStatTop5Articles[1][w]);
+            System.out.print("idColor n°"+w+" : "+tabStatCouleurs[0][w]+" : ");
+            System.out.println("quantityColor : "+tabStatCouleurs[1][w]);
+        }
+
+
+        // On affecte les valeurs au HTML
 
 
 
