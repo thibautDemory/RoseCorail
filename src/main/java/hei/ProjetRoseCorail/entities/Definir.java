@@ -1,5 +1,11 @@
 package hei.ProjetRoseCorail.entities;
 
+/**
+ * La classe définir sert à faire le lien entre un devis et une statistique. Elle contient:
+ * Un identifiant unique
+ * l'identifiant du devis en question
+ * l'identifiant de la statistique en question
+ */
 public class Definir {
     private Integer id_definir;
     private Integer id_devis;

@@ -1,5 +1,10 @@
 package hei.ProjetRoseCorail.entities;
 
+/**
+ * Une catégorie est définie par:
+ * un identifiant unique pour cette catégorie
+ * le nom de la catégorie.
+ */
 public class Categorie {
     private Integer id_categorie;
     private String nom_categorie;

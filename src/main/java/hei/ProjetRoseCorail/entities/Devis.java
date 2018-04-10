@@ -4,6 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ * Un devis est composé de:
+ * Un identifiant unique
+ * l'id du compte client, pour savoir quel client a émis le devis
+ * La date de création du devis
+ * L'état du devis, pour savoir si il est encore à l'état de panier (non envoyé à Rose Corail), ou bien si il est 'en préparation', 'expédié' (cela en fonction de l'avancement du colis)
+ * un boolean etatPanier, qui permet de savoir si il est ou non en état panier, cela permet qu'il soit visible ou non par Rose Corail
+ */
 public class Devis {
     private Integer id_devis;
     private Integer id_compte_client;

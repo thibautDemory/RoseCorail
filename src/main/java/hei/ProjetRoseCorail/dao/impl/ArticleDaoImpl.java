@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleDaoImpl implements ArticleDao {
+    /**
+     * Cette méthode permet de lister tous les articles qui sont actuellement actifs
+     * @return la liste des articles actifs
+     */
     @Override
     public List<Article> listArticlesActifs() {
         String query = "SELECT * FROM article where actif=1;";
@@ -36,7 +40,10 @@ public class ArticleDaoImpl implements ArticleDao {
         }
         return listofArticles;
     }
-
+    /**
+     * Cette méthode permet de lister tous les articles faisant partie de la catégorie plat qui sont actuellement actifs
+     * @return la liste des articles de la catégorie plat, actifs
+     */
     @Override
     public List<Article> listArticlesPlats() {
         String query = "SELECT * FROM article WHERE (id_sous_categorie=1 or id_sous_categorie=2 or id_sous_categorie=3) AND actif=1;";
@@ -64,7 +71,10 @@ public class ArticleDaoImpl implements ArticleDao {
         }
         return listofArticles;
     }
-
+    /**
+     * Cette méthode permet de lister tous les articles de la sous-catégorie Plat à cake qui sont actuellement actifs
+     * @return la liste des articles de la sous-catégorie Plat à cake actifs
+     */
     @Override
     public List<Article> listArticlesPlataCake() {
         String query = "SELECT * FROM article WHERE id_sous_categorie=1 AND actif=1;";
@@ -93,7 +103,10 @@ public class ArticleDaoImpl implements ArticleDao {
         return listofArticles;
     }
 
-
+    /**
+     * Cette méthode permet de lister tous les articles de la sous-catégorie Plat à fromage qui sont actuellement actifs
+     * @return la liste des articles de la sous-catégorie Plat à fromage actifs
+     */
     @Override
     public List<Article> listArticlesPlataFromage() {
         String query = "SELECT * FROM article WHERE id_sous_categorie=2 AND actif=1;";
@@ -123,6 +136,10 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
 
+    /**
+     * Cette méthode permet de lister tous les articles de la sous-catégorie Coupelles apéritifs qui sont actuellement actifs
+     * @return la liste des articles de la sous-catégorie Coupelle apéritifs actifs
+     */
     @Override
     public List<Article> listArticlesCoupellesAperitif() {
         String query = "SELECT * FROM article WHERE id_sous_categorie=3 AND actif=1;";
@@ -150,7 +167,10 @@ public class ArticleDaoImpl implements ArticleDao {
         }
         return listofArticles;
     }
-
+    /**
+     * Cette méthode permet de lister tous les articles de la catégorie Porte couteaux qui sont actuellement actifs (à noter que la catégorie porte-couteaux ne contient qu'une seule sous-catégorie: porte-couteaux)
+     * @return la liste des articles de la catégorie Porte couteaux actifs
+     */
     @Override
     public List<Article> listArticlesPorteCouteaux() {
         String query = "SELECT * FROM article WHERE id_sous_categorie=4 AND actif=1;";
@@ -179,6 +199,10 @@ public class ArticleDaoImpl implements ArticleDao {
         return listofArticles;
     }
 
+    /**
+     * Cette méthode permet de lister tous les articles de la catégorie Articles de décoration qui sont actuellement actifs
+     * @return la liste des articles de la catégorie Articles de décoration actifs
+     */
 
     @Override
     public List<Article> listArticlesDeco() {
@@ -207,7 +231,10 @@ public class ArticleDaoImpl implements ArticleDao {
         }
         return listofArticles;
     }
-
+    /**
+     * Cette méthode permet de lister tous les articles de la sous-catégorie Dessous de verre qui sont actuellement actifs
+     * @return la liste des articles de la sous-catégorie Dessous de verre actifs
+     */
     @Override
     public List<Article> listArticlesDecoDessousVerre() {
         String query = "SELECT * FROM article WHERE id_sous_categorie=5 AND actif=1;";
@@ -235,7 +262,10 @@ public class ArticleDaoImpl implements ArticleDao {
         }
         return listofArticles;
     }
-
+    /**
+     * Cette méthode permet de lister tous les articles de la sous-catégorie Dessous de plat qui sont actuellement actifs
+     * @return la liste des articles de la sous-catégorie Dessous de plat actifs
+     */
     @Override
     public List<Article> listArticlesDecoDessousPlat() {
         String query = "SELECT * FROM article WHERE id_sous_categorie=6 AND actif=1;";
@@ -264,7 +294,10 @@ public class ArticleDaoImpl implements ArticleDao {
         return listofArticles;
     }
 
-
+    /**
+     * Cette méthode permet de lister tous les articles de la catégorie Maison qui sont actuellement actifs(à noter que la catégorie Maison ne contient qu'une seule sous-catégorie: Maison)
+     * @return la liste des articles de la catégorie Maison actifs
+     */
     @Override
     public List<Article> listArticlesMaison() {
         String query = "SELECT * FROM article WHERE id_sous_categorie=7 AND actif=1;";
@@ -294,7 +327,11 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
 
-
+    /**
+     * Cette méthode permet de récuperer un article en particulier, en le distinguant des autres grâce à son nom
+     * @param nom est le nom de l'article que l'on veut récuperer
+     * @return l'article que l'on veut récuperer
+     */
     @Override
     public Article getArticleByNom(String nom) {
         String query="SELECT * FROM article WHERE nom_article=? AND actif=1;";
@@ -322,6 +359,11 @@ public class ArticleDaoImpl implements ArticleDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de récuperer un article en particulier, en le distinguant des autres grâce à son identifiant
+     * @param id est l'identifiant de l'article que l'on souhaite récuperer
+     * @return l'article que l'on souhaite récuperer
+     */
     @Override
     public Article getArticleById(Integer id) {
         String query="SELECT * FROM article WHERE id_article=?;";
@@ -349,6 +391,11 @@ public class ArticleDaoImpl implements ArticleDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet d'ajouter un article à la base de donnée
+     * @param article l'article que l'on souhaite ajouter
+     * @return l'article que l'on a ajouté à la BDD
+     */
     @Override
     public Article addArticle(Article article) {
         String query="INSERT INTO article(id_sous_categorie,nom_article,reference,description,image,dimensions,prix,lot_vente,actif) VALUES(?,?,?,?,?,?,?,?,?);";
@@ -377,6 +424,11 @@ public class ArticleDaoImpl implements ArticleDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de rendre inactif un article.
+     * Il est parfois préferable de rendre inactif un article plutot que de le supprimer, pour éviter d'avoir à supprimer les couleurs et les devis qui lui sont liés
+     * @param articleId l'identifiant de l'article que l'on veut rendre inactif
+     */
     @Override
     public void rendreInactifArticle(Integer articleId) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -391,6 +443,12 @@ public class ArticleDaoImpl implements ArticleDao {
         }
     }
 
+    /**
+     * Cette méthode permet de supprimer un article.
+     * Cela sert par exemple lorsqu'on veut modifier un article, on supprime complétement un article et on le reconstruit de zéro.
+     * Il est plus simple de faire comme cela, plutot que de modifier un champ en particulier, vu qu'on ne sait pas quel attribut va être modifié
+     * @param articleId l'identifiant de l'article à supprimer
+     */
     @Override
     public void deleteArticle(Integer articleId) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -405,8 +463,4 @@ public class ArticleDaoImpl implements ArticleDao {
         }
     }
 
-    @Override
-    public Article modifierArticle(Article article) {
-        return null;
-    }
 }
