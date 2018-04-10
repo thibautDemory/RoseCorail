@@ -52,16 +52,6 @@
 				</ul>
 			</div>
 
-			<div class="bandeauMois">
-				<ul>
-					<li><a class="mois-lien" href="#">2014</a></li>
-					<li><a class="mois-lien" href="#">2015</a></li>
-					<li><a class="mois-lien" href="#">2016</a></li>
-					<li><a class="mois-lien" href="#">2017</a></li>
-					<li><a class="mois-lien" href="#">2018</a></li>
-				</ul>
-			</div>
-
 			<div class="contenuHaut">
 				<h3>Historique des ventes</h3>
 				<canvas id="myChart" class="graphique1"></canvas>
@@ -92,12 +82,24 @@
 			<div class="contenuGauche">
 				<h3>Les 5 articles les plus vendus</h3>
 				<canvas id="myChart5"></canvas>
-					<script type="text/javascript">
+					<script type="text/javascript" th:inline="javascript">
+                        /*<![CDATA[*/
+                        var nomArticle1 = /*[[${nomArticle1}]]*/ "";
+                        var nomArticle2 = /*[[${nomArticle2}]]*/ "";
+                        var nomArticle3 = /*[[${nomArticle3}]]*/ "";
+                        var nomArticle4 = /*[[${nomArticle4}]]*/ "";
+                        var nomArticle5 = /*[[${nomArticle5}]]*/ "";
+                        var scoreArticle1 = /*[[${scoreArticle1}]]*/ 0;
+                        var scoreArticle2 = /*[[${scoreArticle2}]]*/ 0;
+                        var scoreArticle3 = /*[[${scoreArticle3}]]*/ 0;
+                        var scoreArticle4 = /*[[${scoreArticle4}]]*/ 0;
+                        var scoreArticle5 = /*[[${scoreArticle5}]]*/ 0;
+
 						var ctx = document.getElementById("myChart5").getContext('2d');
 						var myChart = new Chart(ctx, {
 						  type: 'doughnut',
 						  data: {
-						    labels: ["Plats à cake", "Plats à fromage", "Coupelles", "Dessous de plats", "Porte couteaux"],
+						    labels: [nomArticle1, nomArticle2, nomArticle3, nomArticle4, nomArticle5],
 						    datasets: [{
 						      backgroundColor: [
 						        "#2ecc71",
@@ -106,10 +108,11 @@
 						        "#9b59b6",
 						        "#f1c40f"
 						      ],
-						      data: [12, 19, 23, 21, 38]
+						      data: [scoreArticle1, scoreArticle2, scoreArticle3, scoreArticle4, scoreArticle5]
 						    }]
 						  }
 						});
+                        /*]]>*/
 					</script>
 			</div>
 
@@ -140,12 +143,24 @@
 			<div class="contenuBas">
 				<h3>Les 5 coloris les plus demandés</h3>
 				<canvas id="myChart4"></canvas>
-				<script type="text/javascript">
+				<script type="text/javascript" th:inline="javascript">
+                    /*<![CDATA[*/
+                    var nomCouleur1 = /*[[${nomCouleur1}]]*/ "";
+                    var nomCouleur2 = /*[[${nomCouleur2}]]*/ "";
+                    var nomCouleur3 = /*[[${nomCouleur3}]]*/ "";
+                    var nomCouleur4 = /*[[${nomCouleur4}]]*/ "";
+                    var nomCouleur5 = /*[[${nomCouleur5}]]*/ "";
+                    var scoreCouleur1 = /*[[${scoreCouleur1}]]*/ 0;
+                    var scoreCouleur2 = /*[[${scoreCouleur2}]]*/ 0;
+                    var scoreCouleur3 = /*[[${scoreCouleur3}]]*/ 0;
+                    var scoreCouleur4 = /*[[${scoreCouleur4}]]*/ 0;
+                    var scoreCouleur5 = /*[[${scoreCouleur5}]]*/ 0;
+
 					var ctx = document.getElementById("myChart4").getContext('2d');
 					var myChart = new Chart(ctx, {
 					  type: 'pie',
 					  data: {
-					    labels: ["Bordeaux 019", "Turquoise 020", "Sapin bleuté 091", "Elephant 035", "Fuchsia 085"],
+					    labels: [nomCouleur1, nomCouleur2, nomCouleur3, nomCouleur4, nomCouleur5],
 					    datasets: [{
 					      backgroundColor: [
 					        "#2ecc71",
@@ -154,7 +169,7 @@
 					        "#9b59b6",
 					        "#f1c40f"
 					      ],
-					      data: [12, 19, 3, 17, 28]
+					      data: [scoreCouleur1, scoreCouleur2, scoreCouleur3, scoreCouleur4, scoreCouleur5]
 					    }]
 					  }
 					});

@@ -92,6 +92,9 @@ public class StatistiquesServlet extends GenericServlet{
         }
 
         // On trie et on garde les 5 articles les plus vendus
+        // Le tableau est construit de la façon suivante :
+        // ligne n°0 : idArticle
+        // Ligne n°1 : scoreArticle
         int tabStatTop5Articles[][] = new int[2][5];
         for(int d=0; d<listArticle.size()-1; d++){
             int aux = d;
@@ -153,21 +156,152 @@ public class StatistiquesServlet extends GenericServlet{
             }
         }
 
-
         // Affichage TEST des 2 tableaux
         System.out.println();
         System.out.println("TRIE");
-        for(int w=0; w<listArticle.size(); w++){
+        for(int w=0; w<5; w++){
             System.out.print("idArticle n°"+w+" : "+tabStatTop5Articles[0][w]+" : ");
             System.out.println("quantityArticle : "+tabStatTop5Articles[1][w]);
-            System.out.print("idColor n°"+w+" : "+tabStatCouleurs[0][w]+" : ");
-            System.out.println("quantityColor : "+tabStatCouleurs[1][w]);
+            System.out.print("idColor n°"+w+" : "+tabStatTop5Couleurs[0][w]+" : ");
+            System.out.println("quantityColor : "+tabStatTop5Couleurs[1][w]);
         }
 
+        // On affecte les valeurs du top5 Articles et top5 Couleurs à des variables
+        // pour pouvoir les envoyer dans le HTML avec Thymeleaf
 
-        // On affecte les valeurs au HTML
+        // On crée les variables du TOP5 articles
+        String nomArticle1 = "rien";
+        String nomArticle2 = "rien";
+        String nomArticle3 = "rien";
+        String nomArticle4 = "rien";
+        String nomArticle5 = "rien";
+        int scoreArticle1 = 0;
+        int scoreArticle2 = 0;
+        int scoreArticle3 = 0;
+        int scoreArticle4 = 0;
+        int scoreArticle5 = 0;
 
+        //Si on a moins de 5 articles dans les stat
+        if(listArticle.size()<5){
+            if(listArticle.size() <= 0) {
 
+            }else if(listArticle.size() == 1){
+                nomArticle1 = articleLibrary.getArticleById(tabStatTop5Articles[0][0]).getNom_article();
+                scoreArticle1 = tabStatTop5Articles[1][0];
+            }else if(listArticle.size() == 2){
+                nomArticle1 = articleLibrary.getArticleById(tabStatTop5Articles[0][0]).getNom_article();
+                nomArticle2 = articleLibrary.getArticleById(tabStatTop5Articles[0][1]).getNom_article();
+                scoreArticle1 = tabStatTop5Articles[1][0];
+                scoreArticle2 = tabStatTop5Articles[1][1];
+            }else if(listArticle.size() == 3){
+                nomArticle1 = articleLibrary.getArticleById(tabStatTop5Articles[0][0]).getNom_article();
+                nomArticle2 = articleLibrary.getArticleById(tabStatTop5Articles[0][1]).getNom_article();
+                nomArticle3 = articleLibrary.getArticleById(tabStatTop5Articles[0][2]).getNom_article();
+                scoreArticle1 = tabStatTop5Articles[1][0];
+                scoreArticle2 = tabStatTop5Articles[1][1];
+                scoreArticle3 = tabStatTop5Articles[1][2];
+            }else if(listArticle.size() == 4){
+                nomArticle1 = articleLibrary.getArticleById(tabStatTop5Articles[0][0]).getNom_article();
+                nomArticle2 = articleLibrary.getArticleById(tabStatTop5Articles[0][1]).getNom_article();
+                nomArticle3 = articleLibrary.getArticleById(tabStatTop5Articles[0][2]).getNom_article();
+                nomArticle4 = articleLibrary.getArticleById(tabStatTop5Articles[0][3]).getNom_article();
+                scoreArticle1 = tabStatTop5Articles[1][0];
+                scoreArticle2 = tabStatTop5Articles[1][1];
+                scoreArticle3 = tabStatTop5Articles[1][2];
+                scoreArticle4 = tabStatTop5Articles[1][3];
+            }
+        // Si on a 5 (ou plus) articles dans les stat
+        }else {
+            nomArticle1 = articleLibrary.getArticleById(tabStatTop5Articles[0][0]).getNom_article();
+            nomArticle2 = articleLibrary.getArticleById(tabStatTop5Articles[0][1]).getNom_article();
+            nomArticle3 = articleLibrary.getArticleById(tabStatTop5Articles[0][2]).getNom_article();
+            nomArticle4 = articleLibrary.getArticleById(tabStatTop5Articles[0][3]).getNom_article();
+            nomArticle5 = articleLibrary.getArticleById(tabStatTop5Articles[0][4]).getNom_article();
+            scoreArticle1 = tabStatTop5Articles[1][0];
+            scoreArticle2 = tabStatTop5Articles[1][1];
+            scoreArticle3 = tabStatTop5Articles[1][2];
+            scoreArticle4 = tabStatTop5Articles[1][3];
+            scoreArticle5 = tabStatTop5Articles[1][4];
+        }
+
+        // On crée les variables du TOP5 couleur
+        String nomCouleur1 = "rien";
+        String nomCouleur2 = "rien";
+        String nomCouleur3 = "rien";
+        String nomCouleur4 = "rien";
+        String nomCouleur5 = "rien";
+
+        int scoreCouleur1 = 0;
+        int scoreCouleur2 = 0;
+        int scoreCouleur3 = 0;
+        int scoreCouleur4 = 0;
+        int scoreCouleur5 = 0;
+
+        //Si on a moins de 5 couleurs dans les stat
+        if(listCouleurs.size()<5){
+            if(listArticle.size() <= 0) {
+
+            }else if(listArticle.size() == 1){
+                nomCouleur1 = couleurLibrary.getCouleurByID(tabStatCouleurs[0][1]).getNom_couleur();
+                scoreCouleur1 = tabStatTop5Couleurs[1][0];
+            }else if(listArticle.size() == 2){
+                nomCouleur1 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][0]).getNom_couleur();
+                nomCouleur2 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][1]).getNom_couleur();
+                scoreCouleur1 = tabStatTop5Couleurs[1][0];
+                scoreCouleur2 = tabStatTop5Couleurs[1][1];
+            }else if(listArticle.size() == 3){
+                nomCouleur1 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][0]).getNom_couleur();
+                nomCouleur2 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][1]).getNom_couleur();
+                nomCouleur3 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][2]).getNom_couleur();
+                scoreCouleur1 = tabStatTop5Couleurs[1][0];
+                scoreCouleur2 = tabStatTop5Couleurs[1][1];
+                scoreCouleur3 = tabStatTop5Couleurs[1][2];
+            }else if(listArticle.size() == 4){
+                nomCouleur1 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][0]).getNom_couleur();
+                nomCouleur2 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][1]).getNom_couleur();
+                nomCouleur3 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][2]).getNom_couleur();
+                nomCouleur4 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][3]).getNom_couleur();
+                scoreCouleur1 = tabStatTop5Couleurs[1][0];
+                scoreCouleur2 = tabStatTop5Couleurs[1][1];
+                scoreCouleur3 = tabStatTop5Couleurs[1][2];
+                scoreCouleur4 = tabStatTop5Couleurs[1][3];
+            }
+        //Si on a 5 (ou plus) couleurs dans les stat
+        }else {
+            nomCouleur1 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][0]).getNom_couleur();
+            nomCouleur2 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][1]).getNom_couleur();
+            nomCouleur3 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][2]).getNom_couleur();
+            nomCouleur4 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][3]).getNom_couleur();
+            nomCouleur5 = couleurLibrary.getCouleurByID(tabStatTop5Couleurs[0][4]).getNom_couleur();
+
+            scoreCouleur1 = tabStatTop5Articles[1][0];
+            scoreCouleur2 = tabStatTop5Articles[1][1];
+            scoreCouleur3 = tabStatTop5Articles[1][2];
+            scoreCouleur4 = tabStatTop5Articles[1][3];
+            scoreCouleur5 = tabStatTop5Articles[1][4];
+        }
+
+        webContext.setVariable("nomArticle1",nomArticle1);
+        webContext.setVariable("nomArticle2",nomArticle2);
+        webContext.setVariable("nomArticle3",nomArticle3);
+        webContext.setVariable("nomArticle4",nomArticle4);
+        webContext.setVariable("nomArticle5",nomArticle5);
+        webContext.setVariable("scoreArticle1",scoreArticle1);
+        webContext.setVariable("scoreArticle2",scoreArticle2);
+        webContext.setVariable("scoreArticle3",scoreArticle3);
+        webContext.setVariable("scoreArticle4",scoreArticle4);
+        webContext.setVariable("scoreArticle5",scoreArticle5);
+
+        webContext.setVariable("nomCouleur1",nomCouleur1);
+        webContext.setVariable("nomCouleur2",nomCouleur2);
+        webContext.setVariable("nomCouleur3",nomCouleur3);
+        webContext.setVariable("nomCouleur4",nomCouleur4);
+        webContext.setVariable("nomCouleur5",nomCouleur5);
+        webContext.setVariable("scoreCouleur1",scoreCouleur1);
+        webContext.setVariable("scoreCouleur2",scoreCouleur2);
+        webContext.setVariable("scoreCouleur3",scoreCouleur3);
+        webContext.setVariable("scoreCouleur4",scoreCouleur4);
+        webContext.setVariable("scoreCouleur5",scoreCouleur5);
 
 
         webContext.setVariable("statut",statut);

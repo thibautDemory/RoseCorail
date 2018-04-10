@@ -44,7 +44,10 @@ public class AccueilServlet extends GenericServlet{
         webContext.setVariable("lesphotosaccueil",lesphotosaccueil);
         webContext.setVariable("listActu",listActu);
 
-        //System.out.println("titre1 = "+listActu.get(0).getTitreActualite());
+        int message = 123;
+        webContext.setVariable("message",message);
+
+
 
 
         templateEngine.process("accueil", webContext, resp.getWriter());
