@@ -84,6 +84,7 @@ public class StatistiquesServlet extends GenericServlet{
         }
 
         // Affichage TEST des 2 tableaux
+        System.out.println("Tableaux PAS TRIES");
         for(int w=0; w<listArticle.size(); w++){
             System.out.print("idArticle n°"+w+" : "+tabStatArticles[0][w]+" : ");
             System.out.println("quantityArticle : "+tabStatArticles[1][w]);
@@ -158,7 +159,7 @@ public class StatistiquesServlet extends GenericServlet{
 
         // Affichage TEST des 2 tableaux
         System.out.println();
-        System.out.println("TRIE");
+        System.out.println("Tableaux TRIES");
         for(int w=0; w<5; w++){
             System.out.print("idArticle n°"+w+" : "+tabStatTop5Articles[0][w]+" : ");
             System.out.println("quantityArticle : "+tabStatTop5Articles[1][w]);
