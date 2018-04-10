@@ -1,5 +1,17 @@
 package hei.ProjetRoseCorail.entities;
 
+/**
+ * Un article est composé d'un identifiant unique,
+ * un id de sous catégorie (7 sous catégories différentes),
+ * un nom (normalement unique),
+ * un numéro de réference (propre à la société),
+ * une description: un petit texte donnant plus de détail sur l'article
+ * une image qui lui est associé
+ * une dimension, géneralement exprimé par Longueur*Largeur lorsque c'est un article rectangulaire, ou par son diamètre si il est rond
+ * un prix, qui n'est pas un prix unitaire, mais le prix du lot de vente (ex: les portes couteaux sont vendu par 6, le prix correspond donc au prix de 6 porte-couteaux)
+ * un lot de vente: l'article ne peut être vendu que dans un multiple de ce chiffre (ex: les portes couteaux sont vendu par 6)
+ * l'attribut actif. Actif signifie qu'il sera affiché sur le site. Un article meme si il est inactif car plus vendu, peut toujours apparaitre dans les statistiques.
+ */
 public class Article {
     private Integer id_article;
     private Integer id_sous_categorie;

@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActualiteDaoImpl implements ActualiteDao {
+    /**
+     * Cette méthode permet de retourner la liste de toutes les actualités
+     * @return les actualités
+     */
     @Override
     public List<Actualite> listActualites(){
         String query = "SELECT * FROM actualite ORDER BY id_actualite";
@@ -35,6 +39,11 @@ public class ActualiteDaoImpl implements ActualiteDao {
 
     }
 
+    /**
+     * Cette méthode permet de retourner une actualité en particulier
+     * @param id c'est l'identifiant dans la base de donnée de l'actualité que l'on veut retourner
+     * @return l'actualité dont l'id a été rentré en paramètre
+     */
     @Override
     public Actualite getActualiteByID(Integer id){
         String query="SELECT * FROM actualite WHERE id_actualite=?;";
@@ -56,6 +65,11 @@ public class ActualiteDaoImpl implements ActualiteDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de rajouter une actualité à la base de donnée, et donc au site
+     * @param actualite contient tous les attributs de l'actualité que l'on veut rajouter
+     * @return l'actualité que l'on vient de créer, avec son identifiant
+     */
     @Override
     public Actualite addActualite(Actualite actualite) {
         String query = "INSERT INTO actualite(titre, contenu, image) VALUES(?,?,?)";
@@ -79,6 +93,10 @@ public class ActualiteDaoImpl implements ActualiteDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de supprimer une actualité
+     * @param idActualite est l'identifiant de l'actualité à supprimer
+     */
     @Override
     public void deleteActualite(Integer idActualite){
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {

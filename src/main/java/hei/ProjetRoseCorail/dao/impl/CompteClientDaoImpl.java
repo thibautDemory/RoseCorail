@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompteClientDaoImpl implements CompteClientDao {
+    /**
+     * Cette méthode permet de faire la liste des comptes clients existants
+     * @return la liste des comptes clients existants
+     */
     @Override
     public List<CompteClient> listComptesClient(){
         String query = "SELECT * FROM compteclient ORDER BY id_compte_client";
@@ -44,6 +48,11 @@ public class CompteClientDaoImpl implements CompteClientDao {
 
     }
 
+    /**
+     * Cette méthode permet de récuperer un compte client en particulier
+     * @param id_compte_client est l'identifiant du compte client que l'on veut retourner
+     * @return le compte client en question
+     */
     @Override
     public CompteClient getCompteClientById(Integer id_compte_client) {
         String query ="SELECT * FROM compteclient where id_compte_client=?;";
@@ -77,6 +86,11 @@ public class CompteClientDaoImpl implements CompteClientDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de récuperer un compte client récemment créer et qui
+     * @param id_compte_client
+     * @return
+     */
     @Override
     public CompteClient getCompteClientByIdWithoutIdPanier(Integer id_compte_client){
         String query ="SELECT * FROM compteclient where id_compte_client=?;";

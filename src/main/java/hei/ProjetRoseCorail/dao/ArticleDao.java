@@ -21,6 +21,5 @@ public interface ArticleDao {
     public Article addArticle(Article article);
     public void rendreInactifArticle(Integer articleId);
     public void deleteArticle(Integer articleId);
-    public Article modifierArticle(Article article);
 
 }

@@ -1,5 +1,14 @@
 package hei.ProjetRoseCorail.entities;
 
+/**
+ * Une couleur est définie par:
+ * Un identifiant unique
+ * Un nom
+ * Un numéro associé (c'est un code propre à la société)
+ * Une image représentative de la couleur
+ * Une saison, les couleurs des articles vont changer en fonction des saisons
+ * L'attribut actif qui permet de savoir si cette couleur est encore utilisé pour les articles en vente. Les couleurs non actives peuvent toujours apparaitre dans les statistiques.
+ */
 public class Couleur {
     private Integer id_couleur;
     private String nom_couleur;

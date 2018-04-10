@@ -1,5 +1,6 @@
 package hei.ProjetRoseCorail.entities;
 
+
 public class LignePanier {
     private String photoArticle;
     private String numeroArticle;

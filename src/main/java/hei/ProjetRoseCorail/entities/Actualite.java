@@ -1,5 +1,9 @@
 package hei.ProjetRoseCorail.entities;
 
+/**
+ * Une actualité comprend un identifiant, un titre qui est affiché en haut du panel, un contenu qui est le texte parlant de l'actualité
+ * et une image qui lui est associé (afficher à gauche du texte)
+ */
 public class Actualite {
     private Integer id_actualite;
     private String titre;
