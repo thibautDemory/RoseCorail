@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -47,6 +48,11 @@ public class ModifierActualiteServlet extends GenericServlet{
                 +contenuActualite+"; imageActualite = "+imageActualite+"; idActualiteString = "+idActualiteString);
 
         webContext.setVariable("statut",statut);
+
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
+        LocalDate maintenant=LocalDate.now();
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
         templateEngine.process("administration/modifActualite", webContext, resp.getWriter());
     }

@@ -1,9 +1,6 @@
 package hei.ProjetRoseCorail.servlets;
 
-import hei.ProjetRoseCorail.entities.Article;
-import hei.ProjetRoseCorail.entities.Couleur;
-import hei.ProjetRoseCorail.entities.Devis;
-import hei.ProjetRoseCorail.entities.LigneDevis;
+import hei.ProjetRoseCorail.entities.*;
 import hei.ProjetRoseCorail.managers.ArticleLibrary;
 import hei.ProjetRoseCorail.managers.CouleurLibrary;
 import hei.ProjetRoseCorail.managers.DevisLibrary;
@@ -52,17 +49,26 @@ public class StatistiquesServlet extends GenericServlet{
             tabStatCouleurs[1][a] = 0;
         }
 
-        // On prépare le filtre de date du mois actuel
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
         LocalDate maintenant=LocalDate.now();
-        String maintenantLong = maintenant.toString();
-        String maintenantCut = maintenantLong.substring(0,7);
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
-        // ici on remplit la 2ieme dim du tab crée précédemment
+
+        // On récupère l'année actuelle et on l'envoit sur l'HTML
+        String anneeActuelle = maintenant.toString().substring(0,5);
+        webContext.setVariable("anneeActuelle",anneeActuelle);
+
+        // On récupère l'année et le mois demandé (on ne peut demander que des stats de l'année actuelle)
+        // FORMAT = AAAA-MM
+        String anneeMois = req.getParameter("anneeMois");
+
+
+        // ici on remplit la 2ième dim du tab crée précédemment
         for(int i=0; i<listDevis.size(); i++){
             Devis devis = listDevis.get(i);
-            String dateLong = devis.getDate().toString();
-            String dateCut = dateLong.substring(0,7);
-            if(dateCut.equals(maintenantCut)){
+            String dateCut = devis.getDate().toString().substring(0,7);
+            if(dateCut.equals(anneeMois)){
                 int idDevis = devis.getId_devis();
                 List<LigneDevis> toutesLesLignesDuDevis = ligneDevisLibrary.listLignesDevisPourUnDevis(idDevis);
                 for(int j=0; j<toutesLesLignesDuDevis.size(); j++){
@@ -303,6 +309,61 @@ public class StatistiquesServlet extends GenericServlet{
         webContext.setVariable("scoreCouleur3",scoreCouleur3);
         webContext.setVariable("scoreCouleur4",scoreCouleur4);
         webContext.setVariable("scoreCouleur5",scoreCouleur5);
+
+
+
+        // On va maintenant faire les manip pour le graphique qui reprend chaque
+        // catégorie pour tous les mois de l'année
+
+        // On construit un tab qui répertorie toutes les ventes de tous les articles sur l'année actuelle
+        int[][] statArticlesSurLAnnee = new int[2][listArticle.size()];
+        System.out.println("Taille Liste Article : "+listArticle.size());
+        for(int a=0; a<listArticle.size(); a++){
+            Article article = listArticle.get(a);
+            statArticlesSurLAnnee[0][a] = article.getId_article();
+            statArticlesSurLAnnee[1][a] = 0;
+        }
+        // On construit le tab où on va stocker les data
+        // 1ere dimension = le mois (0=janvier, 1=février, ...)
+        // 2ieme dimension = La quantité vendu pour une catégorie et un mois donnés
+        int[][] tabGraph = new int[12][listArticle.size()];
+        String[] tabMois = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+
+        System.out.println("listDevis.size() : "+listDevis.size());
+        System.out.println("listDevis.get(0).getDate() : "+listDevis.get(0).getDate());
+
+        for(int s=0; s<12; s++){
+            String moisAnneeAux = anneeActuelle+tabMois[s];
+            for(int i=0; i<listDevis.size(); i++){
+                Devis devis = listDevis.get(i);
+                String dateCut = devis.getDate().toString().substring(0,7);
+                if(dateCut.equals(moisAnneeAux)){
+                    int idDevis = devis.getId_devis();
+                    List<LigneDevis> toutesLesLignesDuDevis = ligneDevisLibrary.listLignesDevisPourUnDevis(idDevis);
+                    for(int j=0; j<toutesLesLignesDuDevis.size(); j++){
+                        LigneDevis ligneDevis = toutesLesLignesDuDevis.get(j);
+                        int idArticle = ligneDevis.getId_article();
+                        for(int z=0; z<listArticle.size(); z++){
+                            if(idArticle == statArticlesSurLAnnee[0][z]){
+                                statArticlesSurLAnnee[1][z] += ligneDevis.getQuantite();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        System.out.println("ID n°1 "+statArticlesSurLAnnee[0][0]);
+        System.out.println("Quantite : "+statArticlesSurLAnnee[1][0]);
+        System.out.println("ID n°2 "+statArticlesSurLAnnee[0][1]);
+        System.out.println("Quantite : "+statArticlesSurLAnnee[1][1]);
+        System.out.println("ID n°3 "+statArticlesSurLAnnee[0][2]);
+        System.out.println("Quantite : "+statArticlesSurLAnnee[1][2]);
+        System.out.println("ID n°4 "+statArticlesSurLAnnee[0][3]);
+        System.out.println("Quantite : "+statArticlesSurLAnnee[1][3]);
+
+
 
 
         webContext.setVariable("statut",statut);

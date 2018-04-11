@@ -36,18 +36,18 @@
 
 			<div class="bandeauMois">
 				<ul>
-					<li><a class="mois-lien" href="#">Janvier</a></li>
-					<li><a class="mois-lien" href="#">Février</a></li>
-					<li><a class="mois-lien" href="#">Mars</a></li>
-					<li><a class="mois-lien" href="#">Avril</a></li>
-					<li><a class="mois-lien" href="#">Mai</a></li>
-					<li><a class="mois-lien" href="#">Juin</a></li>
-					<li><a class="mois-lien" href="#">Juillet</a></li>
-					<li><a class="mois-lien" href="#">Août</a></li>
-					<li><a class="mois-lien" href="#">Septembre</a></li>
-					<li><a class="mois-lien" href="#">Octobre</a></li>
-					<li><a class="mois-lien" href="#">Novembre</a></li>
-					<li><a class="mois-lien" href="#">Décembre</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'01'}">Janvier</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'02'}">Février</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'03'}">Mars</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'04'}">Avril</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'05'}">Mai</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'06'}">Juin</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'07'}">Juillet</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'08'}">Août</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'09'}">Septembre</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'10'}">Octobre</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'11'}">Novembre</a></li>
+					<li><a class="mois-lien" th:href="${'/RoseCorail/administration/statistiques?anneeMois='+anneeActuelle+'12'}">Décembre</a></li>
 					<li style="float:none;"><br style="clear:both;" /></li>
 				</ul>
 			</div>
@@ -117,30 +117,6 @@
 			</div>
 
 			<div class="contenuDroit">
-				<h3>Les 5 articles les plus vus</h3>
-				<canvas id="myChart6"></canvas>
-					<script type="text/javascript">
-						var ctx = document.getElementById("myChart6").getContext('2d');
-						var myChart = new Chart(ctx, {
-						  type: 'doughnut',
-						  data: {
-						    labels: ["Plats à cake", "Plats à fromage", "Coupelles", "Dessous de plats", "Porte couteaux"],
-						    datasets: [{
-						      backgroundColor: [
-						        "#2ecc71",
-						        "#3498db",
-						        "#95a5a6",
-						        "#9b59b6",
-						        "#f1c40f"
-						      ],
-						      data: [120, 219, 73, 217, 128]
-						    }]
-						  }
-						});
-					</script>
-			</div>
-
-			<div class="contenuBas">
 				<h3>Les 5 coloris les plus demandés</h3>
 				<canvas id="myChart4"></canvas>
 				<script type="text/javascript" th:inline="javascript">
@@ -176,6 +152,7 @@
 				</script>
 			</div>
 
+			<div class="contenuBas"></div>
 
 		</div>
 

@@ -39,6 +39,10 @@ public class ModalClientServlet extends GenericServlet {
         webContext.setVariable("cetarticle",cetArticle);
         webContext.setVariable("sescouleurs",lescouleursdecetarticle);
 
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
+        LocalDate maintenant=LocalDate.now();
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
         templateEngine.process("modalClient", webContext, resp.getWriter());
     }

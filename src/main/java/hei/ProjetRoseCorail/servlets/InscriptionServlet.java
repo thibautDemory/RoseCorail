@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 
 @WebServlet("/inscription")
 public class InscriptionServlet extends GenericServlet{
@@ -31,6 +32,11 @@ public class InscriptionServlet extends GenericServlet{
             statut="visiteur";
         }
         webContext.setVariable("statut",statut);
+
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
+        LocalDate maintenant=LocalDate.now();
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
         templateEngine.process("inscription", webContext, resp.getWriter());
     }

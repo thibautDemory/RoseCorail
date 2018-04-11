@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,13 +46,17 @@ public class LesColorisServlet extends GenericServlet{
         String saisonselect=req.getParameter("saison");
         List<Panelcoloris> lespanelscoloris = panelColorisLibrary.listpanelcolorisparsaison(saisonselect);
 
-
-
         System.out.println(statut);
         webContext.setVariable("statut",statut);
         webContext.setVariable("lespanelscoloris",lespanelscoloris);
         webContext.setVariable("saisonencours",saisonselect);
         webContext.setVariable("modification",modification);
+
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
+        LocalDate maintenant=LocalDate.now();
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
+
         templateEngine.process("lescoloris", webContext, resp.getWriter());
     }
 }

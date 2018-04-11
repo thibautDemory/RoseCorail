@@ -42,6 +42,10 @@ public class LesportecouteauxServlet extends GenericServlet {
         webContext.setVariable("portecouteaux",lesportecouteaux);
         webContext.setVariable("modification",modification);
 
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
+        LocalDate maintenant=LocalDate.now();
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
         templateEngine.process("lesportecouteaux", webContext, resp.getWriter());
     }
