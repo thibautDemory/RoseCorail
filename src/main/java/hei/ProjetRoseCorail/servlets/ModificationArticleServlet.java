@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @MultipartConfig
@@ -60,6 +61,11 @@ public class ModificationArticleServlet extends GenericServlet{
         webContext.setVariable("unadouze",unadouze);
         webContext.setVariable("sescouleurs",lescouleursdecetarticleenString);
         webContext.setVariable("lescouleurs",lescouleursenString);
+
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
+        LocalDate maintenant=LocalDate.now();
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
         templateEngine.process("/administration/ModificationArticle", webContext, resp.getWriter());
     }

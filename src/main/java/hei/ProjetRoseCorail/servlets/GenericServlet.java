@@ -6,6 +6,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
+import java.time.LocalDate;
 
 public class GenericServlet extends HttpServlet {
     protected TemplateEngine createTemplateEngine(ServletContext servletContext) {
@@ -13,7 +14,6 @@ public class GenericServlet extends HttpServlet {
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("UTF-8");
-
 
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);

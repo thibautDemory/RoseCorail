@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class ModalAnnulationDevisServlet extends GenericServlet {
     @Override
@@ -18,6 +19,12 @@ public class ModalAnnulationDevisServlet extends GenericServlet {
         Integer id=Integer.parseInt(req.getParameter("id"));
         Devis devis=DevisLibrary.getInstance().getDevisByiD(id);
         webContext.setVariable("cedevis",devis);
+
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
+        LocalDate maintenant=LocalDate.now();
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
+
         templateEngine.process("ModalAnnulationDevis", webContext, resp.getWriter());
     }
 }

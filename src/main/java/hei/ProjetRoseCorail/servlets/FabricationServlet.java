@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
+
 @WebServlet("/fabrication")
 public class FabricationServlet extends GenericServlet{
     @Override
@@ -26,6 +28,11 @@ public class FabricationServlet extends GenericServlet{
         }
         System.out.println(statut);
         webContext.setVariable("statut",statut);
+
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
+        LocalDate maintenant=LocalDate.now();
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
         templateEngine.process("fabrication", webContext, resp.getWriter());
     }

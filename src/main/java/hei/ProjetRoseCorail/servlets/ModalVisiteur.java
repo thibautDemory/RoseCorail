@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet("/modalVisiteur")
@@ -35,6 +36,10 @@ public class ModalVisiteur extends GenericServlet {
         webContext.setVariable("cetarticle",cetArticle);
         webContext.setVariable("sescouleurs",lescouleursdecetarticle);
 
+        // On prépare le filtre de date du mois actuel pour la page "fragment.html"
+        LocalDate maintenant=LocalDate.now();
+        String anneeMoisActuelle = maintenant.toString().substring(0,7);
+        webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
         templateEngine.process("modalVisiteur", webContext, resp.getWriter());
     }
