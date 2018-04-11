@@ -47,14 +47,15 @@ function calculPrixTotalTTC(){
 
 
 function changerlePrixdelaligne(prix,numeroligne){
-    var quantite=document.querySelector(".prixunitaire"+numeroligne).value;
+
+    var quantite=document.querySelector(".quantite"+numeroligne).value;
     if (quantite<1){
         quantite=1;
     }if(quantite>100){
         quantite=100;
     }
     changerlaquantiteBDD(numeroligne,quantite);
-    document.querySelector(".prixunitaire"+numeroligne).value=quantite;
+    document.querySelector(".quantite"+numeroligne).value=quantite;
     document.querySelector(".prixfinaldelaligne"+numeroligne).textContent=quantite*prix;
 
     donnerleprixhorstaxemarchandise();
@@ -65,7 +66,7 @@ function changerlePrixdelaligne(prix,numeroligne){
 }
 function changerlaquantiteBDD(idLigneDevis,quantite){
     var requetechangerQuantiteBDD= new XMLHttpRequest();
-    requetechangerQuantiteBDD.open("POST","/webservice/PanierWS",true);
+    requetechangerQuantiteBDD.open("POST","/RoseCorail/webservice/PanierWS",true);
     requetechangerQuantiteBDD.responseType="text";
     requetechangerQuantiteBDD.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 

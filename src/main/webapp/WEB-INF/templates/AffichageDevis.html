@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
-    <link href="/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
-    <link href="/css/style-perso.css" type="text/css" rel="stylesheet">
-    <link href="/css/Lesplats.css" type="text/css" rel="stylesheet">
-    <script src="/js/jquery-3.2.1.js"></script>
-    <script src="/js/bootstrap.js"></script>
+    <link href="/RoseCorail/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/style-perso.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/Lesplats.css" type="text/css" rel="stylesheet">
+    <script src="/RoseCorail/js/jquery-3.2.1.js"></script>
+    <script src="/RoseCorail/js/bootstrap.js"></script>
     <meta charset="UTF-8"/>
     <title>Affichage Devis</title>
 </head>
@@ -15,8 +15,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-6"><!--Logo et adresse entreprise -->
-                <img class="img-responsive" src="/images/rosecoraillogo.jpg">
-                <div class="panel-default panel col-xs-8">
+                <img class="img-responsive" src="/RoseCorail/images/rosecoraillogo.jpg">
+                <div class="panel-default panel col-xs-12 col-sm-8">
 
                     <p> Rose Corail<br>
                         1 bis rue Raymond Gréban<br>Immeuble B - 78100 St Germain en Laye<br>
@@ -25,7 +25,7 @@
 
                 </div>
             </div>
-            <div class="col-xs-6"><!--Infos devis et client -->
+            <div class="col-xs-6 col-xs-offset-3 col-sm-3"><!--Infos devis et client -->
                 <div class="panel panel-default col-xs-8">
                     <div class="panel-heading">Devis n°1234</div>
                     <p>
@@ -34,7 +34,8 @@
                         Devis valable 2 mois
                     </p>
                 </div>
-                <div class="panel panel-default col-xs-8">
+
+                <div class="panel panel-default   col-xs-8">
                     <div class="panel-heading">Adresse du client:</div>
                     <p>
                         M et Mdme Dupont<br>
@@ -48,9 +49,8 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Nom</th>
                     <th>Photo</th>
-                    <th>Description</th>
+                    <th>Article</th>
                     <th>dimensions</th>
                     <th>Couleur</th>
                     <th>Vendu par</th>
@@ -60,18 +60,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Nom</td>
-                    <td>Photo</td>
-                    <td>description</td>
-                    <td>dimensions</td>
+                <tr th:each=" devis :${leslignesaafficher}">
+                    <td><img th:src="${devis.photoArticle}">Photo</td>
+                    <td th:text="${devis.numeroArticle+'\t'+devis.nomArticle}">Article</td>
+                    <td th:text="${devis.dimensionArticle}">dimensions</td>
                     <td>Couleur</td>
-                    <td>Vendu par</td>
-                    <td>Prix par lot</td>
-                    <td>nombre de lots</td>
+                    <td th:text="${devis.vendupar}">Vendu par</td>
+                    <td th:text="${devis.prixunitaire}">Prix par lot</td>
+                    <td th:text="${devis.quantite}">nombre de lots</td>
                     <td>Prix total</td>
                 </tr>
-                <tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>total</td></tr>
                 </tbody>
             </table>
         </div>

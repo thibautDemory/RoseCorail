@@ -138,7 +138,7 @@ public class DevisDaoImpl implements DevisDao {
         LocalDate maintenant=LocalDate.now();
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE devis SET date = ?, etatPanier=FALSE WHERE id_devis =?;")) {
+                    "UPDATE devis SET date_creation = ? WHERE id_devis =?;")) {
                 statement.setDate(1,Date.valueOf(maintenant) );
                 statement.setInt(2,idDevis );
                 statement.executeUpdate();
@@ -154,7 +154,7 @@ public class DevisDaoImpl implements DevisDao {
     public void dePanieraEnPreparation(Integer idDevis) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE devis SET etat = 'en preparation', etatPanier=FALSE WHERE id_devis =?;")) {
+                    "UPDATE devis SET etat = 'en préparation', etatPanier=FALSE WHERE id_devis =?;")) {
                 statement.setInt(1,idDevis );
                 statement.executeUpdate();
             }
@@ -169,8 +169,23 @@ public class DevisDaoImpl implements DevisDao {
     public void annulerDevis(Integer idDevis) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE devis SET etat = 'annuler', etatPanier=FALSE WHERE id_devis =?;")) {
+                    "UPDATE devis SET etat = 'annulé', etatPanier=FALSE WHERE id_devis =?;")) {
                 statement.setInt(1,idDevis );
+                statement.executeUpdate();
+            }
+        }catch (SQLException e) {
+            // Manage Exception
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void changerEtatDevis(Integer idDevis, String etat) {
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE devis SET etat = ?, etatPanier=FALSE WHERE id_devis =?;")) {
+                statement.setString(1,etat );
+                statement.setInt(2,idDevis );
                 statement.executeUpdate();
             }
         }catch (SQLException e) {

@@ -36,18 +36,19 @@ public class AjoutActualiteServlet extends GenericServlet{
         String contenu = null;
         String image_actualite = null;
 
+
         titre = req.getParameter("titreActualite");
         contenu = req.getParameter("contenuActualite");
 
         File filequicontientlimage=null;
-        filequicontientlimage = new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\actualite\\"+titre.trim());
+        filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\actualite\\"+titre.trim());
         filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
         Part imagePart = req.getPart("imageActualite"); // on récupere  l'image du formulaire
         imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
 
 
         // CREATE Actualité
-        Actualite newActualite = new Actualite(null, titre, contenu, "\\images\\actualite\\"+titre.trim()+"\\image.jpg");
+        Actualite newActualite = new Actualite(null, titre, contenu, "images/actualite/"+titre.trim()+"/image.jpg");
         try {
             Actualite createdActualite = ActualiteLibrary.getInstance().addActualite(newActualite);
 

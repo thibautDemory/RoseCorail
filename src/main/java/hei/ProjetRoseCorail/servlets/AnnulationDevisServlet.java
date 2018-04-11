@@ -20,6 +20,6 @@ public class AnnulationDevisServlet extends GenericServlet {
         devisLibrary.annulerdevis(Integer.parseInt(idaannuler));
 
 
-        resp.sendRedirect("/");
+        resp.sendRedirect("/RoseCorail/devisClient");
     }
 }

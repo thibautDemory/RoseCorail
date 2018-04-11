@@ -14,6 +14,7 @@ public interface DevisDao {
     public void changerDateDevis(Integer idDevis);
     public void dePanieraEnPreparation(Integer idDevis);
     public void annulerDevis(Integer idDevis);
+    public void changerEtatDevis(Integer idDevis, String etat);
 
 
 }

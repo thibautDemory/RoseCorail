@@ -65,6 +65,7 @@ public class AjoutArticleServlet extends GenericServlet{
         String applicationPath = req.getServletContext().getRealPath("");
         // constructs path of the directory to save uploaded file
         String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
+        System.out.println(uploadFilePath);
 
         // creates the save directory if it does not exists
         File fileSaveDir = null;
@@ -82,7 +83,8 @@ public class AjoutArticleServlet extends GenericServlet{
 
 
             //pathaafficher=filequicontientlimage.getAbsolutePath();
-            fileSaveDir=new File(uploadFilePath+"/article/"+nom.trim());
+            fileSaveDir=new File("/article/"+nom.trim());
+            System.out.println(fileSaveDir.getAbsolutePath());
             if (!fileSaveDir.exists()) {
                 fileSaveDir.mkdirs();
             }

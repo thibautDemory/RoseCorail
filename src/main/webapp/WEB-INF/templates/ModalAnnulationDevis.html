@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<form method="post">
+
     <div class="modal-header">
         <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
 
@@ -8,14 +8,17 @@
 
     <div class="modal-body">
         <div class="row" style="margin-bottom: 20px;">
+            <h5>Devis n° : <span th:text="${cedevis.id_devis}"></span></h5>
+            <h5>Date : <span th:text="${cedevis.date}"></span></h5>
+            <h5>Etat : <span th:text="${cedevis.etat}"></span></h5>
 
 
             <p>Voulez vous vraiment annuler ce devis? Un mail sera envoyé à l'entreprise Rose Corail pour confirmer l'annulation de ce devis.</p>
             <button data-dismiss="modal" class="btn btn-primary">Annuler</button>
-            <a class="btn btn-primary" th:href="${'/annulationdevis?id='+cetarticle.id_article}">Supprimer</a>
+            <a class="btn btn-primary" th:href="${'/RoseCorail/annulationdevis?id='+cedevis.id_devis}">Annuler devis</a>
         </div>
 
     </div>
-</form>
+
 
 </html>

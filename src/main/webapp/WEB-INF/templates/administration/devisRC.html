@@ -3,11 +3,12 @@
 
 	<head>
 	  <!-- Bootstrap -->
-		<link href="../css/bootstrap.css" type="text/css" rel="stylesheet">
-		<link href="../css/bootstrap-theme.css" type="text/css" rel="stylesheet">
-		<link href="../css/style-perso.css" type="text/css" rel="stylesheet">
-		<script src="../js/jquery-3.2.1.js">
-		</script><script src="../js/bootstrap.js"></script>
+		<link href="/RoseCorail/css/bootstrap.css" type="text/css" rel="stylesheet">
+		<link href="/RoseCorail/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+		<link href="/RoseCorail/css/style-perso.css" type="text/css" rel="stylesheet">
+		<script src="/RoseCorail/js/jquery-3.2.1.js"></script>
+		<script src="/RoseCorail/js/bootstrap.js"></script>
+		<script src="/RoseCorail/js/DevisRC.js"></script>
 
 
 	  <meta charset="utf-8"/>
@@ -32,30 +33,36 @@
 				<table class="table table-hover tableau">
 				    <thead>
 				      <tr>
+						  <th>Devis n°</th>
 				      	<th>Boutique</th>
 				        <th>Date</th>
 				        <th>Nombre d'articles commandés</th>
 				        <th>Prix total de la commande</th>
-				        <th>état</th>
+				        <th>Modifier état</th>
 				        <th>Voir</th>
 				        <th>Supprimer</th>
 				      </tr>
 				    </thead>
 				    <tbody>
 				      <tr th:each="devis : ${lesdevisRC}">
+						  <td th:text="${devis.idDevis}"></td>
 				      	<td th:text="${devis.boutique}">Decathlon</td>
 				        <td th:text="${devis.date}">21/02/2017</td>
 				        <td th:text="${devis.nbreArticles}">36</td>
 				        <td th:text="${devis.prixTotal}">804</td>
-				        <td th:text="${devis.etat}" class="etat demande">Demandé</td>
+						  <td><select th:class="${'etat'+devis.idDevis}" th:onchange="'changerletatdelaligne('+${devis.idDevis}+')'" th:name="${'etat'+devis.idDevis}">
+							  <option th:selected="${devis.etat.equals('en préparation')}" value="en préparation">en préparation</option>
+							  <option th:selected="${devis.etat.equals('expédié')}" value="expédié">expédié</option>
+							  <option th:selected="${devis.etat.equals('annulé')}" value="annulé">annulé</option>
+						  </select></td>
 				        <td><a href="#" class="glyphicon glyphicon-file"></a></td>
-				        <td><a href="#" class="glyphicon glyphicon-trash"></a></td>
+				        <td><a th:href="${'/RoseCorail/administration/ModalSuppressionDevis?id'+devis.idDevis}" class="glyphicon glyphicon-trash"></a></td>
 				      </tr>
 
 				    </tbody>
 				</table>
 			</div>
-			<div class="boutons">
+			<div class="col-xs-offset-5">
 				<a href="/lesPlats" class="btn btn-primary" role="button">Retourner aux articles</a>
 			</div>
 		</div>

@@ -54,7 +54,7 @@
 				        <td><img th:src="${ligne.photoCouleur}"></td>
 						  <td th:text="${ligne.vendupar}"></td>
 						  <td th:text="${ligne.prixunitaire}"></td>
-						  <td><input min="1" max="100" type="number" th:value="${ligne.quantite}" th:class="'prixunitaire'+${ligne.idLigneDevis}" th:onchange="'changerlePrixdelaligne('+${ligne.prixunitaire}+','+${ligne.idLigneDevis}+')'"></td>
+						  <td><input min="1" max="100" type="number" th:value="${ligne.quantite}" th:class="'quantite'+${ligne.idLigneDevis}" th:onchange="'changerlePrixdelaligne('+${ligne.prixunitaire}+','+${ligne.idLigneDevis}+')'"></td>
 
 						  <td th:class="'prixfinaldelaligne'+${ligne.idLigneDevis}+' prixdelot'" th:text="${ligne.quantite}*${ligne.prixunitaire}"></td>
 				        <td><a th:href="${'supprimerLignePanier?id='+ligne.idLigneDevis}" class="glyphicon glyphicon-trash"></a></td>

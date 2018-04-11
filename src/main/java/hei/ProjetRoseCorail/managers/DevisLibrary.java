@@ -23,4 +23,5 @@ public class DevisLibrary {
     public void passerdePanierAPreparation(Integer iddevis){devisDao.dePanieraEnPreparation(iddevis);}
     public void changerDateDevis(Integer idDevis){devisDao.changerDateDevis(idDevis);}
     public void annulerdevis(Integer idDevis){devisDao.annulerDevis(idDevis);}
+     public void changerEtatDevis(Integer idDevis, String etat){devisDao.changerEtatDevis(idDevis,etat);}
 }
