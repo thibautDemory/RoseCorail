@@ -323,10 +323,8 @@ public class StatistiquesServlet extends GenericServlet{
             statArticlesSurLAnnee[0][a] = article.getId_article();
             statArticlesSurLAnnee[1][a] = 0;
         }
-        // On construit le tab où on va stocker les data
-        // 1ere dimension = le mois (0=janvier, 1=février, ...)
-        // 2ieme dimension = La quantité vendu pour une catégorie et un mois donnés
-        int[][] tabGraph = new int[12][listArticle.size()];
+
+
         String[] tabMois = {"01","02","03","04","05","06","07","08","09","10","11","12"};
 
         System.out.println("listDevis.size() : "+listDevis.size());
@@ -353,7 +351,37 @@ public class StatistiquesServlet extends GenericServlet{
             }
         }
 
+        // On trie le tableau (seulement les 3 premiers, car on a besoin que des 3 articles plus commandés)
+        for(int d=0; d<3; d++){
+            int aux = d;
+            int auxQteArticle = statArticlesSurLAnnee[1][aux];
+            int auxIdArticle = statArticlesSurLAnnee[0][aux];
+            for(int c=d+1; c<listArticle.size(); c++){
+                if(statArticlesSurLAnnee[1][aux]<statArticlesSurLAnnee[1][c]){
+                    aux = c;
+                    auxQteArticle = statArticlesSurLAnnee[1][aux];
+                    auxIdArticle = statArticlesSurLAnnee[0][aux];
+                }
+            }
+            statArticlesSurLAnnee[0][aux] = statArticlesSurLAnnee[0][d];
+            statArticlesSurLAnnee[1][aux] = statArticlesSurLAnnee[1][d];
+            statArticlesSurLAnnee[0][d] = auxIdArticle;
+            statArticlesSurLAnnee[1][d] = auxQteArticle;
+        }
 
+        // On trouve les noms des 3 articles les plus vendus sur l'année
+        int articleNum1IDint = statArticlesSurLAnnee[0][0];
+        String articleNum1IDString = articleLibrary.getArticleById(articleNum1IDint).getNom_article();
+        webContext.setVariable("articleNum1IDString",articleNum1IDString);
+        int articleNum2IDint = statArticlesSurLAnnee[0][1];
+        String articleNum2IDString = articleLibrary.getArticleById(articleNum2IDint).getNom_article();
+        webContext.setVariable("articleNum2IDString",articleNum2IDString);
+        int articleNum3IDint = statArticlesSurLAnnee[0][2];
+        String articleNum3IDString = articleLibrary.getArticleById(articleNum3IDint).getNom_article();
+        webContext.setVariable("articleNum3IDString",articleNum3IDString);
+
+
+        System.out.println();
         System.out.println("ID n°1 "+statArticlesSurLAnnee[0][0]);
         System.out.println("Quantite : "+statArticlesSurLAnnee[1][0]);
         System.out.println("ID n°2 "+statArticlesSurLAnnee[0][1]);
@@ -362,6 +390,57 @@ public class StatistiquesServlet extends GenericServlet{
         System.out.println("Quantite : "+statArticlesSurLAnnee[1][2]);
         System.out.println("ID n°4 "+statArticlesSurLAnnee[0][3]);
         System.out.println("Quantite : "+statArticlesSurLAnnee[1][3]);
+
+        // On construit le tab où on va stocker les data
+        // 1ere dimension = le mois (0=janvier, 1=février, ...)
+        // 2ieme dimension = La quantité vendu pour une catégorie et un mois donnés
+        int[][] tabGraph = new int[12][3];
+
+        for(int x=0; x<12; x++){
+            String moisAnneeAux = anneeActuelle+tabMois[x];
+            for(int i=0; i<listDevis.size(); i++){
+                Devis devis = listDevis.get(i);
+                String dateCut = devis.getDate().toString().substring(0,7);
+                if(dateCut.equals(moisAnneeAux)){
+                    int idDevis = devis.getId_devis();
+                    List<LigneDevis> toutesLesLignesDuDevis = ligneDevisLibrary.listLignesDevisPourUnDevis(idDevis);
+                    for(int j=0; j<toutesLesLignesDuDevis.size(); j++){
+                        LigneDevis ligneDevis = toutesLesLignesDuDevis.get(j);
+                        int idArticle = ligneDevis.getId_article();
+                        if(idArticle == articleNum1IDint){
+                            tabGraph[x][0] += ligneDevis.getQuantite();
+                        }
+                        if(idArticle == articleNum2IDint){
+                            tabGraph[x][1] += ligneDevis.getQuantite();
+                        }
+                        if(idArticle == articleNum3IDint){
+                            tabGraph[x][2] += ligneDevis.getQuantite();
+                        }
+                    }
+                }
+            }
+        }
+
+        for(int i=0; i<12; i++){
+            for(int j=0; j<3; j++){
+                System.out.println("tabGraph["+i+"]["+j+"] : "+tabGraph[i][j]);
+            }
+        }
+
+        webContext.setVariable("tabGraph",tabGraph);
+
+
+        if(listArticle.size()>2){
+            for(int i=0; i<3; i++){
+
+            }
+        }else if(listArticle.size()==2){
+
+        }else if(listArticle.size()==1){
+
+        }else if(listArticle.size()==0){
+
+        }
 
 
 

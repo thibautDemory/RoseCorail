@@ -55,27 +55,73 @@
 			<div class="contenuHaut">
 				<h3>Historique des ventes</h3>
 				<canvas id="myChart" class="graphique1"></canvas>
-				<script type="text/javascript">
+				<script type="text/javascript" th:inline="javascript">
+                    /*<![CDATA[*/
+                    var articleNum1IDString = /*[[${articleNum1IDString}]]*/ "";
+                    var articleNum2IDString = /*[[${articleNum2IDString}]]*/ "";
+                    var articleNum3IDString = /*[[${articleNum3IDString}]]*/ "";
+
+                    var tabGraph00 = /*[[${tabGraph[0][0]}]]*/ 0;
+                    var tabGraph10 = /*[[${tabGraph[1][0]}]]*/ 0;
+                    var tabGraph20 = /*[[${tabGraph[2][0]}]]*/ 0;
+                    var tabGraph30 = /*[[${tabGraph[3][0]}]]*/ 0;
+                    var tabGraph40 = /*[[${tabGraph[4][0]}]]*/ 0;
+                    var tabGraph50 = /*[[${tabGraph[5][0]}]]*/ 0;
+                    var tabGraph60 = /*[[${tabGraph[6][0]}]]*/ 0;
+                    var tabGraph70 = /*[[${tabGraph[7][0]}]]*/ 0;
+                    var tabGraph80 = /*[[${tabGraph[8][0]}]]*/ 0;
+                    var tabGraph90 = /*[[${tabGraph[9][0]}]]*/ 0;
+                    var tabGraph100 = /*[[${tabGraph[10][0]}]]*/ 0;
+                    var tabGraph110 = /*[[${tabGraph[11][0]}]]*/ 0;
+
+                    var tabGraph01 = /*[[${tabGraph[0][1]}]]*/ 0;
+                    var tabGraph11 = /*[[${tabGraph[1][1]}]]*/ 0;
+                    var tabGraph21 = /*[[${tabGraph[2][1]}]]*/ 0;
+                    var tabGraph31 = /*[[${tabGraph[3][1]}]]*/ 0;
+                    var tabGraph41 = /*[[${tabGraph[4][1]}]]*/ 0;
+                    var tabGraph51 = /*[[${tabGraph[5][1]}]]*/ 0;
+                    var tabGraph61 = /*[[${tabGraph[6][1]}]]*/ 0;
+                    var tabGraph71 = /*[[${tabGraph[7][1]}]]*/ 0;
+                    var tabGraph81 = /*[[${tabGraph[8][1]}]]*/ 0;
+                    var tabGraph91 = /*[[${tabGraph[9][1]}]]*/ 0;
+                    var tabGraph101 = /*[[${tabGraph[10][1]}]]*/ 0;
+                    var tabGraph111 = /*[[${tabGraph[11][1]}]]*/ 0;
+
+                    var tabGraph02 = /*[[${tabGraph[0][2]}]]*/ 0;
+                    var tabGraph12 = /*[[${tabGraph[1][2]}]]*/ 0;
+                    var tabGraph22 = /*[[${tabGraph[2][2]}]]*/ 0;
+                    var tabGraph32 = /*[[${tabGraph[3][2]}]]*/ 0;
+                    var tabGraph42 = /*[[${tabGraph[4][2]}]]*/ 0;
+                    var tabGraph52 = /*[[${tabGraph[5][2]}]]*/ 0;
+                    var tabGraph62 = /*[[${tabGraph[6][2]}]]*/ 0;
+                    var tabGraph72 = /*[[${tabGraph[7][2]}]]*/ 0;
+                    var tabGraph82 = /*[[${tabGraph[8][2]}]]*/ 0;
+                    var tabGraph92 = /*[[${tabGraph[9][2]}]]*/ 0;
+                    var tabGraph102 = /*[[${tabGraph[10][2]}]]*/ 0;
+                    var tabGraph112 = /*[[${tabGraph[11][2]}]]*/ 0;
+
+
 					var ctx = document.getElementById('myChart').getContext('2d');
 					var myChart = new Chart(ctx, {
 					  type: 'line',
 					  data: {
 					    labels: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
 					    datasets: [{
-					      label: 'les plats',
-					      data: [120, 190, 30, 170, 60, 30, 70, 230, 130, 120, 190, 30],
+					      label: articleNum1IDString,
+					      data: [tabGraph00, tabGraph10, tabGraph20, tabGraph30, tabGraph40, tabGraph50, tabGraph60, tabGraph70, tabGraph80, tabGraph90, tabGraph100, tabGraph110],
 					      backgroundColor: "rgba(153,255,51,0.4)"
 					    }, {
-					      label: 'décor de table',
-					      data: [20, 290, 50, 50, 20, 30, 100, 140, 180, 120, 190, 30],
+					      label: articleNum2IDString,
+					      data: [tabGraph01, tabGraph11, tabGraph21, tabGraph31, tabGraph41, tabGraph51, tabGraph61, tabGraph71, tabGraph81, tabGraph91, tabGraph101, tabGraph111],
 					      backgroundColor: "rgba(255,153,0,0.4)"
 					    }, {
-					      label: 'portes couteaux',
-					      data: [20, 190, 150, 50, 120, 60, 200, 120, 400, 120, 190, 30],
+					      label: articleNum3IDString,
+					      data: [tabGraph02, tabGraph12, tabGraph22, tabGraph32, tabGraph42, tabGraph52, tabGraph62, tabGraph72, tabGraph82, tabGraph92, tabGraph102, tabGraph112],
 					      backgroundColor: "rgba(0,0,255,0.4)"
 					    }]
 					  }
 					});
+                    /*]]>*/
 				</script>
 			</div>
 
