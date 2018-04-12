@@ -61,14 +61,14 @@ public class AjoutColorisServlet extends GenericServlet{
         saison = req.getParameter("saisonColoris");
 
         File filequicontientlimage=null;
-        filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\image\\couleur\\"+nom_couleur.trim());
+        filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\couleurs\\"+nom_couleur.trim());
         filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
         Part imagePart = req.getPart("imageColoris"); // on récupere  l'image du formulaire
         imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
 
 
         // CREATE couleur
-        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "/RoseCorail/image/couleur/"+nom_couleur.trim()+"/image.jpg", saison,1);
+        Couleur newCouleur = new Couleur(null, nom_couleur, numero_couleur, "/RoseCorail/images/couleurs/"+nom_couleur.trim()+"/image.jpg", saison,1);
         try {
             Couleur createdCouleur = CouleurLibrary.getInstance().addCouleur(newCouleur);
 

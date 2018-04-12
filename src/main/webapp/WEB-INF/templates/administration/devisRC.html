@@ -55,7 +55,7 @@
 							  <option th:selected="${devis.etat.equals('expédié')}" value="expédié">expédié</option>
 							  <option th:selected="${devis.etat.equals('annulé')}" value="annulé">annulé</option>
 						  </select></td>
-				        <td><a href="#" class="glyphicon glyphicon-file"></a></td>
+				        <td><a onclick="window.open(this.href); return false;" th:href="${'/RoseCorail/AffichageDevis?id='+devis.idDevis}" class="glyphicon glyphicon-file"></a></td>
 				        <td><a th:href="${'/RoseCorail/administration/ModalSuppressionDevis?id'+devis.idDevis}" class="glyphicon glyphicon-trash"></a></td>
 				      </tr>
 

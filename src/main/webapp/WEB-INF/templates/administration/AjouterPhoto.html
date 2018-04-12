@@ -36,8 +36,8 @@
                         <label class="col-xs-3 control-label" for="carrousel-page">le caroussel de la page : </label>
                         <div class="col-xs-9">
                             <select class="form-control" id="carrousel-page" name="carrousel-page">
-                                <option value="accueil">accueil</option>
-                                <option value="collection">collection</option>
+                                <option th:selected="${page.equals('accueil')}" value="accueil">accueil</option>
+                                <option th:selected="${page.equals('collection')}"value="collection">collection</option>
                             </select>
                         </div>
                     </div>

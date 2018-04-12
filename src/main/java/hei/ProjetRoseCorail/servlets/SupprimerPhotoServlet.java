@@ -17,6 +17,6 @@ public class SupprimerPhotoServlet  extends GenericServlet{
         int idPhotoaSuppr = parseInt(req.getParameter("id"));
         PhotoPresentationLibrary.getInstance().deletePhotoPresentation(idPhotoaSuppr);
         System.out.println("cette photo de présentation a bien été supprimer");
-        resp.sendRedirect("/RoseCorail/administration/modifierphotosaccueil");
+        resp.sendRedirect("/RoseCorail/administration/ModifierPhotosDePresentation");
     }
 }

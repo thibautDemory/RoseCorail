@@ -24,11 +24,13 @@ public class AjouterPhotoServlet extends GenericServlet{
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         String statut=(String) req.getSession().getAttribute("statut");
         webContext.setVariable("statut",statut);
+        String page=req.getParameter("page");
 
         // On prépare le filtre de date du mois actuel pour la page "fragment.html"
         LocalDate maintenant=LocalDate.now();
         String anneeMoisActuelle = maintenant.toString().substring(0,7);
         webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
+        webContext.setVariable("page",page);
 
         templateEngine.process("administration/AjouterPhoto", webContext, resp.getWriter());
     }
@@ -58,7 +60,7 @@ public class AjouterPhotoServlet extends GenericServlet{
             Part imagePart = req.getPart("imagePhoto"); // on récupere  l'image du formulaire
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image"+iddelanouvellephoto+".jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
             PhotoPresentationLibrary.getInstance().modifierphoto("/RoseCorail/images/"+page+"/image"+iddelanouvellephoto+".jpg",iddelanouvellephoto);
-            resp.sendRedirect("/RoseCorail/administration/modifierphotosaccueil");
+            resp.sendRedirect("/RoseCorail/administration/ModifierPhotosDePresentation");
              }
         catch (IllegalArgumentException e){
 

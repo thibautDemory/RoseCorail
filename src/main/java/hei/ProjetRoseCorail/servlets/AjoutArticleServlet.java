@@ -64,19 +64,6 @@ public class AjoutArticleServlet extends GenericServlet{
         File filequicontientlimage=null;
         List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleursActives();
         List<Integer> numerocouleurschecked=new ArrayList<>();
-        String resultat="bonjour";
-        String pathaafficher="";
-
-        // gets absolute path of the web application
-        String applicationPath = req.getServletContext().getRealPath("");
-        // constructs path of the directory to save uploaded file
-        String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
-        System.out.println(uploadFilePath);
-
-        // creates the save directory if it does not exists
-        File fileSaveDir = null;
-
-
 
 
 
@@ -85,21 +72,13 @@ public class AjoutArticleServlet extends GenericServlet{
             nom=req.getParameter("nom-article");
             description=req.getParameter("description-article");
             dimension=req.getParameter("dimension-article");
-
-
-
-            //pathaafficher=filequicontientlimage.getAbsolutePath();
-            fileSaveDir=new File("/article/"+nom.trim());
-            System.out.println(fileSaveDir.getAbsolutePath());
-            if (!fileSaveDir.exists()) {
-                fileSaveDir.mkdirs();
-            }
-            System.out.println("Upload File Directory="+fileSaveDir.getAbsolutePath());
-
-
+            filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\articles\\"+nom.trim());
+            filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
             Part imagePart = req.getPart("image-article");
-            imagePart.write(uploadFilePath+"/article/"+nom.trim()+"/image.jpg");
-            System.out.println(uploadFilePath+"/article/"+nom.trim()+"/image.jpg");
+            imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
+
+
+
             reference=req.getParameter("reference-article");
             prix=Double.parseDouble(req.getParameter("prix-article"));
             vendupar=Integer.parseInt(req.getParameter("lot-article"));
@@ -122,7 +101,7 @@ public class AjoutArticleServlet extends GenericServlet{
         }
 
 
-        Article newarticle = new Article(null, sous_categorie,nom,reference,description,"/image/article/"+nom+"/image.jpg",dimension,prix,vendupar,1);
+        Article newarticle = new Article(null, sous_categorie,nom,reference,description,"/RoseCorail/images/articles/"+nom+"/image.jpg",dimension,prix,vendupar,1);
         System.out.println("l'article est créer");
 
         try{

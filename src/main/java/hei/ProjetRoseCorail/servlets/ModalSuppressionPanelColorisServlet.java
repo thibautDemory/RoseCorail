@@ -31,6 +31,6 @@ public class ModalSuppressionPanelColorisServlet extends GenericServlet{
         String anneeMoisActuelle = maintenant.toString().substring(0,7);
         webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
-        templateEngine.process("ModalSuppressionPanelColoris", webContext, resp.getWriter());
+        templateEngine.process("/administration/ModalSuppressionPanelColoris", webContext, resp.getWriter());
     }
 }

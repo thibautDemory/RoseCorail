@@ -109,16 +109,16 @@ CREATE TABLE `compterosecorail` (
 
 CREATE TABLE `actualite` (
   `id_actualite` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` varchar(30) NOT NULL,
+  `titre` varchar(100) NOT NULL,
   `contenu` text NOT NULL,
-  `image` varchar(50) NOT NULL,
+  `image` varchar(300) NOT NULL,
   PRIMARY KEY (id_actualite)
 )engine = innodb;
 
 CREATE TABLE `panelcoloris` (
   `id_panelcoloris` int(11) NOT NULL AUTO_INCREMENT,
   `legende` text NOT NULL,
-  `image` varchar(50) NOT NULL,
+  `image` varchar(300) NOT NULL,
   `saison` varchar(50) NOT NULL,
   PRIMARY KEY (id_panelcoloris)
 )engine = innodb;

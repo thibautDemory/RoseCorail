@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Bootstrap -->
+    <link href="/RoseCorail/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/style-perso.css" type="text/css" rel="stylesheet">
+    <link href="/RoseCorail/css/Lesplats.css" type="text/css" rel="stylesheet">
+    <script src="/RoseCorail/js/jquery-3.2.1.js"></script>
+    <script src="/RoseCorail/js/bootstrap.js"></script>
+    <meta charset="utf-8"/>
+    <title>Voir les clients</title>
+</head>
+<body>
+<div class="page">
+    <div th:switch="${statut}">
+        <div th:case="'admin'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+        </div>
+        <div th:case="'client'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+        </div>
+        <div th:case="'visiteur'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+        </div>
+    </div>
+    <div class="table-responsive container">
+        <table class="table table-hover tableau  table-bordered">
+            <thead>
+            <tr>
+                <th>identifiant</th>
+                <th>prénom</th>
+                <th>nom</th>
+                <th>nom boutique</th>
+                <th>adresse</th>
+                <th>ville</th>
+                <th>code postal</th>
+                <th>numéro tél</th>
+                <th>numéro TVA</th>
+                <th>site internet</th>
+                <th>description activite</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="client : ${lesclients}">
+                <td th:text="${client.id_compte_client}"></td>
+                <td th:text="${client.prenom_gerant}"></td>
+                <td th:text="${client.nom_gerant}"></td>
+                <td th:text="${client.nom_boutique}"></td>
+                <td th:text="${client.adresse}"></td>
+                <td th:text="${client.ville}"></td>
+                <td th:text="${client.code_postal}"></td>
+                <td th:text="${client.numero_tel}"></td>
+                <td th:text="${client.num_tva}"></td>
+                <td th:text="${client.site_internet}"></td>
+                <td th:text="${client.description_activite}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-xs-offset-5">
+        <a href="/RoseCorail/administration/formulaire" class="btn btn-primary"> Retourner au formulaire</a>
+    </div>
+
+    <div class="modal fade" id="suppressionclient">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <div class="precedentlefooter"></div>
+    <script>
+        $("body").on("hidden.bs.modal", ".modal", function () {
+            $(this).removeData("bs.modal");
+        });
+
+    </script>
+
+    <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
+</div>
+</body>
+</html>

@@ -7,6 +7,7 @@
     <link href="/RoseCorail/css/Lesplats.css" type="text/css" rel="stylesheet">
     <script src="/RoseCorail/js/jquery-3.2.1.js"></script>
     <script src="/RoseCorail/js/bootstrap.js"></script>
+    <script src="/RoseCorail/js/AffichageDevis.js"></script>
     <meta charset="UTF-8"/>
     <title>Affichage Devis</title>
 </head>
@@ -25,7 +26,7 @@
 
                 </div>
             </div>
-            <div class="col-xs-6 col-xs-offset-3 col-sm-3"><!--Infos devis et client -->
+            <div class="col-xs-6 col-sm-offset-3 col-sm-3"><!--Infos devis et client -->
                 <div class="panel panel-default col-xs-8">
                     <div class="panel-heading">Devis n°1234</div>
                     <p>
@@ -35,7 +36,7 @@
                     </p>
                 </div>
 
-                <div class="panel panel-default   col-xs-8">
+                <div class="panel panel-default col-xs-8">
                     <div class="panel-heading">Adresse du client:</div>
                     <p>
                         M et Mdme Dupont<br>
@@ -61,14 +62,14 @@
                 </thead>
                 <tbody>
                 <tr th:each=" devis :${leslignesaafficher}">
-                    <td><img th:src="${devis.photoArticle}">Photo</td>
+                    <td><img class="img-responsive" th:src="${devis.photoArticle}"></td>
                     <td th:text="${devis.numeroArticle+'\t'+devis.nomArticle}">Article</td>
                     <td th:text="${devis.dimensionArticle}">dimensions</td>
-                    <td>Couleur</td>
+                    <td> <img class="img-responsive" th:src="${devis.photoCouleur}"> Couleur</td>
                     <td th:text="${devis.vendupar}">Vendu par</td>
-                    <td th:text="${devis.prixunitaire}">Prix par lot</td>
-                    <td th:text="${devis.quantite}">nombre de lots</td>
-                    <td>Prix total</td>
+                    <td th:class="${'prix'+devis.idLigneDevis}" th:text="${devis.prixunitaire}">Prix par lot</td>
+                    <td th:class="${'quantite'+devis.idLigneDevis}"th:text="${devis.quantite}">nombre de lots</td>
+                    <td class="prixtotal" th:text="${devis.quantite}*${devis.prixunitaire}">Prix total</td>
                 </tr>
                 </tbody>
             </table>

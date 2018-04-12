@@ -71,7 +71,7 @@ public class ModifierActualiteServlet extends GenericServlet{
             contenuActualite = req.getParameter("contenuActualite");
 
             idActualiteInt = parseInt(idActualiteString);
-            filequicontientlimage = new File("C:\\workSpaceWEB\\RoseCorailGit\\src\\main\\webapp\\images\\"+titreActualite.trim());
+            filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\actualites\\"+titreActualite.trim());
             filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
             Part imagePart = req.getPart("imageActualite"); // on récupere  l'image du formulaire
             imagePart.write(filequicontientlimage.getAbsolutePath()+"/image.jpg"); // on écrit l'image que l'on vient de récupérer dans le répertoire précedemment créer
@@ -80,14 +80,14 @@ public class ModifierActualiteServlet extends GenericServlet{
             String errorMessage = e.getMessage();
             req.getSession().setAttribute("errorMessage", errorMessage);
             System.out.println("error1"+errorMessage);
-            resp.sendRedirect("/RoseCorail//administration/modifierActualite");
+            resp.sendRedirect("/RoseCorail/administration/modifierActualite");
         }
 
         System.out.println("actu id string " +idActualiteString);
         System.out.println("actu id int " +idActualiteInt);
 
         // CREATE Actualite
-        Actualite newActualite = new Actualite(null, titreActualite, contenuActualite, "img\\"+titreActualite.trim()+"\\image.jpg");
+        Actualite newActualite = new Actualite(null, titreActualite, contenuActualite, "/RoseCorail/images/actualites/"+titreActualite.trim()+"/image.jpg");
 
         try {
             ActualiteLibrary.getInstance().deleteActualite(idActualiteInt);

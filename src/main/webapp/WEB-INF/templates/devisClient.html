@@ -47,7 +47,7 @@
 				        <td th:text="${devis.nbreArticles}">36</td>
 				        <td th:text="${devis.prixTotal}">804</td>
 				        <td th:text="${devis.etat}" class="etat">Demandé</td>
-				        <td><a href="#" class="glyphicon glyphicon-file"></a></td>
+				        <td><a onclick="window.open(this.href); return false;" th:href="${'/RoseCorail/AffichageDevis?id='+devis.idDevis}" class="glyphicon glyphicon-file"></a></td>
 				        <td><a data-toggle="modal" data-target="#annulationdevis" th:href="${'/RoseCorail/ModalAnnulationDevis?id='+devis.idDevis}" class="glyphicon glyphicon-remove"></a></td>
 				      </tr>
 				    </tbody>

@@ -28,9 +28,9 @@ INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categ
 INSERT INTO `souscategorie`(`id_sous_categorie`, `id_categorie`, `nom_sous_categorie`) VALUES (7, 4, 'La maison');
 
 
-INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`,actif) VALUES (1,1, 'Plats à cake', '6030 407', 'Plat à cake', 'image\\article\\aze\\image.jpg', '32 x 15 cm', 10.0, 1,1);
+INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`,actif) VALUES (1,1, 'Plat à cake', '6030 407', 'Plat à cake', '/RoseCorail/images/articles/', '32 x 15 cm', 10.0, 1,1);
 INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`,actif) VALUES (2,1, 'Plat à cake avec bords', '6030 414', 'Plat à cake avec bords', 'image\\article\\aze\\image.jpg', '32 x 15 cm', 12.0, 1,1);
-INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`,actif) VALUES (3,2, 'Plats à fromage', '6030 062', 'Plat carré', 'image\\article\\aze\\image.jpg', '30 x 30 cm', 14.0, 1,1);
+INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`,actif) VALUES (3,2, 'Plat à fromage', '6030 062', 'Plat carré', 'image\\article\\aze\\image.jpg', '30 x 30 cm', 14.0, 1,1);
 INSERT INTO `article`(`id_article`,`id_sous_categorie`,`nom_article`,`reference`,`description`,`image`,`dimensions`,`prix`, `lot_vente`,actif) VALUES (4,3, 'Coupelles', '6030 072', 'Coupelle', 'image\\article\\aze\\image.jpg', '18 x 18 cm', 10.0, 2,1);
 
 INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`, numero_panier_actif) VALUES (1,'william.evrard@hei.yncrea.fr', 'HEI', 'EVRARD', 'William', '26 BD Bigo Danel', 'Lille', '59000', '3a111d3ae4b18d0b477aa911b43f8c3d6453a5705ec7bc81dc380c87e2208a1f', '0606060606', 'FR 40 123456824', 'william.evrard.fr', 'description1',1);
@@ -91,7 +91,7 @@ INSERT INTO `statistiques`(`id_stat`, `nom_boutique_num1`, `nom_boutique_num2`, 
 INSERT INTO `statistiques`(`id_stat`, `nom_boutique_num1`, `nom_boutique_num2`, `nom_boutique_num3`, `ref_article_vu_num1`, `ref_article_vu_num2`, `ref_article_vu_num3`, `ref_article_commandes_num1`, `ref_article_commandes_num2`, `ref_article_commandes_num3`, `nom_couleur1`, `nom_couleur2`, `nom_couleur3`, `mois`, `annee`) VALUES (2, 'HEI', 'ISA', 'ISEN', '6030 407', '6030 414', '6030 062', '6030 062', '6030 414', '6030 407', 'Bleu gris 087', 'Bleu glacier 097', 'Noir 018', 'mars', '2017');
 INSERT INTO `statistiques`(`id_stat`, `nom_boutique_num1`, `nom_boutique_num2`, `nom_boutique_num3`, `ref_article_vu_num1`, `ref_article_vu_num2`, `ref_article_vu_num3`, `ref_article_commandes_num1`, `ref_article_commandes_num2`, `ref_article_commandes_num3`, `nom_couleur1`, `nom_couleur2`, `nom_couleur3`, `mois`, `annee`) VALUES (3, 'HEI', 'ISA', 'ISEN', '6030 407', '6030 414', '6030 062', '6030 062', '6030 414', '6030 407', 'Bleu gris 087', 'Bleu glacier 097', 'Noir 018', 'janvier', '2018');
 
-INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (1, 1);
+INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES   (1, 1);
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (2, 1);
 INSERT INTO `definir`(`id_devis`,`id_stat`) VALUES (3, 1);
 

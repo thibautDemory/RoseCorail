@@ -12,7 +12,7 @@ import java.util.List;
 public class CouleurDaoImpl implements CouleurDao {
     @Override
     public List<Couleur> listCouleursActives(){
-        String query = "SELECT * FROM couleur WHERE actif=1 ORDER BY id_couleur  ;";
+        String query = "SELECT * FROM couleur WHERE actif=1 ORDER BY nom_couleur;";
         List<Couleur> listOfCouleurs = new ArrayList<>();
 
         try (

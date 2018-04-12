@@ -68,7 +68,7 @@ public class AjoutPanelColorisServlet extends GenericServlet{
             System.out.println(error);
         }
         System.out.println(nomsetnumeros);
-        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"images\\panelcoloris\\"+nomsetnumeros+"\\image.jpg",saison);
+        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"\\RoseCorail\\images\\panelcoloris\\"+nomsetnumeros+"\\image.jpg",saison);
         try{
             Panelcoloris createdpanelColoris= PanelColorisLibrary.getInstance().addPanelColoris(newpanelcoloris);
             System.out.println("Un nouveau panel coloris a été créer");

@@ -53,12 +53,14 @@ public class ModificationPanelColorisServlet extends GenericServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //On récupère les infos:
+        Integer idpanelasuppr=0;
         String nomsetnumeros="";
         String image="";
         String saison="";
         File filequicontientlimage;
 
         try{
+            idpanelasuppr=Integer.parseInt(req.getParameter("idPanel"));
             nomsetnumeros=req.getParameter("nom-des-coloris");
             saison=req.getParameter("saison-panel-coloris");
 
@@ -72,7 +74,8 @@ public class ModificationPanelColorisServlet extends GenericServlet{
             String error=e.getMessage();
             System.out.println(error);
         }
-        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"images\\panelcoloris\\"+nomsetnumeros+"\\image.jpg",saison);
+        PanelColorisLibrary.getInstance().deletePanelColoris(idpanelasuppr);
+        Panelcoloris newpanelcoloris= new Panelcoloris(null,nomsetnumeros,"\\RoseCorail\\images\\panelcoloris\\"+nomsetnumeros+"\\image.jpg",saison);
 
         try{
             Panelcoloris createdpanelColoris= PanelColorisLibrary.getInstance().addPanelColoris(newpanelcoloris);
