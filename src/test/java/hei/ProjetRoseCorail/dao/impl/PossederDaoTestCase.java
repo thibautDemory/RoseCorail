@@ -62,8 +62,8 @@ public class PossederDaoTestCase {
         //THEN
         assertThat(lesarticlesdunecouleur).hasSize(2);
         assertThat(lesarticlesdunecouleur).extracting("id_article","id_sous_categorie","nom_article","reference","description","image","dimension","prix","lot_vente").containsOnly(
-                tuple(1,1,"Plats à cake","6030 407","Plat à cake","D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/platacake.jpg","32 x 15 cm",10.0,1),
-                tuple(2,1,"Plat à cake avec bords","6030 414","Plat à cake avec bords","D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/platacake.jpg","32 x 15 cm",12.0,1)
+                tuple(1,1,"Plats à cake","6030 407","Plat à cake","D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/image.jpg","32 x 15 cm",10.0,1),
+                tuple(2,1,"Plat à cake avec bords","6030 414","Plat à cake avec bords","D:/Informatique/Projet 100h/RoseCorail/src/main/webapp/image/image.jpg","32 x 15 cm",12.0,1)
         );
     }
     @Test

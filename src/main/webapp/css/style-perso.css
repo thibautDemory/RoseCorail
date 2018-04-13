@@ -116,7 +116,7 @@ margin-top: 0.5%;
 }
 .carousel-inner>.item>img.logoRoseCorail, .logoRoseCorail{
 	position: absolute;
-	left: 0px;
+	left: 20%;
 	bottom: 0px;
 	height: 20%;
 	width: auto;
@@ -207,10 +207,16 @@ a.white, a.white:hover{
 .margin-bot{
 	margin-bottom:20px;
 }
-
-.couleur-rose-corail>li.active>a, .couleur-rose-corail>li.active>a:hover{
+.list-group-item>a{
+	color:#555;
+}
+.couleur-rose-corail>li.active-perso>a, .couleur-rose-corail>li.active-perso>a:hover,.list-group>.active-perso,.active-perso{
 	background-color: #FF0040;
 	color: #fff;
+}
+.list-group .active-perso>a{
+	color: #fff;
+
 }
 
 .tableaucouleurs{
@@ -218,3 +224,4 @@ a.white, a.white:hover{
 	max-height: 200px;
 	overflow-y: auto;
 }
+
