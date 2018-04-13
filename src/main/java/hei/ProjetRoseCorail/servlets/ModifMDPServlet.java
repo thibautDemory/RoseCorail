@@ -46,7 +46,7 @@ public class ModifMDPServlet extends GenericServlet{
         String anneeMoisActuelle = maintenant.toString().substring(0,7);
         webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
-        templateEngine.process("modifMDP", webContext, resp.getWriter());
+        templateEngine.process("/modifMDP", webContext, resp.getWriter());
     }
 
     @Override

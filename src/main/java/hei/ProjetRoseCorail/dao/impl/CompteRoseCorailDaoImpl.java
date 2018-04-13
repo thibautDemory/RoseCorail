@@ -8,6 +8,11 @@ import java.sql.*;
 public class CompteRoseCorailDaoImpl implements CompteRoseCorailDao {
 
 
+    /**
+     * Cette méthode permet d'avoir l'objet compte administrateur grâce à son email
+     * @param mail = email de l'administrateur
+     * @return l'objet compte administrateur
+     */
     @Override
     public CompteRoseCorail getCompteRoseCorailByMail(String mail) {
         String query = "SELECT * FROM compterosecorail where email=?;";
@@ -31,6 +36,11 @@ public class CompteRoseCorailDaoImpl implements CompteRoseCorailDao {
     }
 
 
+    /**
+     * Cette méthode permet d'avoir l'objet compte administrateur grâce à son identifiant
+     * @param id = identifiant de l'administrateur
+     * @return l'objet compte administrateur
+     */
     @Override
     public CompteRoseCorail getCompteRoseCorailById(Integer id) {
         String query = "SELECT * FROM compterosecorail where id_compte_RC=?;";

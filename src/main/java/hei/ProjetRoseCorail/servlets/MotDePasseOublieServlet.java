@@ -75,7 +75,7 @@ public class MotDePasseOublieServlet extends GenericServlet {
                 String passwordEncoded = endocingObject.encodePassword(password);
 
                 Mail mailMDP = new Mail(adresseEmail);
-                mailMDP.mailing(adresseEmail,password);
+                mailMDP.mailingPasswordForgot(adresseEmail,password);
                 CompteClient compteClient = compteClientLibrary.getCompteClientByMail(adresseEmail);
                 idClient = compteClient.getId_compte_client();
                 compteClientLibrary.updatePassword(idClient,passwordEncoded);

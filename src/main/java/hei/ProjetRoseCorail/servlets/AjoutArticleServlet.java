@@ -19,12 +19,13 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 @MultipartConfig
 @WebServlet("/administration/ajoutArticle")
 public class AjoutArticleServlet extends GenericServlet{
     private static final String UPLOAD_DIR = "uploads";
+    ArticleLibrary articleLibrary = ArticleLibrary.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext webContext = new WebContext(req, resp, req.getServletContext());
@@ -35,6 +36,13 @@ public class AjoutArticleServlet extends GenericServlet{
         for (int i=1;i<13;i++){
             unadouze.add(i);
         }
+
+        List<Article> listArticles = articleLibrary.listarticles();
+        ArrayList<String> listNomsArticles = new ArrayList<String>();
+        for(int s=0; s<listArticles.size(); s++){
+            listNomsArticles.add(listArticles.get(s).getNom_article());
+        }
+        webContext.setVariable("listNomsArticles", listNomsArticles);
 
         webContext.setVariable("statut",statut);
         webContext.setVariable("unadouze",unadouze);
@@ -65,11 +73,8 @@ public class AjoutArticleServlet extends GenericServlet{
         List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleursActives();
         List<Integer> numerocouleurschecked=new ArrayList<>();
 
-
-
-
         try{
-            nom=req.getParameter("nom-article");
+            nom = req.getParameter("nom-article");
             description=req.getParameter("description-article");
             dimension=req.getParameter("dimension-article");
             filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\articles\\"+nom.trim());

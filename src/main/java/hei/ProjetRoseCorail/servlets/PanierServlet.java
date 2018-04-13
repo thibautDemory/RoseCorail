@@ -78,7 +78,7 @@ public class PanierServlet extends GenericServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //envoi d'un email à rose corail avec le devis
+        //envoi d'un email à rose corail
         //redirection vers une page qui dit que le devis a bien été envoyé
         //le devis change d'état
         //création d'un nouveau panier actif pr le client
@@ -87,6 +87,14 @@ public class PanierServlet extends GenericServlet{
         DevisLibrary devisLibrary=DevisLibrary.getInstance();
         CompteClientLibrary compteClientLibrary=CompteClientLibrary.getInstance();
         LocalDate maintenant=LocalDate.now();
+
+        String nomClient = (String) req.getSession().getAttribute("nom");
+        String prenomClient = (String) req.getSession().getAttribute("prenom");
+        Mail mail = new Mail("beatrice.roquette@rosecorail.com");
+        mail.sendMail("beatrice.roquette@rosecorail.com",
+                "Vous pouvez consulter le nouveau devis sur votre site \n lien : www.rosecorail.com",
+                "Site rosecorail.com : Nouveau devis de "+prenomClient+" "+nomClient);
+
 
         Integer idClient= (Integer) req.getSession().getAttribute("idClient");
 

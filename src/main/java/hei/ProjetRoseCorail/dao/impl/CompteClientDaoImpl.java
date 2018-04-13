@@ -122,6 +122,11 @@ public class CompteClientDaoImpl implements CompteClientDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de trouver un objet compte client avec un mail client
+     * @param mail = mail du client que l'on veut
+     * @return le client correspondant au mail entré en paramètre
+     */
     @Override
     public CompteClient getCompteClientByMail(String mail) {
         String query ="SELECT * FROM compteclient where email=?;";
@@ -154,7 +159,11 @@ public class CompteClientDaoImpl implements CompteClientDao {
         return null;
     }
 
-
+    /**
+     * Cette méthode permet d'ajouter un client à la BDD (base de données)
+     * @param compteClient = l'objet client que l'on veut ajouter à la BDD
+     * @return le compte client ajouté (remarque : compteClient = client)
+     */
     @Override
     public CompteClient addCompteClient(CompteClient compteClient) {
         String query = "INSERT INTO compteclient(email, nom_boutique, nom_gerant, prenom_gerant, adresse, ville, code_postal, mdp,  numero_tel, num_tva, site_internet, description_activite) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -187,6 +196,12 @@ public class CompteClientDaoImpl implements CompteClientDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de mettre à jour un compte client, sans toucher à son mot de passe. On l'utilise
+     * sur la page "Mon Compte"
+     * @param compteClient = le compte client avec les modifications à faire
+     * @return = le compte client mis à jour
+     */
     @Override
     public CompteClient updateCompteClientWithoutPassword(CompteClient compteClient) {
         String query = "UPDATE compteclient SET email=?, nom_boutique=?, nom_gerant=?, prenom_gerant=?, adresse=?, ville=?, code_postal=?, numero_tel=?, num_tva=?, site_internet=?, description_activite=? WHERE id_compte_client=?";
@@ -212,6 +227,10 @@ public class CompteClientDaoImpl implements CompteClientDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de supprimer un compte client de la BDD
+     * @param idCompteClient = l'identifiant du compte client que l'on souhaite supprimer de la BDD
+     */
     @Override
     public void deleteCompteClient(Integer idCompteClient){
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -226,6 +245,11 @@ public class CompteClientDaoImpl implements CompteClientDao {
         }
     }
 
+    /**
+     * Cette méthode permet de mettre à jour le mot de passe d'un compte client
+     * @param id = l'identifiant du compte client qui souhaite modifier son mot de passe
+     * @param pwd = le nouveau mot de passe que le client souhaite avoir
+     */
     @Override
     public void updatePassword(Integer id, String pwd) {
         String query = "UPDATE compteclient SET mdp=? WHERE id_compte_client=?;";
