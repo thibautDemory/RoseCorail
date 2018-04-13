@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/décorationdetable")
+@WebServlet("/decorationdetable")
 public class DecorationdetableServlet extends GenericServlet {
 
     @Override
@@ -49,7 +49,7 @@ public class DecorationdetableServlet extends GenericServlet {
         webContext.setVariable("anneeMoisActuelle",anneeMoisActuelle);
 
 
-        templateEngine.process("décorationdetable", webContext, resp.getWriter());
+        templateEngine.process("decorationdetable", webContext, resp.getWriter());
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -110,7 +110,7 @@ public class DecorationdetableServlet extends GenericServlet {
             for (int i = 0; i < lescouleurschoisies.size(); i++) {
                 LigneDevis createdLigne = ligneDevisLibrary.addLigneDevis(listelignesdevis.get(i));
             }
-            resp.sendRedirect("/RoseCorail/décorationdetable");
+            resp.sendRedirect("/RoseCorail/decorationdetable");
         }catch (IllegalArgumentException e){
             String erreur= e.getMessage();
             System.out.println("2"+erreur);

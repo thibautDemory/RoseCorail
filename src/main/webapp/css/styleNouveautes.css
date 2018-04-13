@@ -20,12 +20,15 @@ img.classImg{
     height: 200px;
 }
 
-p.classDesc{
+.classDesc{
     margin-left: auto;
     margin-right: auto;
     width: 300px;
 }
-
+.img-jumbo{
+    margin-left: 20%;
+    width:60%;
+}
 .classDesc{
     text-justify: auto;
 }

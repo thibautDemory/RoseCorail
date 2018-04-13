@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="css/style-perso.css" type="text/css" rel="stylesheet">
+    <link href="css/styleNouveautes.css" type="text/css" rel="stylesheet">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <meta charset="utf-8"/>
+    <title>les coloris</title>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <div th:switch="${statut}">
+        <div th:case="'admin'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+        </div>
+        <div th:case="'client'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+        </div>
+        <div th:case="'visiteur'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+        </div>
+    </div>
+
+    <main role="main">
+        <div class="container-fluid">
+        <div class="col-xs-2">
+
+            <div class="list-group">
+                <div class="list-group-item titre">Les saisons</div>
+                <div class="list-group-item" th:each="saison: ${lessaisons}">
+                <a th:text="${saison}" th:href="${'lesColoris?saison='+saison}">Collection Automne Hiver 2017</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-10">
+            <a th:if="${statut == 'admin'}" class="btn btn-primary" th:href="${'/RoseCorail/lesColoris?Modification=active&amp;saison='+saisonencours}">Activer la modification</a>
+            <a th:if="${statut == 'admin'}" class="btn btn-primary" th:href="${'/RoseCorail/lesColoris?Modification=desactive&amp;saison='+saisonencours}">Désactiver la modification</a>
+            <div class="relative">
+                <img class="img-jumbo" src="/RoseCorail/images/Coloris/image.jpg" alt="imagecoloris">
+                <img class="logoRoseCorail" src="/RoseCorail/images/rosecoraillogo.jpg" alt="logoRoseCorail">
+            </div>
+
+
+            <div class="album py-5 bg-light" style="margin-top: 20px;">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-4 boiteNouveaute" th:each="panelcoloris: ${lespanelscoloris}">
+                            <div class="card mb-4 box-shadow">
+                                <img class="classImg" th:src="${panelcoloris.image}" th:alt="${panelcoloris.legende}">
+                                <div>
+                                    <p class="classDesc" th:text="${panelcoloris.legende}"></p>
+                                    <div th:insert="~{fragments::boutonsPanelColoris(${statut},${modification})}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+    <div class="modal fade" id="suppressionpanelcoloris">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <script>
+        $("body").on("hidden.bs.modal", ".modal", function () {
+            $(this).removeData("bs.modal");
+        });
+
+    </script>
+    <div class="precedentlefooter"></div>
+
+    <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
+</div>
+</body>
+
+
+</html>

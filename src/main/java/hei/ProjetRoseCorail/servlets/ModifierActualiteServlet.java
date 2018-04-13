@@ -94,7 +94,7 @@ public class ModifierActualiteServlet extends GenericServlet{
             ActualiteLibrary.getInstance().addActualite(newActualite);
 
             // REDIRECT TO Accueil
-            resp.sendRedirect(String.format("/RoseCorail/administration/formulaire"));
+            resp.sendRedirect(String.format("/RoseCorail/accueil"));
 
         } catch (IllegalArgumentException e) {
             String errorMessage = e.getMessage();

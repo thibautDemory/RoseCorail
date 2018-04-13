@@ -327,8 +327,8 @@ public class StatistiquesServlet extends GenericServlet{
 
         String[] tabMois = {"01","02","03","04","05","06","07","08","09","10","11","12"};
 
-        System.out.println("listDevis.size() : "+listDevis.size());
-        System.out.println("listDevis.get(0).getDate() : "+listDevis.get(0).getDate());
+        //System.out.println("listDevis.size() : "+listDevis.size());
+        //System.out.println("listDevis.get(0).getDate() : "+listDevis.get(0).getDate());
 
         for(int s=0; s<12; s++){
             String moisAnneeAux = anneeActuelle+tabMois[s];

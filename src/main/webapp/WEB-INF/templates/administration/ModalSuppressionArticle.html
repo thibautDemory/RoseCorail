@@ -10,7 +10,7 @@
         <div class="row" style="margin-bottom: 20px;">
 
             <div class="col-xs-6">
-                <img th:src="${'/RoseCorail/'+cetarticle.image}" class="img-responsive">
+                <img th:src="${cetarticle.image}" class="img-responsive">
             </div>
             <div class="col-xs-6">
                 <h4>Nom : <span th:text="${cetarticle.nom_article}">Plat rectangulaire</span></h4>
@@ -21,10 +21,11 @@
                 <h4>Prix: <span th:text="${cetarticle.prix}"> 75.00</span><span class="glyphicon glyphicon-euro">/u</span></h4>
 
             </div>
-            <p>Voulez vous vraiment supprimer cet article?</p>
-            <button data-dismiss="modal" class="btn btn-primary">Annuler</button>
-            <a class="btn btn-primary" th:href="${'/RoseCorail/administration/SupprimerArticle?id='+cetarticle.id_article}">Supprimer</a>
+
         </div>
+        <h2>Voulez vous vraiment supprimer cet article?</h2>
+        <button data-dismiss="modal" class="btn btn-primary">Annuler</button>
+        <a class="btn btn-primary" th:href="${'/RoseCorail/administration/SupprimerArticle?id='+cetarticle.id_article}">Supprimer</a>
 
     </div>
 </form>

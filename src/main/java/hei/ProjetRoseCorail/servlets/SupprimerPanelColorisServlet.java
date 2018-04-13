@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.IOException;
 
 import static java.lang.Integer.parseInt;
@@ -14,9 +15,12 @@ import static java.lang.Integer.parseInt;
 public class SupprimerPanelColorisServlet extends GenericServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PanelColorisLibrary panelColorisLibrary=PanelColorisLibrary.getInstance();
         int idPanelColoris = parseInt(req.getParameter("id"));
-        PanelColorisLibrary.getInstance().deletePanelColoris(idPanelColoris);
+        String saisondupanel=panelColorisLibrary.getPanelColorisById(idPanelColoris).getSaison();
+        panelColorisLibrary.deletePanelColoris(idPanelColoris);
+
         System.out.println("ce panel colrois  a bien été supprimer");
-        resp.sendRedirect("/RoseCorail/administration/formulaire");
+        resp.sendRedirect("/RoseCorail/lesColoris?Modification=active&saison="+saisondupanel);
     }
 }

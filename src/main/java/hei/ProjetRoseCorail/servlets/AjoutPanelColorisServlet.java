@@ -51,10 +51,12 @@ public class AjoutPanelColorisServlet extends GenericServlet{
         String image="";
         String saison="";
         File filequicontientlimage=null;
+        String pagerenvoi="/RoseCorail/lesColoris?saison="; //la page vers la quelle on renvoie quand l'ajout s'est bien passé
 
         try{
             nomsetnumeros=req.getParameter("nom-des-coloris");
             saison=req.getParameter("saison-panel-coloris");
+            pagerenvoi=pagerenvoi+saison;
 
 
             filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\panelcoloris\\"+nomsetnumeros.trim());
@@ -72,7 +74,8 @@ public class AjoutPanelColorisServlet extends GenericServlet{
         try{
             Panelcoloris createdpanelColoris= PanelColorisLibrary.getInstance().addPanelColoris(newpanelcoloris);
             System.out.println("Un nouveau panel coloris a été créer");
-            resp.sendRedirect(String.format("/RoseCorail/lesColoris"));
+
+            resp.sendRedirect(pagerenvoi);
         }catch (IllegalArgumentException e){
             String error=e.getMessage();
         }

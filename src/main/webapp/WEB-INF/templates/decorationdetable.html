@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" type="text/css" rel="stylesheet">
+    <link href="css/style-perso.css" type="text/css" rel="stylesheet">
+    <link href="css/Lesplats.css" type="text/css" rel="stylesheet">
+    <meta charset="utf-8"/>
+    <title>La décoration de table</title>
+</head>
+
+<body>
+<div class="page">
+    <div th:switch="${statut}">
+        <div th:case="'admin'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoAdmin}"></nav>
+        </div>
+        <div th:case="'client'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateurCoClient}"></nav>
+        </div>
+        <div th:case="'visiteur'">
+            <nav class="navbar hautdepage" th:replace="~{fragments::navigateur}"></nav>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-xs-offset-3 col-xs-9">
+                <h3 class="col-xs-12 col-sm-6 col-md-3 col-md-offset-3" ><a href="#Dessous-de-verre" class="titre-haut-vitrine">Dessous de verre</a></h3>
+                <h3 class="col-xs-12 col-sm-6 col-md-3"><a href="#Dessous-de-plat" class="titre-haut-vitrine">Dessous de plat</a></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-2"> <!--Colonne de gauche qui contient le menu, et les filtres-->
+
+                <div class="list-group">
+                    <div class="list-group-item "><span class="glyphicon glyphicon-th-list"></span>  Les catégories</div>
+                    <div class="list-group-item"><a href="/RoseCorail/lesPlats">Les plats</a></div>
+                    <div class="list-group-item"><a href="/RoseCorail/lesportecouteaux">Les porte-couteaux</a></div>
+                    <div class="list-group-item active-perso"><a href="/RoseCorail/decorationdetable">Décoration de table</a></div>
+                    <div class="list-group-item "><a href="/RoseCorail/lamaison">La maison</a></div>
+                </div>
+
+            </div>
+
+            <div class="col-xs-8 col-sm-10"><!--à droite, on met les articles avec les noms et prix-->
+                <a th:if="${statut == 'admin'}" class="btn btn-primary" href="décorationdetable?Modification=active">Activer la modification</a>
+                <a th:if="${statut == 'admin'}" class="btn btn-primary" href="décorationdetable?Modification=desactive">Désactiver la modification</a>
+
+                <h3 class="col-sm-offset-1 col-md-offset-1 titreBack" id="Dessous-de-verre">Dessous de verre</h3>
+                <div class="row">
+                    <div th:each="article : ${dessousdeverre}">
+                        <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
+                            <figure>
+                                <img class="img-responsive imageLien" th:src="${article.image}" alt="un plat">
+                                <figcaption th:text="${article.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption>
+                                <figcaption th:if="${statut!='visiteur'}" th:text="${article.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
+                            </figure>
+                            <div th:insert="~{fragments::boutonsArticles(${statut},${modification})}"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="col-sm-offset-1 col-md-offset-1 titreBack" id="Dessous-de-plat">Dessous de plat</h3>
+                <div class="row">
+                    <div th:each="article : ${dessousdeplat}">
+                        <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
+                            <figure>
+                                <img class="img-responsive imageLien" th:src="${article.image}" alt="un plat">
+                                <figcaption th:text="${article.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption>
+                                <figcaption th:if="${statut!='visiteur'}" th:text="${article.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
+                            </figure>
+                            <div th:insert="~{fragments::boutonsArticles(${statut},${modification})}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="presentationarticle">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+
+    </div>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        $("body").on("hidden.bs.modal", ".modal", function () {
+            $(this).removeData("bs.modal");
+        });
+    </script>
+    <div class="precedentlefooter"></div>
+
+    <footer class="navbar basdepage" th:replace="~{fragments::footer}"></footer>
+</div>
+</body>
+</html>
