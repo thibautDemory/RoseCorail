@@ -11,6 +11,11 @@ import java.util.List;
 
 public class LigneDevisDaoImpl implements LigneDevisDao{
 
+    /**
+     * Cette méthode permet d'ajouter un objet LigneDevis à la BDD
+     * @param ligneDevis = objet "LigneDevis" que l'on souhaite ajouter à la BDD
+     * @return objet "LigneDevis" que l'on souhaite ajouter à la BDD
+     */
     @Override
     public LigneDevis addLigneDevis(LigneDevis ligneDevis) {
         String query = "INSERT INTO lignedevis(id_couleur,id_devis,id_article,quantite) VALUES(?, ?, ?, ?)";
@@ -36,6 +41,10 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
         return null;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste de toutes les lignes devis de la BDD
+     * @return la liste de toutes les lignes devis de la BDD
+     */
     @Override
     public List<LigneDevis> listAllLigneDevis() {
         String query = "SELECT * FROM lignedevis ;";
@@ -61,6 +70,11 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
         return listlignesdevispourunecouleur;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste des objets "LigneDevis" pour une couleur donnée
+     * @param idCouleur = identifiant de la couleur souhaitée
+     * @return la liste des objets "LigneDevis" pour une couleur donnée
+     */
     @Override
     public List<LigneDevis> listLignesDevisPourUneCouleur(Integer idCouleur) {
         String query = "SELECT * FROM lignedevis JOIN couleur ON couleur.id_couleur=lignedevis.id_couleur WHERE couleur.id_couleur= ?;";
@@ -87,6 +101,11 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
         return listlignesdevispourunecouleur;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste des objets "LigneDevis" pour un article donné
+     * @param idArticle = identifiant de l'article souhaité
+     * @return la liste des objets "LigneDevis" pour un article donné
+     */
     @Override
     public List<LigneDevis> listLignesDevisPourUnArticle(Integer idArticle) {
         String query = "SELECT * FROM lignedevis JOIN article ON article.id_article=lignedevis.id_article WHERE article.id_article= ?;";
@@ -113,6 +132,11 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
         return listlignesdevispourunarticle;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste des objets "LigneDevis" pour un devis donné
+     * @param idDevis = identifiant de l'objet "Devis" souhaité
+     * @return la liste des objets "LigneDevis" pour un devis donné
+     */
     @Override
     public List<LigneDevis> listLignesDevisPourUnDevis(Integer idDevis) {
         String query = "SELECT * FROM lignedevis WHERE id_devis= ?;";
@@ -139,6 +163,11 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
         return listlignesdevispourUnDevis;
     }
 
+    /**
+     * Cette méthode permet de modifier la quantité d'article sur un objet "LigneDevis"
+     * @param idLigneDevis = identifiant de l'objet "LigneDevis"
+     * @param quantite = la quantité d'article modifiée
+     */
     @Override
     public void modifierQuantiteLigneDevis(Integer idLigneDevis,Integer quantite) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -154,6 +183,10 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
         }
     }
 
+    /**
+     * Cette méthode permet de supprimer un objet "LigneDevis" grâce à son identifiant
+     * @param idLigneDevis = l'identifiant de l'objet "LigneDevis"
+     */
     @Override
     public void deleteLigneDevis(Integer idLigneDevis) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -168,6 +201,11 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
         }
     }
 
+    /**
+     * Cette méthode permet de supprimer des objets "LigneDevis" de la BDD
+     * grâce à l'identifiant d'un objet "Couleur"
+     * @param idCouleur = l'identifiant d'un objet "Couleur"
+     */
     @Override
     public void deleteLigneDevisForOneCouleur(Integer idCouleur) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -182,6 +220,11 @@ public class LigneDevisDaoImpl implements LigneDevisDao{
         }
     }
 
+    /**
+     * Cette méthode permet de supprimer des objets "LigneDevis" de la BDD
+     * grâce à l'identifiant d'un objet "Couleur"
+     * @param idArticle = l'identifiant d'un objet "Couleur"
+     */
     @Override
     public void deleteLigneDevisForArticle(Integer idArticle) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {

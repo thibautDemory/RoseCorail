@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DevisDaoImpl implements DevisDao {
+
+    /**
+     * Cette méthode permet d'ajouter un devis à la BDD
+     * @param devis = objet devis que l'on souhaite ajouter
+     * @return objet devis que l'on a ajouté
+     */
     @Override
     public Devis creerUnDevis(Devis devis) {
         String query = "INSERT INTO devis(id_compte_client,date_creation,etat,etatPanier) VALUES(?,?,?,?)";
@@ -33,6 +39,11 @@ public class DevisDaoImpl implements DevisDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste des devis d'un client
+     * @param idCompteClient = identifiant du compte client qui possède les devis que l'on demande
+     * @return la liste des devis du client voulu
+     */
     @Override
     public List<Devis> listDevisByCompteClient(Integer idCompteClient) {
         String query = "SELECT * FROM devis WHERE id_compte_client= ? AND etatPanier=FALSE;";
@@ -59,6 +70,10 @@ public class DevisDaoImpl implements DevisDao {
         return listofCouleursPourUnArticle;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste de tous les devis de la BDD
+     * @return la liste de tous les devis de la BDD
+     */
     @Override
     public List<Devis> listDevis() {
         String query = "SELECT * FROM devis WHERE etatPanier=FALSE;";
@@ -84,11 +99,12 @@ public class DevisDaoImpl implements DevisDao {
         return listofCouleursPourUnArticle;
     }
 
-    @Override
-    public Devis getDevisByArticle(Integer idArticle) {
-        return null;
-    }
-
+    /**
+     * Cette méthode permet d'avoir le panier d'un client, c'est-à-dire l'ensemble des articles que le
+     * client en question a dans son panier
+     * @param idcompteclient = identifiant du client dont on veut connaître le contenu du panier
+     * @return l'objet "Devis" correspondant au panier du client voulu
+     */
     @Override
     public Devis getPanierClient(Integer idcompteclient) {
         String query="SELECT * FROM devis WHERE id_compte_client=? AND etatPanier=true;";
@@ -111,6 +127,11 @@ public class DevisDaoImpl implements DevisDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet d'avoir un devis grâce à son identifiant
+     * @param idDevis = identifiant du devis que l'on veut
+     * @return l'objet "Devis" que l'on souhaite
+     */
     @Override
     public Devis getDevisById(Integer idDevis) {
         String query="SELECT * FROM devis WHERE id_devis=?;";
@@ -133,6 +154,10 @@ public class DevisDaoImpl implements DevisDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de modifier la date d'un devis grâce à son identifiant
+     * @param idDevis = l'identifiant du devis
+     */
     @Override
     public void changerDateDevis(Integer idDevis) {
         LocalDate maintenant=LocalDate.now();
@@ -150,6 +175,10 @@ public class DevisDaoImpl implements DevisDao {
 
     }
 
+    /**
+     * Cette méthode permet de modifier l'état d'un devis, l'état devient "en préparation"
+     * @param idDevis = l'identifiant de l'objet devis
+     */
     @Override
     public void dePanieraEnPreparation(Integer idDevis) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -165,6 +194,10 @@ public class DevisDaoImpl implements DevisDao {
 
     }
 
+    /**
+     * Cette méthode permet de changer l'état d'un devis et de la passer à l'état "annulé"
+     * @param idDevis = l'identifiant de l'objet devis
+     */
     @Override
     public void annulerDevis(Integer idDevis) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -179,6 +212,12 @@ public class DevisDaoImpl implements DevisDao {
         }
     }
 
+    /**
+     * Cette méthode permet de changer l'état d'un devis
+     * @param idDevis = l'identifiant de l'objet devis
+     * @param etat = une chaine de caractère qui est soit "en préparation", soit "panier", soit "annulé",
+     *             soit expédié
+     */
     @Override
     public void changerEtatDevis(Integer idDevis, String etat) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {

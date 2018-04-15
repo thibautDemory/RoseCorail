@@ -4,6 +4,9 @@ import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import javax.sql.DataSource;
 
+/**
+ * Connexion à la BDD Test
+ */
 public class DataSourceProviderTest {
     private static MysqlDataSource dataSource;
 

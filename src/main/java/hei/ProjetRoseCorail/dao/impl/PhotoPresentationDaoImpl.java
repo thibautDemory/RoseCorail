@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PhotoPresentationDaoImpl implements PhotoPresentationDao {
+
+    /**
+     * Cette méthode permet d'avoir la liste de tous les objets "PhotosPresentation" présents dans la BDD
+     * @return la liste de tous les objets "PhotosPresentation" présents dans la BDD
+     */
     @Override
     public List<PhotosPresentation> listphotospresentation() {
         String query = "SELECT * FROM photopresentation ORDER BY id_photo";
@@ -32,6 +37,11 @@ public class PhotoPresentationDaoImpl implements PhotoPresentationDao {
         return listofPhotosPresentation;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste de tous les objets "PhotosPresentation" pour un nom de page donné
+     * @param page = String qui donne le nom de la page que l'on veut
+     * @return la liste de tous les objets "PhotosPresentation" pour un nom de page donné
+     */
     @Override
     public List<PhotosPresentation> listphotosparpage(String page) {
         String query="SELECT * FROM photopresentation WHERE page=?;";
@@ -53,8 +63,11 @@ public class PhotoPresentationDaoImpl implements PhotoPresentationDao {
         return listPhotoPresentationAccueil;
     }
 
-
-
+    /**
+     * Cette méthode permet d'ajouter un objet "PhotoPresentation" à la BDD
+     * @param photosPresentation = l'objet "PhotoPresentation" que l'on veut ajouter à la BDD
+     * @return l'objet "PhotoPresentation" que l'on a ajouté à la BDD
+     */
     @Override
     public PhotosPresentation addPhotoPresentation(PhotosPresentation photosPresentation) {
         String query = "INSERT INTO photopresentation(page, adresse) VALUES(?,?)";
@@ -77,6 +90,11 @@ public class PhotoPresentationDaoImpl implements PhotoPresentationDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet d'avoir un objet "PhotoPresentation" pour un id donné
+     * @param idPhoto = identifiant de la photo que l'on veut
+     * @return un objet "PhotoPresentation" pour un id donné
+     */
     @Override
     public PhotosPresentation getPhotoPresentationById(Integer idPhoto) {
         String query="SELECT * FROM photopresentation WHERE id_photo=?;";
@@ -97,6 +115,10 @@ public class PhotoPresentationDaoImpl implements PhotoPresentationDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de supprimer un objet "PhotoPresentation" de la BDD pour un identifiant donné
+     * @param idPhoto = identifiant de la photo que l'on veut supprimer
+     */
     @Override
     public void deletePhotoPresentation(Integer idPhoto) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {

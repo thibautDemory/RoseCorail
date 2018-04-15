@@ -77,7 +77,7 @@ public class Mail {
             message.setFrom(new InternetAddress("williamthibaut.evrarddemory@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(mailDestinataire));
-            message.setSubject("Testing Subject");
+            message.setSubject("Site Rose Corail : Modification de mot de passe");
             message.setText("Voici votre nouveau mot de passe :\n"+newPassword+"\n \n Vous pouvez maintenant vous connecter avec ce nouveau mot de passe sur : www.rosecorail.com");
 
             Transport.send(message);

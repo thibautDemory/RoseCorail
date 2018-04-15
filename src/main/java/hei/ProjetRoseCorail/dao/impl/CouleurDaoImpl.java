@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CouleurDaoImpl implements CouleurDao {
+
+    /**
+     * Cette méthode permet d'avoir la liste des couleurs disponibles (de tous les articles)
+     * @return la liste des couleurs disponibles
+     */
     @Override
     public List<Couleur> listCouleursActives(){
         String query = "SELECT * FROM couleur WHERE actif=1 ORDER BY nom_couleur;";
@@ -38,6 +43,11 @@ public class CouleurDaoImpl implements CouleurDao {
 
     }
 
+    /**
+     * Cette méthode permet d'avoir une couleur grâce à son identifiant
+     * @param id = l'identifiant de la couleur voulue
+     * @return la couleur souhaitée
+     */
     @Override
     public Couleur getCouleurByID(Integer id){
         String query="SELECT * FROM couleur WHERE id_couleur=?;";
@@ -61,6 +71,11 @@ public class CouleurDaoImpl implements CouleurDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet d'avoir une couleur grâce à son paramètre "nom"
+     * @param nom = le nom de la couleur souhaitée
+     * @return l'objet couleur souhaité
+     */
     @Override
     public Couleur getCouleurByName(String nom) {
         String query="SELECT * FROM couleur WHERE nom_couleur=?;";
@@ -84,6 +99,11 @@ public class CouleurDaoImpl implements CouleurDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet d'ajouter une couleur à la BDD
+     * @param couleur = objet couleur que l'on souhaite ajouter à la BDD
+     * @return la couleur qu'on a ajouté à la BDD
+     */
     @Override
     public Couleur addCouleur(Couleur couleur){
         String query = "INSERT INTO couleur(nom_couleur, num_couleur, image, saison, actif) VALUES(?,?,?,?,?)";
@@ -109,6 +129,11 @@ public class CouleurDaoImpl implements CouleurDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de désactiver une couleur. Cela remplace la suppression de couleur, la suppression
+     * d'une couleur aurait entraîné trop de complexité, car les couleurs sont liées aux articles.
+     * @param idCouleur = l'identifiant de la couleur que l'on souhaite désactiver (supprimer)
+     */
     @Override
     public void rendreCouleurInactive(Integer idCouleur) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
@@ -123,6 +148,10 @@ public class CouleurDaoImpl implements CouleurDao {
         }
     }
 
+    /**
+     * Cette méthode permet de supprimer une couleur de la BDD (cette méthode n'est pas utilisée en pratique)
+     * @param idCouleur = l'identifiant de la couleur que l'on souhaite supprimer
+     */
     @Override
     public void deleteCouleur(Integer idCouleur){
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {

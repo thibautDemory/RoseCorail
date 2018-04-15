@@ -11,6 +11,11 @@ import java.util.List;
 
 public class PossederDaoImpl implements PossederDao{
 
+    /**
+     * Cette méthode permet d'avoir la liste de tous les objets "Couleur" pour un article donné
+     * @param id_article = l'identifiant de l'article qui précise la requête
+     * @return la liste de tous les objets "Couleur" pour un article donné
+     */
     @Override
     public List<Couleur> listCouleursPourUnArticle(Integer id_article) {
         String query = "SELECT * FROM couleur JOIN posseder ON couleur.id_couleur=posseder.id_couleur WHERE posseder.id_article= ?;";
@@ -38,6 +43,11 @@ public class PossederDaoImpl implements PossederDao{
         return listofCouleursPourUnArticle;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste de tous les objets "Article" pour une Couleur donnée
+     * @param id_couleur = l'identifiant de la couleur qui précise la requête
+     * @return la liste de tous les objets "Article" pour une Couleur donnée
+     */
     @Override
     public List<Article> listArticlesPourUneCouleur(Integer id_couleur) {
         String query = "SELECT * FROM article JOIN posseder ON article.id_article=posseder.id_article WHERE posseder.id_couleur= ?;";
@@ -69,6 +79,11 @@ public class PossederDaoImpl implements PossederDao{
         return listArticlesPourUneCouleur;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste de tous les couples d'objets "Article" et "Couleur" dans la
+     * table "Posseder" de la BDD
+     * @return la liste de tous les couples d'objets "Article" et "Couleur" dans la table "Posseder" de la BDD
+     */
     @Override
     public List<Posseder> listLesPosseder() {
         String query = "SELECT * FROM posseder;";
@@ -90,6 +105,12 @@ public class PossederDaoImpl implements PossederDao{
         return listofPosseder;
     }
 
+    /**
+     * Cette méthode permet d'ajouter un couple d'objets "Article" et "Couleur" dans la
+     * table "Posseder" de la BDD
+     * @param posseder = objet "Posseder" qui indique à quel Article et Couleur on fait référence
+     * @return l'objet "Posseder" qui indique à quel Article et Couleur on fait référence
+     */
     @Override
     public Posseder addPosseder(Posseder posseder) {
         String query = "INSERT INTO posseder(id_couleur,id_article) VALUES(?, ?)";

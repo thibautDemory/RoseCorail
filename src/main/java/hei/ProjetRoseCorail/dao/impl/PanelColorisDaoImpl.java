@@ -9,6 +9,10 @@ import java.util.List;
 
 public class PanelColorisDaoImpl implements PanelColorisDao {
 
+    /**
+     * Cette méthode permet d'avoir la liste de tous les objets "Panelcoloris" de la BDD
+     * @return la liste de tous les objets "Panelcoloris" de la BDD
+     */
     @Override
     public List<Panelcoloris> listPanelColoris() {
         String query = "SELECT * FROM panelcoloris ORDER BY id_panelcoloris";
@@ -34,6 +38,11 @@ public class PanelColorisDaoImpl implements PanelColorisDao {
         return listOfPanelColoris;
     }
 
+    /**
+     * Cette méthode permet d'avoir la liste de tous les objets "Panelcoloris" pour une saison donnée
+     * @param saison = String qui défini la saison que l'on souhaite
+     * @return la liste de tous les objets "Panelcoloris" pour une saison donnée
+     */
     @Override
     public List<Panelcoloris> listPanelColorisParSaison(String saison) {
         String query="SELECT * FROM panelcoloris WHERE saison=?;";
@@ -56,6 +65,11 @@ public class PanelColorisDaoImpl implements PanelColorisDao {
         return listPanelColoris;
     }
 
+    /**
+     * Cette méthode permet d'avoir un objet "PanelColoris" grâce à son identifiant
+     * @param id = l'identifiant de l'objet "PanelColoris" que l'on souhaite
+     * @return l'objet "PanelColoris" souhaité
+     */
     @Override
     public Panelcoloris getPanelColorisById(Integer id) {
         String query="SELECT * FROM panelcoloris WHERE id_panelcoloris=?;";
@@ -77,6 +91,11 @@ public class PanelColorisDaoImpl implements PanelColorisDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet d'ajouter un objet "PanelColoris" à la BDD
+     * @param panelcoloris = l'objet "PanelColoris" que l'on veut ajouter à la BDD
+     * @return l'objet "PanelColoris" ajouté à la BDD
+     */
     @Override
     public Panelcoloris addPanelColoris(Panelcoloris panelcoloris) {
         String query = "INSERT INTO panelcoloris(legende, image, saison) VALUES(?,?,?)";
@@ -100,6 +119,10 @@ public class PanelColorisDaoImpl implements PanelColorisDao {
         return null;
     }
 
+    /**
+     * Cette méthode permet de supprimer un objet "PanelColoris" grâce à son identifiant
+     * @param idPanelColoris = l'identifiant de l'objet "PanelColoris" que l'on souhaite supprimer
+     */
     @Override
     public void deletePanelColoris(Integer idPanelColoris) {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
