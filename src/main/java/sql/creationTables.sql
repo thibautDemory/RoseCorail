@@ -1,18 +1,3 @@
-CREATE TABLE `categorie` (
-  `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_categorie` varchar(30) NOT NULL,
-  PRIMARY KEY (id_categorie)
-)engine = innodb;
-
-
-CREATE TABLE `souscategorie` (
-  `id_sous_categorie` int(11) NOT NULL AUTO_INCREMENT,
-  `id_categorie` int(11) NOT NULL,
-  `nom_sous_categorie` varchar(30) NOT NULL,
-  PRIMARY KEY (id_sous_categorie),
-  KEY `id_categorie_fk` (`id_categorie`),
-  CONSTRAINT `id_categorie_fk` FOREIGN KEY (`id_categorie`) REFERENCES `categorie` (`id_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
-)engine = innodb;
 
 CREATE TABLE `article` (
   `id_article` int(11)  AUTO_INCREMENT,
@@ -25,9 +10,7 @@ CREATE TABLE `article` (
   `prix` double NOT NULL,
   `lot_vente` int(11) NOT NULL,
   `actif` int(11) NOT NULL,
-  PRIMARY KEY (id_article),
-  KEY `id_sous_categorie_fk` (`id_sous_categorie`),
-  CONSTRAINT `id_sous_categorie_fk` FOREIGN KEY (`id_sous_categorie`) REFERENCES `souscategorie` (`id_sous_categorie`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (id_article)
 )engine = innodb;
 
 CREATE TABLE `compteclient` (
@@ -123,35 +106,7 @@ CREATE TABLE `panelcoloris` (
   PRIMARY KEY (id_panelcoloris)
 )engine = innodb;
 
-CREATE TABLE `statistiques` (
-  `id_stat` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_boutique_num1` varchar(50) NOT NULL,
-  `nom_boutique_num2` varchar(50) NOT NULL,
-  `nom_boutique_num3` varchar(50) NOT NULL,
-  `ref_article_vu_num1` varchar(40) NOT NULL,
-  `ref_article_vu_num2` varchar(40) NOT NULL,
-  `ref_article_vu_num3` varchar(40) NOT NULL,
-  `ref_article_commandes_num1` varchar(40) NOT NULL,
-  `ref_article_commandes_num2` varchar(40) NOT NULL,
-  `ref_article_commandes_num3` varchar(40) NOT NULL,
-  `nom_couleur1` varchar(40) NOT NULL,
-  `nom_couleur2` varchar(40) NOT NULL,
-  `nom_couleur3` varchar(40) NOT NULL,
-  `mois` varchar(10) NOT NULL,
-  `annee` char(4) NOT NULL,
-  PRIMARY KEY (id_stat)
-)engine = innodb;
 
-CREATE TABLE `definir` (
-  `id_definir` int(11) NOT NULL AUTO_INCREMENT,
-  `id_devis` int(11) NOT NULL,
-  `id_stat` int(11) NOT NULL,
-  KEY `id_devis_fk`  (`id_devis`),
-  CONSTRAINT `id_devis_fk` FOREIGN KEY (`id_devis`) REFERENCES `devis` (`id_devis`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  KEY `id_stat_fk` (`id_stat`),
-  CONSTRAINT `id_stat_fk` FOREIGN KEY (`id_stat`) REFERENCES `statistiques` (`id_stat`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  PRIMARY KEY (id_definir)
-)engine = innodb;
 
 CREATE TABLE `photopresentation` (
   `id_photo` int(11) NOT NULL AUTO_INCREMENT,

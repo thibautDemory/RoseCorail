@@ -114,7 +114,14 @@ margin-top: 0.5%;
 	margin-left: 25%;
 	margin-bottom: 5%;
 }
-.carousel-inner>.item>img.logoRoseCorail, .logoRoseCorail{
+.carousel-inner>.item>img.logoRoseCorail{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	height: 20%;
+	width: auto;
+}
+.logoRoseCorail{
 	position: absolute;
 	left: 20%;
 	bottom: 0px;

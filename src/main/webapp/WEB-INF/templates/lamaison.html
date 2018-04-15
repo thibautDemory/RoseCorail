@@ -54,7 +54,7 @@
                     <div th:each="article : ${lamaison}">
                         <div class="col-xs-12 col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-1 margin-bottom">
                             <figure>
-                                <img class="img-responsive imageLien" th:src="${article.image}" alt="un plat">
+                                <img class="img-responsive" th:src="${article.image}" alt="un plat">
                                 <figcaption th:text="${article.nom_article}" class="col-xs-8 no-padding">Un plat</figcaption>
                                 <figcaption th:if="${statut!='visiteur'}" th:text="${article.prix}+' euros'" class="col-xs-4 text-right no-padding">12 euros</figcaption>
                             </figure>

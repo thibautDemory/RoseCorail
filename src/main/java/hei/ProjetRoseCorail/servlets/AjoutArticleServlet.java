@@ -36,6 +36,8 @@ public class AjoutArticleServlet extends GenericServlet{
         for (int i=1;i<13;i++){
             unadouze.add(i);
         }
+        Boolean aucune_couleur_indiquee=(Boolean) req.getSession().getAttribute("aucune_couleur_indiquee");
+        webContext.setVariable("aucune_couleur_indiquee",aucune_couleur_indiquee);
 
         List<Article> listArticles = articleLibrary.listarticles();
         ArrayList<String> listNomsArticles = new ArrayList<String>();
@@ -72,6 +74,8 @@ public class AjoutArticleServlet extends GenericServlet{
         File filequicontientlimage=null;
         List<Couleur> lescouleurs=CouleurLibrary.getInstance().listCouleursActives();
         List<Integer> numerocouleurschecked=new ArrayList<>();
+        Boolean test_list_vide=false;
+        List<Posseder> listedesposseder=new ArrayList<>();
 
         try{
             nom = req.getParameter("nom-article");
@@ -94,24 +98,36 @@ public class AjoutArticleServlet extends GenericServlet{
                 }
             }
 
+
+
+
         }catch (IllegalArgumentException e){
             String error=e.getMessage();
 
             System.out.println("erreur1"+error);
 
         }
-        //on créer l'article
-        for (int i=0;i<numerocouleurschecked.size();i++){
-            System.out.println(numerocouleurschecked.get(i));
+        if(numerocouleurschecked.isEmpty()){
+            test_list_vide=true;
         }
 
 
-        Article newarticle = new Article(null, sous_categorie,nom,reference,description,"/RoseCorail/images/articles/"+nom+"/image.jpg",dimension,prix,vendupar,1);
+
+        //on créer l'article
+
+
+
+
+        Article newarticle = new Article(null, sous_categorie, nom, reference, description, "/RoseCorail/images/articles/" + nom + "/image.jpg", dimension, prix, vendupar, 1);
         System.out.println("l'article est créer");
 
+
         try{
-            Article createdArticle= ArticleLibrary.getInstance().addArticle(newarticle);
-            System.out.println("larticlelibrary");
+            if(test_list_vide==false) {
+                Article createdArticle = ArticleLibrary.getInstance().addArticle(newarticle);
+                System.out.println("larticlelibrary");
+            }
+
         }catch (IllegalArgumentException e){
             String errorMessage =e.getMessage();
             System.out.println("error2"+errorMessage);
@@ -119,18 +135,28 @@ public class AjoutArticleServlet extends GenericServlet{
             resp.sendRedirect("/RoseCorail/administration/ajoutArticle");
         }
         Integer idarticle=newarticle.getId_article();
-        List<Posseder> listedesposseder=new ArrayList<>();
+
+
         for (int i=0;i<numerocouleurschecked.size();i++){
             Posseder newposseder= new Posseder(null,numerocouleurschecked.get(i),idarticle);
             listedesposseder.add(newposseder);
         }
 
         try{
-            for (int i=0;i<listedesposseder.size();i++){
-                Posseder createdPosseder=possederLibrary.addPosseder(listedesposseder.get(i));
-            }
 
-            resp.sendRedirect(String.format("/RoseCorail/administration/formulaire"));
+            if (test_list_vide==true){
+                req.getSession().setAttribute("aucune_couleur_indiquee",true);
+                resp.sendRedirect("/RoseCorail/administration/ajoutArticle");
+            }else {
+                req.getSession().setAttribute("aucune_couleur_indiquee", false);
+
+
+                for (int i = 0; i < listedesposseder.size(); i++) {
+                    Posseder createdPosseder = possederLibrary.addPosseder(listedesposseder.get(i));
+                }
+
+                resp.sendRedirect("/RoseCorail/administration/formulaire");
+            }
 
         }catch (IllegalArgumentException e){
             String errorMessage =e.getMessage();

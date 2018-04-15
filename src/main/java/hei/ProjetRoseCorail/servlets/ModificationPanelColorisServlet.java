@@ -79,7 +79,8 @@ public class ModificationPanelColorisServlet extends GenericServlet{
 
         try{
             Panelcoloris createdpanelColoris= PanelColorisLibrary.getInstance().addPanelColoris(newpanelcoloris);
-            resp.sendRedirect(String.format("/RoseCorail/lesColoris?"+saison));
+            System.out.println("saison="+saison);
+            resp.sendRedirect(("/RoseCorail/lesColoris?saison=Autome-Hiver 2016"));
         }catch (IllegalArgumentException e){
             String error = e.getMessage();
         }

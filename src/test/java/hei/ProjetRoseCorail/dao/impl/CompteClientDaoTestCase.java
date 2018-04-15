@@ -25,7 +25,7 @@ public class CompteClientDaoTestCase {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              Statement stmt = connection.createStatement()) {
             stmt.executeUpdate("DELETE FROM lignedevis");
-            stmt.executeUpdate("DELETE FROM definir");
+
             stmt.executeUpdate("DELETE FROM devis");
             stmt.executeUpdate("DELETE FROM compteclient");
             stmt.executeUpdate("INSERT INTO `compteclient`(`id_compte_client`,`email`,`nom_boutique`,`nom_gerant`,`prenom_gerant`,`adresse`,`ville`,`code_postal`,`mdp`, `numero_tel`, `num_tva`, `site_internet`, `description_activite`, numero_panier_actif) VALUES (1,'william@evrard.fr', 'HEI', 'EVRARD', 'William', '26 BD Bigo Danel', 'Lille', '59000', 'monMDP1', '0606060606', 'FR 40 123456824', 'william.evrard.fr', 'description1',1)");

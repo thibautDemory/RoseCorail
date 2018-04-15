@@ -28,7 +28,6 @@ public class DevisDaoTestCase {
         try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              Statement stmt = connection.createStatement()) {
             stmt.executeUpdate("DELETE FROM lignedevis");
-            stmt.executeUpdate("DELETE FROM definir");
             stmt.executeUpdate("DELETE FROM devis");
             stmt.executeUpdate("ALTER TABLE devis AUTO_INCREMENT=0");
             stmt.executeUpdate("INSERT INTO devis(id_devis,id_compte_client,date_creation,etat,etatPanier) VALUES (1,1,'2017-04-06','demandé',false)");

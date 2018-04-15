@@ -44,6 +44,7 @@ public class LesColorisServlet extends GenericServlet{
         webContext.setVariable("lessaisons",lessaisonsenString);
 
         String saisonselect=req.getParameter("saison");
+        System.out.println("la saison en cours est:" + saisonselect);
         List<Panelcoloris> lespanelscoloris = panelColorisLibrary.listpanelcolorisparsaison(saisonselect);
 
         System.out.println(statut);
