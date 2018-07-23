@@ -1,5 +1,7 @@
 package hei.ProjetRoseCorail.entities;
 
+import java.io.InputStream;
+
 /**
  * Un article est composé d'un identifiant unique,
  * un id de sous catégorie (7 sous catégories différentes),
@@ -18,13 +20,13 @@ public class Article {
     private String nom_article;
     private String reference;
     private String description;
-    private String image;
+    private InputStream image;
     private String dimension;
     private double prix;
     private Integer lot_vente;
     private Integer actif;
 
-    public Article(Integer id_article, Integer id_sous_categorie, String nom_article, String reference, String description, String image, String dimension, double prix, Integer lot_vente,Integer actif) {
+    public Article(Integer id_article, Integer id_sous_categorie, String nom_article, String reference, String description, InputStream image, String dimension, double prix, Integer lot_vente,Integer actif) {
         this.id_article = id_article;
         this.id_sous_categorie = id_sous_categorie;
         this.nom_article = nom_article;
@@ -74,11 +76,11 @@ public class Article {
         this.description = description;
     }
 
-    public String getImage() {
+    public InputStream getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(InputStream image) {
         this.image = image;
     }
 

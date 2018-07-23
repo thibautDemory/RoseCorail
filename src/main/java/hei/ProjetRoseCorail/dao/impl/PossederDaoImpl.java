@@ -64,7 +64,7 @@ public class PossederDaoImpl implements PossederDao{
                             resultSet.getString("nom_article"),
                             resultSet.getString("reference"),
                             resultSet.getString("description"),
-                            resultSet.getString("image"),
+                            resultSet.getBinaryStream("image"),
                             resultSet.getString("dimensions"),
                             resultSet.getDouble("prix"),
                             resultSet.getInt("lot_vente"),

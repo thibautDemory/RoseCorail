@@ -5,6 +5,7 @@ import hei.ProjetRoseCorail.entities.Article;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -78,7 +79,7 @@ public class ArticleDaoTestCase {
     public void shouldAddArticle() throws Exception {
         // GIVEN
         Article newArticle = new Article(null, 2,
-                "plat rond", "612 612", "plat rond de thibaut", "imageplatrond", "32 x 32 cm", 13.5, 2, 1);
+                "plat rond", "612 612", "plat rond de thibaut", new FileInputStream("regre"), "32 x 32 cm", 13.5, 2, 1);
         // WHEN
         Article createdArticle = articleDao.addArticle(newArticle);
         // THEN

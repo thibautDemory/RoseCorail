@@ -1,5 +1,6 @@
 package hei.ProjetRoseCorail.servlets;
 
+import hei.ProjetRoseCorail.dao.impl.DataSourceProvider;
 import hei.ProjetRoseCorail.entities.*;
 import hei.ProjetRoseCorail.managers.*;
 import org.thymeleaf.TemplateEngine;
@@ -10,9 +11,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @WebServlet("/lesPlats")
 public class LesPlatsServlet extends GenericServlet{
@@ -23,12 +29,37 @@ public class LesPlatsServlet extends GenericServlet{
         String statut=(String) req.getSession().getAttribute("statut");
         String modification=(String) req.getParameter("Modification");
 
-
         ArticleLibrary articleLibrary=ArticleLibrary.getInstance();
         List<Article> platsacake=articleLibrary.listPlatsPlatACake();
         List<Article> platsAfromage=articleLibrary.listPlatsPlatAFromage();
         List<Article> coupelles=articleLibrary.listPlatsCoupelle();
         List<Couleur> couleurs= CouleurLibrary.getInstance().listCouleursActives();
+
+        List<byte[]> listImagePlatACake = new ArrayList<>();
+
+        for(int i=0; i<platsacake.size(); i++){
+            int idPlat = platsacake.get(i).getId_article();
+            String query = "SELECT image FROM article WHERE id_article=?";
+            try (Connection connection = DataSourceProvider.getDataSource().getConnection();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, idPlat);
+                ResultSet resultSet = statement.executeQuery();
+                if (resultSet.next()) {
+                    java.sql.Blob img = resultSet.getBlob("image");
+                    byte[] imgData = img.getBytes(1,(int)img.length());
+                    //resp.setHeader("expires", "0");
+                    resp.setContentType("image/jpg");
+                    OutputStream o = resp.getOutputStream();
+                    o.write(imgData);
+                    o.flush();
+                    o.close();
+                    listImagePlatACake.add(imgData);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         if (statut==null||"".equals(statut)||statut=="visiteur"){
             statut="visiteur";
@@ -40,6 +71,7 @@ public class LesPlatsServlet extends GenericServlet{
 
         }
         webContext.setVariable("platsacake",platsacake);
+        webContext.setVariable("listImagePlatsACake",listImagePlatACake);
         webContext.setVariable("platsAfromage",platsAfromage);
         webContext.setVariable("coupelles",coupelles);
         webContext.setVariable("couleurs",couleurs);

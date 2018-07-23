@@ -1,8 +1,10 @@
 package hei.ProjetRoseCorail.entities;
 
 
+import java.io.InputStream;
+
 public class LignePanier {
-    private String photoArticle;
+    private InputStream photoArticle;
     private String numeroArticle;
     private String nomArticle;
     private String dimensionArticle;
@@ -13,7 +15,7 @@ public class LignePanier {
     private Integer vendupar;
 
 
-    public LignePanier(String photoArticle, String numeroArticle, String nomArticle, String dimensionArticle, String photoCouleur, Integer quantite,Integer vendupar,Double prixunitaire, Integer idLigneDevis) {
+    public LignePanier(InputStream photoArticle, String numeroArticle, String nomArticle, String dimensionArticle, String photoCouleur, Integer quantite,Integer vendupar,Double prixunitaire, Integer idLigneDevis) {
         this.photoArticle = photoArticle;
         this.numeroArticle = numeroArticle;
         this.nomArticle = nomArticle;
@@ -25,11 +27,11 @@ public class LignePanier {
         this.idLigneDevis=idLigneDevis;
     }
 
-    public String getPhotoArticle() {
+    public InputStream getPhotoArticle() {
         return photoArticle;
     }
 
-    public void setPhotoArticle(String photoArticle) {
+    public void setPhotoArticle(InputStream photoArticle) {
         this.photoArticle = photoArticle;
     }
 

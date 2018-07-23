@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,7 @@ public class ModificationArticleServlet extends GenericServlet{
         String nom="";
         String description="";
         String dimension="";
+        InputStream image=null;
         Integer sous_categorie=0;
         String reference="";
         Double prix=0.0;
@@ -89,6 +91,7 @@ public class ModificationArticleServlet extends GenericServlet{
             nom=req.getParameter("nom-article");
             description=req.getParameter("description-article");
             dimension=req.getParameter("dimension-article");
+            image = req.getPart("image-article").getInputStream();
             filequicontientlimage= new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\articles\\"+nom.trim());
             filequicontientlimage.mkdirs();
             Part imagePart = req.getPart("image-article");
@@ -110,7 +113,7 @@ public class ModificationArticleServlet extends GenericServlet{
             System.out.println("erreur1"+error);
 
         }
-        Article articlemodif= new Article(null, sous_categorie,nom,reference,description,"\\RoseCorail\\images\\articles\\"+nom+"\\image.jpg",dimension,prix,vendupar,1);
+        Article articlemodif= new Article(null, sous_categorie,nom,reference,description,image,dimension,prix,vendupar,1);
         List<LigneDevis> leslignesDevisPourcetArticle=ligneDevisLibrary.listLignesDevisPourUnArticle(Integer.parseInt(idArticleAModifier));
         Integer idnouvelarticle=0;
         try{

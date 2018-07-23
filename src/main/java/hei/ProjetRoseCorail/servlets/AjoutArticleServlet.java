@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
@@ -67,6 +68,7 @@ public class AjoutArticleServlet extends GenericServlet{
         String nom="";
         String description="";
         String dimension="";
+        InputStream image=null;
         Integer sous_categorie=0;
         String reference="";
         Double prix=0.0;
@@ -81,6 +83,7 @@ public class AjoutArticleServlet extends GenericServlet{
             nom = req.getParameter("nom-article");
             description=req.getParameter("description-article");
             dimension=req.getParameter("dimension-article");
+            image = req.getPart("image-article").getInputStream();
             filequicontientlimage = new File("D:\\Informatique\\Projet 100h\\RoseCorail\\src\\main\\webapp\\images\\articles\\"+nom.trim());
             filequicontientlimage.mkdirs(); // permet de transformer le fichier en répertoire. A noter que grace à cette méthode, on créer les dossiers qui n'existent pas dans le chemin de la ligne d'au dessus
             Part imagePart = req.getPart("image-article");
@@ -98,9 +101,6 @@ public class AjoutArticleServlet extends GenericServlet{
                 }
             }
 
-
-
-
         }catch (IllegalArgumentException e){
             String error=e.getMessage();
 
@@ -111,14 +111,8 @@ public class AjoutArticleServlet extends GenericServlet{
             test_list_vide=true;
         }
 
-
-
         //on créer l'article
-
-
-
-
-        Article newarticle = new Article(null, sous_categorie, nom, reference, description, "/RoseCorail/images/articles/" + nom + "/image.jpg", dimension, prix, vendupar, 1);
+        Article newarticle = new Article(null, sous_categorie, nom, reference, description, image, dimension, prix, vendupar, 1);
         System.out.println("l'article est créer");
 
 
